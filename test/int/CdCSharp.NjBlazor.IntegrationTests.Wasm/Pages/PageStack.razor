@@ -1,0 +1,24 @@
+﻿@page "/stack"
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+
+<NavLink href="/">Return Index</NavLink>
+
+<h2>Stack row</h2>
+
+<NjStack Grow="1" Spacing="5" AlignItems="Core.AlignItemsMode.Center" Direction="Core.FlexDirectionMode.Row" Wrap="Core.FlexWrapMode.Wrap">
+    <div>Row item 1</div>
+    <div>Row item 2</div>
+    <div>Row item 3</div>
+</NjStack>
+
+<h2>Stack column</h2>
+
+<NjStack Grow="1" Spacing="5" AlignItems="Core.AlignItemsMode.Center" Direction="Core.FlexDirectionMode.Column" Wrap="Core.FlexWrapMode.Wrap">
+    <div>Col item 1</div>
+    <div>Col item 2</div>
+    <div>Col item 3</div>
+</NjStack>
+
+@code {
+
+}

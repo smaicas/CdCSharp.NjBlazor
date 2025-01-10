@@ -1,0 +1,21 @@
+﻿.code-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    display: block;
+}
+
+code.nj-highlight-theme-default {
+    display: block;
+    background-color: #ededed;
+    color: #000000;
+    white-space: pre-wrap;
+    padding: 1rem;
+}
+
+    code.nj-highlight-theme-default span {
+        display: inline;
+        word-wrap: break-word;
+        word-break: break-all;
+    }

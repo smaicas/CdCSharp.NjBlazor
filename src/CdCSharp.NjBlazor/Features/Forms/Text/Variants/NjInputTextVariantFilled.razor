@@ -1,0 +1,94 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.FocusHolder.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Text.Variants
+
+@inherits NjInputTextBase
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Text)" Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Text/CdCSharp.NjBlazor.Features.Forms.Text.bundle.scp.css",
+"_content/CdCSharp.NjBlazor.Features.Forms.Text/css/main.css",
+})" OnReady="()=> Ready = true" /> *@
+
+@if (Ready)
+{
+    <NjFocusHolder FocusHolderQuerySelector=".nj-input-root" OnFocus="OnFocusAsync" OnFocusOut="OnFocusOutAsync">
+        <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+            <div class="@AsClass(
+         "nj-input",
+         "nj-input-text",
+         "nj-input-text-variant-filled",
+         "nj-underline",
+         FocusClass,
+         Class)">
+                @if (PreAdornment != null)
+                {
+                    <div class="nj-adornment-icon nj-input-pre-adornment">
+                        <NjSvgIcon Icon="@PreAdornment" Color="@PreAdornmentColor" />
+                    </div>
+                }
+                <div class="nj-input-focus-box">
+                    <label for="@InputReferenceId"
+                           class="@(AsClass(
+                    "nj-input-label",
+                    "nj-label-animated",
+                    EmptyClass,
+                    FocusClass))">
+                        <span class="@(AsClass("nj-input-label-text"))">
+                            @Label
+                        </span>
+
+                        @if (IsTextArea)
+                        {
+                            <textarea @ref="InputReference"
+                                      id="@InputReferenceId"
+                                      type="text"
+                                      title="@Title"
+                                      placeholder="@Placeholder"
+                                      class="@(AsClass(
+                    "nj-input-root",
+                    EmptyClass,
+                    FocusClass,
+                    TextAreaClass,
+                    PasswordClass))"
+                                      @bind="@CurrentValue"
+                                      @oninput="OnInputAsync"
+                                      readonly="@ReadOnly"
+                                      disabled="@Disabled"></textarea>
+                        }
+                        else
+                        {
+                            <input @ref="InputReference"
+                                   id="@InputReferenceId"
+                                   type="text"
+                                   title="@Title"
+                                   placeholder="@Placeholder"
+                                   class="@(AsClass(
+                    "nj-input-root",
+                    EmptyClass,
+                    FocusClass,
+                    PasswordClass))"
+                                   @bind="@CurrentValue"
+                                   @oninput="OnInputAsync"
+                                   readonly="@ReadOnly"
+                                   disabled="@Disabled" />
+                        }
+                    </label>
+                    @if (PostAdornment != null)
+                    {
+                        <div class="nj-adornment-icon nj-input-post-adornment">
+                            <NjSvgIcon Icon="@PostAdornment" Color="PostAdornmentColor" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </NjInputControl>
+    </NjFocusHolder>
+}
+
+@code {
+    bool Ready;
+
+}

@@ -1,0 +1,15 @@
+﻿.nj-action-button {
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 3.5em;
+    height: 3.5em;
+}
+
+    .nj-action-button .nj-input-root {
+        border: inherit;
+        border-radius: inherit;
+        width: inherit;
+        height: inherit;
+        cursor: pointer;
+    }

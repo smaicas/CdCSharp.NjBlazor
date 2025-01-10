@@ -1,0 +1,9 @@
+﻿.nj-text-button.nj-text-button-variant-flat:hover,
+.nj-text-button.nj-text-button-variant-flat:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nj-text-button.nj-text-button-variant-flat:active,
+.nj-text-button.nj-text-button-variant-flat.active {
+    background-color: rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,76 @@
+﻿@page "/tree"
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Layout.Components.Tree
+
+<NavLink href="/">Return Index</NavLink>
+
+<h1>Accordion Column</h1>
+<NjTree>
+    <NjTreeNode>
+        <Title><h2>Title 1</h2></Title>
+        <ChildContent>
+            <NjTreeNode>
+                <Title><h3>Title 1.1</h3></Title>
+                <ChildContent>
+                    <NjTreeNode><Title><h3>Title 1.1.1</h3></Title></NjTreeNode>
+                </ChildContent>
+            </NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 2</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 2.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 3</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 3.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+</NjTree>
+<hr />
+<h1>Accordion Row</h1>
+<NjTree Direction="FlexDirectionMode.Row">
+    <NjTreeNode>
+        <Title><h2>Title 1</h2></Title>
+        <ChildContent>
+            <NjTreeNode>
+                <Title><h3>Title 1.1</h3></Title>
+                <ChildContent>
+                    <NjTreeNode><Title><h3>Title 1.1.1</h3></Title></NjTreeNode>
+                </ChildContent>
+            </NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 2</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 2.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 3</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 3.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+</NjTree>
+
+
+@code {
+
+}

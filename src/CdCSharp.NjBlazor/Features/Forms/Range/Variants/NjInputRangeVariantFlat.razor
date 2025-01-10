@@ -1,0 +1,44 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Range.Variants
+
+@inherits NjInputRangeBase
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Range)" Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Range/css/main.css",
+})" /> *@
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+    <div class=@(AsClass(
+        "nj-input", 
+        "nj-input-range", 
+        "nj-input-range-variant-flat", 
+        FocusClass,
+        Class))>
+
+        <label for="@_inputReferenceId" class="@(AsClass("nj-input-label", EmptyClass, FocusClass))">
+            @Label
+            <div class="nj-input-range-box">
+
+                <span class="nj-input-range-minmax">@Min</span>
+                <input @ref="@InputReference"
+                       id="@_inputReferenceId"
+                       type="range"
+                       class="nj-input-root"
+                       min="@Min"
+                       max="@Max"
+                       step="@Step"
+                       @bind-value="@CurrentValue" />
+                <span class="nj-input-range-minmax">@CurrentValueAsString</span>
+
+            </div>
+
+        </label>
+    </div>
+
+</NjInputControl>
+
+@code {
+
+}

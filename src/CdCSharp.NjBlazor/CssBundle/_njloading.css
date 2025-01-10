@@ -1,0 +1,30 @@
+﻿/*#region Loading Bar*/
+.nj-loading {
+    position: relative;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+    .nj-loading:before {
+        content: "";
+        position: absolute;
+        left: -200%;
+        width: 100%;
+        height: 100%;
+        background-color: var(--palette-loadingbarcolor);
+        animation: loading-bar 2s infinite;
+        animation-timing-function: ease;
+    }
+
+@keyframes loading-bar {
+    from {
+        left: -200%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+/*#endregion Loading Bar */

@@ -1,0 +1,38 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+
+@namespace CdCSharp.NjBlazor.Features.Media.Components
+
+@inherits NjComponentBase
+
+@* <CssInclude Refs="@(new string[]{
+"_content/Nj.Blazor.Media/Nj.Blazor.Media.bundle.scp.css"
+})" /> *@
+
+@if (IsSvg(Icon))
+{
+    <svg @onclick="OnClick"
+         focusable="false"
+         viewBox="@ViewBox"
+         aria-hidden="true"
+         style="@InlineStyle"
+         class="@(AsClass(
+            "nj-icon-svg",
+             IconSizeClass,
+             Class))">
+        @if (Title != null)
+        {
+            <title>@Title</title>
+        }
+
+        @((MarkupString)Icon)
+    </svg>
+}
+else
+{
+    <span @onclick="OnClick" class="nj-text-italic">@Icon</span>
+}
+
+@code {
+
+    
+}

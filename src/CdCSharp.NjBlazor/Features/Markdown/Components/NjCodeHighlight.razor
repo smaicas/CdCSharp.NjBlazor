@@ -1,0 +1,18 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+
+@namespace CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inherits NjComponentBase
+
+@* <CssInclude Refs="@(new string[]{
+"_content/Nj.Blazor.Markdown/Nj.Blazor.Markdown.bundle.scp.css"
+})" /> *@
+
+<div class="code-container">
+    <code class="nj-highlight-theme-default">
+        @ChildContent
+    </code>
+</div>
+@code {
+   
+}

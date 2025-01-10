@@ -1,0 +1,75 @@
+﻿.nj-input-range {
+    --slider-height: 11px;
+    --slider-border-radius: 1px;
+    --slider-border: 1px solid white;
+    --thumb-width: 2px;
+    --thumb-height: 15px;
+    --thumb-background: #555;
+    --thumb-border: none;
+    --thumb-border-radius: 1px;
+    --thumb-shadow: none;
+}
+
+    .nj-input-range input[type=range].nj-input-root {
+        margin: auto;
+        outline: none;
+        padding: 0;
+        height: var(--slider-height);
+        background-color: transparent;
+        border: var(--slider-border);
+        border-radius: var(--slider-border-radius);
+        cursor: pointer;
+        -webkit-appearance: none;
+    }
+
+        .nj-input-range input[type=range].nj-input-root::-webkit-slider-runnable-track {
+            box-shadow: none;
+            border: none;
+            background: transparent;
+            -webkit-appearance: none;
+        }
+
+        .nj-input-range input[type=range].nj-input-root::-moz-range-track {
+            box-shadow: none;
+            border: none;
+            background: transparent;
+        }
+
+        .nj-input-range input[type=range].nj-input-root::-moz-focus-outer {
+            border: 0;
+        }
+
+        .nj-input-range input[type=range].nj-input-root::-webkit-slider-thumb {
+            width: var(--thumb-width);
+            height: var(--thumb-height);
+            border: var(--thumb-border);
+            background: var(--thumb-background);
+            border-radius: var(--thumb-border-radius);
+            box-shadow: var(--thumb-shadow);
+            -webkit-appearance: none;
+        }
+
+        .nj-input-range input[type=range].nj-input-root::-moz-range-thumb {
+            width: var(--thumb-width);
+            height: var(--thumb-height);
+            border: var(--thumb-border);
+            background: var(--thumb-background);
+            border-radius: var(--thumb-border-radius);
+            box-shadow: var(--thumb-shadow);
+        }
+
+    .nj-input-range .nj-input-label {
+        display: flex;
+        flex-direction: row;
+    }
+
+.nj-input-range-box {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.nj-input-range-minmax {
+    padding: 0 0.4rem;
+}

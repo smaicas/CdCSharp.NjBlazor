@@ -1,0 +1,20 @@
+{
+  "name": "cdcsharp-njblazor",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "wwwroot/js/main.js",
+  "scripts": {
+    "build:Debug": "npx tsc -p tsconfig.json",
+    "build:Release": "npx tsc -p tsconfig.json"
+  },
+  "author": "Samuel Maícas (CdCSharp)",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-plugin-es6": "^1.0.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.2.8",
+    "terser": "^5.37.0"
+  }
+}

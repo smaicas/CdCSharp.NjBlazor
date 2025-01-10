@@ -1,0 +1,335 @@
+﻿.nj-input.nj-underline:not(.keep-borders):before {
+    border-radius: var(--input-radius);
+    left: var(--input-radius);
+    right: var(--input-radius);
+}
+
+.nj-input.nj-underline:not(.keep-borders):after {
+    border-radius: var(--input-radius);
+    left: var(--input-radius);
+    right: var(--input-radius);
+}
+
+.nj-underline:before,
+.nj-topline:before,
+.nj-rightline:before,
+.nj-leftline:before {
+    content: " ";
+    position: absolute;
+    pointer-events: none;
+}
+
+.nj-underline:after,
+.nj-topline:after,
+.nj-rightline:after,
+.nj-leftline:after {
+    content: " ";
+    position: absolute;
+    transition: transform 300ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    pointer-events: none;
+}
+
+.nj-underline:before,
+.nj-topline:before,
+.nj-rightline:before,
+.nj-leftline:before {
+    opacity: 0.8;
+}
+
+.nj-underline:hover:before,
+.nj-topline:hover:before,
+.nj-rightline:hover:before,
+.nj-leftline:hover:before {
+    opacity: 1;
+}
+
+.nj-underline:before {
+    transition: border-bottom .2s, background-color .2s;
+    border-bottom: 1px solid var(--palette-inputbordercolor);
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.nj-underline:after {
+    border-bottom: 2px solid var(--palette-primary);
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.nj-topline:before {
+    transition: border-top .2s, background-color .2s;
+    border-top: 1px solid var(--palette-inputbordercolor);
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.nj-topline:after {
+    border-top: 2px solid var(--palette-primary);
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.nj-rightline:before {
+    transition: border-right .2s, background-color .2s;
+    border-right: 1px solid var(--palette-inputbordercolor);
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.nj-rightline:after {
+    border-right: 2px solid var(--palette-primary);
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.nj-leftline:before {
+    transition: border-left .2s, background-color .2s;
+    border-left: 1px solid var(--palette-inputbordercolor);
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.nj-leftline:after {
+    border-left: 2px solid var(--palette-primary);
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+/*Input*/
+.nj-input.nj-input-underline:has(.nj-input-root.focus) > .nj-input.nj-input-underline:before {
+    border-color: var(--palette-primary);
+}
+
+.nj-input.nj-input-underline:before:has(.nj-input-root.focus) {
+    border-color: var(--palette-primary);
+}
+
+/*InputText*/
+/*InputNumber*/
+/*InputDropdown*/
+/*Date*/
+/*Search*/
+.nj-input-text.nj-underline.focus:after,
+.nj-input-text.nj-topline.focus:after,
+.nj-input-number.nj-underline.focus:after,
+.nj-input-number.nj-topline.focus:after,
+.nj-input-dropdown.nj-underline.focus:after,
+.nj-input-dropdown.nj-topline.focus:after,
+.nj-input-date.nj-underline.focus:after,
+.nj-input-date.nj-topline.focus:after,
+.nj-input-search.nj-underline.focus:after,
+.nj-input-search.nj-topline.focus:after {
+    transform: scaleX(1);
+}
+
+.nj-input-text.nj-rightline.focus:after,
+.nj-input-text.nj-leftline.focus:after,
+.nj-input-number.nj-rightline.focus:after,
+.nj-input-number.nj-leftline.focus:after,
+.nj-input-dropdown.nj-rightline.focus:after,
+.nj-input-dropdown.nj-leftline.focus:after,
+.nj-input-date.nj-rightline.focus:after,
+.nj-input-date.nj-leftline.focus:after,
+.nj-input-search.nj-rightline.focus:after,
+.nj-input-search.nj-leftline.focus:after {
+    transform: scaleY(1);
+}
+
+.nj-input-text.nj-underline:not(.focus):after,
+.nj-input-text.nj-topline:not(.focus):after,
+.nj-input-number.nj-underline:not(.focus):after,
+.nj-input-number.nj-topline:not(.focus):after,
+.nj-input-dropdown.nj-underline:not(.focus):after,
+.nj-input-dropdown.nj-topline:not(.focus):after,
+.nj-input-date.nj-underline:not(.focus):after,
+.nj-input-date.nj-topline:not(.focus):after,
+.nj-input-search.nj-underline:not(.focus):after,
+.nj-input-search.nj-topline:not(.focus):after {
+    transform: scaleX(0);
+}
+
+.nj-input-text.nj-rightline:not(.focus):after,
+.nj-input-text.nj-leftline:not(.focus):after,
+.nj-input-number.nj-rightline:not(.focus):after,
+.nj-input-number.nj-leftline:not(.focus):after,
+.nj-input-dropdown.nj-rightline:not(.focus):after,
+.nj-input-dropdown.nj-leftline:not(.focus):after,
+.nj-input-date.nj-rightline:not(.focus):after,
+.nj-input-date.nj-leftline:not(.focus):after,
+.nj-input-search.nj-rightline:not(.focus):after,
+.nj-input-search.nj-leftline:not(.focus):after {
+    transform: scaleY(0);
+}
+
+.nj-input-text.nj-underline.from-left.focus:after,
+.nj-input-text.nj-topline.from-left.focus:after,
+.nj-input-number.nj-underline.from-left.focus:after,
+.nj-input-number.nj-topline.from-left.focus:after,
+.nj-input-dropdown.nj-underline.from-left.focus:after,
+.nj-input-dropdown.nj-topline.from-left.focus:after,
+.nj-input-date.nj-underline.from-left.focus:after,
+.nj-input-date.nj-topline.from-left.focus:after,
+.nj-input-search.nj-underline.from-left.focus:after,
+.nj-input-search.nj-topline.from-left.focus:after {
+    transform-origin: left;
+}
+
+.nj-input-text.nj-rightline.from-left.focus:after,
+.nj-input-text.nj-leftline.from-left.focus:after,
+.nj-input-number.nj-rightline.from-left.focus:after,
+.nj-input-number.nj-leftline.from-left.focus:after,
+.nj-input-dropdown.nj-rightline.from-left.focus:after,
+.nj-input-dropdown.nj-leftline.from-left.focus:after,
+.nj-input-date.nj-rightline.from-left.focus:after,
+.nj-input-date.nj-leftline.from-left.focus:after,
+.nj-input-search.nj-rightline.from-left.focus:after,
+.nj-input-search.nj-leftline.from-left.focus:after {
+    transform-origin: top;
+}
+
+.nj-input-text.nj-underline.from-left:not(.focus):after,
+.nj-input-text.nj-topline.from-left:not(.focus):after,
+.nj-input-number.nj-underline.from-left:not(.focus):after,
+.nj-input-number.nj-topline.from-left:not(.focus):after,
+.nj-input-dropdown.nj-underline.from-left:not(.focus):after,
+.nj-input-dropdown.nj-topline.from-left:not(.focus):after,
+.nj-input-date.nj-underline.from-left:not(.focus):after,
+.nj-input-date.nj-topline.from-left:not(.focus):after,
+.nj-input-search.nj-underline.from-left:not(.focus):after,
+.nj-input-search.nj-topline.from-left:not(.focus):after {
+    transform-origin: right;
+}
+
+.nj-input-text.nj-rightline.from-left:not(.focus):after,
+.nj-input-text.nj-leftline.from-left:not(.focus):after,
+.nj-input-number.nj-rightline.from-left:not(.focus):after,
+.nj-input-number.nj-leftline.from-left:not(.focus):after,
+.nj-input-dropdown.nj-rightline.from-left:not(.focus):after,
+.nj-input-dropdown.nj-leftline.from-left:not(.focus):after,
+.nj-input-date.nj-rightline.from-left:not(.focus):after,
+.nj-input-date.nj-leftline.from-left:not(.focus):after,
+.nj-input-search.nj-rightline.from-left:not(.focus):after,
+.nj-input-search.nj-leftline.from-left:not(.focus):after {
+    transform-origin: bottom;
+}
+
+.nj-input-text.nj-underline.from-right.focus:after,
+.nj-input-text.nj-topline.from-right.focus:after,
+.nj-input-number.nj-underline.from-right.focus:after,
+.nj-input-number.nj-topline.from-right.focus:after,
+.nj-input-dropdown.nj-underline.from-right.focus:after,
+.nj-input-dropdown.nj-topline.from-right.focus:after,
+.nj-input-date.nj-underline.from-right.focus:after,
+.nj-input-date.nj-topline.from-right.focus:after,
+.nj-input-search.nj-underline.from-right.focus:after,
+.nj-input-search.nj-topline.from-right.focus:after {
+    transform-origin: right;
+}
+
+.nj-input-text.nj-rightline.from-right.focus:after,
+.nj-input-text.nj-leftline.from-right.focus:after,
+.nj-input-number.nj-rightline.from-right.focus:after,
+.nj-input-number.nj-leftline.from-right.focus:after,
+.nj-input-dropdown.nj-rightline.from-right.focus:after,
+.nj-input-dropdown.nj-leftline.from-right.focus:after,
+.nj-input-date.nj-rightline.from-right.focus:after,
+.nj-input-date.nj-leftline.from-right.focus:after,
+.nj-input-search.nj-rightline.from-right.focus:after,
+.nj-input-search.nj-leftline.from-right.focus:after {
+    transform-origin: bottom;
+}
+
+.nj-input-text.nj-underline.from-right:not(.focus):after,
+.nj-input-text.nj-topline.from-right:not(.focus):after,
+.nj-input-number.nj-underline.from-right:not(.focus):after,
+.nj-input-number.nj-topline.from-right:not(.focus):after,
+.nj-input-dropdown.nj-underline.from-right:not(.focus):after,
+.nj-input-dropdown.nj-topline.from-right:not(.focus):after,
+.nj-input-date.nj-underline.from-right:not(.focus):after,
+.nj-input-date.nj-topline.from-right:not(.focus):after,
+.nj-input-search.nj-underline.from-right:not(.focus):after,
+.nj-input-search.nj-topline.from-right:not(.focus):after {
+    transform-origin: left;
+}
+
+.nj-input-text.nj-rightline.from-right:not(.focus):after,
+.nj-input-text.nj-leftline.from-right:not(.focus):after,
+.nj-input-number.nj-rightline.from-right:not(.focus):after,
+.nj-input-number.nj-leftline.from-right:not(.focus):after,
+.nj-input-dropdown.nj-rightline.from-right:not(.focus):after,
+.nj-input-dropdown.nj-leftline.from-right:not(.focus):after,
+.nj-input-date.nj-rightline.from-right:not(.focus):after,
+.nj-input-date.nj-leftline.from-right:not(.focus):after,
+.nj-input-search.nj-rightline.from-right:not(.focus):after,
+.nj-input-search.nj-leftline.from-right:not(.focus):after {
+    transform-origin: top;
+}
+
+/*TextButton*/
+.nj-text-button.nj-underline.active:after,
+.nj-text-button.nj-topline.active:after {
+    transform: scaleX(1);
+}
+
+.nj-text-button.nj-rightline.active:after,
+.nj-text-button.nj-leftline.active:after {
+    transform: scaleY(1);
+}
+
+.nj-text-button.nj-underline:not(.active):after,
+.nj-text-button.nj-topline:not(.active):after {
+    transform: scaleX(0);
+}
+
+.nj-text-button.nj-rightline:not(.active):after,
+.nj-text-button.nj-leftline:not(.active):after {
+    transform: scaleY(0);
+}
+
+.nj-text-button.nj-underline.from-left.active:after,
+.nj-text-button.nj-topline.from-left.active:after {
+    transform-origin: left;
+}
+
+.nj-text-button.nj-rightline.from-left.active:after,
+.nj-text-button.nj-leftline.from-left.active:after {
+    transform-origin: top;
+}
+
+.nj-text-button.nj-underline.from-left:not(.active):after,
+.nj-text-button.nj-topline.from-left:not(.active):after {
+    transform-origin: right;
+}
+
+.nj-text-button.nj-rightline.from-left:not(.active):after,
+.nj-text-button.nj-leftline.from-left:not(.active):after {
+    transform-origin: bottom;
+}
+
+.nj-text-button.nj-underline.from-right.active:after,
+.nj-text-button.nj-topline.from-right.active:after {
+    transform-origin: right;
+}
+
+.nj-text-button.nj-rightline.from-right.active:after,
+.nj-text-button.nj-leftline.from-right.active:after {
+    transform-origin: bottom;
+}
+
+.nj-text-button.nj-underline.from-right:not(.active):after,
+.nj-text-button.nj-topline.from-right:not(.active):after {
+    transform-origin: left;
+}
+
+.nj-text-button.nj-rightline.from-right:not(.active):after,
+.nj-text-button.nj-leftline.from-right:not(.active):after {
+    transform-origin: top;
+}

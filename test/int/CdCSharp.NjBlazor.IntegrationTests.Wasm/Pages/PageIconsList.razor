@@ -1,0 +1,47 @@
+﻿@page "/iconsList"
+
+@using System.Reflection
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+<NavLink href="/">Return Index</NavLink>
+
+<NjStack Direction="FlexDirectionMode.Row">
+    @foreach (var iconString in Icons)
+    {
+        @iconString.Key
+        <NjSvgIcon Icon="@iconString.Value" />
+    }
+
+</NjStack>
+
+@code {
+    private Dictionary<string, string> Icons = new Dictionary<string, string>();
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            foreach (Type iconType in typeof(Features.Media.Icons.NjIcons).GetNestedTypes())
+            {
+                foreach (Type iconSubType in iconType.GetNestedTypes())
+                {
+                    FieldInfo[] iconProperties = iconSubType.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+
+                    foreach (var property in iconProperties)
+                    {
+                        string? iconString = (string?)property.GetValue(null);
+                        if (iconString != null)
+                        {
+                            Icons.Add($"{iconType.Name} | {iconSubType.Name} | {property.Name}", iconString);
+
+                        }
+                    }
+                }
+
+            }
+            StateHasChanged();
+        }
+
+    }
+}

@@ -1,0 +1,74 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.FocusHolder.Components
+@using CdCSharp.NjBlazor.Features.Media.Components;
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+
+@namespace CdCSharp.NjBlazor.Features.Controls.Components.Search
+
+@typeparam TSearchObject
+
+@inherits NjSearchBase<TSearchObject>
+
+@* <CssInclude SettingsName="@nameof(Nj.Blazor.Controls)" Refs="@(new string[]{
+"_content/Nj.Blazor.Controls/Nj.Blazor.Controls.bundle.scp.css"
+})" /> *@
+
+<NjFocusHolder FocusHolderQuerySelector=".nj-input-root" OnFocus="OnFocusAsync" OnFocusOut="OnFocusOutAsync">
+    <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+        <div class="@(AsClass(
+             "nj-input",
+             "nj-input-search",
+             "nj-input-search-variant-flat",
+             "nj-underline",
+             Class,
+             FocusClass))">
+
+            @if (DynamicSearch)
+            {
+                @if (PreAdornment != null)
+                {
+                    <div class="nj-adornment-icon nj-input-pre-adornment">
+                        <NjSvgIcon Icon="@PreAdornment" Color="@PreAdornmentColor" />
+                    </div>
+                }
+            }
+
+            <input @ref="_inputReference"
+                   class="nj-input-root"
+                   type="text"
+                   @bind-value="SearchString"
+                   @oninput="SearchDynamicAsync"
+                   placeholder="@Placeholder">
+
+            @if (!DynamicSearch)
+            {
+                @if (PostAdornment != null)
+                {
+                    <div class="nj-adornment-icon nj-input-post-adornment" @onclick="Search">
+                        <NjSvgIcon Icon="@PostAdornment" Color="PostAdornmentColor" />
+                    </div>
+                }
+            }
+            @if (SearchString.Length > 0)
+            {
+                <div style="@OptionsBoxStyle"
+                     class="@($"nj-input-options nj-input-search-options nj-level-5")">
+                    @foreach (TSearchObject searchItem in FilteredSource)
+                    {
+                        if (searchItem != null)
+                        {
+                            <div class="nj-input-search-option"
+                                 @onmousedown="() => SelectOptionAsync(searchItem)">
+                                @DisplayFunction(searchItem)
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+
+    </NjInputControl>
+</NjFocusHolder>
+@code {
+}

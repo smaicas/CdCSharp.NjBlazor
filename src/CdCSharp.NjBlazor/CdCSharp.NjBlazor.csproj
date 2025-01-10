@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<PackageId>CdCSharp.NjBlazor</PackageId>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<Authors>Samuel Maícas (CdCSharp)</Authors>
+		<Company>smaicas</Company>
+		<LangVersion>Latest</LangVersion>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+		<Configurations>Debug;Release;Integration</Configurations>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CdCSharp.NjBlazor.Core\CdCSharp.NjBlazor.Core.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\css\" />
+	  <Folder Include="wwwroot\js\" />
+	</ItemGroup>
+
+	<Target Name="ExecutePowerShellScript" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+		<Exec Command="pwsh -ExecutionPolicy Bypass -File $(ProjectDir)AfterBuild.ps1 $(Configuration)" />
+	</Target>
+
+</Project>

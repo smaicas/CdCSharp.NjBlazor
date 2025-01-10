@@ -1,0 +1,84 @@
+﻿/*#region Blazor Error */
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+/*#endregion Blazor Error */
+:root {
+    --nj-base-font-size: 24px;
+    --nj-base-font-family: 'MPLUSRounded';
+    --nj-heading-font-family: 'ArchivoBlack'
+}
+
+html {
+    block-size: 100%;
+    font-size: var(--nj-base-font-size);
+}
+
+body {
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: var(--nj-base-font-family);
+    padding: 0;
+    margin: 0;
+}
+
+    body * {
+        box-sizing: border-box;
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--nj-heading-font-family);
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+h4, h5, h6 {
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 0.825rem;
+    margin: 0 0 1em 0;
+    line-height: 1.5;
+}
+
+input {
+    background-color: unset;
+    color: unset;
+}
+button{
+    color:unset;
+    background-color:unset;
+}
+
+a {
+    color: unset;
+    cursor: pointer;
+    text-decoration: unset;
+}

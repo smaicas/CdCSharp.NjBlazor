@@ -1,0 +1,21 @@
+﻿.nj-grid {
+    display: grid;
+    grid-auto-flow: dense;
+}
+
+.nj-inline-grid {
+    display: inline-grid;
+    grid-auto-flow: dense;
+}
+
+.nj-grid.fill {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.nj-grid.fit {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.nj-grid-cell {
+    /*border: 1px solid #ccc;*/
+}

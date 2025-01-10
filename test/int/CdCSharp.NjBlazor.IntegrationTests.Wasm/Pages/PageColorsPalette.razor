@@ -1,0 +1,35 @@
+﻿@page "/colorspalette"
+
+@using System.Reflection
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+
+<NavLink href="/">Return Index</NavLink>
+
+<NjStack Direction="FlexDirectionMode.Row">
+    @foreach (Type colorType in typeof(NjColors).GetNestedTypes())
+    {
+        PropertyInfo[] colorProperties = colorType.GetProperties(BindingFlags.Public | BindingFlags.Static);
+
+        <div>
+            <NjStack Spacing="0">
+                <h3>@colorType.Name</h3>
+
+                @foreach (PropertyInfo colorProperty in colorProperties)
+                {
+                    CssColor? color = (CssColor)colorProperty.GetValue(null);
+                    string rgbaColor = color.ToString();
+                    string propertyName = colorProperty.Name;
+                    <div class="color-block" style="background-color: @rgbaColor;">
+                        @propertyName
+                    </div>
+                }
+            </NjStack>
+        </div>
+    }
+</NjStack>
+
+@code {
+
+}

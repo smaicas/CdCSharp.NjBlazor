@@ -1,0 +1,53 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Radio.Variants
+
+@inherits NjInputRadioBase
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Radio)" Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Radio/css/main.css",
+})" /> *@
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+    <CascadingValue Value="Options">
+        @ChildContent
+    </CascadingValue>
+
+    <div class="@(AsClass(
+         "nj-input",
+         "nj-input-radiobutton",
+         "nj-input-radiobutton-variant-classic",
+         FocusClass,
+         Class))">
+
+        @foreach (var option in Options)
+        {
+            ElementReference optionReference = new(Guid.NewGuid().ToString());
+
+            <label class="nj-input-label" for="@optionReference.Id">
+                @if (SelectedOption == option)
+                {
+                    <NjSvgIcon Icon="@Media.Icons.NjIcons.Custom.Uncategorized.RadioButtonChecked" />
+                }
+                else
+                {
+                    <NjSvgIcon Icon="@Media.Icons.NjIcons.Custom.Uncategorized.RadioButtonUnChecked" />
+                }
+                <input class="nj-input-root"
+                       @ref=optionReference
+                       type="radio"
+                       id="@optionReference.Id"
+                       name="@Name"
+                       @onclick:preventDefault="@ReadOnly"
+                       value="@option.Value"
+                       @onclick="async ()=> await SelectOptionAsync(option)" />
+                @option.ChildContent
+            </label>
+        }
+    </div>
+</NjInputControl>
+@code {
+
+}

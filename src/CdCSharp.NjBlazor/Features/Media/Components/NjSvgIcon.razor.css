@@ -1,0 +1,36 @@
+﻿.nj-icon-svg {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    fill: currentColor;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: currentColor;
+}
+
+.nj-icon-size-small {
+    font-size: 100%;
+}
+
+.nj-icon-size-medium {
+    font-size: 150%;
+}
+
+.nj-icon-size-large {
+    font-size: 200%;
+}
+
+.nj-icon-size-xlarge {
+    font-size: 250%;
+}
+
+.nj-icon-size-xxlarge {
+    font-size: 300%;
+}

@@ -1,0 +1,91 @@
+﻿@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.ResourceAccess.Components.FileRenderer
+
+@inherits NjComponentBase
+
+@* <CssInclude Refs="@(new string[]{
+"_content/Nj.Blazor.ResourceAccess/Nj.Blazor.ResourceAccess.bundle.scp.css"
+})" /> *@
+
+<div class="nj-file-renderer">
+    @if (files != null)
+    {
+        <div class="nj-file-renderer-controls">
+            <NjStack Direction="FlexDirectionMode.Row" class="nj-p-2" Spacing="1">
+                <NjFitContent>
+                    <NjTextButton FormControl="true" Text="@ShowAllText" Variant="@NjTextButtonVariant.Flat" OnClick="ShowAllTriggerAsync"></NjTextButton>
+                </NjFitContent>
+                <NjSearch TSearchObject="NjFileRendererResource"
+                          DisplayFunction="(f)=>f.DisplayName"
+                          DynamicSearch="true"
+                          MinCharacters="3"
+                          SortingFuntion="f=> f.DisplayName"
+                          SourceData="@files"
+                          SearchFuntion="(f, search)=>
+                            f.DisplayName != null && (f.DisplayName.Contains(search)
+                            || SearchFilterAlgorithms.IsFuzzyMatch(f.DisplayName, search,3))"
+                          OptionsPosition="NjSearchOptionsPosition.Bottom"
+                          Placeholder="@Loc["Search"]"
+                          FormControl="true"
+                          OnSelectedItem="@ShowFileAsync">
+                </NjSearch>
+            </NjStack>
+        </div>
+
+        @if (_showAll)
+        {
+            <hr />
+            <div class="nj-file-renderer-buttons">
+                <NjStack Direction="FlexDirectionMode.Row">
+                    @if (selectedFile != null)
+                    {
+                        <div class="nj-file-renderer-buttons-close-doc" @onclick="CloseDocument">
+                            <NjSvgIcon Icon="@Media.Icons.NjIcons.Materials.MaterialIconsRound.i_close"></NjSvgIcon>
+                        </div>
+                    }
+
+                    @foreach (NjFileRendererResource file in files)
+                    {
+                        <NjFitContent>
+                            <NjTextButton Variant="@NjTextButtonVariant.Flat"
+                                          Text="@file.DisplayName"
+                                          OnClick="async ()=> await ShowFileAsync(file)"
+                                          class="@((selectedFile == file ? CssClassReferences.Active : string.Empty))">
+                            </NjTextButton>
+                        </NjFitContent>
+                    }
+                </NjStack>
+            </div>
+            <hr />
+        }
+
+    }
+    else
+    {
+        <p>@Loc["There are not files to show."]</p>
+    }
+
+    @if (selectedFile != null)
+    {
+        <div @ref="_readerReference"
+             class="nj-file-renderer-content"
+             style="@($"height:{ContentHeight};overflow-y: {(ContentHeight == "auto" ? "hidden" : "scroll")}")">
+            @CurrentFragment
+
+        </div>
+        <div class="nj-file-renderer-content-gotop" @onclick="GoTopAsync">
+            <NjSvgIcon Icon="@Media.Icons.NjIcons.Materials.MaterialIconsRound.i_arrow_circle_up" Size="NjSvgIconSize.XXLarge"></NjSvgIcon>
+        </div>
+    }
+</div>
+@code {
+
+
+}

@@ -1,0 +1,1 @@
+Invoke-Expression -Command "$PSScriptRoot\Update-Local-Tool.ps1 CdCSharp.NjBlazor.Tools.ThemeGenerator"

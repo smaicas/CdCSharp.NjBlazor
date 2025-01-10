@@ -1,0 +1,65 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.FocusHolder.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+
+@inherits NjInputDropdownBase<TValue>
+
+@typeparam TValue
+
+@* <CssInclude Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Dropdown/css/main.css",
+})" /> *@
+
+<NjFocusHolder FocusHolderQuerySelector=".nj-input-root" OnFocus="OnFocusAsync" OnFocusOut="OnFocusOutAsync" OnClick="ToggleDropdownAsync">
+    <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+        <CascadingValue Value="Options" IsFixed="true">
+            @ChildContent
+        </CascadingValue>
+
+        <div @ref="BoxReference"
+             class="@(AsClass(
+             "nj-input",
+             "nj-input-dropdown",
+             Class))">
+            <NjSvgIcon Icon="@Icon" Size="@IconSize"></NjSvgIcon>
+
+            @if (IsOpen)
+            {
+                <div style="@OptionsBoxStyle"
+                     class="@(AsClass(
+                        "nj-input-options",
+                        "nj-input-dropdown-options",
+                        "nj-level-5"))">
+
+                    @if (Clearable)
+                    {
+                        <div class="nj-input-dropdown-option"
+                             @onmousedown="() => SelectOptionAsync(default)">
+                            &nbsp;
+                        </div>
+                    }
+
+                    @foreach (object item in Options.Select(o => o.Value))
+                    {
+                        if (item != null)
+                        {
+                            <div class="@($"nj-input-dropdown-option {ActiveClass[item!]}")"
+                                 @onmousedown="() => SelectOptionAsync(item)">
+                                @(ItemDisplay == null ? item?.ToString() : ShowItemDisplayAsync(item))
+                            </div>
+                        }
+                    }
+                </div>
+            }
+
+        </div>
+
+    </NjInputControl>
+</NjFocusHolder>
+
+@code {
+
+}

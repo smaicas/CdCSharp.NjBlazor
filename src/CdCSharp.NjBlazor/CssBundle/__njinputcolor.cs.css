@@ -1,0 +1,19 @@
+﻿.nj-input-color-preview {
+    border: 1px solid #888;
+    border-radius: 2px;
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.nj-input-color-colorpicker {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.nj-chess-background {
+    display: flex;
+    background: linear-gradient(45deg, #555 25%, transparent 25%), linear-gradient(-45deg, #555 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #555 75%), linear-gradient(-45deg, transparent 75%, #555 75%);
+    background-size: 5px 5px;
+}

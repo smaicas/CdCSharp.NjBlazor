@@ -1,0 +1,23 @@
+﻿.nj-input-search {
+    cursor: pointer;
+}
+
+.nj-input-search-options {
+    position: absolute;
+    min-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--input-box-inner-padding);
+}
+
+.nj-input-search-option {
+    cursor: pointer;
+    line-height: var(--input-line-height);
+    padding: var(--input-box-inner-padding);
+}
+
+    .nj-input-search-option:hover,
+    .nj-input-search-option.active {
+        background-color: rgba(0, 0, 0, 0.2);
+    }

@@ -1,0 +1,22 @@
+﻿.nj-input.nj-text-button .nj-input-root {
+    cursor: pointer;
+    text-align: center;
+}
+
+.nj-text-button {
+    vertical-align: bottom;
+    outline: 0;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: transparent;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0;
+    color: inherit;
+    transform: translateZ(0);
+}

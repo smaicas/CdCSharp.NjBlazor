@@ -1,0 +1,15 @@
+﻿.nj-input-text {
+    cursor: text;
+}
+
+    .nj-input-text .nj-input-root.nj-textarea-like {
+        overflow-y: auto; /* Añade una barra de desplazamiento vertical si el contenido excede el tamaño */
+        white-space: pre-wrap; /* Permite el ajuste automático de líneas */
+        resize: vertical; /* Evita que el usuario cambie el tamaño del div */
+    }
+
+    .nj-input-text .nj-input-root.nj-password-like {
+        text-security: disc;
+        -webkit-text-security: disc;
+        -moz-text-security: disc;
+    }

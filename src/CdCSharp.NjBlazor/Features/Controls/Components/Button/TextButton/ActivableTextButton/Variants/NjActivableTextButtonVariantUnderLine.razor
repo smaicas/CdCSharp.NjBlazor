@@ -1,0 +1,32 @@
+﻿@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton
+
+@namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton.Variants
+
+@inherits NjActivableTextButtonBase
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+    <div style="@InlineStyle"
+         class="@(AsClass(
+        "nj-input",
+        "nj-text-button",
+        "nj-underline",
+        FocusClass,
+        ActiveClass,
+        CssTools.CalculateCssPaddingClass(Padding),
+        Class))">
+        <input type="button"
+               style="@InlineStyle"
+               class="@(AsClass(
+                "nj-input-root",
+                CssTools.CalculateCssPaddingClass(10)))"
+               value="@Text"
+               @onfocus="OnFocusAsync"
+               @onfocusout="OnFocusOutAsync"
+               @onclick="async (args) => await ProcessClickAsync(args)" />
+    </div>
+</NjInputControl>
+@code {
+
+}

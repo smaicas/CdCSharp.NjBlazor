@@ -1,0 +1,44 @@
+﻿@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton
+
+@namespace CdCSharp.NjBlazor.Features.Layout.Components.Tabs
+
+@inherits NjComponentBase
+
+@* <CssInclude Refs="@(new string[]{
+"_content/Nj.Blazor.Layout/Nj.Blazor.Layout.bundle.scp.css"
+})" /> *@
+
+<div class="@(AsClass(CssClassReferences.Tabs.TabsRoot, HeaderPositionClass, Class))">
+    <div class="nj-tabs-header">
+        @foreach (NjTabSection sect in TabSections)
+        {
+            <div class="nj-tabs-header-item" @onclick="async () => await SetActiveSectionAsync(sect)">
+                <NjActivableTextButton @bind-Active="@(sect.Active)"
+                                       class="@(AsClass(
+                                        "keep-borders",
+                                        _displacementClass))"
+                                       Variant="@ActivableButtonVariant"
+                                       Text="@sect.Header">
+                </NjActivableTextButton>
+            </div>
+        }
+    </div>
+    <CascadingValue Value="this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+    <div class="nj-tabs-content">
+        <div class="@ContentPaddingClass">
+            @if (_activeSection != null)
+            {
+                @CurrentContent
+            }
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+}

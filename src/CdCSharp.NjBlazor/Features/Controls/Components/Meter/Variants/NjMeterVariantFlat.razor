@@ -1,0 +1,33 @@
+﻿@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+
+@namespace CdCSharp.NjBlazor.Features.Controls.Components.Meter.Variants
+
+@inherits NjMeterBase
+
+@* <CssInclude SettingsName="@nameof(Nj.Blazor.Controls)" Refs="@(new string[]{
+"_content/Nj.Blazor.Controls/css/main.css",
+})" /> *@
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+    <div class=@(AsClass(
+        "nj-input", 
+        "nj-input-meter", 
+        "nj-input-range-variant-flat",
+        Class))>
+
+        <label for="@MainElementReferenceId" class="nj-input-label">
+            @Label
+            <div class="nj-input-meter-box" style="@($"width:{MaxWidthPx}px;")">
+                <div @ref="@MainElementReference" id="@MainElementReferenceId" class="nj-input-root"
+                     style="@($"width:{FillWidthPercent}%;background-color:{FillColor.ToString(ColorOutputFormats.Rgba)};")"></div>
+            </div>
+
+        </label>
+    </div>
+
+</NjInputControl>
+
+@code {
+
+}

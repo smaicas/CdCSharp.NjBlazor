@@ -1,0 +1,24 @@
+﻿.nj-file-renderer {
+    padding: 0 2rem;
+}
+
+.nj-file-renderer-content {
+    display: block;
+    overflow-y: scroll;
+    padding: 2rem;
+    position: relative;
+}
+
+.nj-file-renderer-content-gotop {
+    cursor: pointer;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    float: right;
+    transform: translate(-2rem, -3rem);
+}
+
+.nj-file-renderer-buttons-close-doc {
+    cursor: pointer;
+}

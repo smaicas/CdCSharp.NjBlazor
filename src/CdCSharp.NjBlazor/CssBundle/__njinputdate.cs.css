@@ -1,0 +1,57 @@
+﻿.nj-input-date {
+    cursor: pointer;
+}
+
+    .nj-input-date .nj-input-root {
+        cursor: text;
+    }
+
+    .nj-input-date .nj-input-label {
+        position: relative;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .nj-input-date .nj-input-date-value-display {
+        padding: 0 0.4rem;
+    }
+
+        .nj-input-date .nj-input-date-value-display:before {
+            content: " ";
+            position: absolute;
+            pointer-events: none;
+            border-bottom: 1px solid var(--palette-inputbordercolor);
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+/* Para Chrome, Safari, Edge */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator {
+    display: none;
+    position: absolute;
+}
+
+/* Para Firefox */
+input[type="date"]::-moz-calendar-picker-indicator,
+input[type="date"]::-moz-calendar-picker-indicator,
+input[type="date"]::-moz-calendar-picker-indicator,
+input[type="date"]::-moz-calendar-picker-indicator {
+    display: none;
+    position: absolute;
+}
+
+/* Para Internet Explorer 10 y 11 */
+input[type="date"]::-ms-clear
+input[type="date"]::-ms-clear,
+input[type="date"]::-ms-clear,
+input[type="date"]::-ms-clear {
+    display: none;
+    position: absolute;
+}

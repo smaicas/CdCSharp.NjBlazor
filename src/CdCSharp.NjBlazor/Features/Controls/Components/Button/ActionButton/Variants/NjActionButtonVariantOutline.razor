@@ -1,0 +1,26 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
+
+@namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton.Variants
+
+@inherits NjActionButtonBase
+
+@* <CssInclude SettingsName="@nameof(Nj.Blazor.Controls)" Refs="@(new string[]{
+"_content/Nj.Blazor.Controls/css/main.css",
+"_content/Nj.Blazor.Controls/Nj.Blazor.Controls.bundle.scp.css"
+})" /> *@
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+    <div style="@InlineStyle"
+         class="@(AsClass("nj-input", "nj-action-button", "nj-action-button-variant-raised", Class))">
+        <button class="nj-input-root">
+            <NjSvgIcon Icon="@Icon" Color="@Color" />
+        </button>
+    </div>
+
+</NjInputControl>
+
+@code {
+}

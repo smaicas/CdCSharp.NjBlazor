@@ -1,0 +1,32 @@
+﻿/* Default font size for desktop */
+html {
+    font-size: 16px;
+}
+
+/* Media query for desktop */
+@media only screen and (min-width: 1024px) {
+    html {
+        font-size: 115%;
+    }
+}
+
+/* Media query for tablets */
+@media only screen and (max-width: 1024px) {
+    html {
+        font-size: 105%;
+    }
+}
+
+/* Media query for smartphones */
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 95%;
+    }
+}
+
+/* Media query for smaller devices like smartwatches */
+@media only screen and (max-width: 360px) {
+    html {
+        font-size: 85%;
+    }
+}

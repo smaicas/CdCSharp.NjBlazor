@@ -1,0 +1,8 @@
+﻿.nj-input-file.nj-input-file-variant-flat:hover,
+.nj-input-file.nj-input-file-variant-flat:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nj-input-file.nj-input-file-variant-flat:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}

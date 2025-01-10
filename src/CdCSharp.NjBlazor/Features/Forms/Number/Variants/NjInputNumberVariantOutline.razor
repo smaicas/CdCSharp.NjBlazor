@@ -1,0 +1,76 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.FocusHolder.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Number.Variants
+
+@inherits NjInputNumberBase
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Number)" Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Number/css/main.css",
+"_content/CdCSharp.NjBlazor.Features.Forms.Number/CdCSharp.NjBlazor.Features.Forms.Number.bundle.scp.css"
+})" /> *@
+
+<NjFocusHolder FocusHolderQuerySelector=".nj-input-root" OnFocus="OnFocusAsync" OnFocusOut="OnFocusOutAsync">
+
+    <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+        <div class="@(AsClass(
+         "nj-input",
+         "nj-input-number",
+         "nj-input-number-variant-outline",
+         "nj-underline",
+         FocusClass,
+         Class))">
+            @if (ShowArrows)
+            {
+                <div class="nj-adornment-icon nj-input-pre-adornment" @onmousedown="DecreaseByStepAsync" @onmouseup="StopDecreaseAsync" @onmouseout="StopDecreaseAsync">
+                    <NjSvgIcon Icon="@PreAdornment" Color="@PreAdornmentColor" />
+                </div>
+            }
+
+            <div class="nj-input-focus-box">
+                <label for="@InputReferenceId"
+                       class="@(AsClass(
+                    "nj-input-label",
+                    "nj-label-animated",
+                    EmptyClass,
+                    FocusClass))">
+                    <span class="@(AsClass("nj-input-label-text"))">
+                        @Label
+                    </span>
+
+                    <input @ref="InputReference"
+                           id="@InputReferenceId"
+                           type="number"
+                           min="@Min"
+                           max="@Max"
+                           step="@Step"
+                           title="@Title"
+                           placeholder="@Placeholder"
+                           class="@(AsClass(
+                    "nj-input-root",
+                    EmptyClass,
+                    FocusClass))"
+                           @bind="@CurrentValue"
+                           readonly="@ReadOnly"
+                           disabled="@Disabled" />
+                </label>
+
+            </div>
+
+            @if (ShowArrows)
+            {
+                <div class="nj-adornment-icon nj-input-post-adornment" @onmousedown="IncreaseByStepAsync" @onmouseup="StopIncreaseAsync" @onmouseout="StopIncreaseAsync">
+                    <NjSvgIcon Icon="@PostAdornment" Color="PostAdornmentColor" />
+                </div>
+            }
+
+        </div>
+
+    </NjInputControl>
+</NjFocusHolder>
+
+@code {
+
+}

@@ -1,0 +1,29 @@
+﻿.nj-input-dropdown {
+    cursor: pointer;
+}
+
+.nj-input-dropdown-options {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--input-box-inner-padding);
+    background-color: var(--palette-inputoptionsbackground);
+    min-width: fit-content;
+}
+
+.nj-input-dropdown-option {
+    cursor: pointer;
+    line-height: var(--input-line-height);
+    padding: var(--input-box-inner-padding);
+}
+
+    .nj-input-dropdown-option:hover,
+    .nj-input-dropdown-option.active {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+.nj-input.nj-input-dropdown:before,
+.nj-input.nj-input-dropdown:after {
+    box-sizing: border-box;
+}

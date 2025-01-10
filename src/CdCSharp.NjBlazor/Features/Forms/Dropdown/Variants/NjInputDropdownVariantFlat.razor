@@ -1,0 +1,104 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.FocusHolder.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Dropdown.Variants
+
+@inherits NjInputDropdownBase<TValue>
+
+@typeparam TValue
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Dropdown)" Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Dropdown/css/main.css",
+})" /> *@
+
+<NjFocusHolder FocusHolderQuerySelector=".nj-input-root" OnFocus="OnFocusAsync" OnFocusOut="OnFocusOutAsync" OnClick="ToggleDropdownAsync">
+    <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+        <CascadingValue Value="Options" IsFixed="true">
+            @ChildContent
+        </CascadingValue>
+
+        <div @ref="BoxReference"
+             class="@(AsClass(
+             "nj-input",
+             "nj-input-dropdown",
+             "nj-input-dropdown-variant-flat",
+             "nj-underline",
+             FocusClass,
+             Class))">
+            @if (PreAdornment != null)
+            {
+                <div class="nj-adornment-icon nj-input-pre-adornment">
+                    <NjSvgIcon Icon="@PreAdornment" Color="@PreAdornmentColor" />
+                </div>
+            }
+            <div class="nj-input-focus-box">
+                <label class="@(AsClass("nj-input-label", "nj-input-label-animated", EmptyClass, FocusClass))">
+                    <span class="@(AsClass("nj-input-label-text"))">
+                        @Label
+                    </span>
+                    <div @ref="@InputReference"
+                         class="@(AsClass("nj-input-root", EmptyClass, FocusClass))">
+                        @if (CurrentValue != null)
+                        {
+                            string? display = string.Empty;
+                            if (IsMultipleSelection)
+                            {
+                                string[]? currentValueArray = CurrentValue as string[];
+                                if (currentValueArray?.Length > 0)
+                                {
+                                    display = string.Join(",", currentValueArray);
+                                }
+                            }
+                            else
+                            {
+                                display = CurrentValueAsString;
+                            }
+                            @display
+                        }
+
+                    </div>
+                </label>
+            </div>
+
+            @if (PostAdornment != null)
+            {
+                <div class="nj-adornment-icon nj-input-post-adornment">
+                    <NjSvgIcon Icon="@PostAdornment" Color="PostAdornmentColor" />
+                </div>
+            }
+
+            @if (IsOpen)
+            {
+                <div style="@OptionsBoxStyle"
+                     class="@($"nj-input-options nj-input-dropdown-options nj-level-5")">
+
+                    @if (Clearable)
+                    {
+                        <div class="nj-input-dropdown-option"
+                             @onmousedown="() => SelectOptionAsync(default)">
+                            &nbsp;
+                        </div>
+                    }
+
+                    @foreach (object item in Options.Select(o => o.Value))
+                    {
+                        if (item != null)
+                        {
+                            <div class="@($"nj-input-dropdown-option {ActiveClass[item!]}")"
+                                 @onmousedown="() => SelectOptionAsync(item)">
+                                @(ItemDisplay == null ? item?.ToString() : ShowItemDisplayAsync(item))
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+
+    </NjInputControl>
+</NjFocusHolder>
+@code {
+
+
+}

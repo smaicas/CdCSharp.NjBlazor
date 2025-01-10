@@ -1,0 +1,20 @@
+﻿.nj-checkbox .nj-input-label .nj-input-root {
+    top: 0;
+    left: 0;
+    width: 100%;
+    cursor: inherit;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+}
+
+.nj-checkbox label.nj-input-label {
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

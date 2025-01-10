@@ -1,0 +1,60 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.FocusHolder.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+@using CdCSharp.NjBlazor.Features.TextPattern.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Date.Variants
+
+@inherits NjInputDateBase<TValue>
+
+@typeparam TValue
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Date)" Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Date/css/main.css",
+"_content/CdCSharp.NjBlazor.Features.Forms.Date/CdCSharp.NjBlazor.Features.Forms.Date.bundle.scp.css"
+})" /> *@
+
+<NjFocusHolder FocusHolderQuerySelector=".nj-input-root" OnFocus="OnFocusAsync" OnFocusOut="OnFocusOutAsync">
+    <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+        <div class="@(AsClass(
+         "nj-input",
+         "nj-input-date",
+         "nj-input-date-variant-outline",
+         "nj-underline",
+         FocusClass,
+         Class))">
+
+            <label class="@(AsClass(
+                "nj-input-label",
+                FocusClass))" for="@_inputReferenceId">
+                <div @ref="_calendarIconRef">
+                    <NjSvgIcon Icon="@Media.Icons.NjIcons.Materials.MaterialIcons.i_edit_calendar" Size="NjSvgIconSize.Medium" />
+                </div>
+                <input style="display:none;"
+                       @ref=InputReference
+                       type="@_typeAttributeValue"
+                       id="@_inputReferenceId"
+                       value="@CurrentValueAsString"
+                       name="@NameAttributeValue"
+                       readonly="@ReadOnly"
+                       @onchange="OnChangeAsync" />
+                <div class="@(AsClass(
+                    "nj-input-root",
+                    FocusClass))">
+                    <div @onclick:stopPropagation="true">
+                        <NjTextPattern @bind-Text="@CurrentValueAsStringWrapper"
+                                       DefaultText="@GetDefaultText()"
+                                       Format="@GetFormatTextFormat()"
+                                       AllowDateFormats="true"
+                                       Editable="@(ReadOnly == false)"
+                                       IsValidFunction="(text)=> DateTime.TryParse(text, out var _)">
+                        </NjTextPattern>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </NjInputControl>
+</NjFocusHolder>
+@code {
+
+}

@@ -1,0 +1,38 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Colors
+@using CdCSharp.NjBlazor.Features.ColorPicker.Components
+@using CdCSharp.NjBlazor.Features.Containers.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Color.Variants
+
+@inherits NjInputColorBase
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Color)" Refs="@(new string[]{
+"_content/CdCSharp.NjBlazor.Features.Forms.Color/css/main.css",
+})" /> *@
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+    <div class="@(AsClass(
+         "nj-input",
+         "nj-input-color",
+         "nj-input-color-variant-custom",
+         Class))">
+
+        <label class="nj-input-label">
+            <div class="nj-chess-background">
+                <div class="nj-input-color-preview" @onclick="TogglePicker" style="@($"background-color: {CurrentValue.ToStringRgba()}")"></div>
+            </div>
+        </label>
+        @if (_open)
+        {
+            <div class="nj-input-color-colorpicker nj-level-5">
+                <NjColorPicker @bind-PickedColor="CurrentValue" OnSave="AcceptPicker" OnCancel="CancelPicker"></NjColorPicker>
+            </div>
+        }
+
+    </div>
+</NjInputControl>
+
+@code {
+
+
+}

@@ -1,0 +1,143 @@
+﻿:root {
+    --input-box-inner-padding: 0.4rem;
+    --input-line-height: 1.1rem;
+    --input-radius: 5px;
+}
+
+.form-control {
+    margin: 1rem 0 0 0;
+}
+
+    .form-control > .nj-input-control-input-container {
+        padding-top: 1rem;
+    }
+
+.nj-input .nj-input-root:focus-visible {
+    outline: none;
+    outline-offset: 0;
+}
+
+.nj-input-control {
+    border: 0;
+    padding: 0;
+    display: flex;
+    flex: 1 1 auto;
+    max-width: 100%;
+    position: relative;
+    flex-direction: column;
+    vertical-align: top;
+}
+
+    .nj-input-control > .nj-input-control-input-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+.nj-input {
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    font-weight: 400;
+    line-height: var(--input-line-height);
+    letter-spacing: .00938em;
+    color: var(--palette-inputColor);
+    background-color: var(--palette-inputbackground);
+    border-radius: var(--input-radius);
+}
+
+    .nj-input .nj-input-root {
+        font: inherit;
+        width: 100%;
+        border: 0;
+        height: 1.1876rem;
+        margin: 0;
+        padding: 0.5rem;
+        display: block;
+        min-width: 0;
+        background: none;
+        position: relative;
+        box-sizing: content-box;
+        letter-spacing: inherit;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .nj-input .nj-input-root::placeholder{
+        position:relative;
+    }
+
+    .nj-input .nj-input-options {
+        color: var(--palette-inputoptionscolor);
+        background-color: var(--palette-inputoptionsbackground);
+    }
+
+.nj-input-label .nj-input-label-text {
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: .01rem;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.nj-label-animated .nj-input-label-text {
+    top: 0;
+    left: 0;
+    position: relative;
+    transform: translate(0, 0rem) scale(1);
+    opacity: 0.8;
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+.nj-label-animated:not(.empty) .nj-input-label-text,
+.nj-label-animated.focus .nj-input-label-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, -1.2rem) scale(0.75);
+    transform-origin: top left;
+    color: var(--palette-primary);
+    opacity: 1;
+}
+
+.nj-input-label {
+    display: flex;
+    transform-origin: top left;
+    width: 100%;
+    cursor: inherit;
+}
+
+.nj-input .nj-input-focus-box .nj-input-root:not([class*="nj-p-"]),
+.nj-input .nj-input-focus-box .nj-input-label:not([class*="nj-p-"]) {
+    padding: var(--input-box-inner-padding);
+}
+
+.nj-input .nj-input-focus-box {
+    display:flex;
+    position: relative;
+    width: 100%;
+    padding: var(--input-box-inner-padding);
+}
+
+.nj-adornment-icon {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.nj-input-pre-adornment {
+    margin-right: 8px;
+    margin-inline-end: 8px;
+    margin-inline-start: unset;
+    padding-left: 0.2rem;
+}
+
+.nj-input-post-adornment {
+    margin-left: 8px;
+    margin-inline-start: 8px;
+    margin-inline-end: unset;
+    padding-right: 0.2rem;
+}

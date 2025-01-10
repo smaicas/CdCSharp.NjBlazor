@@ -1,0 +1,35 @@
+﻿@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.Forms.Checkbox.Variants
+
+@inherits NjInputCheckboxBase
+
+@* <CssInclude SettingsName="@nameof(CdCSharp.NjBlazor.Features.Forms.Checkbox)" Refs="@(new string[]{ 
+"_content/CdCSharp.NjBlazor.Features.Forms.Checkbox/css/main.css",
+})" /> *@
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+    <div class="@(AsClass(
+        "nj-input", 
+        "nj-checkbox",
+        Class))" tabindex="0">
+        <label class="nj-input-label" for="@_inputReferenceId">
+            <NjSvgIcon Icon="@CalculateIcon()" Size="@CalculateIconSize()" />
+            <input @ref="@InputReference"
+                   id="@_inputReferenceId"
+                   tabindex="-1"
+                   type="checkbox"
+                   readonly="@ReadOnly"
+                   class="nj-input-root"
+                   value="@CurrentValue"
+                   @onchange="OnCheckboxChangedAsync"
+                   @onclick:preventDefault="@ReadOnly" />
+            @ChildContent
+        </label>
+
+    </div>
+</NjInputControl>
+@code {
+
+}

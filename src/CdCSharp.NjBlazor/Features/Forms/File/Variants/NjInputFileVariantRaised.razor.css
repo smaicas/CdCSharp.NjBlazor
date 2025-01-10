@@ -1,0 +1,16 @@
+﻿.nj-input-file.nj-input-file-variant-raised {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+    .nj-input-file.nj-input-file-variant-raised:hover,
+    .nj-input-file.raised:focus {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .nj-input-file.nj-input-file-variant-raised:active {
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.26);
+    }
+
+    .nj-input-file.nj-input-file-variant-raised:disabled {
+        box-shadow: none;
+    }

@@ -1,0 +1,16 @@
+﻿.nj-input-file.nj-input-file-variant-outline {
+    border: 1px solid var(--palette-inputbordercolor)
+}
+
+    .nj-input-file.nj-input-file-variant-outline:hover,
+    .nj-input-file.raised:focus {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .nj-input-file.nj-input-file-variant-outline:active,
+    .nj-input-file.nj-input-file-variant-outline.active {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .nj-input-file.nj-input-file-variant-outline:disabled {
+    }

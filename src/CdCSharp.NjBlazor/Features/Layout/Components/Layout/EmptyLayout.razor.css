@@ -1,0 +1,13 @@
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--palette-background);
+    color: var(--palette-backgroundcontrast);
+}
+
+main {
+    flex: 1;
+}

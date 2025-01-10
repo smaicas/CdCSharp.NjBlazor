@@ -1,0 +1,11 @@
+﻿@namespace CdCSharp.NjBlazor.Features.Draggable.Components
+
+@inherits NjDraggableBase
+
+<div @ref="elementRef" @onmousedown="BeginDrag" @onmouseup="StopDrag" @onmouseleave="Leave">
+    @ChildContent
+</div>
+
+@code {
+
+}

@@ -1,0 +1,47 @@
+﻿@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+@using Microsoft.AspNetCore.Components.Routing
+
+@namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton.Variants
+
+@inherits NjLinkButtonBase
+
+@* <CssInclude SettingsName="@nameof(Nj.Blazor.Controls)" Refs="@(new string[]{
+"_content/Nj.Blazor.Controls/Nj.Blazor.Controls.bundle.scp.css"
+})" /> *@
+
+<NjInputControl FormControl="@FormControl" Disabled="@Disabled">
+
+    <div style="@InlineStyle"
+         class="@(AsClass(
+        "nj-input",
+        "nj-text-button",
+        "nj-text-button-variant-raised",
+        FocusClass,
+        CssTools.CalculateCssPaddingClass(Padding),
+        Class))">
+        @if (PreAdornment != null)
+        {
+            <div class="nj-adornment-icon nj-input-pre-adornment">
+                <NjSvgIcon Icon="@PreAdornment" Color="@PreAdornmentColor" />
+            </div>
+        }
+
+        <NavLink href="@Href" target="@LinkTarget" ActiveClass="@CssClassReferences.Active">
+            @Text
+        </NavLink>
+
+        @if (PostAdornment != null)
+        {
+            <div class="nj-adornment-icon nj-input-post-adornment">
+                <NjSvgIcon Icon="@PostAdornment" Color="PostAdornmentColor" />
+            </div>
+        }
+    </div>
+
+</NjInputControl>
+@code {
+
+}

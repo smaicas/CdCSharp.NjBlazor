@@ -1,0 +1,34 @@
+﻿@page "/localization"
+
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Localization.Components
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<PageLocalization> Loc
+
+<NavLink href="/">Return Index</NavLink>
+
+<h2>NjLocalizationSelect</h2>
+
+<h3>NjDropdownOptionsPosition.TopRight OnlyIcon</h3>
+<NjFitContent>
+    <NjLocalizationSelect OptionsPosition="NjDropdownOptionsPosition.TopRight"
+                          OnlyIcon="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_language" />
+</NjFitContent>
+
+<div>@Loc["Localized string"]</div>
+
+<br />
+
+<h3>NjDropdownOptionsPosition.Center</h3>
+
+<NjFitContent>
+    <NjLocalizationSelect OptionsPosition="NjDropdownOptionsPosition.Center" />
+</NjFitContent>
+
+<div>@Loc["Localized string"]</div>
+
+@code {
+
+}

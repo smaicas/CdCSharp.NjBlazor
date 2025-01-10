@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "cdcsharp.njblazor.tools.themegenerator": {
+      "version": "1.0.0-pre.20250108053819",
+      "commands": [
+        "nj-theme-gen"
+      ],
+      "rollForward": false
+    },
+    "cdcsharp.tools.xmldoctomarkdown": {
+      "version": "1.0.1",
+      "commands": [
+        "xmltomd"
+      ],
+      "rollForward": false
+    }
+  }
+}

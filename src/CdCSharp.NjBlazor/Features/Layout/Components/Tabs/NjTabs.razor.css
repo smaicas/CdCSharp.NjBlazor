@@ -1,0 +1,54 @@
+﻿.nj-tabs {
+    display: flex;
+}
+
+.nj-tabs-column {
+    flex-direction: column;
+}
+
+    .nj-tabs-column > .nj-tabs-header {
+        flex-direction: row;
+    }
+
+.nj-tabs-column-reverse {
+    flex-direction: column-reverse;
+}
+
+    .nj-tabs-column-reverse > .nj-tabs-header {
+        flex-direction: row;
+    }
+
+.nj-tabs-row {
+    flex-direction: row;
+}
+
+    .nj-tabs-row > .nj-tabs-header {
+        flex-direction: column;
+    }
+
+.nj-tabs-row-reverse {
+    flex-direction: row-reverse;
+}
+
+    .nj-tabs-row-reverse > .nj-tabs-header {
+        flex-direction: column;
+    }
+
+.nj-tabs-header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nj-tabs.nj-tabs-row,
+.nj-tas.nj-tabs-row-reverse {
+}
+
+.nj-tabs.nj-tabs-column,
+.nj-tas.nj-tabs-column-reverse {
+    flex-wrap: wrap;
+}
+
+.nj-tabs-content {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,23 @@
+﻿.nj-input.nj-input-dropdown.nj-input-dropdown-variant-outline:before {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    position: absolute;
+    transition: border-bottom .2s, background-color .2s;
+    border: 1px solid var(--palette-inputbordercolor);
+    pointer-events: none;
+    height: 100%;
+}
+
+.nj-input.nj-input-dropdown.nj-input-dropdown-variant-outline:after {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    position: absolute;
+    transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    border-bottom: 2px solid var(--palette-primary);
+    pointer-events: none;
+    height: 100%;
+}

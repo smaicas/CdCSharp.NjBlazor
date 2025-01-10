@@ -1,0 +1,26 @@
+﻿@page "/markdownrender"
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.ResourceAccess.Components.FileRenderer
+
+<NavLink href="/">Return Index</NavLink>
+
+<NjFileRenderer FileAssets="@FileAssets" RenderFragmentFunction="(s)=> MarkdownToRenderFragmentParser.ParseText(s)"></NjFileRenderer>
+
+@code {
+    List<NjFileRendererResource> FileAssets = new()
+    {
+        new()
+        {
+            DisplayName="Test 1",
+            ResourcePath = "EmbeddedRes/Test1.md"
+        },
+        new()
+        {
+            DisplayName="Codeblock",
+            ResourcePath = "EmbeddedRes/Codeblock.md"
+        }
+    };
+}
+@code {
+
+}

@@ -1,0 +1,115 @@
+﻿#sunMoonSwitchThemeMode_root {
+    --sizeAdjustment: 0.5;
+    align-self: center;
+}
+
+.switch {
+    cursor: pointer;
+    display: block;
+    width: calc(var(--sizeAdjustment) * 90px);
+    height: calc(var(--sizeAdjustment) * 40px);
+    position: relative;
+}
+
+    .switch input {
+        display: none;
+    }
+
+        .switch input.darkMode ~ .switch__background {
+            background-position: 20% 0%;
+        }
+
+            .switch input.darkMode ~ .switch__background:before {
+                opacity: 0.9;
+            }
+
+            .switch input.darkMode ~ .switch__background:after {
+                transform: translateY(250%);
+                opacity: 0.5;
+            }
+
+        .switch input.darkMode ~ .switch__button {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            transition: 0.2s ease all;
+            box-shadow: inset 3px 5px 3px #edf1f9;
+            background: #c3c9d2;
+        }
+
+            .switch input.darkMode ~ .switch__button:before {
+                content: "";
+                display: block;
+                position: absolute;
+                left: calc(var(--sizeAdjustment) * 15px);
+                top: calc(var(--sizeAdjustment) * 5px);
+                height: calc(var(--sizeAdjustment) * 9px);
+                width: calc(var(--sizeAdjustment) * 9px);
+                border-radius: calc(var(--sizeAdjustment) * 9px);
+                background: #949ead;
+                box-shadow: inset 2px 1px 1px #848e9b;
+            }
+
+            .switch input.darkMode ~ .switch__button:after {
+                content: "";
+                display: block;
+                position: absolute;
+                left: calc(var(--sizeAdjustment) * 4px);
+                top: calc(var(--sizeAdjustment) * 13px);
+                height: calc(var(--sizeAdjustment) * 12px);
+                width: calc(var(--sizeAdjustment) * 12px);
+                border-radius: calc(var(--sizeAdjustment) * 12px);
+                background: #949ead;
+                box-shadow: inset 2px 2px 2px #848e9b;
+            }
+
+.switch__button {
+    top: calc(var(--sizeAdjustment) * 5px);
+    left: calc(var(--sizeAdjustment) * 5px);
+    width: calc(var(--sizeAdjustment) * 30px);
+    height: calc(var(--sizeAdjustment) * 30px);
+    border-radius: calc(var(--sizeAdjustment) * 30px);
+    background: #f1c530;
+    position: absolute;
+    transition: 0.2s ease all;
+    box-shadow: inset 3px 5px 3px #f8a100;
+}
+
+.switch__background {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: grey;
+    border-radius: calc(var(--sizeAdjustment) * 40px);
+    position: relative;
+    box-shadow: inset calc(var(--sizeAdjustment) * -4px) calc(var(--sizeAdjustment) * -4px) calc(var(--sizeAdjustment) * 6px) rgba(255, 255, 255, 0.3), inset calc(var(--sizeAdjustment) * 4px) calc(var(--sizeAdjustment) * 4px) calc(var(--sizeAdjustment) * 6px) rgba(70, 70, 70, 0.12);
+    background: radial-gradient(circle at center right, #347ab2, #347ab2 10%, #4886b7 10%, #4886b7 20%, #5c93bf 20%, #5c93bf 30%, #699ec6 30%, #699ec6 40%, #494e5c 40%, #494e5c 50%, #404350 50%, #404350 60%, #2d333c 60%, #2d333c 70%, #242830 70%, #242830 80%, #111 80%, #111 90%);
+    background-size: 250% 100%;
+    background-position: 100% 0%;
+    transition: 0.2s ease all;
+    overflow: hidden;
+}
+
+    .switch__background:before {
+        content: "★";
+        display: block;
+        position: absolute;
+        left: calc(var(--sizeAdjustment) * 12px);
+        top: calc(var(--sizeAdjustment) * 8px);
+        font-size: calc(var(--sizeAdjustment) * 8px);
+        color: white;
+        opacity: 0;
+        transition: 0.2s ease all;
+        text-shadow: calc(var(--sizeAdjustment) * 10px) calc(var(--sizeAdjustment) * 10px) 0px rgba(255, 255, 255, 0.8), calc(var(--sizeAdjustment) * 20px) calc(var(--sizeAdjustment) * 5px) 0px white;
+    }
+
+    .switch__background:after {
+        content: "";
+        display: block;
+        transition: 0.2s ease all;
+        position: absolute;
+        width: calc(var(--sizeAdjustment) * 25px);
+        height: calc(var(--sizeAdjustment) * 25px);
+        left: calc(var(--sizeAdjustment) * 5px);
+        border-radius: calc(var(--sizeAdjustment) * 25px);
+        box-shadow: calc(var(--sizeAdjustment) * 30px) calc(var(--sizeAdjustment) * 30px) 0px white, calc(var(--sizeAdjustment) * 50px) calc(var(--sizeAdjustment) * 20px) 0px white, calc(var(--sizeAdjustment) * 65px) calc(var(--sizeAdjustment) * 25px) 0px white, calc(var(--sizeAdjustment) * 29px) calc(var(--sizeAdjustment) * 28px) 0px #d7d7d7, calc(var(--sizeAdjustment) * 49px) calc(var(--sizeAdjustment) * 18px) 0px #d7d7d7, calc(var(--sizeAdjustment) * 65px) calc(var(--sizeAdjustment) * 23px) 0px #d7d7d7;
+    }

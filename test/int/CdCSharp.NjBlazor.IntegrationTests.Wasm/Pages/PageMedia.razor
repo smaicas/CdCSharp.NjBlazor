@@ -1,0 +1,21 @@
+﻿@page "/media"
+
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+<NavLink href="/">Return Index</NavLink>
+
+<h2>NjImage</h2>
+
+ <NjImage Width="50" Height="50"
+                         Src="./njframework512.svg"
+                         AlignSelf="AlignSelfMode.FlexStart"
+                         Alt="Nj Blazor Logo" />
+
+<h2>NjSvgIcon</h2>
+
+<NjSvgIcon Icon="@Features.Media.Icons.NjIcons.Materials.MaterialIconsSharp.i_biotech" Color="@Core.Css.NjColors.Azure.Default" />
+
+@code {
+
+}

@@ -1,0 +1,72 @@
+﻿@page "/tabs"
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Tabs
+
+<NavLink href="/">Return Index</NavLink>
+
+<NjStack Direction="FlexDirectionMode.Column" Spacing="5">
+    <div class="nj-p-5">
+        <h2>NJ TABS</h2>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Top">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Right">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Bottom">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Left">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+    </div>
+</NjStack>
+
+@code {
+
+}

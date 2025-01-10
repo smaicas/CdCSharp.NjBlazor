@@ -1,0 +1,32 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using System.Globalization
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+
+@namespace CdCSharp.NjBlazor.Features.Localization.Components
+
+@inherits NjComponentBase
+
+@if (OnlyIcon != null)
+{
+    <NjIconDropdown Clearable="false" Icon="@OnlyIcon" IconSize="@OnlyIconSize" OptionsPosition="@OptionsPosition" @bind-Value="@CurrentCulture">
+        @foreach (CultureInfo item in LocalizationSettings.Value.SupportedCulturesAsCultureInfo())
+        {
+            <NjInputDropdownOption Value="@item">@item.DisplayName</NjInputDropdownOption>
+        }
+    </NjIconDropdown>
+}
+else
+{
+    <NjInputDropdown Clearable="false" OptionsPosition="@OptionsPosition" @bind-Value="@CurrentCulture">
+        @foreach (CultureInfo item in LocalizationSettings.Value.SupportedCulturesAsCultureInfo())
+        {
+            <NjInputDropdownOption Value="@item">@item.DisplayName</NjInputDropdownOption>
+        }
+    </NjInputDropdown>
+}
+
+@code
+{
+  
+}

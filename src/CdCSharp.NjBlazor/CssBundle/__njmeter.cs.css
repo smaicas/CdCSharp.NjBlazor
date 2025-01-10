@@ -1,0 +1,7 @@
+﻿.nj-input-meter .nj-input-root {
+    box-shadow: inset 0px -3px 5px -1px rgba(0, 0, 0, 0.2), inset 0px -5px 8px 0px rgba(0, 0, 0, 0.14), inset 0px -1px 14px 0px rgba(0, 0, 0, 0.12);
+}
+
+.nj-input-meter .nj-input-meter-box {
+    box-shadow: inset 0px 3px 5px -1px rgba(0, 0, 0, 0.2), inset 0px 5px 8px 0px rgba(0, 0, 0, 0.14), inset 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+}

@@ -1,0 +1,147 @@
+﻿@using System.Globalization
+@using CdCSharp.NjBlazor.Core.Abstractions.Colors
+@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Features.Draggable.Components
+
+@namespace CdCSharp.NjBlazor.Features.ColorPicker.Components
+
+@inherits NjComponentBase
+
+@* <CssInclude SettingsName="@nameof(Nj.Blazor.ColorPicker)" Refs="@(new string[]{
+"_content/Nj.Blazor.ColorPicker/Nj.Blazor.ColorPicker.bundle.scp.css"
+})" /> *@
+
+<div class="nj-colorpicker-container">
+    <NjDraggable OnDrag="ThrottleDragSelection!" OnDragEnds="SelectionDragEndAsync">
+        <div @ref="selectionReference" class="nj-colorpicker-selection-box" style="@($"width:{SelectionWidth}px;height:{SelectionHeight}px;")">
+            <div class="nj-colorpicker-cover" style="@($"background-color: {_hueColor.ToColor(255).ToStringRgba()}")">
+                <div class="nj-colorpicker-cover gradient-white">
+
+                    <div class="nj-colorpicker-cover gradient-black">
+                    </div>
+                </div>
+                <span @ref="handlerSelectionReference" class="nj-colorpicker-selection-handler"></span>
+            </div>
+        </div>
+    </NjDraggable>
+
+    <div class="nj-colorpicker-tool">
+        <div class="nj-colorpicker-cover">
+
+            <input type="range"
+                   class="nj-colorpicker-cover gradient-hue"
+                   min="0" max="360" step="1"
+                   @bind-value="@BaseColorRangeValue" />
+        </div>
+    </div>
+
+    <div class="nj-colorpicker-tool">
+        <div class="nj-colorpicker-cover bg-white">
+            <div class="nj-chess-background">
+                <input type="range"
+                       class="nj-colorpicker-cover"
+                       style="@($"background: linear-gradient(to right,transparent, rgb({PickedColor.R}, {PickedColor.G}, {PickedColor.B}));")"
+                       min="0" max="255" step="1"
+                       @bind-value="@AlphaRangeValue" />
+            </div>
+        </div>
+    </div>
+
+    <div class="nj-colorpicker-tool">
+
+        @switch (OutputFormat)
+        {
+            case ColorpickerOutputFormat.HSV:
+
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="360" step="1" value="@(HsvColor.Hue)"
+                           @onchange="SetPreciseHAsync" />
+                    <span>H</span>
+                </div>
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="1" step="0.01" value="@(Math.Round(HsvColor.Saturation, 2).ToString(CultureInfo.InvariantCulture))"
+                           @onchange="SetPreciseSAsync" />
+                    <span>S</span>
+                </div>
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="1" step="0.01" value="@(Math.Round(HsvColor.Value, 2).ToString(CultureInfo.InvariantCulture))"
+                           @onchange="SetPreciseVAsync" />
+                    <span>V</span>
+                </div>
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="255" step="1,0" value="@((int)PickedColor.A)"
+                           @onchange="SetPreciseAlpha" />
+                    <span>A</span>
+                </div>
+                break;
+
+            case ColorpickerOutputFormat.HEX:
+
+                <div class="nj-colorpicker-box">
+                    <input type="text" value="@(PickedColor.GetHex())"
+                           @onchange="SetPreciseHexAsync" />
+                    <span>HEX</span>
+                </div>
+
+                break;
+
+            default:
+            case ColorpickerOutputFormat.RGB:
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="255" step="1.0" value="@((int)PickedColor.R)"
+                           @onchange="SetPreciseRAsync" />
+                    <span>R</span>
+                </div>
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="255" step="1.0" value="@((int)PickedColor.G)"
+                           @onchange="SetPreciseGAsync" />
+                    <span>G</span>
+                </div>
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="255" step="1.0" value="@((int)PickedColor.B)"
+                           @onchange="SetPreciseBAsync" />
+                    <span>B</span>
+                </div>
+                <div class="nj-colorpicker-box">
+                    <input type="number" min="0" max="255" step="1.0" value="@((int)PickedColor.A)"
+                           @onchange="SetPreciseAlpha" />
+                    <span>A</span>
+                </div>
+                break;
+        }
+
+        <div class="nj-colorpicker-box nj-colorpicker-icon-button-box">
+            <svg @onclick="SwitchOutputFormat" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"></path>
+            </svg>
+            <span>&nbsp;</span>
+        </div>
+    </div>
+
+    <div class="nj-colorpicker-pickedcolor-box bg-white">
+        <div class="nj-colorpicker-cover nj-chess-background">
+            <div class="nj-colorpicker-cover" style="@($"background-color:{PickedColor.ToStringRgba()};")"></div>
+        </div>
+    </div>
+
+    <div class="nj-colorpicker-tool">
+        <div class="nj-colorpicker-box nj-colorpicker-icon-button-box red">
+            <svg @onclick="CancelAsync" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
+                <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm4.3 14.3c-.39.39-1.02.39-1.41 0L12 13.41 9.11 16.3c-.39.39-1.02.39-1.41 0-.39-.39-.39-1.02 0-1.41L10.59 12 7.7 9.11c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L12 10.59l2.89-2.89c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L13.41 12l2.89 2.89c.38.38.38 1.02 0 1.41z" />
+            </svg>
+        </div>
+        <div class="nj-colorpicker-box nj-colorpicker-icon-button-box green">
+            <svg @onclick="SaveAsync" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z" />
+            </svg>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    
+}

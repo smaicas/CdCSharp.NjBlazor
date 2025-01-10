@@ -1,0 +1,1 @@
+dotnet tool install CdCSharp.NjBlazor.Tools.ThemeGenerator --version 1.0.0-pre.20250107032709 --add-source "..\cdcsharp-njblazor-nupkg-pack" --local

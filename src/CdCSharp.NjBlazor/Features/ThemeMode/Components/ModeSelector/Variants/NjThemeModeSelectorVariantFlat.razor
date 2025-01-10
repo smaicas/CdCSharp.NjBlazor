@@ -1,0 +1,25 @@
+﻿@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.ThemeMode.Components.ModeSelector.Variants
+
+@inherits NjThemeModeSelectorBase
+
+@* <CssInclude Refs="@(new string[]{
+"_content/Nj.Blazor.ThemeMode/Nj.Blazor.ThemeMode.bundle.scp.css"
+})" /> *@
+
+<div class="nj-theme-mode-selector" @onclick="ToggleDarkMode">
+    @if (IsDarkMode)
+    {
+        <NjSvgIcon Icon="@Media.Icons.NjIcons.Materials.MaterialIcons.i_dark_mode" Size="@IconSize"></NjSvgIcon>
+    }
+    else
+    {
+        <NjSvgIcon Icon="@Media.Icons.NjIcons.Materials.MaterialIcons.i_light_mode" Size="@IconSize"></NjSvgIcon>
+    }
+</div>
+
+@code {
+
+
+}

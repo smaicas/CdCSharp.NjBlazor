@@ -1,0 +1,30 @@
+﻿@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Media.Components
+
+@namespace CdCSharp.NjBlazor.Features.Layout.Components.Sidebar
+
+@inherits NjComponentBase
+
+<div class="@(AsClass("nj-sidebar", OpenClass))">
+    <NjStack Direction="FlexDirectionMode.Row">
+        <div class="nj-sidebar-toggle">
+            @if (IsOpen)
+            {
+                <NjSvgIcon OnClick="ToggleOpen" Icon="@Media.Icons.NjIcons.Materials.MaterialIcons.i_menu_open"></NjSvgIcon>
+            }
+            else
+            {
+                <NjSvgIcon OnClick="ToggleOpen" Icon="@Media.Icons.NjIcons.Materials.MaterialIcons.i_menu"></NjSvgIcon>
+            }
+        </div>
+
+        <div class="@(AsClass("nj-sidebar-content"))">
+            @ChildContent
+        </div>
+    </NjStack>
+</div>
+@code {
+
+}

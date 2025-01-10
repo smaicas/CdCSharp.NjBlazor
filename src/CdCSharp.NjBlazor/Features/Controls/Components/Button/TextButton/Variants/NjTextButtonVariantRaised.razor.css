@@ -1,0 +1,17 @@
+﻿.nj-text-button.nj-text-button-variant-raised {
+    box-shadow: 0 2px 5px 0 var(--palette-backgroundcontrast);
+}
+
+    .nj-text-button.nj-text-button-variant-raised:hover,
+    .nj-text-button.raised:focus {
+        box-shadow: 0 4px 8px 0 var(--palette-backgroundcontrast);
+    }
+
+    .nj-text-button.nj-text-button-variant-raised:active,
+    .nj-text-button.nj-text-button-variant-raised.active {
+        box-shadow: 0 2px 6px 0 var(--palette-backgroundcontrast);
+    }
+
+    .nj-text-button.nj-text-button-variant-raised:disabled {
+        box-shadow: none;
+    }

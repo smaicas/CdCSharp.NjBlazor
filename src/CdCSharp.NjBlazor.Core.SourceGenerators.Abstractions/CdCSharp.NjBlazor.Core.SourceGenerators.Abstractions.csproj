@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<Nullable>enable</Nullable>
+
+		<PackageId>CdCSharp.NjBlazor.Core.SourceGenerators.Abstractions</PackageId>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<Authors>Samuel Maícas (CdCSharp)</Authors>
+		<Company>smaicas</Company>
+		<LangVersion>Latest</LangVersion>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+		<Configurations>Debug;Release;Integration</Configurations>
+
+	</PropertyGroup>
+
+</Project>

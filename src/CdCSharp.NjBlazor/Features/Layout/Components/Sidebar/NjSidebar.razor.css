@@ -1,0 +1,31 @@
+﻿.nj-sidebar {
+    background-color: var(--palette-appbarbackground);
+    color: var(--palette-appbarcontrast);
+    z-index: 500;
+    display: inline-flex;
+    width: fit-content;
+}
+.nj-sidebar-content {
+    display: none;
+}
+
+.nj-sidebar.open .nj-sidebar-content {
+    display:block;
+}
+
+.nj-sidebar-toggle {
+    display: block;
+}
+/* Media query for desktop */
+@media only screen and (min-width: 1024px) {
+    .nj-sidebar {
+        position: relative;
+    }
+
+    .nj-sidebar .nj-sidebar-content {
+        display: block;
+    }
+    .nj-sidebar-toggle {
+        display: none;
+    }
+}

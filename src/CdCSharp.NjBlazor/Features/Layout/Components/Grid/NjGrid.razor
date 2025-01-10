@@ -1,0 +1,29 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+
+@namespace CdCSharp.NjBlazor.Features.Layout.Components.Grid
+
+@inherits NjComponentBase
+
+@* <CssInclude Refs="@(new string[]{
+"_content/Nj.Blazor.Layout/Nj.Blazor.Layout.bundle.scp.css"
+})" /> *@
+
+<CascadingValue Value="this" IsFixed="true">
+    @ChildContent
+</CascadingValue>
+
+<div class="@(AsClass(CssClass, Class))" style="@($"{_templateColumnsSpecificStyle}")">
+
+    @foreach (NjGridCell gridCell in _gridCells)
+    {
+        <div class="@(_classes.ContainsKey(gridCell) ? _classes[gridCell] : string.Empty)"
+             style="@(_styles.ContainsKey(gridCell) ? _styles[gridCell] : string.Empty)">
+            @gridCell.ChildContent
+        </div>
+    }
+
+</div>
+@code {
+
+}

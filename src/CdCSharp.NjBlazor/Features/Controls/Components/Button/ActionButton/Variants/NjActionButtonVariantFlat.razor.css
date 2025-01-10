@@ -1,0 +1,9 @@
+﻿.nj-action-button.nj-action-button-variant-flat:hover,
+.nj-action-button.nj-action-button-variant-flat:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nj-action-button.nj-action-button-variant-flat:active,
+.nj-action-button.nj-action-button-variant-flat.active {
+    background-color: rgba(0, 0, 0, 0.1);
+}

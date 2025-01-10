@@ -1,0 +1,27 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+
+@namespace CdCSharp.NjBlazor.Features.FocusHolder.Components
+
+@inherits NjComponentBase
+
+<div @ref="@_focusHolderReference"
+     @onfocusin:preventDefault="true"
+     @onfocusin:stopPropagation="false"
+     @onfocusin="DoFocusAsync"
+     @onfocusout:preventDefault="true"
+     @onfocusout:stopPropagation="false"
+     @onfocusout="DoFocusOutAsync"
+     @onblur:preventDefault="true"
+     @onblur:stopPropagation="true"
+     @onclick:preventDefault="true"
+     @onclick:stopPropagation="true"
+     @onclick="OnClick"
+     tabindex="0"
+     class="@Class">
+    @ChildContent
+</div>
+
+@code {
+   
+
+}
