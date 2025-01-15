@@ -11,9 +11,15 @@ public abstract class NjActivableTextButtonBase : NjTextButtonBase
 {
     private bool _active;
 
-    /// <summary>Gets or sets the activity status.</summary>
-    /// <value>True if active, false if not.</value>
-    /// <remarks>Setting the value triggers the ActiveChanged event.</remarks>
+    /// <summary>
+    /// Gets or sets the activity status.
+    /// </summary>
+    /// <value>
+    /// True if active, false if not.
+    /// </value>
+    /// <remarks>
+    /// Setting the value triggers the ActiveChanged event.
+    /// </remarks>
     [Parameter]
     public bool Active
     {
@@ -28,8 +34,12 @@ public abstract class NjActivableTextButtonBase : NjTextButtonBase
         }
     }
 
-    /// <summary>Gets or sets the event callback for when the active state changes.</summary>
-    /// <value>The event callback for when the active state changes.</value>
+    /// <summary>
+    /// Gets or sets the event callback for when the active state changes.
+    /// </summary>
+    /// <value>
+    /// The event callback for when the active state changes.
+    /// </value>
     [Parameter]
     public EventCallback<bool> ActiveChanged { get; set; }
 
@@ -46,5 +56,6 @@ public abstract class NjActivableTextButtonBase : NjTextButtonBase
         await OnClick.InvokeAsync(mouseEventArgs);
         ToggleActive();
     }
+
     private void ToggleActive() => Active = !Active;
 }

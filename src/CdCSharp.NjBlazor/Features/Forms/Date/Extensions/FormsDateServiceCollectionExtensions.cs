@@ -10,8 +10,12 @@ public static class FormsDateServiceCollectionExtensions
     /// <summary>
     /// Extends the IServiceCollection to add NjBlazorFormsDate service.
     /// </summary>
-    /// <param name="services">The IServiceCollection to add the service to.</param>
-    /// <param name="lifetime">The lifetime of the service (default is Transient).</param>
+    /// <param name="services">
+    /// The IServiceCollection to add the service to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service (default is Transient).
+    /// </param>
     public static void AddNjBlazorFormsDate(
         this IServiceCollection services,
         NjFormsDateSettings? settings = null,

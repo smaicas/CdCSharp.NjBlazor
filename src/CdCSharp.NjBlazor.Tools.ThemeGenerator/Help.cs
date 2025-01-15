@@ -10,8 +10,12 @@ internal static class Help
     /// <summary>
     /// Displays help information for the command line options.
     /// </summary>
-    /// <param name="commandLinePipe">The command line pipe object.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="commandLinePipe">
+    /// The command line pipe object.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     internal static Task ShowHelp(CommandLinePipe commandLinePipe)
     {
         Dictionary<string, string> parametersHelp = new(){
@@ -33,8 +37,12 @@ internal static class Help
     /// <summary>
     /// Displays help information for the available command line parameters related to icons.
     /// </summary>
-    /// <param name="commandLinePipe">The command line pipe object.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="commandLinePipe">
+    /// The command line pipe object.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     internal static Task ShowIconsHelp(CommandLinePipe commandLinePipe)
     {
         Dictionary<string, string> parametersHelp = new(){
@@ -54,8 +62,12 @@ internal static class Help
     /// <summary>
     /// Displays help information about the theme command line parameters.
     /// </summary>
-    /// <param name="commandLinePipe">The command line pipe object.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="commandLinePipe">
+    /// The command line pipe object.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     internal static Task ShowThemeHelp(CommandLinePipe commandLinePipe)
     {
         Dictionary<string, string> parametersHelp = new(){
@@ -77,8 +89,12 @@ internal static class Help
     /// <summary>
     /// Displays help information about the available variables and their usage.
     /// </summary>
-    /// <param name="commandLinePipe">The command line pipe used for communication.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="commandLinePipe">
+    /// The command line pipe used for communication.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     internal static Task ShowVariablesHelp(CommandLinePipe commandLinePipe)
     {
         Dictionary<string, string> parametersHelp = new(){

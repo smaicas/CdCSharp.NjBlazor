@@ -13,10 +13,14 @@ namespace CdCSharp.NjBlazor.Features.Forms.Dropdown;
 /// <summary>
 /// Base class for a dropdown input component that allows selecting a value of type TValue.
 /// </summary>
-/// <typeparam name="TValue">The type of value that can be selected.</typeparam>
+/// <typeparam name="TValue">
+/// The type of value that can be selected.
+/// </typeparam>
 public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
 {
-    /// <summary>Indicates whether multiple selection is allowed.</summary>
+    /// <summary>
+    /// Indicates whether multiple selection is allowed.
+    /// </summary>
     public readonly bool IsMultipleSelection;
 
     /// <summary>
@@ -24,11 +28,17 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// </summary>
     public readonly List<NjInputDropdownOption> Options = [];
 
-    /// <summary>Reference to an HTML element.</summary>
+    /// <summary>
+    /// Reference to an HTML element.
+    /// </summary>
     protected ElementReference BoxReference;
 
-    /// <summary>Coordinates of the options box.</summary>
-    /// <value>A tuple representing the top, right, bottom, and left coordinates of the options box.</value>
+    /// <summary>
+    /// Coordinates of the options box.
+    /// </summary>
+    /// <value>
+    /// A tuple representing the top, right, bottom, and left coordinates of the options box.
+    /// </value>
     protected (float Top, float Right, float Bottom, float Left) OptionsBoxCoords = (
         0f,
         0f,
@@ -41,18 +51,26 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     private bool _processingSelection;
 
     /// <summary>
-    /// Initializes a new instance of the NjInputDropdownBase class.
-    /// Sets the IsMultipleSelection property based on whether the type TValue is an array.
+    /// Initializes a new instance of the NjInputDropdownBase class. Sets the IsMultipleSelection
+    /// property based on whether the type TValue is an array.
     /// </summary>
     public NjInputDropdownBase() => IsMultipleSelection = typeof(TValue).IsArray;
 
-    /// <summary>Gets or sets the content to be rendered as a child component.</summary>
-    /// <value>The content to be rendered as a child component.</value>
+    /// <summary>
+    /// Gets or sets the content to be rendered as a child component.
+    /// </summary>
+    /// <value>
+    /// The content to be rendered as a child component.
+    /// </value>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    /// <summary>Gets or sets a value indicating whether the input is clearable.</summary>
-    /// <value>True if the input is clearable; otherwise, false.</value>
+    /// <summary>
+    /// Gets or sets a value indicating whether the input is clearable.
+    /// </summary>
+    /// <value>
+    /// True if the input is clearable; otherwise, false.
+    /// </value>
     [Parameter]
     public bool Clearable { get; set; } = true;
 
@@ -60,13 +78,18 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// Gets or sets a function that defines how an item should be displayed.
     /// </summary>
     /// <value>
-    /// A function that takes an object as input and returns a string representing how the item should be displayed.
+    /// A function that takes an object as input and returns a string representing how the item
+    /// should be displayed.
     /// </value>
     [Parameter]
     public Func<object, string>? ItemDisplay { get; set; }
 
-    /// <summary>Gets or sets the label associated with the parameter.</summary>
-    /// <value>The label associated with the parameter.</value>
+    /// <summary>
+    /// Gets or sets the label associated with the parameter.
+    /// </summary>
+    /// <value>
+    /// The label associated with the parameter.
+    /// </value>
     [Parameter]
     public string Label { get; set; } = string.Empty;
 
@@ -83,7 +106,9 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Gets or sets the post-adornment string.
     /// </summary>
-    /// <value>The post-adornment string.</value>
+    /// <value>
+    /// The post-adornment string.
+    /// </value>
     [Parameter]
     public string? PostAdornment { get; set; }
 
@@ -96,20 +121,30 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     [Parameter]
     public CssColor? PostAdornmentColor { get; set; }
 
-    /// <summary>Gets or sets the string to be displayed before the main content.</summary>
-    /// <value>The string to be displayed before the main content.</value>
+    /// <summary>
+    /// Gets or sets the string to be displayed before the main content.
+    /// </summary>
+    /// <value>
+    /// The string to be displayed before the main content.
+    /// </value>
     [Parameter]
     public string? PreAdornment { get; set; }
 
-    /// <summary>Gets or sets the color of the pre-adornment.</summary>
-    /// <value>The color of the pre-adornment.</value>
+    /// <summary>
+    /// Gets or sets the color of the pre-adornment.
+    /// </summary>
+    /// <value>
+    /// The color of the pre-adornment.
+    /// </value>
     [Parameter]
     public CssColor? PreAdornmentColor { get; set; }
 
     /// <summary>
     /// Generates a dictionary of active classes based on the options and current values.
     /// </summary>
-    /// <returns>A dictionary where the key is an object and the value is a string representing the active class.</returns>
+    /// <returns>
+    /// A dictionary where the key is an object and the value is a string representing the active class.
+    /// </returns>
     protected Dictionary<object, string> ActiveClass =>
         Options
             .Where(op => op.Value != null)
@@ -130,12 +165,20 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     [Inject]
     protected IDOMJsInterop DomJs { get; set; } = default!;
 
-    /// <summary>Gets or sets a value indicating whether the object is open.</summary>
-    /// <value>True if the object is open; otherwise, false.</value>
+    /// <summary>
+    /// Gets or sets a value indicating whether the object is open.
+    /// </summary>
+    /// <value>
+    /// True if the object is open; otherwise, false.
+    /// </value>
     protected bool IsOpen { get; set; }
 
-    /// <summary>Gets the CSS style for the options box based on its coordinates.</summary>
-    /// <value>The CSS style for the options box.</value>
+    /// <summary>
+    /// Gets the CSS style for the options box based on its coordinates.
+    /// </summary>
+    /// <value>
+    /// The CSS style for the options box.
+    /// </value>
     protected string OptionsBoxStyle
     {
         get
@@ -169,8 +212,12 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
         }
     }
 
-    /// <summary>Adds an option to the dropdown list if it doesn't already exist.</summary>
-    /// <param name="option">The option to add to the dropdown list.</param>
+    /// <summary>
+    /// Adds an option to the dropdown list if it doesn't already exist.
+    /// </summary>
+    /// <param name="option">
+    /// The option to add to the dropdown list.
+    /// </param>
     public void AddOption(NjInputDropdownOption option)
     {
         if (Options.Contains(option))
@@ -181,8 +228,12 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Formats the specified value as a string.
     /// </summary>
-    /// <param name="value">The value to be formatted.</param>
-    /// <returns>The formatted value as a string.</returns>
+    /// <param name="value">
+    /// The value to be formatted.
+    /// </param>
+    /// <returns>
+    /// The formatted value as a string.
+    /// </returns>
     protected override string? FormatValueAsString(TValue? value)
     {
         if (IsMultipleSelection)
@@ -205,8 +256,12 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Method called after rendering the component asynchronously.
     /// </summary>
-    /// <param name="firstRender">A boolean value indicating if this is the first render.</param>
-    /// <returns>An asynchronous Task.</returns>
+    /// <param name="firstRender">
+    /// A boolean value indicating if this is the first render.
+    /// </param>
+    /// <returns>
+    /// An asynchronous Task.
+    /// </returns>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -221,8 +276,12 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Asynchronously handles the focus event.
     /// </summary>
-    /// <param name="focusEventArgs">The focus event arguments.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="focusEventArgs">
+    /// The focus event arguments.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected override async Task OnFocusAsync(FocusEventArgs? focusEventArgs)
     {
         if (ReadOnly)
@@ -233,8 +292,12 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Asynchronously handles the event when the component loses focus.
     /// </summary>
-    /// <param name="focusEventArgs">The focus event arguments.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="focusEventArgs">
+    /// The focus event arguments.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected override async Task OnFocusOutAsync(FocusEventArgs? focusEventArgs)
     {
         await base.OnFocusOutAsync(focusEventArgs);
@@ -245,8 +308,12 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Selects an option asynchronously.
     /// </summary>
-    /// <param name="value">The value of the option to select.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="value">
+    /// The value of the option to select.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected async Task SelectOptionAsync(object? value)
     {
         _processingSelection = true;
@@ -280,9 +347,16 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Asynchronously displays the item's value.
     /// </summary>
-    /// <param name="value">The value to display.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the displayed item as a string.</returns>
-    /// <exception cref="InvalidOperationException">Thrown when the item's value is null and no custom display function is provided.</exception>
+    /// <param name="value">
+    /// The value to display.
+    /// </param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains the displayed
+    /// item as a string.
+    /// </returns>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown when the item's value is null and no custom display function is provided.
+    /// </exception>
     protected Task<string> ShowItemDisplayAsync(object value)
     {
         if (ItemDisplay != null)
@@ -299,7 +373,9 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Toggles the dropdown menu asynchronously.
     /// </summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected async Task ToggleDropdownAsync()
     {
         if (ReadOnly)
@@ -314,10 +390,20 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// <summary>
     /// Tries to parse a value from a string representation.
     /// </summary>
-    /// <param name="value">The string value to parse.</param>
-    /// <param name="result">When this method returns, contains the parsed value if the parsing succeeded, otherwise the default value.</param>
-    /// <param name="validationErrorMessage">When this method returns, contains an error message if the parsing failed, otherwise an empty string.</param>
-    /// <returns>True if the parsing was successful; otherwise, false.</returns>
+    /// <param name="value">
+    /// The string value to parse.
+    /// </param>
+    /// <param name="result">
+    /// When this method returns, contains the parsed value if the parsing succeeded, otherwise the
+    /// default value.
+    /// </param>
+    /// <param name="validationErrorMessage">
+    /// When this method returns, contains an error message if the parsing failed, otherwise an
+    /// empty string.
+    /// </param>
+    /// <returns>
+    /// True if the parsing was successful; otherwise, false.
+    /// </returns>
     protected override bool TryParseValueFromString(
         string? value,
         out TValue result,

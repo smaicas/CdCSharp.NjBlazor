@@ -7,4 +7,5 @@ namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton;
 /// De-multiplexer for NjActionButtonVariant.
 /// </summary>
 [ComponentDeMux<NjActionButtonVariant>]
-public partial class NjActionButton : NjActionButtonBase { }
+public partial class NjActionButton : NjActionButtonBase
+{ }

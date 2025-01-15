@@ -2,14 +2,20 @@
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-/// <summary>Contains extension methods for configuring services in the service collection.</summary>
+/// <summary>
+/// Contains extension methods for configuring services in the service collection.
+/// </summary>
 public static class FormsTextServiceCollectionExtensions
 {
     /// <summary>
     /// Adds NjBlazorFormsText to the specified IServiceCollection.
     /// </summary>
-    /// <param name="services">The IServiceCollection to add the NjBlazorFormsText to.</param>
-    /// <param name="lifetime">The lifetime of the service (default is Transient).</param>
+    /// <param name="services">
+    /// The IServiceCollection to add the NjBlazorFormsText to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service (default is Transient).
+    /// </param>
     public static void AddNjBlazorFormsText(
         this IServiceCollection services,
         NjFormsTextSettings? settings = null,

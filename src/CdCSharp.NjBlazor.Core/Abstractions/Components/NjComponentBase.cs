@@ -28,20 +28,31 @@ public abstract class NjComponentBase : ComponentBase
     }
 
     /// <summary>
-    /// Concatenates an array of strings into a single string, separated by a space.
-    /// Ignores empty strings.
+    /// Concatenates an array of strings into a single string, separated by a space. Ignores empty strings.
     /// </summary>
-    /// <param name="classes">An array of strings representing classes.</param>
-    /// <returns>A single string containing the concatenated classes separated by a space.</returns>
+    /// <param name="classes">
+    /// An array of strings representing classes.
+    /// </param>
+    /// <returns>
+    /// A single string containing the concatenated classes separated by a space.
+    /// </returns>
     protected string AsClass(params string[] classes) => classes.NotEmptyJoin();
 
     /// <summary>
     /// Creates a debounced action for an event handler.
     /// </summary>
-    /// <typeparam name="T">The type of the event argument.</typeparam>
-    /// <param name="action">The action to be debounced.</param>
-    /// <param name="interval">The time interval for debouncing.</param>
-    /// <returns>A debounced action for the event handler.</returns>
+    /// <typeparam name="T">
+    /// The type of the event argument.
+    /// </typeparam>
+    /// <param name="action">
+    /// The action to be debounced.
+    /// </param>
+    /// <param name="interval">
+    /// The time interval for debouncing.
+    /// </param>
+    /// <returns>
+    /// A debounced action for the event handler.
+    /// </returns>
     protected virtual Action<T> DebounceEvent<T>(Action<T> action, TimeSpan interval)
     {
         return NjEvents.Debounce<T>(arg => InvokeAsync(() =>
@@ -54,10 +65,18 @@ public abstract class NjComponentBase : ComponentBase
     /// <summary>
     /// Throttles an event action to limit the rate at which it is invoked.
     /// </summary>
-    /// <typeparam name="T">The type of the event argument.</typeparam>
-    /// <param name="action">The action to be throttled.</param>
-    /// <param name="interval">The time interval to throttle the action.</param>
-    /// <returns>A throttled action that will be invoked at a limited rate.</returns>
+    /// <typeparam name="T">
+    /// The type of the event argument.
+    /// </typeparam>
+    /// <param name="action">
+    /// The action to be throttled.
+    /// </param>
+    /// <param name="interval">
+    /// The time interval to throttle the action.
+    /// </param>
+    /// <returns>
+    /// A throttled action that will be invoked at a limited rate.
+    /// </returns>
     protected virtual Action<T> ThrottleEvent<T>(Action<T> action, TimeSpan interval)
     {
         return NjEvents.Throttle<T>(arg => InvokeAsync(() =>

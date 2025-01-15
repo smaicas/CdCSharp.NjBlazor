@@ -1,0 +1,57 @@
+name: $(majorMinorVersion).$(semanticVersion) 
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  - name: solution
+    value: '**/*.sln'
+
+  - name: buildConfiguration
+    value: 'Release'
+
+  - name: majorMinorVersion
+    value: '1.0'
+
+  # semanticVersion counter is automatically incremented by one in each execution of pipeline
+  # second parameter is seed value to reset to every time the referenced majorMinorVersion is changed
+  - name: semanticVersion
+    value: $[counter(variables['majorMinorVersion'], 0)]
+
+  - name: IsRunningOnCICD
+    value: true
+
+steps:
+
+- task: NuGetAuthenticate@1
+- task: NuGetToolInstaller@1
+- task: UseDotNet@2
+  displayName: Use Dotnet 9.0.x
+  inputs:
+    packageType: 'sdk'
+    version: '9.0.x'
+    includePreviewVersions: false
+- task: DotNetCoreCLI@2
+  displayName: 'Restore projects'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'config'
+    nugetConfigPath: 'nuget.config'
+    noCache: true
+    modifyOutputPath: false
+- task: DotNetCoreCLI@2
+  displayName: 'Build projects'
+  inputs:
+     command: 'build'
+     projects: '**/*.csproj'
+     arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'Execute Unit Test'
+  inputs:
+    command: 'test'
+    projects: '**/*.UnitTests.csproj'
+    # arguments: '--configuration $(buildConfiguration) --filter FullyQualifiedName!~Nj.Python.Whisper.Test.Unit.*&FullyQualifiedName!~Nj.Audio.Test.Unit.*'     

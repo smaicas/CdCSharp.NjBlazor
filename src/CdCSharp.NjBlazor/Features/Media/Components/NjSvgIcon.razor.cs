@@ -11,27 +11,6 @@ namespace CdCSharp.NjBlazor.Features.Media.Components;
 /// </summary>
 public partial class NjSvgIcon : NjComponentBase
 {
-    /// <summary>Gets or sets the icon associated with the item.</summary>
-    /// <value>The icon path.</value>
-    /// <remarks>This property is decorated with the Parameter attribute and EditorRequired attribute.</remarks>
-    [Parameter]
-    [EditorRequired]
-    public string Icon { get; set; } = Media.Icons.NjIcons.Custom.Uncategorized.NoIcon;
-
-    /// <summary>
-    /// Gets or sets the title.
-    /// </summary>
-    /// <value>The title.</value>
-    [Parameter]
-    public string? Title { get; set; }
-
-    /// <summary>
-    /// Gets or sets the viewBox attribute value for SVG element.
-    /// </summary>
-    /// <value>The viewBox attribute value. Default is "0 0 24 24".</value>
-    [Parameter]
-    public string ViewBox { get; set; } = "0 0 24 24";
-
     /// <summary>
     /// Gets or sets the color in CSS format.
     /// </summary>
@@ -41,15 +20,55 @@ public partial class NjSvgIcon : NjComponentBase
     [Parameter]
     public CssColor? Color { get; set; }
 
-    /// <summary>Gets or sets the size of the SVG icon.</summary>
-    /// <value>The size of the SVG icon.</value>
+    /// <summary>
+    /// Gets or sets the icon associated with the item.
+    /// </summary>
+    /// <value>
+    /// The icon path.
+    /// </value>
+    /// <remarks>
+    /// This property is decorated with the Parameter attribute and EditorRequired attribute.
+    /// </remarks>
+    [Parameter]
+    [EditorRequired]
+    public string Icon { get; set; } = Media.Icons.NjIcons.Custom.Uncategorized.NoIcon;
+
+    /// <summary>
+    /// Gets or sets the event callback for mouse click events.
+    /// </summary>
+    /// <value>
+    /// The event callback for mouse click events.
+    /// </value>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    /// <summary>
+    /// Gets or sets the size of the SVG icon.
+    /// </summary>
+    /// <value>
+    /// The size of the SVG icon.
+    /// </value>
     [Parameter]
     public NjSvgIconSize Size { get; set; } = NjSvgIconSize.Medium;
 
-    /// <summary>Gets or sets the event callback for mouse click events.</summary>
-    /// <value>The event callback for mouse click events.</value>
+    /// <summary>
+    /// Gets or sets the title.
+    /// </summary>
+    /// <value>
+    /// The title.
+    /// </value>
     [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    public string? Title { get; set; }
+
+    /// <summary>
+    /// Gets or sets the viewBox attribute value for SVG element.
+    /// </summary>
+    /// <value>
+    /// The viewBox attribute value. Default is "0 0 24 24".
+    /// </value>
+    [Parameter]
+    public string ViewBox { get; set; } = "0 0 24 24";
+
     private string IconSizeClass =>
         Size switch
         {
@@ -59,6 +78,7 @@ public partial class NjSvgIcon : NjComponentBase
             NjSvgIconSize.XXLarge => CssClassReferences.Icon.IconSizeLarge,
             _ => CssClassReferences.Icon.IconSizeMedium,
         };
+
     private string InlineStyle =>
         Color == null ? string.Empty : $"color:{Color.ToString(ColorOutputFormats.Rgba)};";
 

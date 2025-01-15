@@ -5,5 +5,4 @@
 /// </summary>
 public partial class NjDraggable : NjDraggableBase
 {
-
 }

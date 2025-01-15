@@ -13,7 +13,6 @@ export module DeviceManagerJsModule {
 
         resizeCallbackEvents = new WeakMap<any, EventListener>();
         public async AddResizeCallback(dotnet: any, callbackName: string) {
-
             if (!this.resizeCallbackEvents.get(dotnet)) {
                 let resizeTimer;
                 const sendResizeCallback = (e) => {

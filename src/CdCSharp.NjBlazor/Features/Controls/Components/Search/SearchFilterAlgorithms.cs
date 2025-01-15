@@ -8,10 +8,18 @@ public static class SearchFilterAlgorithms
     /// <summary>
     /// Determines if two strings are a fuzzy match within a specified tolerance.
     /// </summary>
-    /// <param name="source">The source string to compare.</param>
-    /// <param name="target">The target string to compare against.</param>
-    /// <param name="tolerance">The maximum number of allowed differences between the strings (default is 1).</param>
-    /// <returns>True if the strings are a fuzzy match within the tolerance, false otherwise.</returns>
+    /// <param name="source">
+    /// The source string to compare.
+    /// </param>
+    /// <param name="target">
+    /// The target string to compare against.
+    /// </param>
+    /// <param name="tolerance">
+    /// The maximum number of allowed differences between the strings (default is 1).
+    /// </param>
+    /// <returns>
+    /// True if the strings are a fuzzy match within the tolerance, false otherwise.
+    /// </returns>
     public static bool IsFuzzyMatch(string source, string target, int tolerance = 1)
     {
         int mismatchCount = 0;
@@ -31,9 +39,15 @@ public static class SearchFilterAlgorithms
     /// <summary>
     /// Calculates the Levenshtein distance between two strings.
     /// </summary>
-    /// <param name="source">The source string.</param>
-    /// <param name="target">The target string.</param>
-    /// <returns>The Levenshtein distance between the two strings.</returns>
+    /// <param name="source">
+    /// The source string.
+    /// </param>
+    /// <param name="target">
+    /// The target string.
+    /// </param>
+    /// <returns>
+    /// The Levenshtein distance between the two strings.
+    /// </returns>
     public static int LevenshteinDistance(string source, string target)
     {
         if (string.IsNullOrEmpty(source))

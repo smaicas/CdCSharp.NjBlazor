@@ -9,8 +9,21 @@ namespace CdCSharp.NjBlazor.Features.Forms.Dropdown;
 /// </summary>
 public partial class NjInputDropdownOption : NjComponentBase
 {
-    /// <summary>Gets or sets the parent dropdown options.</summary>
-    /// <value>The list of parent dropdown options.</value>
+    /// <summary>
+    /// Gets or sets the content to be rendered as a child component.
+    /// </summary>
+    /// <value>
+    /// The content to be rendered as a child component.
+    /// </value>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the parent dropdown options.
+    /// </summary>
+    /// <value>
+    /// The list of parent dropdown options.
+    /// </value>
     [CascadingParameter]
     public List<NjInputDropdownOption>? ParentDropdownOptions { get; set; }
 
@@ -28,17 +41,13 @@ public partial class NjInputDropdownOption : NjComponentBase
     [DisallowNull]
     public object Value { get; set; } = default!;
 
-    /// <summary>Gets or sets the content to be rendered as a child component.</summary>
-    /// <value>The content to be rendered as a child component.</value>
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-
     /// <summary>
-    /// This method is called when the parameters are set.
-    /// It adds the current instance to the parent dropdown options if it is not already present.
+    /// This method is called when the parameters are set. It adds the current instance to the
+    /// parent dropdown options if it is not already present.
     /// </summary>
     /// <remarks>
-    /// If the parent dropdown options are null or if the current instance is already in the parent dropdown options, no action is taken.
+    /// If the parent dropdown options are null or if the current instance is already in the parent
+    /// dropdown options, no action is taken.
     /// </remarks>
     protected override void OnParametersSet()
     {
@@ -51,7 +60,11 @@ public partial class NjInputDropdownOption : NjComponentBase
         ParentDropdownOptions.Add(this);
     }
 
-    /// <summary>Determines whether rendering should occur.</summary>
-    /// <returns>False, indicating that rendering should not occur.</returns>
+    /// <summary>
+    /// Determines whether rendering should occur.
+    /// </summary>
+    /// <returns>
+    /// False, indicating that rendering should not occur.
+    /// </returns>
     protected override bool ShouldRender() => false;
 }

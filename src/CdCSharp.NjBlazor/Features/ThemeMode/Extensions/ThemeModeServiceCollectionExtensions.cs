@@ -11,8 +11,12 @@ public static class ThemeModeServiceCollectionExtensions
     /// <summary>
     /// Adds NjBlazor theme mode to the specified IServiceCollection.
     /// </summary>
-    /// <param name="services">The IServiceCollection to add the NjBlazor theme mode to.</param>
-    /// <param name="lifetime">The lifetime of the service (default is Transient).</param>
+    /// <param name="services">
+    /// The IServiceCollection to add the NjBlazor theme mode to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service (default is Transient).
+    /// </param>
     public static void AddNjBlazorThemeMode(
         this IServiceCollection services,
         NjThemeModeSettings? settings = null,

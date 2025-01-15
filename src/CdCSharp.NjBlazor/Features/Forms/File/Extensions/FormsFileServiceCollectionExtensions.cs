@@ -7,9 +7,15 @@ namespace Microsoft.Extensions.DependencyInjection;
 /// </summary>
 public static class FormsFileServiceCollectionExtensions
 {
-    /// <summary>Adds NjBlazorFormsFile to the specified IServiceCollection.</summary>
-    /// <param name="services">The IServiceCollection to add the NjBlazorFormsFile to.</param>
-    /// <param name="lifetime">The lifetime of the service (default is Transient).</param>
+    /// <summary>
+    /// Adds NjBlazorFormsFile to the specified IServiceCollection.
+    /// </summary>
+    /// <param name="services">
+    /// The IServiceCollection to add the NjBlazorFormsFile to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service (default is Transient).
+    /// </param>
     public static void AddNjBlazorFormsFile(
         this IServiceCollection services,
         NjFormsFileSettings? settings = null,

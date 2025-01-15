@@ -11,18 +11,30 @@ namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton;
 /// </summary>
 public abstract class NjActionButtonBase : NjControlComponentBase
 {
-    /// <summary>Gets or sets the background color in CSS format.</summary>
-    /// <value>The background color in CSS format.</value>
+    /// <summary>
+    /// Gets or sets the background color in CSS format.
+    /// </summary>
+    /// <value>
+    /// The background color in CSS format.
+    /// </value>
     [Parameter]
     public CssColor? BackgroundColor { get; set; }
 
-    /// <summary>Gets or sets the color value in CSS format.</summary>
-    /// <value>The color value in CSS format.</value>
+    /// <summary>
+    /// Gets or sets the color value in CSS format.
+    /// </summary>
+    /// <value>
+    /// The color value in CSS format.
+    /// </value>
     [Parameter]
     public CssColor? Color { get; set; }
 
-    /// <summary>Gets or sets the icon associated with the component.</summary>
-    /// <value>The icon path.</value>
+    /// <summary>
+    /// Gets or sets the icon associated with the component.
+    /// </summary>
+    /// <value>
+    /// The icon path.
+    /// </value>
     [Parameter]
     public string Icon { get; set; } = Media.Icons.NjIcons.Custom.Uncategorized.NoIcon;
 
@@ -35,8 +47,12 @@ public abstract class NjActionButtonBase : NjControlComponentBase
     [Parameter]
     public EventCallback<MouseEventArgs> OnClick { get; set; }
 
-    /// <summary>Gets the inline style for the element.</summary>
-    /// <value>A string representing the inline style of the element.</value>
+    /// <summary>
+    /// Gets the inline style for the element.
+    /// </summary>
+    /// <value>
+    /// A string representing the inline style of the element.
+    /// </value>
     protected string InlineStyle
     {
         get

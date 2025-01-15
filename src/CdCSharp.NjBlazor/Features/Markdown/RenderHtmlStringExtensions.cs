@@ -11,9 +11,40 @@ namespace Nj.Blazor.Markdown;
 /// </summary>
 internal static partial class RenderHtmlStringExtensions
 {
-    /// <summary>Renders a blockquote element with the provided line as content.</summary>
-    /// <param name="line">The line to be rendered within the blockquote element.</param>
-    /// <returns>A RenderFragment representing the blockquote element with the specified content.</returns>
+    /// <summary>
+    /// Processes inline items in a given line of text.
+    /// </summary>
+    /// <param name="line">
+    /// The line of text to process.
+    /// </param>
+    /// <returns>
+    /// The processed line of text with inline items formatted as HTML elements.
+    /// </returns>
+    public static string ProcessInlineItems(string line)
+    {
+        // Bold
+        line = Bold().Replace(line, match => $"<b>{match.Groups[1].Value.Trim()}</b>");
+        // Italic
+        line = Italic().Replace(line, match => $"<i>{match.Groups[1].Value.Trim()}</i>");
+        // Image
+        line = Image().Replace(line, match => $"<img src=\"{match.Groups[2].Value.Trim()}\" alt=\"{match.Groups[1].Value.Trim()}\">");
+        // Link
+        line = Link().Replace(line, match => $"<a class=\"{CssClassReferences.Text.Underline} {CssClassReferences.Pointer}\" href=\"{match.Groups[2].Value.Trim()}\">{match.Groups[1].Value.Trim()}</a>");
+        // Inline code
+        line = InlineCode().Replace(line, match => $"<code>{match.Groups[1].Value.Trim()}</code>");
+
+        return line;
+    }
+
+    /// <summary>
+    /// Renders a blockquote element with the provided line as content.
+    /// </summary>
+    /// <param name="line">
+    /// The line to be rendered within the blockquote element.
+    /// </param>
+    /// <returns>
+    /// A RenderFragment representing the blockquote element with the specified content.
+    /// </returns>
     internal static RenderFragment RenderBlockQuote(this string line)
     {
         return builder =>
@@ -29,9 +60,15 @@ internal static partial class RenderHtmlStringExtensions
     /// <summary>
     /// Renders a code block with syntax highlighting based on the specified language.
     /// </summary>
-    /// <param name="lines">The lines of code to be rendered.</param>
-    /// <param name="language">The language of the code for syntax highlighting.</param>
-    /// <returns>A RenderFragment representing the code block with syntax highlighting.</returns>
+    /// <param name="lines">
+    /// The lines of code to be rendered.
+    /// </param>
+    /// <param name="language">
+    /// The language of the code for syntax highlighting.
+    /// </param>
+    /// <returns>
+    /// A RenderFragment representing the code block with syntax highlighting.
+    /// </returns>
     internal static RenderFragment RenderCodeBlock(this IEnumerable<string> lines, string language)
     {
         string code = string.Join(Environment.NewLine, lines);
@@ -83,8 +120,12 @@ internal static partial class RenderHtmlStringExtensions
     /// <summary>
     /// Renders a header component for a given line of text.
     /// </summary>
-    /// <param name="line">The text content of the header.</param>
-    /// <returns>A RenderFragment representing the header component.</returns>
+    /// <param name="line">
+    /// The text content of the header.
+    /// </param>
+    /// <returns>
+    /// A RenderFragment representing the header component.
+    /// </returns>
     internal static RenderFragment RenderHeader(this string line)
     {
         Dictionary<string, object> attr = new()
@@ -103,8 +144,12 @@ internal static partial class RenderHtmlStringExtensions
     /// <summary>
     /// Renders a collection of strings as a paragraph in a Blazor component.
     /// </summary>
-    /// <param name="lines">The collection of strings to render as lines in the paragraph.</param>
-    /// <returns>A RenderFragment representing the paragraph with the provided lines.</returns>
+    /// <param name="lines">
+    /// The collection of strings to render as lines in the paragraph.
+    /// </param>
+    /// <returns>
+    /// A RenderFragment representing the paragraph with the provided lines.
+    /// </returns>
     internal static RenderFragment RenderParagraph(this IEnumerable<string> lines)
     {
         return builder =>
@@ -125,8 +170,12 @@ internal static partial class RenderHtmlStringExtensions
     /// <summary>
     /// Renders an unordered list based on the provided lines.
     /// </summary>
-    /// <param name="lines">The lines to be rendered as list items.</param>
-    /// <returns>A RenderFragment representing the unordered list.</returns>
+    /// <param name="lines">
+    /// The lines to be rendered as list items.
+    /// </param>
+    /// <returns>
+    /// A RenderFragment representing the unordered list.
+    /// </returns>
     internal static RenderFragment RenderUnorderedList(this IEnumerable<string> lines)
     {
         Dictionary<string, object> attr = new()
@@ -144,38 +193,19 @@ internal static partial class RenderHtmlStringExtensions
         };
     }
 
-    /// <summary>Processes inline items in a given line of text.</summary>
-    /// <param name="line">The line of text to process.</param>
-    /// <returns>The processed line of text with inline items formatted as HTML elements.</returns>
-    public static string ProcessInlineItems(string line)
-    {
-        // Bold
-        line = Bold().Replace(line, match => $"<b>{match.Groups[1].Value.Trim()}</b>");
-        // Italic
-        line = Italic().Replace(line, match => $"<i>{match.Groups[1].Value.Trim()}</i>");
-        // Image
-        line = Image().Replace(line, match => $"<img src=\"{match.Groups[2].Value.Trim()}\" alt=\"{match.Groups[1].Value.Trim()}\">");
-        // Link
-        line = Link().Replace(line, match => $"<a class=\"{CssClassReferences.Text.Underline} {CssClassReferences.Pointer}\" href=\"{match.Groups[2].Value.Trim()}\">{match.Groups[1].Value.Trim()}</a>");
-        // Inline code
-        line = InlineCode().Replace(line, match => $"<code>{match.Groups[1].Value.Trim()}</code>");
-
-        return line;
-    }
-
     [GeneratedRegex(@"\*\*(.*?)\*\*")]
     private static partial Regex Bold();
-
-    [GeneratedRegex(@"\*(.*?)\*")]
-    private static partial Regex Italic();
 
     [GeneratedRegex(@"\!\[(.*?)\]\((.*?)\)")]
     private static partial Regex Image();
 
+    [GeneratedRegex(@"\`(.*?)\`")]
+    private static partial Regex InlineCode();
+
+    [GeneratedRegex(@"\*(.*?)\*")]
+    private static partial Regex Italic();
+
     //[GeneratedRegex(@"(?=\[(.+?)\]\((.+?)\))")]
     [GeneratedRegex(@"\[([^\]\[]*?)\]\(([^\)\(]*?)\)")]
     private static partial Regex Link();
-
-    [GeneratedRegex(@"\`(.*?)\`")]
-    private static partial Regex InlineCode();
 }

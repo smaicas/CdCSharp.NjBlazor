@@ -8,15 +8,19 @@ namespace CdCSharp.NjBlazor.Features.Antiforgery.Services;
 /// <summary>
 /// Represents a JavaScript interop class for Antiforgery functionality.
 /// </summary>
-/// <param name="jsRuntime">The JavaScript runtime instance.</param>
-/// <seealso cref="ModuleJsInterop"/>
-/// <seealso cref="IAntiforgeryJsInterop"/>
+/// <param name="jsRuntime">
+/// The JavaScript runtime instance.
+/// </param>
+/// <seealso cref="ModuleJsInterop" />
+/// <seealso cref="IAntiforgeryJsInterop" />
 public class AntiforgeryJsInterop(IJSRuntime jsRuntime) : ModuleJsInterop(jsRuntime, CSharpReferences.Modules.AntiforgeryJs), IAntiforgeryJsInterop
 {
     /// <summary>
     /// Asynchronously retrieves the anti-forgery token.
     /// </summary>
-    /// <returns>The anti-forgery token as a string.</returns>
+    /// <returns>
+    /// The anti-forgery token as a string.
+    /// </returns>
     public async ValueTask<string> GetAntiForgeryTokenAsync()
     {
         await IsModuleTaskLoaded.Task;
@@ -27,7 +31,9 @@ public class AntiforgeryJsInterop(IJSRuntime jsRuntime) : ModuleJsInterop(jsRunt
     /// <summary>
     /// Asynchronously retrieves a nonce value from the JavaScript runtime.
     /// </summary>
-    /// <returns>A string representing the nonce value.</returns>
+    /// <returns>
+    /// A string representing the nonce value.
+    /// </returns>
     public async ValueTask<string> GetNonceAsync()
     {
         await IsModuleTaskLoaded.Task;

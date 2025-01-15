@@ -11,10 +11,23 @@ namespace CdCSharp.NjBlazor.Features.Layout.Components.Tree;
 /// </summary>
 public partial class NjTree : NjComponentBase
 {
-    /// <summary>Gets or sets the content to be rendered as a child component.</summary>
-    /// <value>The content to be rendered as a child component.</value>
+    /// <summary>
+    /// Gets or sets the content to be rendered as a child component.
+    /// </summary>
+    /// <value>
+    /// The content to be rendered as a child component.
+    /// </value>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the deep padding value.
+    /// </summary>
+    /// <value>
+    /// The deep padding value.
+    /// </value>
+    [Parameter]
+    public double DeepPadding { get; set; } = 0.5;
 
     /// <summary>
     /// Gets or sets the flex direction mode for the component.
@@ -25,19 +38,39 @@ public partial class NjTree : NjComponentBase
     [Parameter]
     public FlexDirectionMode Direction { get; set; }
 
-    /// <summary>Gets or sets the deep padding value.</summary>
-    /// <value>The deep padding value.</value>
-    [Parameter]
-    public double DeepPadding { get; set; } = 0.5;
-
     private List<NjTreeNode> ChildNodes { get; set; } = [];
+
+    /// <summary>
+    /// Adds a child node to the current node.
+    /// </summary>
+    /// <param name="node">
+    /// The node to be added as a child.
+    /// </param>
+    /// <remarks>
+    /// If the node is already a child of the current node, it will not be added again.
+    /// </remarks>
+    public void AddChildNode(NjTreeNode node)
+    {
+        if (ChildNodes.Contains(node))
+            return;
+        ChildNodes.Add(node);
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// Notifies the component that a change has occurred and triggers a re-render.
+    /// </summary>
+    public void NotifyChange() => StateHasChanged();
 
     /// <summary>
     /// Method called after rendering the component.
     /// </summary>
-    /// <param name="firstRender">A boolean value indicating if it is the first render of the component.</param>
+    /// <param name="firstRender">
+    /// A boolean value indicating if it is the first render of the component.
+    /// </param>
     /// <remarks>
-    /// If it is the first render, this method iterates through the child nodes, closes them recursively, and updates the state.
+    /// If it is the first render, this method iterates through the child nodes, closes them
+    /// recursively, and updates the state.
     /// </remarks>
     protected override void OnAfterRender(bool firstRender)
     {
@@ -60,8 +93,6 @@ public partial class NjTree : NjComponentBase
             CloseNodesRecursive(subNode);
         }
     }
-
-    private void ToggleNode(NjTreeNode node) => node.Open = !node.Open;
 
     private RenderFragment RenderChildNodes(NjTreeNode node)
     {
@@ -122,19 +153,5 @@ public partial class NjTree : NjComponentBase
         };
     }
 
-    /// <summary>Adds a child node to the current node.</summary>
-    /// <param name="node">The node to be added as a child.</param>
-    /// <remarks>If the node is already a child of the current node, it will not be added again.</remarks>
-    public void AddChildNode(NjTreeNode node)
-    {
-        if (ChildNodes.Contains(node))
-            return;
-        ChildNodes.Add(node);
-        StateHasChanged();
-    }
-
-    /// <summary>
-    /// Notifies the component that a change has occurred and triggers a re-render.
-    /// </summary>
-    public void NotifyChange() => StateHasChanged();
+    private void ToggleNode(NjTreeNode node) => node.Open = !node.Open;
 }

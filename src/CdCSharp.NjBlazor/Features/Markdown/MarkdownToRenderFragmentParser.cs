@@ -12,8 +12,12 @@ public class MarkdownToRenderFragmentParser
     /// <summary>
     /// Parses the given text and generates a RenderFragment representing the formatted content.
     /// </summary>
-    /// <param name="text">The text to parse.</param>
-    /// <returns>A RenderFragment representing the formatted content.</returns>
+    /// <param name="text">
+    /// The text to parse.
+    /// </param>
+    /// <returns>
+    /// A RenderFragment representing the formatted content.
+    /// </returns>
     public static RenderFragment ParseText(string text)
     {
         List<RenderFragment> fragments = [];
@@ -84,9 +88,15 @@ public class MarkdownToRenderFragmentParser
 /// </summary>
 public static class EmptyStringRemoverExtensions
 {
-    /// <summary>Removes unpaired empty strings from the input array.</summary>
-    /// <param name="array">The input string array.</param>
-    /// <returns>A new string array with unpaired empty strings removed.</returns>
+    /// <summary>
+    /// Removes unpaired empty strings from the input array.
+    /// </summary>
+    /// <param name="array">
+    /// The input string array.
+    /// </param>
+    /// <returns>
+    /// A new string array with unpaired empty strings removed.
+    /// </returns>
     public static string[] RemoveUnpairedEmptyStrings(this string[] array)
     {
         List<string> result = [];

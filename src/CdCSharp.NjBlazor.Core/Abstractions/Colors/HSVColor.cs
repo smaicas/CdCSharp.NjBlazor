@@ -9,6 +9,25 @@ namespace CdCSharp.NjBlazor.Core.Abstractions.Colors;
 public class HSVColor
 {
     /// <summary>
+    /// Construct class HSVColor
+    /// </summary>
+    /// <param name="h">
+    /// 0-360
+    /// </param>
+    /// <param name="s">
+    /// 0-1
+    /// </param>
+    /// <param name="v">
+    /// 0-1
+    /// </param>
+    public HSVColor(int h, double s, double v)
+    {
+        Hue = h.EnsureRange(0, 360);
+        Saturation = s.EnsureRange(0, 1);
+        Value = v.EnsureRange(0, 1);
+    }
+
+    /// <summary>
     /// The Hue value.
     /// </summary>
     public int Hue { get; set; }
@@ -24,22 +43,46 @@ public class HSVColor
     public double Value { get; set; }
 
     /// <summary>
-    /// Construct class HSVColor
+    /// Returns HSVColor reprentation from a System.Drawing.Color
     /// </summary>
-    /// <param name="h">0-360</param>
-    /// <param name="s">0-1</param>
-    /// <param name="v">0-1</param>
-    public HSVColor(int h, double s, double v)
+    /// <param name="color">
+    /// </param>
+    /// <returns>
+    /// </returns>
+    public static HSVColor FromColor(Color color)
     {
-        Hue = h.EnsureRange(0, 360);
-        Saturation = s.EnsureRange(0, 1);
-        Value = v.EnsureRange(0, 1);
+        double max = Math.Max(Math.Max(color.R, color.G), color.B);
+        double min = Math.Min(Math.Min(color.R, color.G), color.B);
+        double d = max - min;
+        double h = 0.0d;
+        double s = max == 0.0d ? 0.0d : d / max;
+        double v = max / 255.0d;
+
+        if (max == min)
+            h = 0.0d;
+        else if (max == color.R)
+        {
+            h = color.G - color.B + d * (color.G < color.B ? 6 : 0); h /= 6 * d;
+        }
+        else if (max == color.G)
+        {
+            h = color.B - color.R + d * 2; h /= 6 * d;
+        }
+        else if (max == color.B)
+        {
+            h = color.R - color.G + d * 4; h /= 6 * d;
+        }
+        return new HSVColor((int)(h * 360), s, v);
     }
+
     /// <summary>
     /// Returns color to RGBA
     /// </summary>
-    /// <param name="alphaValue">0-255</param>
-    /// <returns></returns>
+    /// <param name="alphaValue">
+    /// 0-255
+    /// </param>
+    /// <returns>
+    /// </returns>
     public Color ToColor(int alphaValue = 255)
     {
         double hue = Hue / 360d;
@@ -66,38 +109,4 @@ public class HSVColor
             (int)Math.Round(g * 255),
             (int)Math.Round(b * 255));
     }
-
-    /// <summary>
-    /// Returns HSVColor reprentation from a System.Drawing.Color
-    /// </summary>
-    /// <param name="color"></param>
-    /// <returns></returns>
-    public static HSVColor FromColor(Color color)
-    {
-        double max = Math.Max(Math.Max(color.R, color.G), color.B);
-        double min = Math.Min(Math.Min(color.R, color.G), color.B);
-        double d = max - min;
-        double h = 0.0d;
-        double s = max == 0.0d ? 0.0d : d / max;
-        double v = max / 255.0d;
-
-        if (max == min)
-            h = 0.0d;
-        else if (max == color.R)
-        {
-            h = color.G - color.B + d * (color.G < color.B ? 6 : 0); h /= 6 * d;
-        }
-        else if (max == color.G)
-        {
-
-            h = color.B - color.R + d * 2; h /= 6 * d;
-        }
-        else if (max == color.B)
-        {
-
-            h = color.R - color.G + d * 4; h /= 6 * d;
-        }
-        return new HSVColor((int)(h * 360), s, v);
-    }
-
 }

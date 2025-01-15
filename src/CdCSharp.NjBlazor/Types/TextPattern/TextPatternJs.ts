@@ -1,4 +1,3 @@
-
 export function Load(): void {
     window['TextPatternJs'] = new TextPatternModule.TextPatternJsClass();
 }
@@ -17,7 +16,6 @@ export module TextPatternModule {
             dotnet: any,
             dotnetNotifyChangeTextCallback: string,
             dotnetValidatePartialCallback: string): Promise<void> {
-
             if (!containerBox.appendChild) { return; }
 
             containerBox.innerHTML = '';
@@ -25,9 +23,7 @@ export module TextPatternModule {
             this.textPatternInputEvents = new WeakMap<HTMLSpanElement, EventListener>();
             this.textPatternBlurEvents = new WeakMap<HTMLSpanElement, EventListener>();
 
-
             for (let index: number = 0; index < elements.length; index++) {
-
                 let element: ElementPattern = elements[index];
                 let span: HTMLSpanElement = document.createElement('span');
 
@@ -53,7 +49,6 @@ export module TextPatternModule {
             dotnet: any,
             dotnetNotifyChangeTextCallback: string,
             dotnetValidatePartialCallback: string) => {
-
             const selectTextOnClick = () => this.selectTextOnClick(span);
             if (!this.textPatternClickEvents.get(span)) {
                 span.addEventListener("click", selectTextOnClick);
@@ -96,7 +91,6 @@ export module TextPatternModule {
             dotnet: any,
             dotnetCallback: string,
             dotnetValidatePartialCallback: string) => {
-
             console.log(containerBox.innerHTML);
 
             if (span.innerText.length == 0) {
@@ -108,7 +102,6 @@ export module TextPatternModule {
             }
 
             if (span.innerText.length <= elementPattern.length) {
-
                 let cursor = this.getCursorPositionWithinSpan(span);
                 let flattenedPattern = elementPattern.pattern
                     .replace(/[\\\(\)\^\$]/g, "");
@@ -150,7 +143,6 @@ export module TextPatternModule {
                         }
                     });
                 }
-
             } else {
                 span.innerText = span.innerText.substring(0, elementPattern.length);
                 this.placeCaretAtEnd(span);
@@ -219,7 +211,6 @@ export module TextPatternModule {
                 selection.addRange(range);
             }
         }
-
     }
 }
 

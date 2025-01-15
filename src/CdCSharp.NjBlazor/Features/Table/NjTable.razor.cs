@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using CdCSharp.NjBlazor.Core.Abstractions.Components;
+using Microsoft.AspNetCore.Components;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace CdCSharp.NjBlazor.Features.Table;
-public partial class NjTable<T>
+public partial class NjTable<T> : NjComponentBase
 {
     [Parameter]
     public IEnumerable<T> Items { get; set; }
 
     [Parameter]
-    public NjTableConfiguration<T>
-        Configuration
-    { get; set; }
+    public NjTableConfiguration<T> Configuration { get; set; }
 
     private IEnumerable<T> _filteredItems;
     private string _globalFilter = string.Empty;
@@ -24,14 +23,11 @@ public partial class NjTable<T>
     {
         _filteredItems = Items;
 
-        // Inicializar los filtros de columna con claves únicas
-        _columnFilters = Configuration.Columns
-            .Select((col, index) => new
-            {
-                Key = GetColumnKey(col, index),
-                Value = string.Empty
-            })
-            .ToDictionary(x => x.Key, x => x.Value);
+        IEnumerable<NjTableColumn<T>> columns = Configuration.Columns.OfType<NjTableColumn<T>>();
+
+        IEnumerable<string> columnNames = columns.Select(c => c.GetColumnKey());
+
+        _columnFilters = columnNames.ToDictionary(colName => colName, x => string.Empty);
 
         ApplyFiltersAndSort();
     }
@@ -53,7 +49,7 @@ public partial class NjTable<T>
         for (int i = 0; i < Configuration.Columns.Count; i++)
         {
             NjTableColumn<T> column = Configuration.Columns[i];
-            string columnKey = GetColumnKey(column, i);
+            string columnKey = column.GetColumnKey();
 
             if (_columnFilters.TryGetValue(columnKey, out string? filterValue) &&
                 !string.IsNullOrWhiteSpace(filterValue))
@@ -64,17 +60,19 @@ public partial class NjTable<T>
             }
         }
 
-        // ... resto del código de ordenación ...
+        if (!string.IsNullOrEmpty(_sortColumn))
+        {
+            NjTableColumn<T> column = Configuration.Columns.First(c => c.GetColumnKey() == _sortColumn);
+            PropertyInfo propertyInfo = GetPropertyInfo(column.Property);
+
+            if (_sortAscending)
+                query = query.OrderBy(item => GetPropertyValue(item, column.Property));
+            else
+                query = query.OrderByDescending(item => GetPropertyValue(item, column.Property));
+        }
 
         _filteredItems = query.ToList();
         StateHasChanged();
-    }
-
-    // Método para generar claves únicas para cada columna
-    private string GetColumnKey(NjTableColumn<T> column, int columnIndex)
-    {
-        string propertyName = GetPropertyName(column.Property);
-        return $"col_{columnIndex}_{propertyName}";
     }
 
     private IEnumerable<T>
@@ -98,17 +96,6 @@ public partial class NjTable<T>
         }
 
         ApplyFiltersAndSort();
-    }
-
-    private static string GetPropertyName<TProperty>(Expression<Func<T, TProperty>> expression)
-    {
-        MemberExpression? memberExpression = expression.Body as MemberExpression
-            ?? (expression.Body as UnaryExpression)?.Operand as MemberExpression;
-
-        if (memberExpression != null)
-            return memberExpression.Member.Name;
-
-        throw new ArgumentException("Invalid property expression");
     }
 
     private static object GetPropertyValue(T item, Expression<Func<T, object>> property) => property.Compile()(item);

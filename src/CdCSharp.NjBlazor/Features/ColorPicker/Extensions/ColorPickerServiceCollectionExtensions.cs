@@ -11,8 +11,12 @@ public static class ColorPickerServiceCollectionExtensions
     /// <summary>
     /// Adds the NjBlazorColorPicker service to the specified IServiceCollection.
     /// </summary>
-    /// <param name="services">The IServiceCollection to add the service to.</param>
-    /// <param name="lifetime">The lifetime of the service (default is Transient).</param>
+    /// <param name="services">
+    /// The IServiceCollection to add the service to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service (default is Transient).
+    /// </param>
     public static void AddNjBlazorColorPicker(
         this IServiceCollection services,
         NjColorPickerSettings? settings = null,

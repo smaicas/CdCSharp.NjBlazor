@@ -1,4 +1,5 @@
 ﻿namespace CdCSharp.NjBlazor.Core;
+
 /// <summary>
 /// Specifies the direction in which flex items are placed in a flex container.
 /// </summary>

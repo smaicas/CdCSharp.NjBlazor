@@ -16,8 +16,12 @@ public static partial class ResourceAccessServiceCollectionExtensions
     /// <summary>
     /// Adds services required for accessing Blazor resources in NJ.
     /// </summary>
-    /// <param name="services">The collection of services to add to.</param>
-    /// <param name="lifetime">The lifetime of the services to add (default is Scoped).</param>
+    /// <param name="services">
+    /// The collection of services to add to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the services to add (default is Scoped).
+    /// </param>
     public static void AddNjBlazorResourceAccess(
         this IServiceCollection services,
         NjResourceAccessSettings? settings = null,
@@ -31,6 +35,9 @@ public static partial class ResourceAccessServiceCollectionExtensions
         services.AddEmbeddedResourceAccessor(lifetime);
     }
 
+    private static void AddDomJsInterop(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Transient) =>
+        services.Add(new ServiceDescriptor(typeof(IDOMJsInterop), typeof(DomJsInterop), lifetime));
+
     private static void AddEmbeddedResourceAccessor(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped)
     {
         services.Add(new ServiceDescriptor(typeof(ICacheService<EmbeddedResourceAccessor, string>), typeof(InMemoryCacheService<EmbeddedResourceAccessor, string>), lifetime));
@@ -38,7 +45,4 @@ public static partial class ResourceAccessServiceCollectionExtensions
     }
 
     private static void AddFileRendererCache(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Transient) => services.Add(new ServiceDescriptor(typeof(ICacheService<NjFileRenderer, RenderFragment>), typeof(InMemoryCacheService<NjFileRenderer, RenderFragment>), lifetime));
-
-    private static void AddDomJsInterop(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Transient) =>
-        services.Add(new ServiceDescriptor(typeof(IDOMJsInterop), typeof(DomJsInterop), lifetime));
 }

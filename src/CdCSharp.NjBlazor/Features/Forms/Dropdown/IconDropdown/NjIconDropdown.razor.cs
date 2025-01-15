@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 
 namespace CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown;
+
 public partial class NjIconDropdown<TValue> : NjInputDropdownBase<TValue>
 {
     [Parameter]

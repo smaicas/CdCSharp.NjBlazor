@@ -11,13 +11,17 @@ namespace CdCSharp.NjBlazor.Features.Draggable.Components;
 /// <remarks>
 /// This class is used internally to manage draggable JavaScript callbacks.
 /// </remarks>
-/// <seealso cref="System.IDisposable"/>
+/// <seealso cref="System.IDisposable" />
 internal class NjDraggableJsCallbackRelay : IDisposable
 {
     private readonly INjDraggableJsCallbacks _callbacks;
 
-    /// <summary>Initializes a new instance of the NjDraggableJsCallbackRelay class.</summary>
-    /// <param name="callbacks">The callbacks interface.</param>
+    /// <summary>
+    /// Initializes a new instance of the NjDraggableJsCallbackRelay class.
+    /// </summary>
+    /// <param name="callbacks">
+    /// The callbacks interface.
+    /// </param>
     [DynamicDependency("NotifyMouseMove")]
     public NjDraggableJsCallbackRelay(INjDraggableJsCallbacks callbacks)
     {
@@ -25,8 +29,12 @@ internal class NjDraggableJsCallbackRelay : IDisposable
         DotNetReference = DotNetObjectReference.Create(this);
     }
 
-    /// <summary>Gets the .NET reference as an IDisposable object.</summary>
-    /// <value>The .NET reference as an IDisposable object.</value>
+    /// <summary>
+    /// Gets the .NET reference as an IDisposable object.
+    /// </summary>
+    /// <value>
+    /// The .NET reference as an IDisposable object.
+    /// </value>
     public IDisposable DotNetReference { get; }
 
     /// <summary>
@@ -37,8 +45,12 @@ internal class NjDraggableJsCallbackRelay : IDisposable
     /// <summary>
     /// Notifies the client of a mouse move event.
     /// </summary>
-    /// <param name="clientX">The horizontal coordinate of the mouse pointer.</param>
-    /// <param name="clientY">The vertical coordinate of the mouse pointer.</param>
+    /// <param name="clientX">
+    /// The horizontal coordinate of the mouse pointer.
+    /// </param>
+    /// <param name="clientY">
+    /// The vertical coordinate of the mouse pointer.
+    /// </param>
     [JSInvokable]
     public void NotifyMouseMove(int clientX, int clientY)
     {

@@ -3,11 +3,17 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace CdCSharp.NjBlazor.Features.Markdown.Components;
 
-/// <summary>Represents a Markdown header component.</summary>
+/// <summary>
+/// Represents a Markdown header component.
+/// </summary>
 internal class MarkdownHeader : ComponentBase
 {
-    /// <summary>Gets or sets the line value.</summary>
-    /// <value>The line value.</value>
+    /// <summary>
+    /// Gets or sets the line value.
+    /// </summary>
+    /// <value>
+    /// The line value.
+    /// </value>
     [Parameter]
     [EditorRequired]
     public string Line { get; set; } = default!;
@@ -15,10 +21,13 @@ internal class MarkdownHeader : ComponentBase
     /// <summary>
     /// Builds the render tree for rendering a header element based on the content of the Line property.
     /// </summary>
-    /// <param name="builder">The RenderTreeBuilder used to construct the render tree.</param>
+    /// <param name="builder">
+    /// The RenderTreeBuilder used to construct the render tree.
+    /// </param>
     /// <remarks>
-    /// This method overrides the base BuildRenderTree method to render a header element based on the content of the Line property.
-    /// It determines the header level based on the number of '#' characters at the beginning of the Line.
+    /// This method overrides the base BuildRenderTree method to render a header element based on
+    /// the content of the Line property. It determines the header level based on the number of '#'
+    /// characters at the beginning of the Line.
     /// </remarks>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {

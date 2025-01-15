@@ -24,9 +24,15 @@ namespace Microsoft.Extensions.DependencyInjection;
 /// </summary>
 public static partial class NjBlazorServiceCollectionExtensions
 {
-    /// <summary>Adds NjBlazor services to the specified <see cref="IServiceCollection"/>.</summary>
-    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-    /// <param name="options">An optional action to configure the <see cref="NjBlazorSettings"/>.</param>
+    /// <summary>
+    /// Adds NjBlazor services to the specified <see cref="IServiceCollection" />.
+    /// </summary>
+    /// <param name="services">
+    /// The <see cref="IServiceCollection" /> to add the services to.
+    /// </param>
+    /// <param name="options">
+    /// An optional action to configure the <see cref="NjBlazorSettings" />.
+    /// </param>
     /// <remarks>
     /// This method adds various NjBlazor services to the service collection based on the provided settings.
     /// </remarks>
@@ -62,7 +68,6 @@ public static partial class NjBlazorServiceCollectionExtensions
         services.AddNjBlazorFormsRadio(njSettings.FormsRadioSettings);
         services.AddNjBlazorFormsRange(njSettings.FormsRangeSettings);
         services.AddNjBlazorFormsText(njSettings.FormsTextSettings);
-
     }
 
     /// <summary>
@@ -70,7 +75,9 @@ public static partial class NjBlazorServiceCollectionExtensions
     /// </summary>
     public sealed record NjBlazorSettings
     {
-        /// <summary>Gets or sets the localization settings for the application.</summary>
+        /// <summary>
+        /// Gets or sets the localization settings for the application.
+        /// </summary>
         public LocalizationSettings LocalizationSettings { get; set; } = new();
 
         ///// <summary>Gets or sets the CSS include settings for the application.</summary>

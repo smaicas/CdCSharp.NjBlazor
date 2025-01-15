@@ -10,8 +10,12 @@ namespace CdCSharp.NjBlazor.Features.Controls.Components.Meter;
 /// </summary>
 public abstract class NjMeterBase : NjControlComponentBase
 {
-    /// <summary>Represents a reference to the main element.</summary>
-    /// <remarks>This reference may not be null.</remarks>
+    /// <summary>
+    /// Represents a reference to the main element.
+    /// </summary>
+    /// <remarks>
+    /// This reference may not be null.
+    /// </remarks>
     [DisallowNull]
     protected ElementReference MainElementReference;
 
@@ -20,53 +24,93 @@ public abstract class NjMeterBase : NjControlComponentBase
     /// </summary>
     protected string? MainElementReferenceId;
 
-    /// <summary>Gets or sets the high value.</summary>
-    /// <value>The high value.</value>
+    /// <summary>
+    /// Gets or sets the high value.
+    /// </summary>
+    /// <value>
+    /// The high value.
+    /// </value>
     [Parameter]
     public double High { get; set; } = 50;
 
-    /// <summary>Gets or sets the high color for the element.</summary>
-    /// <value>The high color represented as a CssColor. Default value is NjColors.Orange.Default.</value>
+    /// <summary>
+    /// Gets or sets the high color for the element.
+    /// </summary>
+    /// <value>
+    /// The high color represented as a CssColor. Default value is NjColors.Orange.Default.
+    /// </value>
     [Parameter]
     public CssColor HighColor { get; set; } = NjColors.Orange.Default;
 
-    /// <summary>Gets or sets the label to display.</summary>
-    /// <value>The label to display.</value>
+    /// <summary>
+    /// Gets or sets the label to display.
+    /// </summary>
+    /// <value>
+    /// The label to display.
+    /// </value>
     [Parameter]
     public string Label { get; set; } = string.Empty;
 
-    /// <summary>Gets or sets the low value.</summary>
-    /// <value>The low value.</value>
+    /// <summary>
+    /// Gets or sets the low value.
+    /// </summary>
+    /// <value>
+    /// The low value.
+    /// </value>
     [Parameter]
     public double Low { get; set; } = 25;
 
-    /// <summary>Gets or sets the low color for the element.</summary>
-    /// <value>The low color represented as a CssColor. Default value is NjColors.Red.Default.</value>
+    /// <summary>
+    /// Gets or sets the low color for the element.
+    /// </summary>
+    /// <value>
+    /// The low color represented as a CssColor. Default value is NjColors.Red.Default.
+    /// </value>
     [Parameter]
     public CssColor LowColor { get; set; } = NjColors.Red.Default;
 
-    /// <summary>Gets or sets the maximum width in pixels.</summary>
-    /// <value>The maximum width in pixels.</value>
+    /// <summary>
+    /// Gets or sets the maximum width in pixels.
+    /// </summary>
+    /// <value>
+    /// The maximum width in pixels.
+    /// </value>
     [Parameter]
     public int MaxWidthPx { get; set; } = 200;
 
-    /// <summary>Gets or sets the optimum value.</summary>
-    /// <value>The optimum value.</value>
+    /// <summary>
+    /// Gets or sets the optimum value.
+    /// </summary>
+    /// <value>
+    /// The optimum value.
+    /// </value>
     [Parameter]
     public double Optimum { get; set; } = 75;
 
-    /// <summary>Gets or sets the optimum color for the element.</summary>
-    /// <value>The optimum color represented as a CssColor.</value>
+    /// <summary>
+    /// Gets or sets the optimum color for the element.
+    /// </summary>
+    /// <value>
+    /// The optimum color represented as a CssColor.
+    /// </value>
     [Parameter]
     public CssColor OptimumColor { get; set; } = NjColors.Green.Default;
 
-    /// <summary>Gets or sets the value.</summary>
-    /// <value>The current value.</value>
+    /// <summary>
+    /// Gets or sets the value.
+    /// </summary>
+    /// <value>
+    /// The current value.
+    /// </value>
     [Parameter]
     public double Value { get; set; } = 100;
 
-    /// <summary>Gets the fill color based on the current value.</summary>
-    /// <returns>The fill color based on the current value.</returns>
+    /// <summary>
+    /// Gets the fill color based on the current value.
+    /// </summary>
+    /// <returns>
+    /// The fill color based on the current value.
+    /// </returns>
     protected CssColor FillColor
     {
         get
@@ -92,10 +136,12 @@ public abstract class NjMeterBase : NjControlComponentBase
     /// <summary>
     /// Method called after rendering the component.
     /// </summary>
-    /// <param name="firstRender">A boolean value indicating if it is the first render of the component.</param>
+    /// <param name="firstRender">
+    /// A boolean value indicating if it is the first render of the component.
+    /// </param>
     /// <remarks>
-    /// This method sets the MainElementReferenceId to the Id of the MainElementReference if it is the first render,
-    /// and then triggers a state change to re-render the component.
+    /// This method sets the MainElementReferenceId to the Id of the MainElementReference if it is
+    /// the first render, and then triggers a state change to re-render the component.
     /// </remarks>
     protected override void OnAfterRender(bool firstRender)
     {
@@ -110,7 +156,9 @@ public abstract class NjMeterBase : NjControlComponentBase
     /// <summary>
     /// Validates and sets the parameters for the component.
     /// </summary>
-    /// <exception cref="ArgumentException">Thrown when the parameters are not valid.</exception>
+    /// <exception cref="ArgumentException">
+    /// Thrown when the parameters are not valid.
+    /// </exception>
     protected override void OnParametersSet()
     {
         bool valid = Low < High && High < Optimum;

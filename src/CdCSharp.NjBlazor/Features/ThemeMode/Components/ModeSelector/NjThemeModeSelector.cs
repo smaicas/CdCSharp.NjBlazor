@@ -3,8 +3,7 @@
 namespace CdCSharp.NjBlazor.Features.ThemeMode.Components.ModeSelector;
 
 /// <summary>
-/// Represents a theme mode selector for the NjThemeModeSelectorBase class.
-/// De-multiplexer for NjThemeModeSelectorVariant
+/// Represents a theme mode selector for the NjThemeModeSelectorBase class. De-multiplexer for NjThemeModeSelectorVariant
 /// </summary>
 [ComponentDeMux<NjThemeModeSelectorVariant>]
 public partial class NjThemeModeSelector : NjThemeModeSelectorBase

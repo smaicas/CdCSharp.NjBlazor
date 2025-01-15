@@ -10,8 +10,12 @@ public static class FormsColorServiceCollectionExtensions
     /// <summary>
     /// Extends the IServiceCollection to add NjBlazorFormsColor service.
     /// </summary>
-    /// <param name="services">The IServiceCollection to add the service to.</param>
-    /// <param name="lifetime">The lifetime of the service (default is Transient).</param>
+    /// <param name="services">
+    /// The IServiceCollection to add the service to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service (default is Transient).
+    /// </param>
     public static void AddNjBlazorFormsColor(
         this IServiceCollection services,
         NjFormsColorSettings? settings = null,

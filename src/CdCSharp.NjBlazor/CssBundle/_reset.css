@@ -72,9 +72,10 @@ input {
     background-color: unset;
     color: unset;
 }
-button{
-    color:unset;
-    background-color:unset;
+
+button {
+    color: unset;
+    background-color: unset;
 }
 
 a {

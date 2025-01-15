@@ -96,8 +96,10 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Gets the alpha percentage as string.
     /// </summary>
-    /// <param name="floatCharacter"></param>
-    /// <returns></returns>
+    /// <param name="floatCharacter">
+    /// </param>
+    /// <returns>
+    /// </returns>
     public string APercentageString(char? floatCharacter = '.') =>
         APercentage
             .ToString(CultureInfo.InvariantCulture)
@@ -110,10 +112,18 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Constructs a CssColor from hsl and alpha values
     /// </summary>
-    /// <param name="h">The hue value</param>
-    /// <param name="s">The saturation value</param>
-    /// <param name="l">The luminosity value</param>
-    /// <param name="a">The alpha value</param>
+    /// <param name="h">
+    /// The hue value
+    /// </param>
+    /// <param name="s">
+    /// The saturation value
+    /// </param>
+    /// <param name="l">
+    /// The luminosity value
+    /// </param>
+    /// <param name="a">
+    /// The alpha value
+    /// </param>
     public CssColor(double h, double s, double l, double a)
         : this(h, s, l, (int)(a * 255.0).EnsureRange(255))
     {
@@ -122,10 +132,18 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Constructs a CssColor from hsl and alpha values
     /// </summary>
-    /// <param name="h">The hue value</param>
-    /// <param name="s">The saturation value</param>
-    /// <param name="l">The luminosity value</param>
-    /// <param name="a">The alpha value</param>
+    /// <param name="h">
+    /// The hue value
+    /// </param>
+    /// <param name="s">
+    /// The saturation value
+    /// </param>
+    /// <param name="l">
+    /// The luminosity value
+    /// </param>
+    /// <param name="a">
+    /// The alpha value
+    /// </param>
     public CssColor(double h, double s, double l, int a)
     {
         _valuesAsByte = new byte[4];
@@ -185,10 +203,18 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Constructs a CssColor from rgba values
     /// </summary>
-    /// <param name="r">The red value</param>
-    /// <param name="g">The green value</param>
-    /// <param name="b">The blue value</param>
-    /// <param name="a">The alpha value</param>
+    /// <param name="r">
+    /// The red value
+    /// </param>
+    /// <param name="g">
+    /// The green value
+    /// </param>
+    /// <param name="b">
+    /// The blue value
+    /// </param>
+    /// <param name="a">
+    /// The alpha value
+    /// </param>
     public CssColor(byte r, byte g, byte b, byte a)
     {
         _valuesAsByte = new byte[4];
@@ -204,10 +230,18 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Constructs a CssColor from rgba values
     /// </summary>
-    /// <param name="r">The red value</param>
-    /// <param name="g">The green value</param>
-    /// <param name="b">The blue value</param>
-    /// <param name="a">The alpha value</param>
+    /// <param name="r">
+    /// The red value
+    /// </param>
+    /// <param name="g">
+    /// The green value
+    /// </param>
+    /// <param name="b">
+    /// The blue value
+    /// </param>
+    /// <param name="a">
+    /// The alpha value
+    /// </param>
     public CssColor(int r, int g, int b, double alpha) :
         this(r, g, b, (byte)(alpha * 255.0).EnsureRange(255))
     {
@@ -216,10 +250,18 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Constructs a CssColor from rgba values
     /// </summary>
-    /// <param name="r">The red value</param>
-    /// <param name="g">The green value</param>
-    /// <param name="b">The blue value</param>
-    /// <param name="a">The alpha value</param>
+    /// <param name="r">
+    /// The red value
+    /// </param>
+    /// <param name="g">
+    /// The green value
+    /// </param>
+    /// <param name="b">
+    /// The blue value
+    /// </param>
+    /// <param name="a">
+    /// The alpha value
+    /// </param>
     public CssColor(int r, int g, int b, int alpha) :
         this((byte)r.EnsureRange(255), (byte)g.EnsureRange(255), (byte)b.EnsureRange(255), (byte)alpha.EnsureRange(255))
     {
@@ -228,9 +270,14 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Constructs a CssColor from a System.Drawing.Color value and a <see cref="ColorVariant" />
     /// </summary>
-    /// <param name="color">The Color value</param>
-    /// <param name="colorVariant">The Color variant</param>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <param name="color">
+    /// The Color value
+    /// </param>
+    /// <param name="colorVariant">
+    /// The Color variant
+    /// </param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// </exception>
     public CssColor(Color color, ColorVariant? colorVariant = ColorVariant.Default)
     {
         _valuesAsByte = new byte[4];
@@ -297,8 +344,10 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Constructs a CssColor from string representation.
     /// </summary>
-    /// <param name="value"></param>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="value">
+    /// </param>
+    /// <exception cref="ArgumentException">
+    /// </exception>
     public CssColor(string value)
     {
         value = value.Trim().ToLower();
@@ -374,36 +423,46 @@ public class CssColor : IEquatable<CssColor>
     /// <summary>
     /// Modify Lightness value.
     /// </summary>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="amount">
+    /// </param>
+    /// <returns>
+    /// </returns>
     public CssColor ChangeLightness(double amount) => new(H, S, (L + amount).EnsureRange(0, 1), A);
 
     /// <summary>
     /// Get darken color from current instance.
     /// </summary>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="amount">
+    /// </param>
+    /// <returns>
+    /// </returns>
     public CssColor ColorDarken(double amount) => ChangeLightness(-amount);
 
     /// <summary>
     /// Get lighten color from current instance.
     /// </summary>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="amount">
+    /// </param>
+    /// <returns>
+    /// </returns>
     public CssColor ColorLighten(double amount) => ChangeLightness(+amount);
 
     /// <summary>
     /// Sets the alpha value for current instance.
     /// </summary>
-    /// <param name="a"></param>
-    /// <returns></returns>
+    /// <param name="a">
+    /// </param>
+    /// <returns>
+    /// </returns>
     public CssColor SetAlpha(int a) => new(R, G, B, a);
 
     /// <summary>
     /// Sets the alpha value for current instance.
     /// </summary>
-    /// <param name="a"></param>
-    /// <returns></returns>
+    /// <param name="a">
+    /// </param>
+    /// <returns>
+    /// </returns>
     public CssColor SetAlpha(double a) => new(R, G, B, a);
 
     private void CalculateHsl()

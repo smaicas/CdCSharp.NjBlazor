@@ -9,18 +9,20 @@ namespace CdCSharp.NjBlazor.Features.Forms.Radio;
 public abstract class NjInputRadioBase : NjInputBase<string>
 {
     /// <summary>
-    /// Gets or sets the selected radio option.
+    /// Gets or sets the content to be rendered as a child component.
     /// </summary>
-    /// <value>The selected radio option, or null if no option is selected.</value>
-    protected NjInputRadioOption? SelectedOption { get; private set; }
-
-    /// <summary>Gets or sets the content to be rendered as a child component.</summary>
-    /// <value>The content to be rendered as a child component.</value>
+    /// <value>
+    /// The content to be rendered as a child component.
+    /// </value>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    /// <summary>Gets or sets the name property.</summary>
-    /// <value>The name property.</value>
+    /// <summary>
+    /// Gets or sets the name property.
+    /// </summary>
+    /// <value>
+    /// The name property.
+    /// </value>
     [Parameter]
     public string Name { get; set; } = Guid.NewGuid().ToString();
 
@@ -33,9 +35,19 @@ public abstract class NjInputRadioBase : NjInputBase<string>
     protected List<NjInputRadioOption> Options { get; } = [];
 
     /// <summary>
+    /// Gets or sets the selected radio option.
+    /// </summary>
+    /// <value>
+    /// The selected radio option, or null if no option is selected.
+    /// </value>
+    protected NjInputRadioOption? SelectedOption { get; private set; }
+
+    /// <summary>
     /// Asynchronously sets the parameters for the component.
     /// </summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
@@ -49,9 +61,15 @@ public abstract class NjInputRadioBase : NjInputBase<string>
         }
     }
 
-    /// <summary>Selects an option asynchronously.</summary>
-    /// <param name="valueOption">The option to select.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <summary>
+    /// Selects an option asynchronously.
+    /// </summary>
+    /// <param name="valueOption">
+    /// The option to select.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected Task SelectOptionAsync(NjInputRadioOption valueOption)
     {
         if (ReadOnly || SelectedOption == valueOption)

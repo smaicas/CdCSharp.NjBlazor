@@ -1,9 +1,5 @@
 ﻿//HintName: NjInputText.ComponentDeMux.g.cs
-using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using Nj.Blazor.Variants;
 
 namespace Nj.Blazor;
 public partial class NjInputText
@@ -16,22 +12,22 @@ public partial class NjInputText
         switch (Variant)
         {
             case NjInputTextVariant.Flat:
-            {
-                builder.OpenComponent<NjInputTextVariantFlat>(0);
-                break;
-            }
+                {
+                    builder.OpenComponent<NjInputTextVariantFlat>(0);
+                    break;
+                }
 
             case NjInputTextVariant.Filled:
-            {
-                builder.OpenComponent<NjInputTextVariantFilled>(0);
-                break;
-            }
+                {
+                    builder.OpenComponent<NjInputTextVariantFilled>(0);
+                    break;
+                }
 
             case NjInputTextVariant.Outline:
-            {
-                builder.OpenComponent<NjInputTextVariantOutline>(0);
-                break;
-            }
+                {
+                    builder.OpenComponent<NjInputTextVariantOutline>(0);
+                    break;
+                }
         }
 
         builder.AddAttribute(0, "IsTextArea", IsTextArea);

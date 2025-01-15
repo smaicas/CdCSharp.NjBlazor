@@ -8,35 +8,38 @@ using System.Text;
 namespace CdCSharp.NjBlazor.Features.Layout.Components.Spacer;
 
 /// <summary>
-/// Represents a spacer component in the Nj framework.
-/// This component is used for creating empty space in layouts.
+/// Represents a spacer component in the Nj framework. This component is used for creating empty
+/// space in layouts.
 /// </summary>
 public partial class NjSpacer : NjComponentBase, IResizeJsCallback
 {
-    /// <summary>
-    /// Gets or sets the DOM JavaScript interop service for interacting with the Document Object Model (DOM) in JavaScript.
-    /// </summary>
-    /// <remarks>
-    /// The DOMJsInterop service provides methods for performing JavaScript interop operations on the DOM.
-    /// </remarks>
-    [Inject]
-    protected IDOMJsInterop DomJs { get; set; } = default!;
+    private ResizeCallbacksRelay? _jsCallbacksRelay;
+
+    private string InlineStyle = string.Empty;
 
     /// <summary>
-    /// Gets or sets the JavaScript interop service for device management.
+    /// Gets or sets the horizontal value.
     /// </summary>
-    [Inject]
-    IDeviceManagerJsInterop DeviceJs { get; set; } = default!;
-
-    /// <summary>Gets or sets the vertical position.</summary>
-    /// <value>The vertical position.</value>
-    [Parameter]
-    public int? Vertical { get; set; }
-
-    /// <summary>Gets or sets the horizontal value.</summary>
-    /// <value>The horizontal value.</value>
+    /// <value>
+    /// The horizontal value.
+    /// </value>
     [Parameter]
     public int? Horizontal { get; set; }
+
+    /// <summary>
+    /// Query element to add horizontal spacing relative to.
+    /// </summary>
+    [Parameter]
+    public string? HorizontalRelativeToQuery { get; set; }
+
+    /// <summary>
+    /// Gets or sets the vertical position.
+    /// </summary>
+    /// <value>
+    /// The vertical position.
+    /// </value>
+    [Parameter]
+    public int? Vertical { get; set; }
 
     /// <summary>
     /// Query element to add vertical spacing relative to.
@@ -45,15 +48,23 @@ public partial class NjSpacer : NjComponentBase, IResizeJsCallback
     public string? VerticalRelativeToQuery { get; set; }
 
     /// <summary>
-    /// Query element to add horizontal spacing relative to.
+    /// Gets or sets the DOM JavaScript interop service for interacting with the Document Object
+    /// Model (DOM) in JavaScript.
     /// </summary>
-    [Parameter]
-    public string? HorizontalRelativeToQuery { get; set; }
+    /// <remarks>
+    /// The DOMJsInterop service provides methods for performing JavaScript interop operations on
+    /// the DOM.
+    /// </remarks>
+    [Inject]
+    protected IDOMJsInterop DomJs { get; set; } = default!;
 
-    private string InlineStyle = string.Empty;
+    /// <summary>
+    /// Gets or sets the JavaScript interop service for device management.
+    /// </summary>
+    [Inject]
+    private IDeviceManagerJsInterop DeviceJs { get; set; } = default!;
 
-    protected override async Task OnInitializedAsync() => await base.OnInitializedAsync();
-    private ResizeCallbacksRelay? _jsCallbacksRelay;
+    public async Task NotifyResize(int windowWidth) => await UpdateInlineStyle();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -64,6 +75,8 @@ public partial class NjSpacer : NjComponentBase, IResizeJsCallback
             await UpdateInlineStyle();
         }
     }
+
+    protected override async Task OnInitializedAsync() => await base.OnInitializedAsync();
 
     private async Task UpdateInlineStyle()
     {
@@ -89,6 +102,4 @@ public partial class NjSpacer : NjComponentBase, IResizeJsCallback
 
         StateHasChanged();
     }
-
-    public async Task NotifyResize(int windowWidth) => await UpdateInlineStyle();
 }

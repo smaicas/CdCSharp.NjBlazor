@@ -9,11 +9,44 @@ namespace CdCSharp.NjBlazor.Features.Dom.Services;
 public class DomJsInterop(IJSRuntime jsRuntime)
     : ModuleJsInterop(jsRuntime, CSharpReferences.Modules.DomJs), IDOMJsInterop
 {
+    public async ValueTask AddShowPickerEventHandler(ElementReference clickElementRef, ElementReference inputCalendarElementRef)
+    {
+        await IsModuleTaskLoaded.Task;
+        await ModuleTask.Value;
+        await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.AddShowPickerEventHandler, clickElementRef, inputCalendarElementRef);
+    }
+
     public async ValueTask DownloadFileAsync(string fileName, string content, string? contentType)
     {
         await IsModuleTaskLoaded.Task;
         await ModuleTask.Value;
         await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.DownloadFile, fileName, content, contentType);
+    }
+
+    /// <summary>
+    /// Asynchronously focuses on an element specified by the query selector.
+    /// </summary>
+    /// <param name="querySelector">
+    /// The query selector to identify the element to focus on.
+    /// </param>
+    /// <param name="parentElement">
+    /// Optional. The parent element reference where the query selector will be applied.
+    /// </param>
+    /// <returns>
+    /// An asynchronous operation representing the focus action on the specified element.
+    /// </returns>
+    public async ValueTask FocusElementAsync(
+        string querySelector,
+        ElementReference? parentElement = null
+    )
+    {
+        await IsModuleTaskLoaded.Task;
+        await ModuleTask.Value;
+        await JsRuntime.InvokeVoidAsync(
+            CSharpReferences.Functions.FocusElement,
+            querySelector,
+            parentElement
+        );
     }
 
     public async ValueTask<(float Top, float Right, float Bottom, float Left)> GetCoordsRelativeAsync(ElementReference relativeTo, string positioning)
@@ -32,24 +65,12 @@ public class DomJsInterop(IJSRuntime jsRuntime)
         return cssVar;
     }
 
-    /// <summary>
-    /// Asynchronously focuses on an element specified by the query selector.
-    /// </summary>
-    /// <param name="querySelector">The query selector to identify the element to focus on.</param>
-    /// <param name="parentElement">Optional. The parent element reference where the query selector will be applied.</param>
-    /// <returns>An asynchronous operation representing the focus action on the specified element.</returns>
-    public async ValueTask FocusElementAsync(
-        string querySelector,
-        ElementReference? parentElement = null
-    )
+    public async ValueTask<(float Width, float Height)> GetElementBounds(string queryElement)
     {
         await IsModuleTaskLoaded.Task;
         await ModuleTask.Value;
-        await JsRuntime.InvokeVoidAsync(
-            CSharpReferences.Functions.FocusElement,
-            querySelector,
-            parentElement
-        );
+        float[] coords = await JsRuntime.InvokeAsync<float[]>(CSharpReferences.Functions.GetElementBounds, queryElement);
+        return (coords[0], coords[1]);
     }
 
     public async ValueTask<string> GetFocusedElementClassAsync()
@@ -104,6 +125,13 @@ public class DomJsInterop(IJSRuntime jsRuntime)
         await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.SelectText, element);
     }
 
+    public async ValueTask SetCalendarDatepickerValue(ElementReference calendarInputRef, string value)
+    {
+        await IsModuleTaskLoaded.Task;
+        await ModuleTask.Value;
+        await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.AddShowPickerEventHandler, calendarInputRef, value);
+    }
+
     public async ValueTask SetCssVariableAsync(string variableName, string value)
     {
         await IsModuleTaskLoaded.Task;
@@ -116,26 +144,5 @@ public class DomJsInterop(IJSRuntime jsRuntime)
         await IsModuleTaskLoaded.Task;
         await ModuleTask.Value;
         await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.SetDisabled, element, value);
-    }
-
-    public async ValueTask AddShowPickerEventHandler(ElementReference clickElementRef, ElementReference inputCalendarElementRef)
-    {
-        await IsModuleTaskLoaded.Task;
-        await ModuleTask.Value;
-        await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.AddShowPickerEventHandler, clickElementRef, inputCalendarElementRef);
-    }
-    public async ValueTask SetCalendarDatepickerValue(ElementReference calendarInputRef, string value)
-    {
-        await IsModuleTaskLoaded.Task;
-        await ModuleTask.Value;
-        await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.AddShowPickerEventHandler, calendarInputRef, value);
-    }
-
-    public async ValueTask<(float Width, float Height)> GetElementBounds(string queryElement)
-    {
-        await IsModuleTaskLoaded.Task;
-        await ModuleTask.Value;
-        float[] coords = await JsRuntime.InvokeAsync<float[]>(CSharpReferences.Functions.GetElementBounds, queryElement);
-        return (coords[0], coords[1]);
     }
 }

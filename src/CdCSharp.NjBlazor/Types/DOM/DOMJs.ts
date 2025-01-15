@@ -1,4 +1,3 @@
-
 export function Load(): void {
     window['DOMJs'] = new DOMModule.DOMJsClass();
 }
@@ -75,7 +74,6 @@ export module DOMModule {
 
         public async GetElementBounds(
             elementQuery: string): Promise<Array<number>> {
-
             const element = document.querySelector(elementQuery);
 
             if (!element) return [0, 0];
@@ -86,18 +84,15 @@ export module DOMModule {
             const width = rect.width;
 
             return [width, height];
-
         }
 
         public async SetCalendarDatepickerValue(calendarInputRef: HTMLInputElement, value: string): Promise<void> {
-
             if (!calendarInputRef) return;
 
-            calendarInputRef.value = value; 
+            calendarInputRef.value = value;
         }
 
         public async AddShowPickerEventHandler(clickElement: HTMLElement, inputCalendarElement: HTMLInputElement): Promise<void> {
-
             if (clickElement.dataset.showPickerListenerAttached === "true") {
                 return;
             }
@@ -138,7 +133,6 @@ export module DOMModule {
         private addTextPatternEvents = (span: HTMLSpanElement,
             containerBox: HTMLDivElement,
             elementPattern: ElementPattern) => {
-
             const selectTextOnClick = () => this.selectTextOnClick(span);
             if (!this.textPatternClickEvents.get(span)) {
                 span.addEventListener("click", selectTextOnClick);
@@ -166,14 +160,12 @@ export module DOMModule {
         };
 
         private goNextOrPrevent = (span: HTMLSpanElement, containerBox: HTMLDivElement, elementPattern: ElementPattern) => {
-
             if (span.innerText.length == 0) {
                 span.innerText = elementPattern.defaultValue;
                 return;
             }
 
             if (span.innerText.length <= elementPattern.length) {
-
                 let cursor = this.getCursorPositionWithinSpan(span);
                 let flattenedPattern = elementPattern.pattern
                     .replace(/[\\\(\)\^\$]/g, "");

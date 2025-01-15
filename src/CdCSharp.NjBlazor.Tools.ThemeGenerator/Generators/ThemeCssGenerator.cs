@@ -22,7 +22,9 @@ public static partial class ThemeCssGenerator
     /// <summary>
     /// Builds CSS variables as a string asynchronously.
     /// </summary>
-    /// <returns>A string representing CSS variables.</returns>
+    /// <returns>
+    /// A string representing CSS variables.
+    /// </returns>
     public static async Task<string> BuildVariablesCss()
     {
         StringBuilder css = new();
@@ -33,10 +35,18 @@ public static partial class ThemeCssGenerator
     /// <summary>
     /// Builds a CSS file containing variables.
     /// </summary>
-    /// <param name="rootPath">The root path of the project.</param>
-    /// <param name="outputFolder">The output folder where the CSS file will be saved.</param>
-    /// <param name="outputFile">The name of the output CSS file.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="rootPath">
+    /// The root path of the project.
+    /// </param>
+    /// <param name="outputFolder">
+    /// The output folder where the CSS file will be saved.
+    /// </param>
+    /// <param name="outputFile">
+    /// The name of the output CSS file.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     public static async Task BuildVariablesCssFile(string rootPath, string outputFolder, string outputFile)
     {
         string css = await BuildVariablesCss();
@@ -54,26 +64,15 @@ public static partial class ThemeCssGenerator
         }
     }
 
-    private static Dictionary<string, IEnumerable<CssVariable>> GetVariablesByPrefix()
-    {
-        Dictionary<string, IEnumerable<CssVariable>> dict = new()
-        {
-            { RootPalette.Id, ProcessPaletteToCssVariables(RootPalette) }
-        };
-
-        foreach (Palette palette in Palettes)
-        {
-            dict.Add(palette.Id, ProcessPaletteToCssVariables(palette));
-        }
-
-        return dict;
-    }
-
     /// <summary>
     /// Appends CSS attributes to a StringBuilder.
     /// </summary>
-    /// <param name="css">The StringBuilder to which the CSS attributes will be appended.</param>
-    /// <param name="cssAttributes">The collection of CSS attributes to be printed.</param>
+    /// <param name="css">
+    /// The StringBuilder to which the CSS attributes will be appended.
+    /// </param>
+    /// <param name="cssAttributes">
+    /// The collection of CSS attributes to be printed.
+    /// </param>
     public static void PrintCssAttributes(StringBuilder css, IEnumerable<CssAttribute> cssAttributes)
     {
         foreach (CssAttribute cssAttribute in cssAttributes)
@@ -85,8 +84,12 @@ public static partial class ThemeCssGenerator
     /// <summary>
     /// Prints CSS styles based on the provided CSS styles collection.
     /// </summary>
-    /// <param name="css">The StringBuilder to append the CSS styles to.</param>
-    /// <param name="cssStyles">The collection of CSS styles to print.</param>
+    /// <param name="css">
+    /// The StringBuilder to append the CSS styles to.
+    /// </param>
+    /// <param name="cssStyles">
+    /// The collection of CSS styles to print.
+    /// </param>
     public static void PrintCssStyles(StringBuilder css, IEnumerable<CssStyle> cssStyles)
     {
         foreach (CssStyle cssStyle in cssStyles)
@@ -100,9 +103,15 @@ public static partial class ThemeCssGenerator
     /// <summary>
     /// Prints CSS variables to a StringBuilder.
     /// </summary>
-    /// <param name="css">The StringBuilder to which the CSS variables will be printed.</param>
-    /// <param name="cssVariables">The collection of CSS variables to print.</param>
-    /// <param name="cssVariablesRoot">The root element for CSS variables (default is ":root {").</param>
+    /// <param name="css">
+    /// The StringBuilder to which the CSS variables will be printed.
+    /// </param>
+    /// <param name="cssVariables">
+    /// The collection of CSS variables to print.
+    /// </param>
+    /// <param name="cssVariablesRoot">
+    /// The root element for CSS variables (default is ":root {").
+    /// </param>
     public static void PrintCssVariables(StringBuilder css, IEnumerable<CssVariable> cssVariables, string? cssVariablesRoot = ":root { /* Nj Theme : Palette */")
     {
         css.AppendLine(cssVariablesRoot);
@@ -117,8 +126,12 @@ public static partial class ThemeCssGenerator
     /// <summary>
     /// Processes a palette object to generate a list of CSS variables representing color properties.
     /// </summary>
-    /// <param name="palette">The palette object to process.</param>
-    /// <returns>A list of CSS variables representing color properties from the palette.</returns>
+    /// <param name="palette">
+    /// The palette object to process.
+    /// </param>
+    /// <returns>
+    /// A list of CSS variables representing color properties from the palette.
+    /// </returns>
     public static List<CssVariable> ProcessPaletteToCssVariables(Palette palette)
     {
         List<CssVariable> cssVariables = [];
@@ -141,6 +154,21 @@ public static partial class ThemeCssGenerator
 
         return cssVariables;
     }
+
+    private static Dictionary<string, IEnumerable<CssVariable>> GetVariablesByPrefix()
+    {
+        Dictionary<string, IEnumerable<CssVariable>> dict = new()
+        {
+            { RootPalette.Id, ProcessPaletteToCssVariables(RootPalette) }
+        };
+
+        foreach (Palette palette in Palettes)
+        {
+            dict.Add(palette.Id, ProcessPaletteToCssVariables(palette));
+        }
+
+        return dict;
+    }
 }
 
 /// <summary>
@@ -151,7 +179,9 @@ public static partial class ThemeCssGenerator
     /// <summary>
     /// Builds a CSS theme based on generated CSS styles.
     /// </summary>
-    /// <returns>A string representing the CSS theme.</returns>
+    /// <returns>
+    /// A string representing the CSS theme.
+    /// </returns>
     public static async Task<string> BuildThemeCss()
     {
         StringBuilder css = new();
@@ -163,13 +193,20 @@ public static partial class ThemeCssGenerator
     /// <summary>
     /// Builds a CSS file for the theme based on the provided root path, output folder, and output file.
     /// </summary>
-    /// <param name="rootPath">The root path where the CSS file will be saved.</param>
-    /// <param name="outputFolder">The folder where the CSS file will be stored.</param>
-    /// <param name="outputFile">The name of the output CSS file.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="rootPath">
+    /// The root path where the CSS file will be saved.
+    /// </param>
+    /// <param name="outputFolder">
+    /// The folder where the CSS file will be stored.
+    /// </param>
+    /// <param name="outputFile">
+    /// The name of the output CSS file.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     public static async Task BuildThemeCssFile(string rootPath, string outputFolder, string outputFile)
     {
-
         string css = await BuildThemeCss();
 
         Directory.CreateDirectory(outputFolder);
@@ -183,6 +220,33 @@ public static partial class ThemeCssGenerator
             byte[] bytes = Encoding.UTF8.GetBytes(css.ToString());
             await stream.WriteAsync(bytes, 0, bytes.Length);
         }
+    }
+
+    private static void AddAlignStyles(List<CssStyle> styles)
+    {
+        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsBaseline}",
+            new CssAttribute("align-items", "baseline")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsCenter}",
+            new CssAttribute("align-items", "center")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsStart}",
+            new CssAttribute("align-items", "flex-start")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsEnd}",
+            new CssAttribute("align-items", "flex-end")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsStretch}",
+            new CssAttribute("align-items", "stretch")));
+
+        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfAuto}",
+            new CssAttribute("align-self", "auto")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfStart}",
+            new CssAttribute("align-self", "flex-start")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfEnd}",
+            new CssAttribute("align-self", "flex-end")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfCenter}",
+            new CssAttribute("align-self", "center")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfBaseline}",
+            new CssAttribute("align-self", "baseline")));
+        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfStretch}",
+            new CssAttribute("align-self", "stretch")));
     }
 
     private static void AddBaseStyles(List<CssStyle> styles)
@@ -290,32 +354,7 @@ public static partial class ThemeCssGenerator
                 new CssAttribute("gap", $"{CssTools.ToCssNumber(GapMultiplier * i)}rem")));
         }
     }
-    private static void AddAlignStyles(List<CssStyle> styles)
-    {
-        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsBaseline}",
-            new CssAttribute("align-items", "baseline")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsCenter}",
-            new CssAttribute("align-items", "center")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsStart}",
-            new CssAttribute("align-items", "flex-start")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsEnd}",
-            new CssAttribute("align-items", "flex-end")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignItems.AlignItemsStretch}",
-            new CssAttribute("align-items", "stretch")));
 
-        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfAuto}",
-            new CssAttribute("align-self", "auto")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfStart}",
-            new CssAttribute("align-self", "flex-start")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfEnd}",
-            new CssAttribute("align-self", "flex-end")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfCenter}",
-            new CssAttribute("align-self", "center")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfBaseline}",
-            new CssAttribute("align-self", "baseline")));
-        styles.Add(new CssStyle($".{CssClassReferences.AlignSelf.AlignSelfStretch}",
-            new CssAttribute("align-self", "stretch")));
-    }
     private static void AddJustifyStyles(List<CssStyle> styles)
     {
         styles.Add(new CssStyle($".{CssClassReferences.JustifyItems.JustifyItemsStart}",
@@ -341,25 +380,6 @@ public static partial class ThemeCssGenerator
             new CssAttribute("justify-content", "space-around")));
         styles.Add(new CssStyle($".{CssClassReferences.JustifyContent.JustifyContentSpaceEvenly}",
             new CssAttribute("justify-content", "space-evenly")));
-    }
-
-    private static void AddPositionStyles(List<CssStyle> styles)
-    {
-        styles.Add(new CssStyle($".{CssClassReferences.Position.Static}",
-            new CssAttribute("position", "static")
-        ));
-        styles.Add(new CssStyle($".{CssClassReferences.Position.Relative}",
-            new CssAttribute("position", "relative")
-        ));
-        styles.Add(new CssStyle($".{CssClassReferences.Position.Absolute}",
-            new CssAttribute("position", "absolute")
-        ));
-        styles.Add(new CssStyle($".{CssClassReferences.Position.Fixed}",
-            new CssAttribute("position", "fixed")
-        ));
-        styles.Add(new CssStyle($".{CssClassReferences.Position.Sticky}",
-            new CssAttribute("position", "sticky")
-        ));
     }
 
     private static void AddLevelStyles(List<CssStyle> styles)
@@ -447,6 +467,26 @@ public static partial class ThemeCssGenerator
             styles.Add(new CssStyle($"html.{dynamicCssVariablePair.Key.ToLower()}", attributes.ToArray()));
         }
     }
+
+    private static void AddPositionStyles(List<CssStyle> styles)
+    {
+        styles.Add(new CssStyle($".{CssClassReferences.Position.Static}",
+            new CssAttribute("position", "static")
+        ));
+        styles.Add(new CssStyle($".{CssClassReferences.Position.Relative}",
+            new CssAttribute("position", "relative")
+        ));
+        styles.Add(new CssStyle($".{CssClassReferences.Position.Absolute}",
+            new CssAttribute("position", "absolute")
+        ));
+        styles.Add(new CssStyle($".{CssClassReferences.Position.Fixed}",
+            new CssAttribute("position", "fixed")
+        ));
+        styles.Add(new CssStyle($".{CssClassReferences.Position.Sticky}",
+            new CssAttribute("position", "sticky")
+        ));
+    }
+
     private static void AddTextStyles(List<CssStyle> styles)
     {
         styles.Add(new CssStyle($".{CssClassReferences.Text.AlignCenter}",

@@ -9,11 +9,17 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static partial class LocalizationServiceCollectionExtensions
 {
     /// <summary>
-    /// Adds NJ Blazor localization services to the specified <see cref="IServiceCollection"/>.
+    /// Adds NJ Blazor localization services to the specified <see cref="IServiceCollection" />.
     /// </summary>
-    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-    /// <param name="localizationSettings">The localization settings to configure the localization services.</param>
-    /// <param name="lifetime">The lifetime of the service. Default is <see cref="ServiceLifetime.Transient"/>.</param>
+    /// <param name="services">
+    /// The <see cref="IServiceCollection" /> to add the services to.
+    /// </param>
+    /// <param name="localizationSettings">
+    /// The localization settings to configure the localization services.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service. Default is <see cref="ServiceLifetime.Transient" />.
+    /// </param>
     public static void AddNjBlazorLocalization(this IServiceCollection services, LocalizationSettings localizationSettings, ServiceLifetime lifetime = ServiceLifetime.Transient)
     {
         services.AddLocalizationServices(localizationSettings);

@@ -63,9 +63,9 @@
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 
-    .nj-input .nj-input-root::placeholder{
-        position:relative;
-    }
+        .nj-input .nj-input-root::placeholder {
+            position: relative;
+        }
 
     .nj-input .nj-input-options {
         color: var(--palette-inputoptionscolor);
@@ -116,7 +116,7 @@
 }
 
 .nj-input .nj-input-focus-box {
-    display:flex;
+    display: flex;
     position: relative;
     width: 100%;
     padding: var(--input-box-inner-padding);

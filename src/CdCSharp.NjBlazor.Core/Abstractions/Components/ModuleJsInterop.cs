@@ -25,9 +25,15 @@ public abstract class ModuleJsInterop : IAsyncDisposable
     /// <summary>
     /// Initializes a new instance of the ModuleJsInterop class.
     /// </summary>
-    /// <param name="jsRuntime">The JavaScript runtime.</param>
-    /// <param name="jsModuleContentPath">The path to the JavaScript module content.</param>
-    /// <exception cref="ArgumentNullException">Thrown when jsRuntime is null.</exception>
+    /// <param name="jsRuntime">
+    /// The JavaScript runtime.
+    /// </param>
+    /// <param name="jsModuleContentPath">
+    /// The path to the JavaScript module content.
+    /// </param>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when jsRuntime is null.
+    /// </exception>
     public ModuleJsInterop(IJSRuntime jsRuntime, string jsModuleContentPath)
     {
         JsRuntime = jsRuntime ?? throw new ArgumentNullException(nameof(jsRuntime));
@@ -39,7 +45,9 @@ public abstract class ModuleJsInterop : IAsyncDisposable
     /// <summary>
     /// Asynchronously disposes of the resources used by the module.
     /// </summary>
-    /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
+    /// <returns>
+    /// A <see cref="ValueTask" /> representing the asynchronous operation.
+    /// </returns>
     public virtual async ValueTask DisposeAsync()
     {
         if (ModuleTask.IsValueCreated)

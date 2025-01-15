@@ -5,12 +5,13 @@
     display: inline-flex;
     width: fit-content;
 }
+
 .nj-sidebar-content {
     display: none;
 }
 
 .nj-sidebar.open .nj-sidebar-content {
-    display:block;
+    display: block;
 }
 
 .nj-sidebar-toggle {
@@ -22,9 +23,10 @@
         position: relative;
     }
 
-    .nj-sidebar .nj-sidebar-content {
-        display: block;
-    }
+        .nj-sidebar .nj-sidebar-content {
+            display: block;
+        }
+
     .nj-sidebar-toggle {
         display: none;
     }

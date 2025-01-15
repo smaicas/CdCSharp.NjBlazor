@@ -13,8 +13,8 @@ public class PaletteDark : Palette
     public override CssColor InputBackground { get; set; } = NjColors.Transparent.Default;
     public override CssColor InputBorderColor { get; set; } = NjColors.White.Darken2.SetAlpha(0.8);
     public override CssColor InputColor { get; set; } = NjColors.White.Darken2;
-    public override CssColor InputOptionsColor { get; set; } = NjColors.Black.Lighten2;
     public override CssColor InputOptionsBackground { get; set; } = NjColors.White.Darken2;
+    public override CssColor InputOptionsColor { get; set; } = NjColors.Black.Lighten2;
     public override CssColor Primary { get; set; } = NjColors.Crimson.Darken1;
     public override CssColor PrimaryContrast { get; set; } = NjColors.White.Darken1;
     public override CssColor Secondary { get; set; } = NjColors.Teal.Lighten2;

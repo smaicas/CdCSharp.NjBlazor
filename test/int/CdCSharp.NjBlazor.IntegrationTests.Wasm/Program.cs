@@ -21,7 +21,9 @@ await host.RunAsync();
 public static class LocalizationExtensions
 {
     // Activate wasm localization on startup
-    // <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    // <BlazorWebAssemblyLoadAllGlobalizationData>
+    // true
+    // </BlazorWebAssemblyLoadAllGlobalizationData>
     public static async Task SetDefaultCulture(this WebAssemblyHost host)
     {
         ILocalizationJsInterop localizationJs = host.Services.GetRequiredService<ILocalizationJsInterop>();

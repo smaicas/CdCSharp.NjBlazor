@@ -8,7 +8,6 @@ export module ColorPickerJsModule {
         }
 
         public async RemoveRelativeBoundPosition(elementRef: HTMLElement, clientX: number, clientY: number): Promise<number[]> {
-
             if (!elementRef.getBoundingClientRect) { return; }
 
             const rect = elementRef.getBoundingClientRect();
@@ -19,7 +18,6 @@ export module ColorPickerJsModule {
         }
 
         public async RefreshHandlerPosition(elementRef: HTMLElement, handlerRef: HTMLCanvasElement, clientX: number, clientY: number) {
-
             if (!elementRef.getBoundingClientRect) { return; }
 
             const rect = elementRef.getBoundingClientRect();

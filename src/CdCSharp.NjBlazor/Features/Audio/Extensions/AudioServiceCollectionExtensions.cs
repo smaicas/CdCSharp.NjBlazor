@@ -9,10 +9,14 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class AudioServiceCollectionExtensions
 {
     /// <summary>
-    /// Adds NJBlazorAudio services to the specified <see cref="IServiceCollection"/>.
+    /// Adds NJBlazorAudio services to the specified <see cref="IServiceCollection" />.
     /// </summary>
-    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-    /// <param name="lifetime">The lifetime of the service. Default is <see cref="ServiceLifetime.Transient"/>.</param>
+    /// <param name="services">
+    /// The <see cref="IServiceCollection" /> to add the services to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service. Default is <see cref="ServiceLifetime.Transient" />.
+    /// </param>
     public static void AddNjBlazorAudio(
         this IServiceCollection services,
         NjAudioSettings? settings = null,

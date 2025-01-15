@@ -8,18 +8,24 @@ namespace CdCSharp.NjBlazor.Features.Markdown.Components;
 /// </summary>
 internal class MarkdownUnorderedList : ComponentBase
 {
-    /// <summary>Gets or sets a list of strings representing lines of text.</summary>
-    /// <value>The list of strings representing lines of text.</value>
+    /// <summary>
+    /// Gets or sets a list of strings representing lines of text.
+    /// </summary>
+    /// <value>
+    /// The list of strings representing lines of text.
+    /// </value>
     [Parameter]
     public List<string> Lines { get; set; } = [];
 
     /// <summary>
     /// Builds the render tree for the component.
     /// </summary>
-    /// <param name="builder">The RenderTreeBuilder used to build the render tree.</param>
+    /// <param name="builder">
+    /// The RenderTreeBuilder used to build the render tree.
+    /// </param>
     /// <remarks>
-    /// This method overrides the base class method to build the render tree for the component.
-    /// It iterates over the Lines collection to render each line in the component.
+    /// This method overrides the base class method to build the render tree for the component. It
+    /// iterates over the Lines collection to render each line in the component.
     /// </remarks>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {

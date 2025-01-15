@@ -11,8 +11,8 @@ using System.Text;
 namespace CdCSharp.NjBlazor.Core.SourceGenerators;
 
 /// <summary>
-/// Generates colors palette from System.Drawing.Color for the specific by 
-/// <see cref="AutogenerateCssColorsAttribute" /> class.
+/// Generates colors palette from System.Drawing.Color for the specific by <see
+/// cref="AutogenerateCssColorsAttribute" /> class.
 /// </summary>
 [Generator]
 public class ColorClassGenerator : IIncrementalGenerator
@@ -36,11 +36,66 @@ public class ColorClassGenerator : IIncrementalGenerator
     }
 
     /// <summary>
+    /// Retrieves the semantic target (class symbol) for generation.
+    /// </summary>
+    /// <param name="context">
+    /// The generator syntax context.
+    /// </param>
+    /// <returns>
+    /// The class symbol if it has the attribute; otherwise, null.
+    /// </returns>
+    private static INamedTypeSymbol? GetSemanticTarget(GeneratorSyntaxContext context)
+    {
+        ClassDeclarationSyntax classDeclaration = (ClassDeclarationSyntax)context.Node;
+        SemanticModel model = context.SemanticModel;
+        INamedTypeSymbol? classSymbol = model.GetDeclaredSymbol(classDeclaration) as INamedTypeSymbol;
+
+        if (classSymbol == null)
+            return null;
+
+        // Check if the class has the AutogenerateCssColorsAttribute
+        foreach (AttributeData attribute in classSymbol.GetAttributes())
+        {
+            if (attribute.AttributeClass?.ToDisplayString().Contains("AutogenerateCssColorsAttribute") == true ||
+                attribute.AttributeClass?.ToDisplayString().Contains("AutogenerateCssColors") == true)
+            {
+                return classSymbol;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Determines whether the given syntax node is a class with the AutogenerateCssColorsAttribute.
+    /// </summary>
+    /// <param name="syntaxNode">
+    /// The syntax node to check.
+    /// </param>
+    /// <returns>
+    /// True if the node is a matching class; otherwise, false.
+    /// </returns>
+    private static bool IsClassWithAutogenerateCssColorsAttribute(SyntaxNode syntaxNode)
+    {
+        bool classes = syntaxNode is ClassDeclarationSyntax classDecl &&
+               classDecl.AttributeLists
+                   .SelectMany(al => al.Attributes)
+                   .Any(a => a.Name.ToString().Contains("AutogenerateCssColors"));
+        return classes;
+    }
+
+    /// <summary>
     /// Executes the generation logic for each class with the AutogenerateCssColorsAttribute.
     /// </summary>
-    /// <param name="compilation">The compilation context.</param>
-    /// <param name="classes">The classes to process.</param>
-    /// <param name="context">The source production context.</param>
+    /// <param name="compilation">
+    /// The compilation context.
+    /// </param>
+    /// <param name="classes">
+    /// The classes to process.
+    /// </param>
+    /// <param name="context">
+    /// The source production context.
+    /// </param>
     private void Execute(Compilation compilation, ImmutableArray<INamedTypeSymbol> classes, SourceProductionContext context)
     {
         if (classes.IsDefaultOrEmpty)
@@ -120,47 +175,6 @@ public class ColorClassGenerator : IIncrementalGenerator
             context.AddSource($"{className}.g.cs", SourceText.From(sourceCode, Encoding.UTF8));
             context.AddSource("ColorVariant.g.cs", SourceText.From(colorVariantSource, Encoding.UTF8));
         }
-    }
-
-    /// <summary>
-    /// Determines whether the given syntax node is a class with the AutogenerateCssColorsAttribute.
-    /// </summary>
-    /// <param name="syntaxNode">The syntax node to check.</param>
-    /// <returns>True if the node is a matching class; otherwise, false.</returns>
-    private static bool IsClassWithAutogenerateCssColorsAttribute(SyntaxNode syntaxNode)
-    {
-        bool classes = syntaxNode is ClassDeclarationSyntax classDecl &&
-               classDecl.AttributeLists
-                   .SelectMany(al => al.Attributes)
-                   .Any(a => a.Name.ToString().Contains("AutogenerateCssColors"));
-        return classes;
-    }
-
-    /// <summary>
-    /// Retrieves the semantic target (class symbol) for generation.
-    /// </summary>
-    /// <param name="context">The generator syntax context.</param>
-    /// <returns>The class symbol if it has the attribute; otherwise, null.</returns>
-    private static INamedTypeSymbol? GetSemanticTarget(GeneratorSyntaxContext context)
-    {
-        ClassDeclarationSyntax classDeclaration = (ClassDeclarationSyntax)context.Node;
-        SemanticModel model = context.SemanticModel;
-        INamedTypeSymbol? classSymbol = model.GetDeclaredSymbol(classDeclaration) as INamedTypeSymbol;
-
-        if (classSymbol == null)
-            return null;
-
-        // Check if the class has the AutogenerateCssColorsAttribute
-        foreach (AttributeData attribute in classSymbol.GetAttributes())
-        {
-            if (attribute.AttributeClass?.ToDisplayString().Contains("AutogenerateCssColorsAttribute") == true ||
-                attribute.AttributeClass?.ToDisplayString().Contains("AutogenerateCssColors") == true)
-            {
-                return classSymbol;
-            }
-        }
-
-        return null;
     }
 
     private ClassDeclarationSyntax GenerateClassDeclaration(string className) =>

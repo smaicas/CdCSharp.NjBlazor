@@ -10,23 +10,49 @@ namespace CdCSharp.NjBlazor.Features.Layout.Components.Tabs;
 /// Represents a custom tab control component.
 /// </summary>
 /// <remarks>
-/// This class extends the functionality of the base component <see cref="NjComponentBase"/>.
+/// This class extends the functionality of the base component <see cref="NjComponentBase" />.
 /// </remarks>
 public partial class NjTabs : NjComponentBase
 {
-    /// <summary>Gets or sets the content to be rendered as a child component.</summary>
-    /// <value>The content to be rendered as a child component.</value>
+    private readonly Dictionary<NjTabSection, RenderFragment> renderedContent = [];
+
+    private NjTabSection? _activeSection;
+
+    private string _displacementClass = "from-left";
+
+    private NjActivableTextButtonVariant ActivableButtonVariant =
+            NjActivableTextButtonVariant.UnderLine;
+
+    /// <summary>
+    /// Gets or sets the content to be rendered as a child component.
+    /// </summary>
+    /// <value>
+    /// The content to be rendered as a child component.
+    /// </value>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private RenderFragment? CurrentContent { get; set; }
+    /// <summary>
+    /// Gets or sets the padding value for the content.
+    /// </summary>
+    /// <value>
+    /// The padding value for the content.
+    /// </value>
+    [Parameter]
+    public int ContentPadding { get; set; }
 
-    /// <summary>Gets or sets the position of the header in the NjTabs component.</summary>
-    /// <value>The position of the header in the NjTabs component.</value>
+    /// <summary>
+    /// Gets or sets the position of the header in the NjTabs component.
+    /// </summary>
+    /// <value>
+    /// The position of the header in the NjTabs component.
+    /// </value>
     [Parameter]
     public NjTabsHeaderPosition HeaderPosition { get; set; } = NjTabsHeaderPosition.Top;
 
-    private readonly Dictionary<NjTabSection, RenderFragment> renderedContent = [];
+    private string ContentPaddingClass => CssTools.CalculateCssPaddingClass(ContentPadding);
+    private RenderFragment? CurrentContent { get; set; }
+
     private string HeaderPositionClass =>
         HeaderPosition switch
         {
@@ -36,22 +62,51 @@ public partial class NjTabs : NjComponentBase
             _ => CssClassReferences.Tabs.TabsColumn,
         };
 
-    /// <summary>Gets or sets the padding value for the content.</summary>
-    /// <value>The padding value for the content.</value>
-    [Parameter]
-    public int ContentPadding { get; set; }
-
-    private NjActivableTextButtonVariant ActivableButtonVariant =
-        NjActivableTextButtonVariant.UnderLine;
-
-    private string ContentPaddingClass => CssTools.CalculateCssPaddingClass(ContentPadding);
-
     private List<NjTabSection> TabSections { get; set; } = [];
-    private NjTabSection? _activeSection;
 
-    private string _displacementClass = "from-left";
+    /// <summary>
+    /// Adds a tab section to the list of tab sections if it is not already present.
+    /// </summary>
+    /// <param name="tabSection">
+    /// The tab section to add.
+    /// </param>
+    public void AddSection(NjTabSection tabSection)
+    {
+        if (TabSections.Contains(tabSection))
+            return;
 
-    /// <summary>Set the variant of an activable button based on the header position.</summary>
+        TabSections.Add(tabSection);
+    }
+
+    /// <summary>
+    /// Method called after the component has been rendered.
+    /// </summary>
+    /// <param name="firstRender">
+    /// A boolean value indicating if this is the first render of the component.
+    /// </param>
+    /// <remarks>
+    /// If it is the first render, sets the first tab section as active, assigns the first tab
+    /// section as the active section if not already set, and updates the current content to be
+    /// displayed. Finally, triggers a re-render of the component.
+    /// </remarks>
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (TabSections.Any())
+            {
+                TabSections[0].Active = true;
+                _activeSection ??= TabSections[0];
+                CurrentContent = _activeSection.ChildContent;
+            }
+
+            StateHasChanged();
+        }
+    }
+
+    /// <summary>
+    /// Set the variant of an activable button based on the header position.
+    /// </summary>
     /// <remarks>
     /// The variant of the activable button is determined by the header position:
     /// - If the header is on the right, the variant is set to LeftLine.
@@ -70,37 +125,10 @@ public partial class NjTabs : NjComponentBase
         };
     }
 
-    /// <summary>
-    /// Method called after the component has been rendered.
-    /// </summary>
-    /// <param name="firstRender">A boolean value indicating if this is the first render of the component.</param>
-    /// <remarks>
-    /// If it is the first render, sets the first tab section as active, assigns the first tab section as the active section if not already set,
-    /// and updates the current content to be displayed. Finally, triggers a re-render of the component.
-    /// </remarks>
-    protected override void OnAfterRender(bool firstRender)
+    private void RenderContentForSection(NjTabSection section)
     {
-        if (firstRender)
-        {
-            if (TabSections.Any())
-            {
-                TabSections[0].Active = true;
-                _activeSection ??= TabSections[0];
-                CurrentContent = _activeSection.ChildContent;
-            }
-
-            StateHasChanged();
-        }
-    }
-
-    /// <summary>Adds a tab section to the list of tab sections if it is not already present.</summary>
-    /// <param name="tabSection">The tab section to add.</param>
-    public void AddSection(NjTabSection tabSection)
-    {
-        if (TabSections.Contains(tabSection))
-            return;
-
-        TabSections.Add(tabSection);
+        renderedContent[section] = section.ChildContent;
+        CurrentContent = section.ChildContent;
     }
 
     private Task SetActiveSectionAsync(NjTabSection section)
@@ -135,11 +163,5 @@ public partial class NjTabs : NjComponentBase
         _activeSection = section;
 
         return Task.CompletedTask;
-    }
-
-    private void RenderContentForSection(NjTabSection section)
-    {
-        renderedContent[section] = section.ChildContent;
-        CurrentContent = section.ChildContent;
     }
 }

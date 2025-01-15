@@ -100,15 +100,15 @@
                     Width = "15%",
                     CustomComponent = new RatingComponent()
                 },
-                new()
-                {
-                    Title = "Actions",
-                    Property = p => p.Id,
-                    Width = "15%",
-                    Sortable = false,
-                    Filterable = false,
-                    CustomComponent = new ActionsComponent()
-                }
+                // new()
+                // {
+                //     Title = "Actions",
+                //     Property = p => "actions",
+                //     Width = "15%",
+                //     Sortable = false,
+                //     Filterable = false,
+                //     CustomComponent = new ActionsComponent<DemoProduct>()
+                // }
             }
             };
     }
@@ -242,7 +242,7 @@
         }
     }
 
-    public class ActionsComponent : INjCellComponent
+    public class ActionsComponent<TItem> : INjCellComponent
     {
         public RenderFragment CreateComponent<TItem>(TItem item, PropertyInfo property)
         {
@@ -256,14 +256,14 @@
                 // Edit button
                 builder.OpenElement(2, "button");
                 builder.AddAttribute(3, "class", "btn btn-sm btn-outline-primary");
-                builder.AddAttribute(4, "onclick", EventCallback.Factory.Create(this, () => HandleEdit(id)));
+                builder.AddAttribute(4, "onclick", EventCallback.Factory.Create(this, () => HandleEdit<TItem>(item)));
                 builder.AddContent(5, "Edit");
                 builder.CloseElement();
 
                 // Delete button
                 builder.OpenElement(6, "button");
                 builder.AddAttribute(7, "class", "btn btn-sm btn-outline-danger");
-                builder.AddAttribute(8, "onclick", EventCallback.Factory.Create(this, () => HandleDelete(id)));
+                builder.AddAttribute(8, "onclick", EventCallback.Factory.Create(this, () => HandleDelete<TItem>(item)));
                 builder.AddContent(9, "Delete");
                 builder.CloseElement();
 
@@ -271,12 +271,12 @@
             };
         }
 
-        private void HandleEdit(int id)
+        private void HandleEdit<TItem>(TItem id)
         {
             Console.WriteLine($"Edit product {id}");
         }
 
-        private async Task HandleDelete(int id)
+        private async Task HandleDelete<TItem>(TItem id)
         {
             // Note: In a real application, you'd want to implement proper state management
             Console.WriteLine($"Delete product {id}");

@@ -9,10 +9,14 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class DomServiceCollectionExtensions
 {
     /// <summary>
-    /// Adds NJBlazor DOM services to the specified <see cref="IServiceCollection"/>.
+    /// Adds NJBlazor DOM services to the specified <see cref="IServiceCollection" />.
     /// </summary>
-    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-    /// <param name="lifetime">The lifetime of the service. Default is <see cref="ServiceLifetime.Transient"/>.</param>
+    /// <param name="services">
+    /// The <see cref="IServiceCollection" /> to add the services to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service. Default is <see cref="ServiceLifetime.Transient" />.
+    /// </param>
     public static void AddNjBlazorDom(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Transient) => services.AddDomJsInterop(lifetime);
 
     private static void AddDomJsInterop(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Transient) =>

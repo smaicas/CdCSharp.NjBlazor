@@ -8,13 +8,17 @@ namespace CdCSharp.NjBlazor.Features.Dom.Abstractions;
 /// </summary>
 public interface IDOMJsInterop
 {
+    ValueTask AddShowPickerEventHandler(ElementReference clickElementRef, ElementReference inputCalendarElementRef);
+
     ValueTask DownloadFileAsync(string fileName, string content, string? contentType);
+
+    ValueTask FocusElementAsync(string querySelector, ElementReference? parentElement = null);
 
     ValueTask<(float Top, float Right, float Bottom, float Left)> GetCoordsRelativeAsync(ElementReference relativeTo, string positioning);
 
     ValueTask<string> GetCssVariableAsync(string variableName);
 
-    ValueTask FocusElementAsync(string querySelector, ElementReference? parentElement = null);
+    ValueTask<(float Width, float Height)> GetElementBounds(string queryElement);
 
     ValueTask<string> GetFocusedElementClassAsync();
 
@@ -28,15 +32,11 @@ public interface IDOMJsInterop
 
     ValueTask ScrollTopAsync(ElementReference? element, int? position = 0);
 
-    ValueTask SetCssVariableAsync(string variableName, string value);
-
-    ValueTask SetDisabledAsync(ElementReference element, bool value);
+    ValueTask SelectText(ElementReference element);
 
     ValueTask SetCalendarDatepickerValue(ElementReference calendarInputRef, string value);
 
-    ValueTask AddShowPickerEventHandler(ElementReference clickElementRef, ElementReference inputCalendarElementRef);
+    ValueTask SetCssVariableAsync(string variableName, string value);
 
-    ValueTask SelectText(ElementReference element);
-
-    ValueTask<(float Width, float Height)> GetElementBounds(string queryElement);
+    ValueTask SetDisabledAsync(ElementReference element, bool value);
 }

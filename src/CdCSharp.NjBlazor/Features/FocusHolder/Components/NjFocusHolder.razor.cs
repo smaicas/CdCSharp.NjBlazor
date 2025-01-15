@@ -10,40 +10,64 @@ namespace CdCSharp.NjBlazor.Features.FocusHolder.Components;
 /// </summary>
 public partial class NjFocusHolder : NjComponentBase
 {
-    /// <summary>Gets or sets the content to be rendered as a child component.</summary>
-    /// <value>The content to be rendered as a child component.</value>
+    private ElementReference? _focusHolderReference;
+
+    private bool focused;
+
+    /// <summary>
+    /// Gets or sets the content to be rendered as a child component.
+    /// </summary>
+    /// <value>
+    /// The content to be rendered as a child component.
+    /// </value>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    /// <summary>Gets or sets the event callback for focus events.</summary>
-    /// <value>The event callback for focus events.</value>
-    [Parameter]
-    public EventCallback<FocusEventArgs> OnFocus { get; set; }
-
-    /// <summary>Gets or sets the event callback for the focus out event.</summary>
-    /// <value>The event callback for the focus out event.</value>
-    [Parameter]
-    public EventCallback<FocusEventArgs> OnFocusOut { get; set; }
-
-    /// <summary>Gets or sets the event callback for mouse click events.</summary>
-    /// <value>The event callback for mouse click events.</value>
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
-
-    private ElementReference? _focusHolderReference;
-
-    /// <summary>Gets or sets the query selector for the focus holder element.</summary>
-    /// <value>The query selector for the focus holder element.</value>
+    /// <summary>
+    /// Gets or sets the query selector for the focus holder element.
+    /// </summary>
+    /// <value>
+    /// The query selector for the focus holder element.
+    /// </value>
     [Parameter]
     [EditorRequired]
     public string FocusHolderQuerySelector { get; set; } = default!;
 
-    /// <summary>Gets or sets the JavaScript interop service for handling focus holder.</summary>
-    /// <value>The JavaScript interop service for handling focus holder.</value>
+    /// <summary>
+    /// Gets or sets the event callback for mouse click events.
+    /// </summary>
+    /// <value>
+    /// The event callback for mouse click events.
+    /// </value>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    /// <summary>
+    /// Gets or sets the event callback for focus events.
+    /// </summary>
+    /// <value>
+    /// The event callback for focus events.
+    /// </value>
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnFocus { get; set; }
+
+    /// <summary>
+    /// Gets or sets the event callback for the focus out event.
+    /// </summary>
+    /// <value>
+    /// The event callback for the focus out event.
+    /// </value>
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnFocusOut { get; set; }
+
+    /// <summary>
+    /// Gets or sets the JavaScript interop service for handling focus holder.
+    /// </summary>
+    /// <value>
+    /// The JavaScript interop service for handling focus holder.
+    /// </value>
     [Inject]
     protected IDOMJsInterop DOMJs { get; set; } = default!;
-
-    private bool focused;
 
     private async Task DoFocusAsync(FocusEventArgs e)
     {

@@ -2,14 +2,20 @@
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-/// <summary>Contains extension methods for configuring services in the service collection.</summary>
+/// <summary>
+/// Contains extension methods for configuring services in the service collection.
+/// </summary>
 public static class FormsDropdownServiceCollectionExtensions
 {
     /// <summary>
     /// Extends the IServiceCollection to add NjBlazorFormsDropdown service.
     /// </summary>
-    /// <param name="services">The IServiceCollection to add the service to.</param>
-    /// <param name="lifetime">The lifetime of the service (default is Transient).</param>
+    /// <param name="services">
+    /// The IServiceCollection to add the service to.
+    /// </param>
+    /// <param name="lifetime">
+    /// The lifetime of the service (default is Transient).
+    /// </param>
     public static void AddNjBlazorFormsDropdown(
         this IServiceCollection services,
         NjFormsDropdownSettings? settings = null,

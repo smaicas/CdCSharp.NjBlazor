@@ -1,8 +1,13 @@
-﻿@typeparam T
-@using System.Linq.Expressions
+﻿@using System.Linq.Expressions
 @using System.Reflection
+@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using Microsoft.AspNetCore.Components.Forms
 
-<div class="nj-table-container">
+@typeparam T
+
+@inherits NjComponentBase
+
+<div class="@(AsClass("nj-table-container", Class))">
     @if (Configuration.ShowGlobalFilter)
     {
         <div class="nj-table-global-filter">
@@ -13,14 +18,13 @@
                    @onchange="@(() => ApplyFiltersAndSort())" />
         </div>
     }
-
     <table class="nj-table">
         <thead>
             <tr>
                 @for (int i = 0; i < Configuration.Columns.Count; i++)
                 {
                     var column = Configuration.Columns[i];
-                    var columnKey = GetColumnKey(column, i);
+                    var columnKey = column.GetColumnKey();
 
                     <th style="@(string.IsNullOrEmpty(column.Width) ? "" : $"width: {column.Width}")">
                         <div class="nj-table-header">

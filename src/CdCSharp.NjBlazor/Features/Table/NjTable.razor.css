@@ -6,13 +6,13 @@
 .nj-table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    border: 1px solid var(--palette-inputbordercolor);
 }
 
     .nj-table th,
     .nj-table td {
         padding: 0.75rem;
-        border: 1px solid #ddd;
+        border: 1px solid var(--palette-inputbordercolor);
     }
 
     .nj-table thead th {
@@ -45,7 +45,7 @@
     .nj-table-column-filter input {
         width: 100%;
         padding: 0.5rem;
-        border: 1px solid #ddd;
+        border: 1px solid var(--palette-inputbordercolor);
         border-radius: 4px;
     }
 
@@ -63,7 +63,7 @@
 
 .nj-table-page-button {
     padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--palette-inputbordercolor);
     border-radius: 4px;
     background-color: #fff;
     cursor: pointer;

@@ -6,13 +6,11 @@ module ThemeModule {
     const storagePreferenceKey: string = 'nj-darkmode';
 
     export class ThemeClass {
-
         constructor() {
         }
 
         public async InitializeAsync()
             : Promise<void> {
-
             let localStorageIsDarkMode: boolean | null = await this.LocalStorageIsDarkMode();
 
             if (localStorageIsDarkMode !== null) {

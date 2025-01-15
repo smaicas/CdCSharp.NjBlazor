@@ -12,11 +12,17 @@ namespace CdCSharp.NjBlazor.Features.Controls.Components.Search;
 /// <summary>
 /// Base class for search functionality.
 /// </summary>
-/// <typeparam name="TSearchObject">The type of object to search for.</typeparam>
+/// <typeparam name="TSearchObject">
+/// The type of object to search for.
+/// </typeparam>
 public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
 {
-    /// <summary>Reference to an element.</summary>
-    /// <remarks>This reference may be null.</remarks>
+    /// <summary>
+    /// Reference to an element.
+    /// </summary>
+    /// <remarks>
+    /// This reference may be null.
+    /// </remarks>
     [DisallowNull]
     protected ElementReference? _inputReference;
 
@@ -33,11 +39,17 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// </summary>
     protected List<TSearchObject> FilteredSource = [];
 
-    /// <summary>Indicates whether the component is currently focused.</summary>
+    /// <summary>
+    /// Indicates whether the component is currently focused.
+    /// </summary>
     protected bool IsFocused;
 
-    /// <summary>Coordinates of the options box.</summary>
-    /// <value>A tuple representing the top, right, bottom, and left coordinates of the options box.</value>
+    /// <summary>
+    /// Coordinates of the options box.
+    /// </summary>
+    /// <value>
+    /// A tuple representing the top, right, bottom, and left coordinates of the options box.
+    /// </value>
     protected (float Top, float Right, float Bottom, float Left) OptionsBoxCoords = (
         0f,
         0f,
@@ -45,65 +57,97 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
         0f
     );
 
-    /// <summary>The string used for searching.</summary>
+    /// <summary>
+    /// The string used for searching.
+    /// </summary>
     protected string SearchString = "";
 
     private readonly int ThrottleMilliseconds = 300;
 
-    /// <summary>Gets or sets the function used to display an object as a string.</summary>
-    /// <value>The function that converts an object of type TSearchObject to a string.</value>
-    /// <remarks>If not explicitly set, the default behavior is to call the ToString method on the object, or return an empty string if the object is null.</remarks>
+    /// <summary>
+    /// Gets or sets the function used to display an object as a string.
+    /// </summary>
+    /// <value>
+    /// The function that converts an object of type TSearchObject to a string.
+    /// </value>
+    /// <remarks>
+    /// If not explicitly set, the default behavior is to call the ToString method on the object, or
+    /// return an empty string if the object is null.
+    /// </remarks>
     [Parameter]
     [EditorRequired]
     public Func<TSearchObject, string> DisplayFunction { get; set; } =
         (o) => o?.ToString() ?? string.Empty;
 
-    /// <summary>Gets or sets a value indicating whether dynamic search is enabled.</summary>
-    /// <value>True if dynamic search is enabled; otherwise, false.</value>
+    /// <summary>
+    /// Gets or sets a value indicating whether dynamic search is enabled.
+    /// </summary>
+    /// <value>
+    /// True if dynamic search is enabled; otherwise, false.
+    /// </value>
     [Parameter]
     public bool DynamicSearch { get; set; }
 
-    /// <summary>Gets or sets the minimum number of characters for dynamic search.</summary>
-    /// <value>The minimum number of characters for dynamic search.</value>
+    /// <summary>
+    /// Gets or sets the minimum number of characters for dynamic search.
+    /// </summary>
+    /// <value>
+    /// The minimum number of characters for dynamic search.
+    /// </value>
     [Parameter]
     public int MinCharacters { get; set; } = 2;
 
-    /// <summary>Gets or sets the event callback for when an item is selected.</summary>
-    /// <typeparam name="TSearchObject">The type of the selected item.</typeparam>
+    /// <summary>
+    /// Gets or sets the event callback for when an item is selected.
+    /// </summary>
+    /// <typeparam name="TSearchObject">
+    /// The type of the selected item.
+    /// </typeparam>
     [Parameter]
     public EventCallback<TSearchObject> OnSelectedItem { get; set; }
 
-    /// <summary>Gets or sets the position of the search options.</summary>
-    /// <value>The position of the search options.</value>
+    /// <summary>
+    /// Gets or sets the position of the search options.
+    /// </summary>
+    /// <value>
+    /// The position of the search options.
+    /// </value>
     [Parameter]
     public NjSearchOptionsPosition OptionsPosition { get; set; } = NjSearchOptionsPosition.Bottom;
 
     /// <summary>
-    /// Gets or sets the sorting function used to sort the search object.
+    /// Gets or sets the placeholder text.
     /// </summary>
     /// <value>
-    /// A function that defines the sorting logic for the search object.
+    /// The placeholder text.
     /// </value>
-    [Parameter]
-    public Func<TSearchObject, object>? SortingFuntion { get; set; }
-
-    /// <summary>Gets or sets the placeholder text.</summary>
-    /// <value>The placeholder text.</value>
     [Parameter]
     public string Placeholder { get; set; } = string.Empty;
 
-    /// <summary>Gets or sets the post-adornment string.</summary>
-    /// <value>The post-adornment string.</value>
+    /// <summary>
+    /// Gets or sets the post-adornment string.
+    /// </summary>
+    /// <value>
+    /// The post-adornment string.
+    /// </value>
     [Parameter]
     public string? PostAdornment { get; set; }
 
-    /// <summary>Gets or sets the color of the post adornment.</summary>
-    /// <value>The color of the post adornment.</value>
+    /// <summary>
+    /// Gets or sets the color of the post adornment.
+    /// </summary>
+    /// <value>
+    /// The color of the post adornment.
+    /// </value>
     [Parameter]
     public CssColor? PostAdornmentColor { get; set; }
 
-    /// <summary>Gets or sets the string to be displayed before the main content.</summary>
-    /// <value>The string to be displayed before the main content.</value>
+    /// <summary>
+    /// Gets or sets the string to be displayed before the main content.
+    /// </summary>
+    /// <value>
+    /// The string to be displayed before the main content.
+    /// </value>
     [Parameter]
     public string? PreAdornment { get; set; }
 
@@ -127,6 +171,15 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     public Func<TSearchObject, string, bool> SearchFuntion { get; set; } = default!;
 
     /// <summary>
+    /// Gets or sets the sorting function used to sort the search object.
+    /// </summary>
+    /// <value>
+    /// A function that defines the sorting logic for the search object.
+    /// </value>
+    [Parameter]
+    public Func<TSearchObject, object>? SortingFuntion { get; set; }
+
+    /// <summary>
     /// Gets or sets the source data for the search.
     /// </summary>
     /// <value>
@@ -140,20 +193,30 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     public IEnumerable<TSearchObject> SourceData { get; set; } = default!;
 
     /// <summary>
-    /// Gets or sets the DOM JavaScript interop service for interacting with the Document Object Model (DOM) in JavaScript.
+    /// Gets or sets the DOM JavaScript interop service for interacting with the Document Object
+    /// Model (DOM) in JavaScript.
     /// </summary>
     /// <remarks>
-    /// The DOMJsInterop service provides methods for performing JavaScript interop operations on the DOM.
+    /// The DOMJsInterop service provides methods for performing JavaScript interop operations on
+    /// the DOM.
     /// </remarks>
     [Inject]
     protected IDOMJsInterop DomJs { get; set; } = default!;
 
-    /// <summary>Determines the CSS class based on the focus state.</summary>
-    /// <value>The CSS class to apply when the element is focused.</value>
+    /// <summary>
+    /// Determines the CSS class based on the focus state.
+    /// </summary>
+    /// <value>
+    /// The CSS class to apply when the element is focused.
+    /// </value>
     protected string FocusClass => IsFocused ? CssClassReferences.Focus : string.Empty;
 
-    /// <summary>Gets the CSS style for the options box based on its coordinates.</summary>
-    /// <value>The CSS style for the options box.</value>
+    /// <summary>
+    /// Gets the CSS style for the options box based on its coordinates.
+    /// </summary>
+    /// <value>
+    /// The CSS style for the options box.
+    /// </value>
     protected string OptionsBoxStyle
     {
         get
@@ -183,8 +246,8 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// Asynchronously retrieves the coordinates of the options box.
     /// </summary>
     /// <returns>
-    /// A tuple containing the coordinates (left, top, right, bottom) of the options box.
-    /// If the input reference is null, returns (0f, 0f, 0f, 0f).
+    /// A tuple containing the coordinates (left, top, right, bottom) of the options box. If the
+    /// input reference is null, returns (0f, 0f, 0f, 0f).
     /// </returns>
     protected async Task<(float, float, float, float)> GetOptionsBoxCoordsAsync()
     {
@@ -199,16 +262,24 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// <summary>
     /// Method called after rendering to set the coordinates of the options box asynchronously.
     /// </summary>
-    /// <param name="firstRender">A boolean value indicating if it is the first render.</param>
-    /// <returns>An asynchronous task.</returns>
+    /// <param name="firstRender">
+    /// A boolean value indicating if it is the first render.
+    /// </param>
+    /// <returns>
+    /// An asynchronous task.
+    /// </returns>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
             OptionsBoxCoords = await GetOptionsBoxCoordsAsync();
     }
 
-    /// <summary>Updates the focus state to true asynchronously.</summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <summary>
+    /// Updates the focus state to true asynchronously.
+    /// </summary>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected Task OnFocusAsync()
     {
         IsFocused = true;
@@ -218,7 +289,9 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// <summary>
     /// Clears the search string and sets the focus state to false.
     /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <returns>
+    /// A task that represents the asynchronous operation.
+    /// </returns>
     protected Task OnFocusOutAsync()
     {
         SearchString = string.Empty;
@@ -230,12 +303,13 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// Initializes the component and sets up a debounced event handler for dynamic search.
     /// </summary>
     /// <remarks>
-    /// This method initializes the component by setting up a debounced event handler for dynamic search.
-    /// The debounced event handler will wait for a specified time period before triggering the search operation.
+    /// This method initializes the component by setting up a debounced event handler for dynamic
+    /// search. The debounced event handler will wait for a specified time period before triggering
+    /// the search operation.
     /// </remarks>
-    /// <seealso cref="DebounceEvent{T}(Func{T, Task}, TimeSpan)"/>
-    /// <seealso cref="SearchDynamicAsync(ChangeEventArgs)"/>
-    /// <seealso cref="ThrottleMilliseconds"/>
+    /// <seealso cref="DebounceEvent{T}(Func{T, Task}, TimeSpan)" />
+    /// <seealso cref="SearchDynamicAsync(ChangeEventArgs)" />
+    /// <seealso cref="ThrottleMilliseconds" />
     protected override void OnInitialized()
     {
         DebounceSearchDynamic = DebounceEvent<ChangeEventArgs>(
@@ -249,10 +323,10 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// Searches the SourceData based on the SearchString and updates the FilteredSource.
     /// </summary>
     /// <remarks>
-    /// If the SearchString length is less than MinCharacters, the method returns without performing the search.
-    /// The search is performed using the SearchFunction delegate to filter the SourceData.
-    /// If a SortingFunction is provided, the filtered results are sorted using it.
-    /// The filtered and sorted results are then assigned to the FilteredSource property.
+    /// If the SearchString length is less than MinCharacters, the method returns without performing
+    /// the search. The search is performed using the SearchFunction delegate to filter the
+    /// SourceData. If a SortingFunction is provided, the filtered results are sorted using it. The
+    /// filtered and sorted results are then assigned to the FilteredSource property.
     /// </remarks>
     protected void Search()
     {
@@ -268,8 +342,12 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// <summary>
     /// Asynchronously performs a dynamic search based on the provided change event arguments.
     /// </summary>
-    /// <param name="changeEventArgs">The change event arguments containing the value to search for.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="changeEventArgs">
+    /// The change event arguments containing the value to search for.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected Task SearchDynamicAsync(ChangeEventArgs changeEventArgs)
     {
         if (!DynamicSearch)
@@ -282,8 +360,12 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// <summary>
     /// Asynchronously selects an option and triggers the OnSelectedItem event.
     /// </summary>
-    /// <param name="selected">The option to be selected.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <param name="selected">
+    /// The option to be selected.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     protected async Task SelectOptionAsync(TSearchObject selected) =>
         await OnSelectedItem.InvokeAsync(selected);
 }

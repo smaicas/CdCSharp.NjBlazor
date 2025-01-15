@@ -19,9 +19,12 @@ public static class IconsClassGenerator
     private static readonly string _iconsMetaUrl = "https://fonts.google.com/metadata/icons";
 
     /// <summary>
-    /// Builds an icons file by fetching icons metadata from HTTP, generating icons code, and writing it to a file.
+    /// Builds an icons file by fetching icons metadata from HTTP, generating icons code, and
+    /// writing it to a file.
     /// </summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
     public static async Task BuildIconsFile()
     {
         string finalPath = $"{Path.Combine(_classDirectory, _className)}.cs";
@@ -115,27 +118,62 @@ public static class IconsClassGenerator
     /// </summary>
     public class Icon
     {
-        /// <summary>Gets or sets the list of categories.</summary>
-        /// <value>The list of categories.</value>
+        /// <summary>
+        /// Gets or sets the list of categories.
+        /// </summary>
+        /// <value>
+        /// The list of categories.
+        /// </value>
         public List<string> categories { get; set; }
-        /// <summary>Gets or sets the Unicode code point of a character.</summary>
-        /// <value>The Unicode code point of a character.</value>
+
+        /// <summary>
+        /// Gets or sets the Unicode code point of a character.
+        /// </summary>
+        /// <value>
+        /// The Unicode code point of a character.
+        /// </value>
         public int codepoint { get; set; }
-        /// <summary>Gets or sets the name property.</summary>
+
+        /// <summary>
+        /// Gets or sets the name property.
+        /// </summary>
         public string name { get; set; }
-        /// <summary>Gets or sets the popularity value.</summary>
-        /// <value>The popularity value.</value>
+
+        /// <summary>
+        /// Gets or sets the popularity value.
+        /// </summary>
+        /// <value>
+        /// The popularity value.
+        /// </value>
         public int popularity { get; set; }
-        /// <summary>Gets or sets the list of sizes in pixels.</summary>
-        /// <value>The list of sizes in pixels.</value>
+
+        /// <summary>
+        /// Gets or sets the list of sizes in pixels.
+        /// </summary>
+        /// <value>
+        /// The list of sizes in pixels.
+        /// </value>
         public List<int> sizes_px { get; set; }
-        /// <summary>Gets or sets the list of tags associated with an item.</summary>
-        /// <value>The list of tags.</value>
+
+        /// <summary>
+        /// Gets or sets the list of tags associated with an item.
+        /// </summary>
+        /// <value>
+        /// The list of tags.
+        /// </value>
         public List<string> tags { get; set; }
-        /// <summary>Gets or sets a list of unsupported font families.</summary>
-        /// <value>The list of unsupported font families.</value>
+
+        /// <summary>
+        /// Gets or sets a list of unsupported font families.
+        /// </summary>
+        /// <value>
+        /// The list of unsupported font families.
+        /// </value>
         public List<object> unsupported_families { get; set; }
-        /// <summary>Gets or sets the version number.</summary>
+
+        /// <summary>
+        /// Gets or sets the version number.
+        /// </summary>
         public int version { get; set; }
     }
 
@@ -144,13 +182,24 @@ public static class IconsClassGenerator
     /// </summary>
     public class IconsMeta
     {
-        /// <summary>Gets or sets the pattern for asset URLs.</summary>
+        /// <summary>
+        /// Gets or sets the pattern for asset URLs.
+        /// </summary>
         public string asset_url_pattern { get; set; }
-        /// <summary>Gets or sets the list of font families.</summary>
+
+        /// <summary>
+        /// Gets or sets the list of font families.
+        /// </summary>
         public List<string> families { get; set; }
-        /// <summary>Gets or sets the host value.</summary>
+
+        /// <summary>
+        /// Gets or sets the host value.
+        /// </summary>
         public string host { get; set; }
-        /// <summary>Gets or sets the list of icons.</summary>
+
+        /// <summary>
+        /// Gets or sets the list of icons.
+        /// </summary>
         public List<Icon> icons { get; set; }
     }
 }

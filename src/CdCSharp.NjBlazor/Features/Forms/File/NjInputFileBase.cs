@@ -10,12 +10,17 @@ namespace CdCSharp.NjBlazor.Features.Forms.File;
 /// <summary>
 /// Base class for handling input files in Nj framework.
 /// </summary>
-/// <typeparam name="IBrowserFile[]">The type representing browser files.</typeparam>
-/// <seealso cref="INjInputFileJsCallbacks"/>
+/// <typeparam name="IBrowserFile[]">
+/// The type representing browser files.
+/// </typeparam>
+/// <seealso cref="INjInputFileJsCallbacks" />
 public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFileJsCallbacks
 {
-    /// <summary>Relays JavaScript callbacks for NjInputFile.</summary>
+    /// <summary>
+    /// Relays JavaScript callbacks for NjInputFile.
+    /// </summary>
     internal NjInputFileJsCallbacksRelay _jsCallbacksRelay;
+
     private string _text = string.Empty;
 
     /// <summary>
@@ -36,13 +41,21 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     [Parameter]
     public string[]? Extensions { get; set; }
 
-    /// <summary>Gets or sets the maximum number of files allowed.</summary>
-    /// <value>The maximum number of files allowed.</value>
+    /// <summary>
+    /// Gets or sets the maximum number of files allowed.
+    /// </summary>
+    /// <value>
+    /// The maximum number of files allowed.
+    /// </value>
     [Parameter]
     public int MaxFiles { get; set; } = 5;
 
-    /// <summary>Gets or sets a value indicating whether multiple items are allowed.</summary>
-    /// <value>True if multiple items are allowed; otherwise, false.</value>
+    /// <summary>
+    /// Gets or sets a value indicating whether multiple items are allowed.
+    /// </summary>
+    /// <value>
+    /// True if multiple items are allowed; otherwise, false.
+    /// </value>
     [Parameter]
     public bool Multiple { get; set; } = false;
 
@@ -56,9 +69,20 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     public EventCallback<InputFileChangeEventArgs> OnChange { get; set; }
 
     /// <summary>
+    /// Gets or sets the padding value.
+    /// </summary>
+    /// <value>
+    /// The padding value.
+    /// </value>
+    [Parameter]
+    public int Padding { get; set; }
+
+    /// <summary>
     /// Gets or sets the post adornment for the parameter.
     /// </summary>
-    /// <value>The post adornment string.</value>
+    /// <value>
+    /// The post adornment string.
+    /// </value>
     [Parameter]
     public string? PostAdornment { get; set; }
 
@@ -71,8 +95,12 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     [Parameter]
     public CssColor? PostAdornmentColor { get; set; }
 
-    /// <summary>Gets or sets the string to be displayed before the main content.</summary>
-    /// <value>The string to be displayed before the main content.</value>
+    /// <summary>
+    /// Gets or sets the string to be displayed before the main content.
+    /// </summary>
+    /// <value>
+    /// The string to be displayed before the main content.
+    /// </value>
     [Parameter]
     public string? PreAdornment { get; set; }
 
@@ -85,25 +113,33 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     [Parameter]
     public CssColor? PreAdornmentColor { get; set; }
 
-    /// <summary>Gets or sets the padding value.</summary>
-    /// <value>The padding value.</value>
-    [Parameter]
-    public int Padding { get; set; }
-
-    /// <summary>Gets or sets the width of the preview image in pixels.</summary>
-    /// <value>The width of the preview image in pixels.</value>
+    /// <summary>
+    /// Gets or sets the width of the preview image in pixels.
+    /// </summary>
+    /// <value>
+    /// The width of the preview image in pixels.
+    /// </value>
     [Parameter]
     public int PreviewWidthPixels { get; set; } = 150;
 
-    /// <summary>Gets or sets a value indicating whether to show image previews.</summary>
-    /// <value>True if image previews should be shown; otherwise, false.</value>
+    /// <summary>
+    /// Gets or sets a value indicating whether to show image previews.
+    /// </summary>
+    /// <value>
+    /// True if image previews should be shown; otherwise, false.
+    /// </value>
     [Parameter]
     public bool ShowImagePreviews { get; set; }
 
-    /// <summary>Gets or sets the text value with a specified transformation.</summary>
-    /// <value>The text value.</value>
+    /// <summary>
+    /// Gets or sets the text value with a specified transformation.
+    /// </summary>
+    /// <value>
+    /// The text value.
+    /// </value>
     /// <remarks>
-    /// The Text property allows getting and setting the text value with the specified transformation provided by the TextTransform function.
+    /// The Text property allows getting and setting the text value with the specified
+    /// transformation provided by the TextTransform function.
     /// </remarks>
     [Parameter]
     public string Text
@@ -112,9 +148,15 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
         set => _text = value;
     }
 
-    /// <summary>Gets or sets the text transformation function.</summary>
-    /// <value>The function that transforms input text.</value>
-    /// <remarks>The default transformation function converts the input text to uppercase.</remarks>
+    /// <summary>
+    /// Gets or sets the text transformation function.
+    /// </summary>
+    /// <value>
+    /// The function that transforms input text.
+    /// </value>
+    /// <remarks>
+    /// The default transformation function converts the input text to uppercase.
+    /// </remarks>
     [Parameter]
     public Func<string, string> TextTransform { get; set; } = (s) => s.ToUpper();
 
@@ -131,20 +173,28 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     /// Gets the accepted file extensions as a string.
     /// </summary>
     /// <returns>
-    /// A string containing the accepted file extensions separated by commas.
-    /// If no extensions are specified, returns "*.*".
+    /// A string containing the accepted file extensions separated by commas. If no extensions are
+    /// specified, returns "*.*".
     /// </returns>
     protected string ExtensionsAccept => Extensions == null ? "*.*" : string.Join(",", Extensions);
 
-    /// <summary>Gets or sets the list of image data.</summary>
-    /// <value>The list of image data.</value>
+    /// <summary>
+    /// Gets or sets the list of image data.
+    /// </summary>
+    /// <value>
+    /// The list of image data.
+    /// </value>
     protected List<string> ImagesData { get; set; } = [];
 
     /// <summary>
     /// Notifies the change in the input file asynchronously.
     /// </summary>
-    /// <param name="files">An array of NjBrowserFile objects representing the files.</param>
-    /// <returns>A Task representing the asynchronous operation.</returns>
+    /// <param name="files">
+    /// An array of NjBrowserFile objects representing the files.
+    /// </param>
+    /// <returns>
+    /// A Task representing the asynchronous operation.
+    /// </returns>
     async Task INjInputFileJsCallbacks.NotifyChangeAsync(NjBrowserFile[] files)
     {
         for (int i = 0; i < files.Length; i++)
@@ -177,11 +227,21 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     /// <summary>
     /// Opens a read stream for the specified file.
     /// </summary>
-    /// <param name="file">The file to open a read stream for.</param>
-    /// <param name="maxAllowedSize">The maximum allowed size for the stream.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A stream for reading the specified file.</returns>
-    /// <exception cref="InvalidOperationException">Thrown when InputReference is not set.</exception>
+    /// <param name="file">
+    /// The file to open a read stream for.
+    /// </param>
+    /// <param name="maxAllowedSize">
+    /// The maximum allowed size for the stream.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// The cancellation token.
+    /// </param>
+    /// <returns>
+    /// A stream for reading the specified file.
+    /// </returns>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown when InputReference is not set.
+    /// </exception>
     internal Stream OpenReadStream(
         NjBrowserFile file,
         long maxAllowedSize,
@@ -202,8 +262,12 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     /// <summary>
     /// Method called after rendering the component asynchronously.
     /// </summary>
-    /// <param name="firstRender">A boolean value indicating if this is the first render of the component.</param>
-    /// <returns>An asynchronous Task.</returns>
+    /// <param name="firstRender">
+    /// A boolean value indicating if this is the first render of the component.
+    /// </param>
+    /// <returns>
+    /// An asynchronous Task.
+    /// </returns>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -224,20 +288,36 @@ public abstract class NjInputFileBase : NjInputBase<IBrowserFile[]>, INjInputFil
     /// </summary>
     public class FilePreview
     {
-        /// <summary>Gets or sets the extension of a file.</summary>
-        /// <value>The extension of the file.</value>
+        /// <summary>
+        /// Gets or sets the extension of a file.
+        /// </summary>
+        /// <value>
+        /// The extension of the file.
+        /// </value>
         public string? Extension { get; set; }
 
-        /// <summary>Gets or sets the name.</summary>
-        /// <value>The name.</value>
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public string? Name { get; set; }
 
-        /// <summary>Gets or sets the preview URL.</summary>
-        /// <value>The preview URL.</value>
+        /// <summary>
+        /// Gets or sets the preview URL.
+        /// </summary>
+        /// <value>
+        /// The preview URL.
+        /// </value>
         public string? PreviewUrl { get; set; }
 
-        /// <summary>Gets or sets the size of an object.</summary>
-        /// <value>The size of the object.</value>
+        /// <summary>
+        /// Gets or sets the size of an object.
+        /// </summary>
+        /// <value>
+        /// The size of the object.
+        /// </value>
         public long Size { get; set; }
     }
 }
