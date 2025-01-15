@@ -1,0 +1,113 @@
+﻿@typeparam T
+@using System.Linq.Expressions
+@using System.Reflection
+
+<div class="nj-table-container">
+    @if (Configuration.ShowGlobalFilter)
+    {
+        <div class="nj-table-global-filter">
+            <input type="text"
+                   placeholder="Global filter..."
+                   @bind-value="_globalFilter"
+                   @bind-value:event="oninput"
+                   @onchange="@(() => ApplyFiltersAndSort())" />
+        </div>
+    }
+
+    <table class="nj-table">
+        <thead>
+            <tr>
+                @for (int i = 0; i < Configuration.Columns.Count; i++)
+                {
+                    var column = Configuration.Columns[i];
+                    var columnKey = GetColumnKey(column, i);
+
+                    <th style="@(string.IsNullOrEmpty(column.Width) ? "" : $"width: {column.Width}")">
+                        <div class="nj-table-header">
+                            <span>@column.Title</span>
+                            @if (column.Sortable && Configuration.EnableSorting)
+                            {
+                                <button class="nj-table-sort-button" @onclick="@(() => OnSort(columnKey))">
+                                    @if (_sortColumn == columnKey)
+                                    {
+                                        <span class="nj-table-sort-icon">@(_sortAscending ? "↑" : "↓")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="nj-table-sort-icon">↕</span>
+                                    }
+                                </button>
+                            }
+                        </div>
+                        @if (Configuration.ShowColumnFilters && column.Filterable)
+                        {
+                            <div class="nj-table-column-filter">
+                                <input type="text"
+                                       placeholder="@(column.FilterPlaceholder ?? $"Filter {column.Title}...")"
+                                       @bind-value="@_columnFilters[columnKey]"
+                                       @bind-value:event="oninput"
+                                       @onchange="@(() => ApplyFiltersAndSort())" />
+                            </div>
+                        }
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (!GetPagedData().Any())
+            {
+                <tr>
+                    <td colspan="@Configuration.Columns.Count" class="nj-table-no-data">
+                        No data available
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in GetPagedData())
+                {
+                    <tr>
+                        @for (int i = 0; i < Configuration.Columns.Count; i++)
+                        {
+                            var column = Configuration.Columns[i];
+                            <td>
+                                @if (column.CustomComponent != null)
+                                {
+                                    @column.CustomComponent.CreateComponent(item, GetPropertyInfo(column.Property))
+                                }
+                                else
+                                {
+                                    @(GetPropertyValue(item, column.Property)?.ToString())
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (Configuration.EnablePagination)
+    {
+        var totalPages = (int)Math.Ceiling((decimal)_filteredItems.Count() / Configuration.PageSize);
+
+        <div class="nj-table-pagination">
+            <button class="nj-table-page-button"
+                    @onclick="@(() => { if (_currentPage > 1) { _currentPage--; } })"
+                    disabled="@(_currentPage <= 1)">
+                Previous
+            </button>
+
+            <span class="nj-table-page-info">
+                Page @_currentPage of @totalPages
+                (@_filteredItems.Count() items)
+            </span>
+
+            <button class="nj-table-page-button"
+                    @onclick="@(() => { if (_currentPage < totalPages) { _currentPage++; } })"
+                    disabled="@(_currentPage >= totalPages)">
+                Next
+            </button>
+        </div>
+    }
+</div>

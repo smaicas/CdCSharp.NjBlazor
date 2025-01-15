@@ -1,0 +1,80 @@
+﻿.nj-table-container {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.nj-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+    .nj-table th,
+    .nj-table td {
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+    }
+
+    .nj-table thead th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+    }
+
+.nj-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nj-table-sort-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.nj-table-sort-icon {
+    color: #666;
+}
+
+.nj-table-global-filter {
+    margin-bottom: 1rem;
+}
+
+    .nj-table-global-filter input,
+    .nj-table-column-filter input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+.nj-table-column-filter {
+    margin-top: 0.5rem;
+}
+
+.nj-table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.nj-table-page-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+    .nj-table-page-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+.nj-table-page-info {
+    font-size: 0.9rem;
+    color: #666;
+}
