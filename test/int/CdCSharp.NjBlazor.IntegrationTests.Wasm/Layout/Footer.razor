@@ -1,0 +1,57 @@
+﻿@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.DeviceManager.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Media.Components
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<Footer> Loc
+
+<NjDeviceManager @ref="_deviceManager" DeviceWidthChanged="StateHasChanged" />
+
+<footer>
+    <NjGrid JustifyItems="JustifyItemsMode.Center" AlignItems="AlignItemsMode.Center">
+        <NjGridCell Row="1">
+            <NjStack Direction="FlexDirectionMode.Column" Spacing="1">
+                <NjImage Width="50" Height="50"
+                         Src="./njframework512.svg"
+                         AlignSelf="AlignSelfMode.FlexStart"
+                         Alt="Nj Blazor Logo" />
+                <h4 class="logofont" style="color:var(--palette-primary);">NjBlazor</h4>
+                <span>@Loc["Samuel Maícas"]</span>
+                <span>@Loc["@cdcsharp"]</span>
+                <span>@Loc["Spain"]</span>
+                <NjStack Direction="FlexDirectionMode.Row" Spacing="0">
+                    <NjActionButton Icon="@Features.Media.Icons.NjIcons.Custom.Brands.Discord"></NjActionButton>
+                    <NjActionButton Icon="@Features.Media.Icons.NjIcons.Custom.Brands.GitHub"></NjActionButton>
+                </NjStack>
+            </NjStack>
+        </NjGridCell>
+        <NjGridCell Row="@(_deviceManager?.GetByWidth(2, 1) ?? 2)">
+            <NjStack Direction="FlexDirectionMode.Row" Spacing="1" JustifyContent="JustifyContentMode.SpaceBetween">
+                <NjStack Direction="FlexDirectionMode.Column" Spacing="1">
+                    <NjTextButton Text="@Loc["Getting Help"]"></NjTextButton>
+                    <NjTextButton Text="@Loc["Issues"]"></NjTextButton>
+                    <NjTextButton Text="@Loc["Contribution"]"></NjTextButton>
+                </NjStack>
+                <NjStack Direction="FlexDirectionMode.Column"
+                         Spacing="1">
+                    <NjTextButton Text="@Loc["Roadmap"]"></NjTextButton>
+                    <NjTextButton Text="@Loc["Live Development"]"></NjTextButton>
+                    <NjTextButton Text="@Loc["Releases"]"></NjTextButton>
+                </NjStack>
+            </NjStack>
+        </NjGridCell>
+    </NjGrid>
+
+    <NjStack Direction="FlexDirectionMode.Row" class="nj-p-5">
+        <span>@Loc["Copyright © 2024 NjBlazor"]</span>
+    </NjStack>
+
+</footer>
+
+@code {
+    NjDeviceManager? _deviceManager;
+}

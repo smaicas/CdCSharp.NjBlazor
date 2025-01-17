@@ -1,0 +1,117 @@
+﻿@page "/docs"
+
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.DeviceManager.Components
+@using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Sidebar
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spacer
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Tree
+@using CdCSharp.NjBlazor.IntegrationTests.Wasm.Components
+@using Microsoft.Extensions.Localization
+@using System.Reflection
+
+
+@inject IStringLocalizer<Docs> Loc
+
+<NjDeviceManager @ref="_deviceManager" DeviceWidthChanged="StateHasChanged" />
+
+<NjGrid TemplateColumnsSpecific="25% 75%" AlignItems="AlignItemsMode.Start" JustifyItems="JustifyItemsMode.FlexStart">
+    <NjGridCell>
+        <NjSidebar>
+            <NjStack Direction="FlexDirectionMode.Column" Spacing="1">
+                <NjInputText PreAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_search" @bind-Value="_searchValue" />
+                <NjFitContent>
+                    <NjTree Direction="FlexDirectionMode.Column">
+
+                        <NjTreeNode>
+                            <Title><NjTextButton OnClick="()=> ShowComponent(typeof(ShowIconsComponent))" Text="@Loc["Icons"]" /></Title>
+                        </NjTreeNode>
+                        <NjTreeNode>
+                            <Title><NjTextButton OnClick="()=> ShowComponent(typeof(ShowCase.ShowCaseIndex))" Text="@Loc["ShowCase"]" /></Title>
+                        </NjTreeNode>
+
+                        <NjSpacer Vertical="1"></NjSpacer>
+
+                        @foreach (KeyValuePair<char, List<dynamic>> docItemKv in GetDocItems())
+                        {
+                            <NjTreeNode OpenFunction="(n)=> _searchValue.Length > 2 && docItemKv.Value.Any(di=> di.Name.Contains(_searchValue))">
+                                <Title>
+                                    <div class="nj-p-1">
+                                        @docItemKv.Key
+                                    </div>
+                                </Title>
+                                <ChildContent>
+
+                                    @foreach (var docItem in docItemKv.Value)
+                                    {
+                                        <NjTreeNode>
+
+                                            <Title>
+                                                <NjTextButton FormControl="false" 
+                                                    OnClick="()=> ShowComponent((Type)docItem.ComponentType)" 
+                                                    Text="@docItem.Name">
+                                                </NjTextButton>
+                                            </Title>
+
+                                        </NjTreeNode>
+                                    }
+
+                                </ChildContent>
+                            </NjTreeNode>
+                        }
+
+                    </NjTree>
+                </NjFitContent>
+            </NjStack>
+        </NjSidebar>
+    </NjGridCell>
+    <NjGridCell>
+
+        @if (_dynamicComponent != null)
+        {
+            <NjFitContent>
+                <DynamicComponent Type="_dynamicComponent"></DynamicComponent>
+            </NjFitContent>
+        }
+    </NjGridCell>
+</NjGrid>
+
+
+@code {
+    private string _searchValue = string.Empty;
+
+    NjDeviceManager? _deviceManager;
+
+    Type? _dynamicComponent;
+
+    private void ShowComponent(Type type)
+    {
+        _dynamicComponent = type;
+        StateHasChanged();
+    }
+
+    private Dictionary<char, List<dynamic>> GetDocItems()
+    {
+        var docTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.Namespace == "CdCSharp.NjBlazor.IntegrationTests.Wasm.Components.DocComponents" && t.Name != nameof(Components.DocComponents.AllDocs));
+
+        return docTypes.Select(t =>
+        {
+            string name = t.Name.Split("_")
+                                    .Reverse()
+                                    .Skip(1)
+                                    .First();
+            return (dynamic)new
+            {
+                Name = name,
+                ComponentType = t,
+            };
+        }).OrderBy(e => e.Name)
+            .GroupBy(t => (char)t.Name[0])
+            .ToDictionary(g => g.Key, g => g.ToList());
+    }
+}

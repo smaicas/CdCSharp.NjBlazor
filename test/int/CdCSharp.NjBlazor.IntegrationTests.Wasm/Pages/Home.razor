@@ -1,69 +1,102 @@
 ﻿@page "/"
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.DeviceManager.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Media.Icons
+@using Microsoft.Extensions.Localization
 
-<PageTitle>FEATURES</PageTitle>
+@inject IStringLocalizer<Home> Loc
 
-<h2>Main Features</h2>
+<PageTitle>@Loc["Home"]</PageTitle>
 
-<div class="nj-p-5">
-    <NavLink href="/thememode">Theme Mode</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/grid">Grid</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/table">Table</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/audio">Audio</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/colorpicker">ColorPicker</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/containers">Containers</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/tree">Tree</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/controls">Controls</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/forms">Forms</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/localization">Localization</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/media">Media</NavLink>
-</div>
+<NjDeviceManager @ref="_deviceManager" DeviceWidthChanged="StateHasChanged" />
 
-<h2>Other features:</h2>
+<NjGrid TemplateColumns="TemplateColumnsMode.Fit">
 
-<div class="nj-p-5">
-    <NavLink href="/colorspalette">Colors Palette</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/iconslist">Icons List</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/codehighlight">Code Highlight</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/layout">Layout</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/tabs">Tabs</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/stack">Stack</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/devicemanager">Device Manager</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/draggable">Draggable</NavLink>
-</div>
-<div class="nj-p-5">
-    <NavLink href="/markdownrender">Markdown Render</NavLink>
-</div>
+    <NjGridCell Row="1" class="shape1" Position="PositionMode.Relative">
+
+        <NjStack class="nj-h-100vh nj-p-3" Direction="FlexDirectionMode.Column" Spacing="0" AlignItems="AlignItemsMode.Center" JustifyContent="JustifyContentMode.FlexStart">
+            <NjFitContent>
+                <NjStack Direction="FlexDirectionMode.Column" Spacing="0" AlignItems="AlignItemsMode.Start" JustifyContent="JustifyContentMode.FlexStart">
+
+                    <h1>
+                        @Loc["Blazor Component Library"]
+                    </h1>
+
+                    <h4 style="width:100%;text-align:end;">
+                        @Loc["Elevate Your Blazor Experience"]
+                    </h4>
+                    <h4 style="width:100%;text-align:end;">
+                        @Loc["Maximize Productivity"]
+                    </h4>
+                    @*                     <h2>
+                        @Loc["NJ means enjoy!"]
+                    </h2> *@
+
+                    <NjStack class="nj-w-100" Direction="FlexDirectionMode.Row" Spacing="2" AlignItems="AlignItemsMode.End" JustifyContent="JustifyContentMode.FlexEnd">
+
+                        <NjLinkButton FormControl="false" Padding="1" PreAdornment="@NjIcons.Custom.Brands.GitHub"
+                                      Variant="NjLinkButtonVariant.None" />
+
+                        <NjLinkButton FormControl="false" class="get-started" Padding="1" Variant="NjLinkButtonVariant.Flat" Text="@Loc["Get Started"]" />
+
+                    </NjStack>
+
+                </NjStack>
+            </NjFitContent>
+
+
+        </NjStack>
+    </NjGridCell>
+
+    <NjGridCell Row="2" Position="PositionMode.Relative" class="shape2">
+        <NjGrid TemplateColumnsSpecific="50% 50%">
+            <NjGridCell class="nj-p-3" Row="1" Column="@(_deviceManager?.GetByWidth(1, 2) ?? 1)" ColumnSpan="@(_deviceManager?.GetByWidth(2,1) ?? 2)" Position="PositionMode.Relative">
+                @*                 <NjSpacer Vertical="3"></NjSpacer>*@
+                <NjStack class="nj-bg-palette"
+                         Direction="FlexDirectionMode.Column" Spacing="1" AlignItems="AlignItemsMode.End" JustifyContent="JustifyContentMode.Center">
+                    <NjFitContent>
+                        <h1>
+                            @Loc["Why NJ Blazor?"]
+                        </h1>
+                        <h4>
+                            @Loc["Don't reinvent the wheel!"]
+                        </h4>
+                        <p>@Loc["Nj Blazor is built as extension of Blazor Web and Form Components."]</p>
+                        <p>@Loc["All you can do with Blazor you can do it with Nj Blazor."]</p>
+                        <h4>
+                            @Loc["Lightweight and modular!"]
+                        </h4>
+                        <p>@Loc["One of the main objectives is performance."]</p>
+                        <p>@Loc["Nj Blazor opts for a modular design, includes precompiled code generation mechanisms and changes that positively affect performance will always be included in the roadmap."]</p>
+                        <h4>
+                            @Loc["Feature-Rich!"]
+                        </h4>
+                        <p>@Loc["It includes all you need."]</p>
+                        <p>@Loc["Colors, Icons, Theme Modes, Localization, Form components, Search, Code Highlight, Wrappers, Resource Access, File render...other custom components and more incoming."]</p>
+                        <h4>
+                            @Loc["Work in progress!"]
+                        </h4>
+                        <p>@Loc["Nj Blazor came to stay and it will be evolving to be the robust framework you expect."]</p>
+                        <h4>
+                            @Loc["Opensource!"]
+                        </h4>
+                        <p>
+                            @Loc["It is distributed over GPL-3 license. So it can be used for every opensource project. If you desire to make private use of Nj Blazor contact developer."]
+                        </p>
+                    </NjFitContent>
+                </NjStack>
+            </NjGridCell>
+        </NjGrid>
+
+    </NjGridCell>
+
+</NjGrid>
+
+@code {
+    NjDeviceManager? _deviceManager;
+}

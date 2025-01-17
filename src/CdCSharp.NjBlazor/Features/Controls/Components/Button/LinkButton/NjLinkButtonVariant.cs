@@ -5,6 +5,7 @@
 /// </summary>
 public enum NjLinkButtonVariant
 {
+    None,
     Flat,
     Raised,
     Outline,

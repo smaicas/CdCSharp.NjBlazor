@@ -17,112 +17,113 @@ namespace CdCSharp.NjBlazor.Core.SourceGenerators;
 [Generator]
 public class MarkdownToBlazorAllGenerator : IIncrementalGenerator
 {
-    private static readonly string[] AttributeNameMatch = { "MarkdownResourcesAll", "MarkdownResourcesAllAttribute" };
+    private static readonly string[] AttributeNameMatch = ["MarkdownResourcesAll", "MarkdownResourcesAllAttribute"];
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        // Register a syntax provider that filters for classes with the MarkdownResourcesAllAttribute
-        IncrementalValuesProvider<INamedTypeSymbol?> classDeclarations = context.SyntaxProvider
-            .CreateSyntaxProvider(
-                predicate: static (s, _) => IsClassWithMarkdownResourceAllAttribute(s),
-                transform: static (ctx, _) => GetSemanticTarget(ctx))
-            .Where(static m => m is not null);
+        // Get all classes with the MarkdownResourcesAll attribute
+        IncrementalValuesProvider<(ClassDeclarationSyntax ClassDeclaration, string Namespace)> classDeclarations =
+            context.SyntaxProvider
+                .CreateSyntaxProvider(
+                    predicate: static (s, _) => IsSyntaxTargetForGeneration(s),
+                    transform: static (ctx, _) => GetTargetForGeneration(ctx))
+                .Where(static m => m.ClassDeclaration != null);
 
-        // Register an additional files provider for markdown files
-        IncrementalValueProvider<ImmutableArray<(string ResourceName, string Content)>> markdownFiles = context.AdditionalTextsProvider
-            .Where(static file => file.Path.EndsWith(".md", System.StringComparison.OrdinalIgnoreCase))
-            .Select(static (file, ct) => (
-                ResourceName: file.Path,
-                Content: file.GetText(ct)?.ToString().Replace("\"", "\"\"") ?? string.Empty))
-            .Where(static resource => !string.IsNullOrEmpty(resource.Content))
-            .Collect();
+        // Get all .md files from additional files
+        IncrementalValuesProvider<AdditionalText> markdownFiles =
+            context.AdditionalTextsProvider.Where(static file => file.Path.EndsWith(".md"));
 
-        // Collect classes into a single collection
-        IncrementalValueProvider<ImmutableArray<INamedTypeSymbol>> collectedClasses = classDeclarations.Collect();
-
-        // Combine the collected classes with the markdown files
-        IncrementalValueProvider<(ImmutableArray<INamedTypeSymbol> Left, ImmutableArray<(string ResourceName, string Content)> Right)> combined = collectedClasses.Combine(markdownFiles);
+        // Combine the class declarations with markdown files
+        IncrementalValueProvider<(ImmutableArray<(ClassDeclarationSyntax ClassDeclaration, string Namespace)> Classes,
+            ImmutableArray<AdditionalText> MarkdownFiles)> combined =
+            classDeclarations.Collect().Combine(markdownFiles.Collect());
 
         // Register the source output
-        context.RegisterSourceOutput(combined, (spc, source) =>
-        {
-            ImmutableArray<INamedTypeSymbol> classes = source.Left;
-            ImmutableArray<(string ResourceName, string Content)> markdowns = source.Right;
-
-            Execute(classes, markdowns, spc);
-        });
+        context.RegisterSourceOutput(combined,
+            static (spc, source) => Execute(source.Classes, source.MarkdownFiles, spc));
     }
 
-    /// <summary>
-    /// Retrieves the semantic target (class symbol) for generation.
-    /// </summary>
-    /// <param name="context">
-    /// The generator syntax context.
-    /// </param>
-    /// <returns>
-    /// The class symbol if it has the attribute; otherwise, null.
-    /// </returns>
-    private static INamedTypeSymbol? GetSemanticTarget(GeneratorSyntaxContext context)
+    private static bool IsSyntaxTargetForGeneration(SyntaxNode node) =>
+        node is ClassDeclarationSyntax { AttributeLists.Count: > 0 } classDeclaration &&
+        classDeclaration.AttributeLists.Any(attributeList =>
+            attributeList.Attributes.Any(attribute =>
+                IsMarkdownResourceAllAttribute(attribute)));
+
+    private static (ClassDeclarationSyntax ClassDeclaration, string Namespace) GetTargetForGeneration(GeneratorSyntaxContext context)
     {
         ClassDeclarationSyntax classDeclaration = (ClassDeclarationSyntax)context.Node;
-        SemanticModel model = context.SemanticModel;
-        INamedTypeSymbol? classSymbol = model.GetDeclaredSymbol(classDeclaration) as INamedTypeSymbol;
+        string namespaceName = GetNamespaceName(classDeclaration);
+        return (classDeclaration, namespaceName);
+    }
 
-        if (classSymbol == null)
-            return null;
+    private static void Execute(
+        ImmutableArray<(ClassDeclarationSyntax ClassDeclaration, string Namespace)> classes,
+        ImmutableArray<AdditionalText> markdownFiles,
+        SourceProductionContext context)
+    {
+        if (!classes.Any() || !markdownFiles.Any())
+            return;
 
-        // Check if the class has the MarkdownResourcesAllAttribute
-        foreach (AttributeData attribute in classSymbol.GetAttributes())
+        try
         {
-            if (attribute.AttributeClass?.ToDisplayString() == "MarkdownResourcesAllAttribute")
+            string namespaceName = classes[0].Namespace;
+            List<(string ResourceName, string Content)> foundResources = FindAllMdResources(markdownFiles);
+
+            foreach ((string ResourceName, string Content) in foundResources)
             {
-                return classSymbol;
+                string hintName = GetResultClassName(ResourceName);
+                string partialClassCode = GeneratePartialClassCode(namespaceName, ResourceName, Content);
+                context.AddSource($"{hintName}.g.cs", SourceText.From(partialClassCode, Encoding.UTF8));
             }
         }
-
-        return null;
+        catch (Exception ex)
+        {
+            context.ReportDiagnostic(Diagnostic.Create(
+                new DiagnosticDescriptor(
+                    "ERROR1",
+                    "Error generating code",
+                    $"{ex.Message} - {ex.StackTrace}",
+                    "Generation",
+                    DiagnosticSeverity.Error,
+                    true),
+                Location.None));
+        }
     }
 
-    /// <summary>
-    /// Determines whether the given syntax node is a class with the MarkdownResourcesAllAttribute.
-    /// </summary>
-    /// <param name="syntaxNode">
-    /// The syntax node to check.
-    /// </param>
-    /// <returns>
-    /// True if the node is a matching class; otherwise, false.
-    /// </returns>
-    private static bool IsClassWithMarkdownResourceAllAttribute(SyntaxNode syntaxNode)
+    private static string GetResultClassName(string resourceName)
     {
-        return syntaxNode is ClassDeclarationSyntax classDecl &&
-               classDecl.AttributeLists
-                   .SelectMany(al => al.Attributes)
-                   .Any(a => AttributeNameMatch.Contains(a.Name.ToString()));
+        string resultName = resourceName.Split('\\').Last();
+        resultName = resultName.Replace(".", "_").Replace(":", "_").Replace("\\", "_").Replace("/", "_");
+
+        return resultName;
     }
 
-    /// <summary>
-    /// Adds the BuildRenderTree method to the partial class declaration.
-    /// </summary>
-    /// <param name="partialClassDeclaration">
-    /// The partial class declaration syntax.
-    /// </param>
-    /// <param name="resourceContent">
-    /// The content of the markdown resource.
-    /// </param>
-    /// <returns>
-    /// The modified partial class declaration.
-    /// </returns>
-    private ClassDeclarationSyntax AddBuildRenderTreeMethod(ClassDeclarationSyntax partialClassDeclaration, string resourceContent)
+    private static List<(string ResourceName, string Content)> FindAllMdResources(
+        ImmutableArray<AdditionalText> additionalFiles)
     {
-        // Escape backslashes and quotes in the resource content to ensure valid string literals
-        string escapedContent = resourceContent.Replace("\"", "\"\"");
+        List<(string, string)> contents = [];
+        foreach (AdditionalText additionalText in additionalFiles)
+        {
+            if (additionalText.Path.EndsWith(".md"))
+            {
+                SourceText? sourceText = additionalText.GetText();
+                if (sourceText != null)
+                {
+                    contents.Add((additionalText.Path, sourceText.ToString().Replace("\"", "\"\"")));
+                }
+            }
+        }
+        return contents;
+    }
 
-        StatementSyntax methodContent = SyntaxFactory.ParseStatement($"builder.AddContent(0, MarkdownToRenderFragmentParser.ParseText(@\"{escapedContent}\"));");
+    private static ClassDeclarationSyntax AddBuildRenderTreeMethod(
+        ClassDeclarationSyntax partialClassDeclaration,
+        string resourceContent)
+    {
+        StatementSyntax methodContent = SyntaxFactory.ParseStatement(
+            $"builder.AddContent(0, MarkdownToRenderFragmentParser.ParseText(@\"{resourceContent}\"));");
 
-        List<StatementSyntax> blockStatements =
-        [
-            methodContent
-        ];
+        List<StatementSyntax> blockStatements = [methodContent];
 
         MethodDeclarationSyntax buildRenderTreeMethod =
             SyntaxFactory.MethodDeclaration(
@@ -131,83 +132,21 @@ public class MarkdownToBlazorAllGenerator : IIncrementalGenerator
             .WithModifiers(SyntaxFactory.TokenList(
                 SyntaxFactory.Token(SyntaxKind.ProtectedKeyword),
                 SyntaxFactory.Token(SyntaxKind.OverrideKeyword)))
-            .WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
-                SyntaxFactory.Parameter(SyntaxFactory.Identifier("builder"))
-                    .WithType(SyntaxFactory.ParseTypeName("RenderTreeBuilder")))))
+            .WithParameterList(SyntaxFactory.ParameterList(
+                SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
+                    SyntaxFactory.Parameter(SyntaxFactory.Identifier("builder"))
+                        .WithType(SyntaxFactory.ParseTypeName("RenderTreeBuilder")))))
             .WithBody(SyntaxFactory.Block(blockStatements));
 
-        partialClassDeclaration = partialClassDeclaration.AddMembers(buildRenderTreeMethod);
-
-        return partialClassDeclaration;
+        return partialClassDeclaration.AddMembers(buildRenderTreeMethod);
     }
 
-    /// <summary>
-    /// Executes the generation logic for each class with the MarkdownResourcesAllAttribute and
-    /// corresponding markdown files.
-    /// </summary>
-    /// <param name="classes">
-    /// The classes to process.
-    /// </param>
-    /// <param name="markdownFiles">
-    /// The markdown files to process.
-    /// </param>
-    /// <param name="spc">
-    /// The source production context.
-    /// </param>
-    private void Execute(ImmutableArray<INamedTypeSymbol> classes, ImmutableArray<(string ResourceName, string Content)> markdownFiles, SourceProductionContext spc)
+    private static string GeneratePartialClassCode(
+        string namespaceName,
+        string resourceName,
+        string resourceContent)
     {
-        if (classes.IsDefaultOrEmpty || markdownFiles.IsDefaultOrEmpty)
-            return;
-
-        try
-        {
-            // Iterate over each class symbol
-            foreach (ISymbol? classSymbol in classes.Distinct(SymbolEqualityComparer.Default))
-            {
-                // Retrieve the namespace
-                string namespaceName = classSymbol.ContainingNamespace.ToDisplayString();
-
-                // Generate partial classes for each markdown file
-                foreach ((string resourceName, string content) in markdownFiles)
-                {
-                    string hintName = $"{SanitizeResourceName(resourceName)}.g.cs";
-                    string partialClassCode = GeneratePartialClassCode(namespaceName, resourceName, content);
-                    spc.AddSource(hintName, SourceText.From(partialClassCode, Encoding.UTF8));
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            spc.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor(
-                    "ERROR1",
-                    "Error generating code",
-                    $"{ex.Message} - {ex.StackTrace}",
-                    "Generation",
-                    DiagnosticSeverity.Error,
-                    isEnabledByDefault: true),
-                Location.None));
-        }
-    }
-
-    /// <summary>
-    /// Generates the partial class code based on the namespace, resource name, and resource content.
-    /// </summary>
-    /// <param name="namespaceName">
-    /// The namespace of the original class.
-    /// </param>
-    /// <param name="resourceName">
-    /// The name of the markdown resource.
-    /// </param>
-    /// <param name="resourceContent">
-    /// The content of the markdown resource.
-    /// </param>
-    /// <returns>
-    /// The generated partial class code as a string.
-    /// </returns>
-    private string GeneratePartialClassCode(string namespaceName, string resourceName, string resourceContent)
-    {
-        string className = GetClassNameFromResourceName(resourceName);
+        string className = GetResultClassName(resourceName);
 
         ClassDeclarationSyntax partialClassDeclaration = SyntaxFactory.ClassDeclaration(className)
             .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
@@ -222,39 +161,73 @@ public class MarkdownToBlazorAllGenerator : IIncrementalGenerator
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Threading.Tasks")),
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Microsoft.AspNetCore.Components")),
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Microsoft.AspNetCore.Components.Rendering")),
-                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Nj.Blazor.Markdown"))
-            )
-            .AddMembers(SyntaxFactory.FileScopedNamespaceDeclaration(SyntaxFactory.ParseName(namespaceName))
-                .AddMembers(partialClassDeclaration));
+                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("CdCSharp.NjBlazor.Features.Markdown")))
+            .AddMembers(
+                SyntaxFactory.FileScopedNamespaceDeclaration(SyntaxFactory.ParseName(namespaceName))
+                    .AddMembers(partialClassDeclaration));
 
         return compilationUnit.NormalizeWhitespace().ToFullString();
     }
 
-    /// <summary>
-    /// Extracts the class name from the resource name.
-    /// </summary>
-    /// <param name="resourceName">
-    /// The resource file path.
-    /// </param>
-    /// <returns>
-    /// The extracted class name.
-    /// </returns>
-    private string GetClassNameFromResourceName(string resourceName)
+    private static string GetNamespaceName(ClassDeclarationSyntax classDeclaration)
     {
-        return resourceName.Substring(0, resourceName.Length - 3) // Remove ".md"
-                           .Replace(".", "_")
-                           .Split('\\')
-                           .Last();
+        NamespaceDeclarationSyntax namespaceDeclaration = classDeclaration.Ancestors().OfType<NamespaceDeclarationSyntax>().FirstOrDefault();
+        FileScopedNamespaceDeclarationSyntax fileScopedNamespaceDeclaration = classDeclaration.Ancestors().OfType<FileScopedNamespaceDeclarationSyntax>().FirstOrDefault();
+
+        if (namespaceDeclaration != null)
+            return namespaceDeclaration.Name.ToString();
+        else if (fileScopedNamespaceDeclaration != null)
+            return fileScopedNamespaceDeclaration.Name.ToString();
+        else
+            return string.Empty;
     }
 
-    /// <summary>
-    /// Sanitizes the resource name to create a valid class name.
-    /// </summary>
-    /// <param name="resourceName">
-    /// The original resource name.
-    /// </param>
-    /// <returns>
-    /// A sanitized string suitable for use as a class name.
-    /// </returns>
-    private string SanitizeResourceName(string resourceName) => $"{resourceName.Substring(0, resourceName.Length - 3).Replace(".", "_").Replace("\\", "_").Replace(":", "_")}";
+    private static bool IsMarkdownResourceAllAttribute(AttributeSyntax attributeSyntax)
+    {
+        if (attributeSyntax.Name is not IdentifierNameSyntax)
+            return false;
+
+        return AttributeNameMatch.Contains(((IdentifierNameSyntax)attributeSyntax.Name).Identifier.Text);
+    }
+
+    public static AttributeArgumentSyntax GetMarkdownResourceComponentAttributeFirstParameter(
+        ClassDeclarationSyntax classDeclaration)
+    {
+        AttributeSyntax? attribute = classDeclaration.AttributeLists
+            .SelectMany(list => list.Attributes)
+            .FirstOrDefault(attr => AttributeNameMatch.Contains(attr.Name.ToString()));
+
+        if (attribute != null)
+        {
+            AttributeArgumentSyntax? firstArgument = attribute.ArgumentList?.Arguments.FirstOrDefault();
+            if (firstArgument != null)
+                return firstArgument;
+
+            throw new InvalidOperationException("MyAttribute found but no parameters.");
+        }
+
+        throw new InvalidOperationException("MyAttribute not found.");
+    }
+
+    public static AttributeArgumentSyntax? GetAssemblyNameAttributeSecondParameter(
+        ClassDeclarationSyntax classDeclaration)
+    {
+        AttributeSyntax? attribute = classDeclaration.AttributeLists
+            .SelectMany(list => list.Attributes)
+            .FirstOrDefault(attr => AttributeNameMatch.Contains(attr.Name.ToString()));
+
+        if (attribute != null)
+        {
+            if (attribute.ArgumentList?.Arguments.Count < 2)
+                return null;
+
+            AttributeArgumentSyntax? secondArgument = attribute.ArgumentList?.Arguments[1];
+            if (secondArgument != null)
+                return secondArgument;
+
+            throw new InvalidOperationException("MyAttribute found null parameter value");
+        }
+
+        throw new InvalidOperationException("Attribute not found.");
+    }
 }

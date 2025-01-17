@@ -1,0 +1,53 @@
+﻿@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.DeviceManager.Components
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Localization.Components
+@using CdCSharp.NjBlazor.Features.Media.Components
+@using CdCSharp.NjBlazor.Features.ThemeMode.Components.ModeSelector
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<Nav> Loc
+
+<NjDeviceManager @ref="_deviceManager">
+
+    <nav class="nj-w-100" style="background-color:var(--palette-appbarbackground);z-index: 100;position:fixed;">
+
+        <NjStack Inline="true" class="nj-w-100" Direction="@(_deviceManager?.GetByWidth(FlexDirectionMode.Column, FlexDirectionMode.Row) ?? FlexDirectionMode.Row)" Spacing="1" AlignItems="@AlignItemsMode.Center" JustifyContent="@JustifyContentMode.SpaceBetween">
+
+            <NjStack class="nj-px-3" Inline="true" Spacing="2">
+                <NjImage Width="50" Height="50"
+                         Src="./njframework512.svg"
+                         AlignSelf="AlignSelfMode.Center"
+                         Alt="Nj Blazor Logo" />
+
+                <div><h4 class="logofont" style="color:var(--palette-primary);">NjBlazor</h4></div>
+            </NjStack>
+
+            <NjStack Inline="true" Spacing="2">
+                <NjFitContent>
+                    <NjLinkButton Href="/" Text="@Loc["Home"]" />
+                </NjFitContent>
+                <NjFitContent>
+                    <NjLinkButton Href="/start" Text="@Loc["Getting Started"]" />
+                </NjFitContent>
+                <NjFitContent>
+                    <NjLinkButton Href="/docs" Text="@Loc["Docs"]" />
+                </NjFitContent>
+@*                 <NjFitContent>
+                    <NjLinkButton Href="/discover" Text="@Loc["Discover"]" />
+                </NjFitContent> *@
+            </NjStack>
+
+            <NjStack class="nj-p-3" Inline="true" Spacing="3">
+                <NjLocalizationSelect OnlyIcon="@Features.Media.Icons.NjIcons.Materials.MaterialIconsTwoTone.i_language" OnlyIconSize="NjSvgIconSize.Medium" OptionsPosition="@NjDropdownOptionsPosition.BottomLeft" />
+                <NjThemeModeSelector IconSize="NjSvgIconSize.Medium" Variant="NjThemeModeSelectorVariant.Flat" />
+            </NjStack>
+        </NjStack>
+    </nav>
+</NjDeviceManager>
+@code {
+    NjDeviceManager? _deviceManager;
+}

@@ -1,3 +1,111 @@
+@font-face {
+    font-family: 'Outfit';
+    src: url('../font/Outfit-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oxanium';
+    src: url('../font/Oxanium-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Changa';
+    src: url('../font/Changa-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../font/Pacifico-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Limelight';
+    src: url('../font/Limelight-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NovaFlat';
+    src: url('../font/NovaFlat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --nj-logo-font-family: 'Pacifico';
+    --nj-base-font-family: 'Outfit';
+    --nj-heading-font-family: 'Limelight'
+}
+
+.logofont {
+    font-family: var(--nj-logo-font-family);
+    font-weight:bold;
+    font-size:1.5rem;
+}
+
+.get-started {
+    background-color: var(--palette-primary);
+    font-weight:bold;
+    color:#eee;
+}
+
+div.documentation {
+    color: var(--palette-secondary);
+    border: 0;
+    border-bottom: 6px solid var(--palette-secondary);
+    font-weight: 500;
+}
+
+.shape1::before {
+    content: '';
+    position: absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+
+    background: var(--palette-primary);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-clip-path: polygon(100% 50%, 50% 100%, 100% 100%);
+    clip-path: polygon(100% 50%, 50% 100%, 100% 100%);
+}
+.shape2::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--palette-primary);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-clip-path: polygon(50% 0, 0 0, 0 50%);
+    clip-path: polygon(50% 0, 0 0, 0 50%);
+}
+.shape3::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--palette-primary);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*-webkit-clip-path: polygon(50% 50%, 100% 70%, 100% 100%, 0 100%, 0 70%);
+    clip-path: polygon(50% 50%, 100% 70%, 100% 100%, 0 100%, 0 70%);*/
+}
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
@@ -11,11 +119,9 @@
 }
 
 #blazor-error-ui {
-    color-scheme: light only;
     background: lightyellow;
     bottom: 0;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
     display: none;
     left: 0;
     padding: 0.6rem 1.25rem 0.7rem 1.25rem;
@@ -40,49 +146,3 @@
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
-
-.loading-progress {
-    position: relative;
-    display: block;
-    width: 8rem;
-    height: 8rem;
-    margin: 20vh auto 1rem auto;
-}
-
-    .loading-progress circle {
-        fill: none;
-        stroke: #e0e0e0;
-        stroke-width: 0.6rem;
-        transform-origin: 50% 50%;
-        transform: rotate(-90deg);
-    }
-
-        .loading-progress circle:last-child {
-            stroke: #1b6ec2;
-            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
-            transition: stroke-dasharray 0.05s ease-in-out;
-        }
-
-.loading-progress-text {
-    position: absolute;
-    text-align: center;
-    font-weight: bold;
-    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
-}
-
-    .loading-progress-text:after {
-        content: var(--blazor-load-percentage-text, "Loading");
-    }
-
-code {
-    color: #c02d76;
-}
-
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-    color: var(--bs-secondary-color);
-    text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-    text-align: start;
-}

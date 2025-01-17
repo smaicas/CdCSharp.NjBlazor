@@ -4,11 +4,19 @@
 
 @inherits NjComponentBase
 
-<div class="@(AsClass("nj-input-control", DisabledClass, FormControlClass, Class))">
-    <div class="nj-input-control-input-container">
-        @ChildContent
+@if (FormControl)
+{
+    <div class="@(AsClass("nj-input-control", DisabledClass, FormControlClass, Class))">
+        <div class="nj-input-control-input-container">
+            @ChildContent
+        </div>
     </div>
-</div>
+}
+else
+{
+    @ChildContent
+}
+
 
 @code {
 

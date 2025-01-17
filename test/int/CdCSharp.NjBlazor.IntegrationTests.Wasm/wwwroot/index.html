@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CdCSharp.NjBlazor.IntegrationTests.Wasm</title>
     <base href="/" />
-    <link rel="stylesheet" href="css/app.css" />
+
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="njframework512.svg" />
+    <link rel="apple-touch-icon" sizes="192x192" href="njframework192.svg" />
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- Main library css -->
     <link href="_content/CdCSharp.NjBlazor/css/main.css" rel="stylesheet" />
@@ -14,17 +18,14 @@
     <!-- Scoped files from library -->
     <link href="_content/CdCSharp.NjBlazor/CdCSharp.NjBlazor.bundle.scp.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="css/app.css" />
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="CdCSharp.NjBlazor.IntegrationTests.Wasm.styles.css" rel="stylesheet" /> -->
 </head>
 
 <body>
     <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+        <div class="nj-loading"></div>
     </div>
 
     <div id="blazor-error-ui">

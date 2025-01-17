@@ -1,3 +1,14 @@
-﻿@inherits LayoutComponentBase
+﻿@using CdCSharp.NjBlazor.Features.Layout.Components.Layout
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spacer
+
+@inherits LayoutComponentBase
+
+@layout EmptyLayout
+
+<Nav/>
+
+<NjSpacer VerticalRelativeToQuery="nav" />
 
 @Body
+
+<Footer/>
