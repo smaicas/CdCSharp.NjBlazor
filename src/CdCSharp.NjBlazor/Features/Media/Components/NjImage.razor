@@ -4,7 +4,7 @@
 
 @inherits NjComponentBase
 
-<img class="@(AsClass(CssClass, Class))" src="@Src" alt="@Alt" width="@Width" height="@Height" />
+<img @attributes="FilteredAdditionalAttributes" class="@(AsClass(CssClass, Class))" src="@Src" alt="@Alt" width="@Width" height="@Height" />
 
 @code {
 }

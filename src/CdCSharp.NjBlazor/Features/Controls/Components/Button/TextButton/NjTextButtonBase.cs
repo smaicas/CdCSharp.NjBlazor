@@ -3,7 +3,6 @@ using CdCSharp.NjBlazor.Core.Abstractions.Components;
 using CdCSharp.NjBlazor.Core.Css;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.Text;
 
 namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton;
 
@@ -122,25 +121,19 @@ public abstract class NjTextButtonBase : NjControlComponentBase
     /// </value>
     protected string FocusClass => IsFocused ? CssClassReferences.Focus : string.Empty;
 
-    /// <summary>
-    /// Gets the inline style for the element.
-    /// </summary>
-    /// <value>
-    /// The inline style as a string.
-    /// </value>
-    protected string InlineStyle
+    public override Dictionary<string, string> GetInlineStyles()
     {
-        get
+        Dictionary<string, string> styles = base.GetInlineStyles();
+
+        if (BackgroundColor != null)
         {
-            StringBuilder sb = new();
-            if (BackgroundColor != null)
-                sb.Append(
-                    $"background-color: {BackgroundColor.ToString(ColorOutputFormats.Rgba)};"
-                );
-            if (Color != null)
-                sb.Append($"color: {Color.ToString(ColorOutputFormats.Rgba)};");
-            return sb.ToString();
+            styles.TryAdd($"background-color", BackgroundColor.ToString(ColorOutputFormats.Rgba));
         }
+        if (Color != null)
+        {
+            styles.TryAdd($"color", Color.ToString(ColorOutputFormats.Rgba));
+        }
+        return styles;
     }
 
     private bool IsFocused { get; set; }

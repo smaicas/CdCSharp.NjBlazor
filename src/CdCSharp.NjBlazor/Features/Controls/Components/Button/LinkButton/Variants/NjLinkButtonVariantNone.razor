@@ -14,30 +14,31 @@
 
 <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
 
-    <div style="@InlineStyle"
+    <div @attributes="FilteredAdditionalAttributes"
          class="@(AsClass(
         "nj-input",
         "nj-text-button",
         FocusClass,
         CssTools.CalculateCssPaddingClass(Padding),
         Class))">
-        @if (PreAdornment != null)
-        {
-            <div class="nj-adornment-icon nj-input-pre-adornment">
-                <NjSvgIcon Icon="@PreAdornment" Color="@PreAdornmentColor" />
-            </div>
-        }
 
         <NavLink class="nj-input-root" href="@Href" target="@LinkTarget" ActiveClass="@CssClassReferences.Active">
-            @Text
-        </NavLink>
+            @if (PreAdornment != null)
+            {
+                <div class="nj-adornment-icon nj-input-pre-adornment">
+                    <NjSvgIcon Icon="@PreAdornment" Color="@PreAdornmentColor" />
+                </div>
+            }
 
-        @if (PostAdornment != null)
-        {
-            <div class="nj-adornment-icon nj-input-post-adornment">
-                <NjSvgIcon Icon="@PostAdornment" Color="PostAdornmentColor" />
-            </div>
-        }
+            @Text
+
+            @if (PostAdornment != null)
+            {
+                <div class="nj-adornment-icon nj-input-post-adornment">
+                    <NjSvgIcon Icon="@PostAdornment" Color="PostAdornmentColor" />
+                </div>
+            }
+        </NavLink>
     </div>
 
 </NjInputControl>

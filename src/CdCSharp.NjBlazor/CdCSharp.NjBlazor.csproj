@@ -384,8 +384,8 @@
 	  <Folder Include="wwwroot\js\" />
 	</ItemGroup>
 
-	<Target Name="ExecutePowerShellScript" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+	<!--<Target Name="ExecutePowerShellScript" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="pwsh -ExecutionPolicy Bypass -File $(ProjectDir)AfterBuild.ps1 $(Configuration)" />
-	</Target>
+	</Target>-->
 
 </Project>

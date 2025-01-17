@@ -79,8 +79,16 @@ public partial class NjSvgIcon : NjComponentBase
             _ => CssClassReferences.Icon.IconSizeMedium,
         };
 
-    private string InlineStyle =>
-        Color == null ? string.Empty : $"color:{Color.ToString(ColorOutputFormats.Rgba)};";
+    public override Dictionary<string, string> GetInlineStyles()
+    {
+        Dictionary<string, string> styles = base.GetInlineStyles();
+
+        if (Color != null)
+        {
+            styles.TryAdd($"color", Color.ToString(ColorOutputFormats.Rgba));
+        }
+        return styles;
+    }
 
     private bool IsSvg(string value) => value.StartsWith("<");
 }

@@ -10,11 +10,11 @@
 
 @if (IsSvg(Icon))
 {
-    <svg @onclick="OnClick"
+    <svg @attributes="FilteredAdditionalAttributes" 
+        @onclick="OnClick"
          focusable="false"
          viewBox="@ViewBox"
          aria-hidden="true"
-         style="@InlineStyle"
          class="@(AsClass(
             "nj-icon-svg",
              IconSizeClass,

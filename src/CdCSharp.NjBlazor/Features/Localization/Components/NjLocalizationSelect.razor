@@ -9,24 +9,29 @@
 
 @if (OnlyIcon != null)
 {
-    <NjIconDropdown Clearable="false" Icon="@OnlyIcon" IconSize="@OnlyIconSize" OptionsPosition="@OptionsPosition" @bind-Value="@CurrentCulture">
-        @foreach (CultureInfo item in LocalizationSettings.Value.SupportedCulturesAsCultureInfo())
-        {
-            <NjInputDropdownOption Value="@item">@item.DisplayName</NjInputDropdownOption>
-        }
-    </NjIconDropdown>
+    <div @attributes="AdditionalAttributes">
+        <NjIconDropdown Clearable="false" Icon="@OnlyIcon" IconSize="@OnlyIconSize" OptionsPosition="@OptionsPosition" @bind-Value="@CurrentCulture">
+            @foreach (CultureInfo item in LocalizationSettings.Value.SupportedCulturesAsCultureInfo())
+            {
+                <NjInputDropdownOption Value="@item">@item.DisplayName</NjInputDropdownOption>
+            }
+        </NjIconDropdown>
+    </div>
 }
 else
 {
-    <NjInputDropdown Clearable="false" OptionsPosition="@OptionsPosition" @bind-Value="@CurrentCulture">
-        @foreach (CultureInfo item in LocalizationSettings.Value.SupportedCulturesAsCultureInfo())
-        {
-            <NjInputDropdownOption Value="@item">@item.DisplayName</NjInputDropdownOption>
-        }
-    </NjInputDropdown>
+    <div @attributes="AdditionalAttributes">
+        <NjInputDropdown Clearable="false" OptionsPosition="@OptionsPosition" @bind-Value="@CurrentCulture">
+            @foreach (CultureInfo item in LocalizationSettings.Value.SupportedCulturesAsCultureInfo())
+            {
+                <NjInputDropdownOption Value="@item">@item.DisplayName</NjInputDropdownOption>
+            }
+        </NjInputDropdown>
+    </div>
+
 }
 
 @code
 {
-  
+
 }

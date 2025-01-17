@@ -8,10 +8,64 @@ namespace CdCSharp.NjBlazor.Core.Abstractions.Components;
 /// </summary>
 public abstract class NjComponentBase : ComponentBase
 {
+    private readonly string[] IgnoredAdditionalAttributes = ["class"];
     /// <summary>
     /// Gets or sets a collection of additional attributes that will be applied to the created element.
     /// </summary>
-    [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object>? AdditionalAttributes { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AdditionalAttributes { get; set; } = [];
+
+    public IReadOnlyDictionary<string, object>? FilteredAdditionalAttributes => AdditionalAttributes?.Where(aa => !IgnoredAdditionalAttributes.Contains(aa.Key.ToLowerInvariant())).ToDictionary();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+        {
+            Dictionary<string, object> additionals = GetAdditionalAttributes();
+
+            if (additionals.Count > 0)
+            {
+                // Priorize existing AdditionalAttributes
+                AdditionalAttributes = AdditionalAttributes.Concat(additionals)
+                    .GroupBy(pair => pair.Key)
+                    .ToDictionary(group => group.Key, group => group.First().Value);
+
+                StateHasChanged();
+            };
+        }
+
+    }
+
+    private Dictionary<string, object> GetAdditionalAttributes()
+    {
+        AdditionalAttributes ??= [];
+
+        Dictionary<string, string> styles = GetInlineStyles();
+
+        if (styles.Count > 0)
+        {
+            if (AdditionalAttributes.ContainsKey("style"))
+            {
+                string stylesValue = (string)AdditionalAttributes["style"];
+
+                foreach (KeyValuePair<string, string> style in styles)
+                {
+                    if (stylesValue.Contains($"{style.Key}:")) { continue; }
+                    stylesValue.Concat($"{style.Key}:{style.Value}");
+                }
+                AdditionalAttributes["style"] = stylesValue;
+            }
+            else
+            {
+                AdditionalAttributes.Add("style", styles.Select(s => $"{s.Key}:{s.Value}"));
+            }
+        }
+        return [];
+    }
+
+    public virtual Dictionary<string, string> GetInlineStyles() => [];
 
     /// <summary>
     /// Gets the css class from the additional attributes.

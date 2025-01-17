@@ -7,7 +7,7 @@
 @inherits NjActivableTextButtonBase
 
 <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
-    <div style="@InlineStyle"
+    <div @attributes="FilteredAdditionalAttributes"
          class="@(AsClass(
         "nj-input",
         "nj-text-button",
@@ -17,7 +17,6 @@
         CssTools.CalculateCssPaddingClass(Padding),
         Class))">
         <input type="button"
-               style="@InlineStyle"
                class="@(AsClass(
                 "nj-input-root",
                 CssTools.CalculateCssPaddingClass(10)))"

@@ -33,9 +33,9 @@
                     <h4 style="width:100%;text-align:end;">
                         @Loc["Maximize Productivity"]
                     </h4>
-                    @*                     <h2>
+                    <h2>
                         @Loc["NJ means enjoy!"]
-                    </h2> *@
+                    </h2>
 
                     <NjStack class="nj-w-100" Direction="FlexDirectionMode.Row" Spacing="2" AlignItems="AlignItemsMode.End" JustifyContent="JustifyContentMode.FlexEnd">
 
@@ -45,7 +45,10 @@
                                       Variant="NjLinkButtonVariant.None"
                                       Href="https://github.com/smaicas/CdCSharp.NjBlazor" />
 
-                        <NjLinkButton FormControl="false" class="get-started"
+                        <NjLinkButton autofocus
+                                      style="color:black;"
+                                      aria-controls="true"
+                                      FormControl="false" class="get-started"
                                       Padding="1"
                                       Variant="NjLinkButtonVariant.Flat"
                                       Text="@Loc["Get Started"]"
