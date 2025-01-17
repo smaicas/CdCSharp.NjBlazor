@@ -1,4 +1,16 @@
 ﻿@page "/help"
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using Microsoft.Extensions.Localization
+
+@inject IStringLocalizer<Help> Loc
+
+<PageTitle>@Loc["CdCSharp NjBlazor - Help"]</PageTitle>
+
+<div class="nj-p-5">
+    <h2>Contact</h2>
+
+    <p>Join the <NjLinkButton PreAdornment="@Features.Media.Icons.NjIcons.Custom.Brands.Discord" Href="https://discord.gg/zRB676nx2H" Text="@Loc["Discord"]"></NjLinkButton> community</p>
+</div>
 
 @code {
 

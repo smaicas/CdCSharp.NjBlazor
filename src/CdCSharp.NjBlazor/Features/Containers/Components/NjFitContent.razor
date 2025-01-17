@@ -4,7 +4,7 @@
 
 @inherits NjComponentBase
 
-<div class="@(AsClass("nj-fit-content", Class))">
+<div @attributes="FilteredAdditionalAttributes" class="@(AsClass("nj-fit-content", Class))">
     @ChildContent
 </div>
 

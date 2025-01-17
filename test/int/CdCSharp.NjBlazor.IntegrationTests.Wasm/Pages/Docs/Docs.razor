@@ -18,25 +18,118 @@
 
 @inject IStringLocalizer<Docs> Loc
 
+<PageTitle>@Loc["CdCSharp NjBlazor - Documentation"]</PageTitle>
+
 <NjDeviceManager @ref="_deviceManager" DeviceWidthChanged="StateHasChanged" />
 
 <NjGrid TemplateColumnsSpecific="25% 75%" AlignItems="AlignItemsMode.Start" JustifyItems="JustifyItemsMode.FlexStart">
     <NjGridCell>
         <NjSidebar>
             <NjStack Direction="FlexDirectionMode.Column" Spacing="1">
-                <NjInputText PreAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_search" @bind-Value="_searchValue" />
                 <NjFitContent>
                     <NjTree Direction="FlexDirectionMode.Column">
 
                         <NjTreeNode>
-                            <Title><NjTextButton OnClick="()=> ShowComponent(typeof(ShowIconsComponent))" Text="@Loc["Icons"]" /></Title>
+                            <Title>@Loc["Core Components"]</Title>
+                            <ChildContent>
+
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Theme Mode"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageThemeMode))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Localization"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageLocalization))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Icon List"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageIconsList))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Colors Palette"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageColorsPalette))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Device Manager"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageDeviceManager))" /></Title>
+                                </NjTreeNode>
+
+
+                            </ChildContent>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton OnClick="()=> ShowComponent(typeof(ShowCase.ShowCaseIndex))" Text="@Loc["ShowCase"]" /></Title>
+                            <Title>@Loc["Layout Components"]</Title>
+                            <ChildContent>
+
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Containers"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageContainers))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Grid"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageGrid))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Spinner"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageSpinner))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Tabs"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageTabs))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Stack"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageStack))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Tree"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageTree))" /></Title>
+                                </NjTreeNode>
+
+                            </ChildContent>
+                        </NjTreeNode>
+                        <NjTreeNode>
+                            <Title>@Loc["Other Features"]</Title>
+                            <ChildContent>
+
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Code Highlight"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageCodeHighlight))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Draggable"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageDraggable))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Markdown Renderer"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMarkdownRender))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["ColorPicker"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageColorPicker))" /></Title>
+                                </NjTreeNode>
+
+                            </ChildContent>
+                        </NjTreeNode>
+                        <NjTreeNode>
+                            <Title>
+                                <NjTextButton Text="@Loc["Controls"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageControls))" />
+                            </Title>
+                        </NjTreeNode>
+                        <NjTreeNode>
+                            <Title>
+                                <NjTextButton Text="@Loc["Forms"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageForms))" />
+                            </Title>
+                        </NjTreeNode>
+                        <NjTreeNode>
+                            <Title>
+                                <NjTextButton Text="@Loc["Media"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMedia))" />
+                            </Title>
+                        </NjTreeNode>
+                        <NjTreeNode>
+                            <Title>
+                                <NjTextButton Text="@Loc["Audio"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageAudio))" />
+                            </Title>
+                        </NjTreeNode>
+                        <NjTreeNode>
+                            <Title>
+                                <NjTextButton Text="@Loc["Table"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageTable))" />
+                            </Title>
                         </NjTreeNode>
 
-                        <NjSpacer Vertical="1"></NjSpacer>
+                        <NjSpacer Vertical="3"></NjSpacer>
 
+                        <NjTreeNode>
+                            <Title><NjInputText 
+                                Placeholder="@Loc["Glossary"]"
+                                PreAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_search" 
+                                @bind-Value="_searchValue" /></Title>
+                        </NjTreeNode>
                         @foreach (KeyValuePair<char, List<dynamic>> docItemKv in GetDocItems())
                         {
                             <NjTreeNode OpenFunction="(n)=> _searchValue.Length > 2 && docItemKv.Value.Any(di=> di.Name.Contains(_searchValue))">
@@ -52,9 +145,9 @@
                                         <NjTreeNode>
 
                                             <Title>
-                                                <NjTextButton FormControl="false" 
-                                                    OnClick="()=> ShowComponent((Type)docItem.ComponentType)" 
-                                                    Text="@docItem.Name">
+                                                <NjTextButton FormControl="false"
+                                                              OnClick="()=> ShowComponent((Type)docItem.ComponentType)"
+                                                              Text="@docItem.Name">
                                                 </NjTextButton>
                                             </Title>
 
@@ -74,7 +167,7 @@
 
         @if (_dynamicComponent != null)
         {
-            <NjFitContent>
+            <NjFitContent class="nj-p-4">
                 <DynamicComponent Type="_dynamicComponent"></DynamicComponent>
             </NjFitContent>
         }
