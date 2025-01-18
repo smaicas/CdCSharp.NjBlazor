@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <schema id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" msdata:IsDataSet="true" />
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CdCSharp_NjBlazor_-_Documentation">
+    <value>[es] CdCSharp NjBlazor - Documentation</value>
+  </data>
+  <data name="Core_Components">
+    <value>[es] Core Components</value>
+  </data>
+  <data name="CSS_Variables">
+    <value>[es] CSS Variables</value>
+  </data>
+  <data name="Theme_Mode">
+    <value>[es] Theme Mode</value>
+  </data>
+  <data name="Localization">
+    <value>[es] Localization</value>
+  </data>
+  <data name="Icon_List">
+    <value>[es] Icon List</value>
+  </data>
+  <data name="Colors_Palette">
+    <value>[es] Colors Palette</value>
+  </data>
+  <data name="Device_Manager">
+    <value>[es] Device Manager</value>
+  </data>
+  <data name="Layout_Components">
+    <value>[es] Layout Components</value>
+  </data>
+  <data name="Containers">
+    <value>[es] Containers</value>
+  </data>
+  <data name="Spinner">
+    <value>[es] Spinner</value>
+  </data>
+  <data name="Tabs">
+    <value>[es] Tabs</value>
+  </data>
+  <data name="Tree">
+    <value>[es] Tree</value>
+  </data>
+  <data name="Table">
+    <value>[es] Table</value>
+  </data>
+  <data name="Other_Features">
+    <value>[es] Other Features</value>
+  </data>
+  <data name="Code_Highlight">
+    <value>[es] Code Highlight</value>
+  </data>
+  <data name="Draggable">
+    <value>[es] Draggable</value>
+  </data>
+  <data name="Markdown_Renderer">
+    <value>[es] Markdown Renderer</value>
+  </data>
+  <data name="ColorPicker">
+    <value>[es] ColorPicker</value>
+  </data>
+  <data name="Forms">
+    <value>[es] Forms</value>
+  </data>
+  <data name="Buttons">
+    <value>[es] Buttons</value>
+  </data>
+  <data name="Search">
+    <value>[es] Search</value>
+  </data>
+  <data name="Media">
+    <value>[es] Media</value>
+  </data>
+  <data name="Audio">
+    <value>[es] Audio</value>
+  </data>
+  <data name="Glossary">
+    <value>[es] Glossary</value>
+  </data>
+</root>

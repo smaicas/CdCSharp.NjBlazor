@@ -62,4 +62,21 @@ internal static class Commands
 
         await ThemeCssGenerator.BuildVariablesCssFile(rootPath: rootPath, outputFolder: outputFolder, outputFile: outputFile);
     }
+
+    /// <summary>
+    /// Generates resource files from razor files.
+    /// </summary>
+    /// <param name="commandParser">
+    /// The command line pipe used for generation.
+    /// </param>
+    /// <returns>
+    /// A task representing the asynchronous operation.
+    /// </returns>
+    internal static async Task GenerateResourceFiles(CommandLinePipe commandParser)
+    {
+        string? rootPath = commandParser.GetArgumentWithRequiredValueOrDefault("-p", "--path");
+
+        rootPath ??= ".";
+        ResourceFilesGenerator.GenerateResourceFiles(rootPath);
+    }
 }

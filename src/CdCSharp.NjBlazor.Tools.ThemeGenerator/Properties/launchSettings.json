@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Gen Site": {
+      "commandName": "Project",
+      "commandLineArgs": "--resources --path \"C:\\_WORK\\DOTNET\\NJBLAZOR\\Code\\test\\int\\CdCSharp.NjBlazor.IntegrationTests.Wasm\""
+    },
+    "Gen NjBlazor": {
+      "commandName": "Project",
+      "commandLineArgs": "--resources --path \"C:\\_WORK\\DOTNET\\NJBLAZOR\\Code\\src\\CdCSharp.NjBlazor\""
+    }
+  }
+}

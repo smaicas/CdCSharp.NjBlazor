@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <schema id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" msdata:IsDataSet="true" />
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CdCSharp_NjBlazor_-_Home">
+    <value>[es] CdCSharp NjBlazor - Home</value>
+  </data>
+  <data name="Blazor_Component_Library">
+    <value>[es] Blazor Component Library</value>
+  </data>
+  <data name="Elevate_Your_Blazor_Experience">
+    <value>[es] Elevate Your Blazor Experience</value>
+  </data>
+  <data name="Maximize_Productivity">
+    <value>[es] Maximize Productivity</value>
+  </data>
+  <data name="enjoy_">
+    <value>[es] enjoy!</value>
+  </data>
+  <data name="Get_Started">
+    <value>[es] Get Started</value>
+  </data>
+  <data name="Why_NJ_Blazor_">
+    <value>[es] Why NJ Blazor?</value>
+  </data>
+  <data name="Don_t_reinvent_the_wheel_">
+    <value>[es] Don't reinvent the wheel!</value>
+  </data>
+  <data name="Nj_Blazor_is_built_as_extension_of_Blazor_Web_and_Form_Components.">
+    <value>[es] Nj Blazor is built as extension of Blazor Web and Form Components.</value>
+  </data>
+  <data name="All_you_can_do_with_Blazor_you_can_do_it_with_Nj_Blazor.">
+    <value>[es] All you can do with Blazor you can do it with Nj Blazor.</value>
+  </data>
+  <data name="Lightweight_and_modular_">
+    <value>[es] Lightweight and modular!</value>
+  </data>
+  <data name="One_of_the_main_objectives_is_performance.">
+    <value>[es] One of the main objectives is performance.</value>
+  </data>
+  <data name="Nj_Blazor_opts_for_a_modular_design__bundles_and_includes_precompiled_code_generation_mechanisms..._Changes_that_positively_affect_performance_will_always_be_included_in_the_roadmap.">
+    <value>[es] Nj Blazor opts for a modular design, bundles and includes precompiled code generation mechanisms... Changes that positively affect performance will always be included in the roadmap.</value>
+  </data>
+  <data name="Feature-Rich_">
+    <value>[es] Feature-Rich!</value>
+  </data>
+  <data name="It_includes_all_you_need._It_s_thought_for_developers.">
+    <value>[es] It includes all you need. It's thought for developers.</value>
+  </data>
+  <data name="Colors__Icons__Themes...">
+    <value>[es] Colors, Icons, Themes...</value>
+  </data>
+  <data name="Integrated_localization_and_Markdown_render">
+    <value>[es] Integrated localization and Markdown render</value>
+  </data>
+  <data name="Variety_of_customizable_components__grid__tables..._also_form_controls_that_works_with_native_blazor_features.">
+    <value>[es] Variety of customizable components, grid, tables... also form controls that works with native blazor features.</value>
+  </data>
+  <data name="Responsive_management">
+    <value>[es] Responsive management</value>
+  </data>
+  <data name="Work_in_progress_">
+    <value>[es] Work in progress!</value>
+  </data>
+  <data name="Nj_Blazor_will_be_evolving_to_be_the_robust_framework_you_expect.">
+    <value>[es] Nj Blazor will be evolving to be the robust framework you expect.</value>
+  </data>
+  <data name="Opensource_">
+    <value>[es] Opensource!</value>
+  </data>
+  <data name="It_is_distributed_over_GPL-3_license._So_it_can_be_used_for_every_opensource_project._If_you_desire_to_make_private_use_of_Nj_Blazor_">
+    <value>[es] It is distributed over GPL-3 license. So it can be used for every opensource project. If you desire to make private use of Nj Blazor </value>
+  </data>
+</root>

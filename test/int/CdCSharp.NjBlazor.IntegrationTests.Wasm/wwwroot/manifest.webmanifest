@@ -1,6 +1,6 @@
 {
-  "name": "Nj.Blazor.Site.Wasm",
-  "short_name": "Nj.Blazor.Site.Wasm",
+  "name": "CdCSharp NjBlazor Site",
+  "short_name": "CdCSharp NjBlazor Site",
   "id": "./",
   "start_url": "./",
   "display": "standalone",

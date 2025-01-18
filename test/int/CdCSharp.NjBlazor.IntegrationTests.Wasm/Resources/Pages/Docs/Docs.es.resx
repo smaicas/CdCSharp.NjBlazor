@@ -117,7 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Localized string" xml:space="preserve">
-    <value>Localized string</value>
+  <data name="CdCSharp NjBlazor - Documentation" xml:space="preserve">
+    <value>CdCSharp NjBlazor - Documentación</value>
+  </data>
+  <data name="Core Components" xml:space="preserve">
+    <value>Componentes del núcleo</value>
+  </data>
+  <data name="CSS Variables" xml:space="preserve">
+    <value>Variables CSS</value>
+  </data>
+  <data name="Theme Mode" xml:space="preserve">
+    <value>Seleccion de tema</value>
+  </data>
+  <data name="Localization" xml:space="preserve">
+    <value>Localización</value>
+  </data>
+  <data name="Icon List" xml:space="preserve">
+    <value>Lista de iconos</value>
+  </data>
+  <data name="Colors Palette" xml:space="preserve">
+    <value>Paleta de colores</value>
+  </data>
+  <data name="Device Manager" xml:space="preserve">
+    <value>Gestor de dispositivo</value>
+  </data>
+  <data name="Layout Components" xml:space="preserve">
+    <value>Componentes de plantilla</value>
+  </data>
+  <data name="Containers" xml:space="preserve">
+    <value>Contenedores</value>
+  </data>
+  <data name="Spinner" xml:space="preserve">
+    <value>Spinner</value>
+  </data>
+  <data name="Tabs" xml:space="preserve">
+    <value>Pestañás</value>
+  </data>
+  <data name="Tree" xml:space="preserve">
+    <value>Árbol</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Tabla</value>
+  </data>
+  <data name="Other Features" xml:space="preserve">
+    <value>Otras funcionalidades</value>
+  </data>
+  <data name="Code Highlight" xml:space="preserve">
+    <value>Resaltar código</value>
+  </data>
+  <data name="Draggable" xml:space="preserve">
+    <value>Desplazable</value>
+  </data>
+  <data name="Markdown Renderer" xml:space="preserve">
+    <value>Renderizado de Markdown</value>
+  </data>
+  <data name="ColorPicker" xml:space="preserve">
+    <value>Selector de color</value>
+  </data>
+  <data name="Forms" xml:space="preserve">
+    <value>Formularios</value>
+  </data>
+  <data name="Buttons" xml:space="preserve">
+    <value>Botones</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Multimedia</value>
+  </data>
+  <data name="Audio" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="Glossary" xml:space="preserve">
+    <value>Glosario</value>
   </data>
 </root>

@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Localized string" xml:space="preserve">
-    <value>String localizado</value>
+  <data name="Home" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Getting Started" xml:space="preserve">
+    <value>Cómo empezar</value>
+  </data>
+  <data name="Docs" xml:space="preserve">
+    <value>Docs</value>
+  </data>
+  <data name="Discover" xml:space="preserve">
+    <value>Descubre</value>
   </data>
 </root>

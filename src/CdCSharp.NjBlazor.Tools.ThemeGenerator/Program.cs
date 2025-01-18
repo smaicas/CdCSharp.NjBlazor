@@ -15,6 +15,8 @@ try
         { "--variables", VariablesCommand},
         { "--i", IconsCommand},
         { "--icons", IconsCommand},
+        { "--r", ResourcesCommand},
+        { "--resources", ResourcesCommand},
         { "-h", Help.ShowHelp},
         { "--help", Help.ShowHelp},
     };
@@ -57,6 +59,15 @@ async Task IconsCommand(CommandLinePipe commandPipe)
         {"", Commands.GenerateIcons },
         { "-h", Help.ShowIconsHelp},
         { "--help", Help.ShowIconsHelp},
+    };
+
+    await commandPipe.ExecuteFirstAsync(commandParameters);
+}
+async Task ResourcesCommand(CommandLinePipe commandPipe)
+{
+    Dictionary<string, Func<CommandLinePipe, Task>> commandParameters = new()
+    {
+        {"", Commands.GenerateResourceFiles },
     };
 
     await commandPipe.ExecuteFirstAsync(commandParameters);
