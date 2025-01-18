@@ -118,75 +118,75 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CdCSharp NjBlazor - Home" xml:space="preserve">
-    <value>CdCSharp NjBlazor - Inicio</value>
+    <value />
   </data>
   <data name="Blazor Component Library" xml:space="preserve">
-    <value>Librería de Componentes Blazor</value>
+    <value />
   </data>
   <data name="Elevate Your Blazor Experience" xml:space="preserve">
-    <value>Eleva tu experiencia Blazor</value>
+    <value />
   </data>
   <data name="Maximize Productivity" xml:space="preserve">
-    <value>Maximiza la productividad</value>
+    <value />
   </data>
   <data name="enjoy!" xml:space="preserve">
-    <value>enjoy!</value>
+    <value />
   </data>
   <data name="Get Started" xml:space="preserve">
-    <value>Comienza</value>
+    <value />
   </data>
   <data name="Why NJ Blazor?" xml:space="preserve">
-    <value>¿Por qué NJ Blazor?</value>
+    <value />
   </data>
   <data name="Don't reinvent the wheel!" xml:space="preserve">
-    <value>No reinventa la rueda</value>
+    <value />
   </data>
   <data name="Nj Blazor is built as extension of Blazor Web and Form Components." xml:space="preserve">
-    <value>Nj Blazor está construido como una extensión de Blazor Web y Form Components.</value>
+    <value />
   </data>
   <data name="All you can do with Blazor you can do it with Nj Blazor." xml:space="preserve">
-    <value>Todo lo que puedes hacer con Blazor lo puedes hacer con Nj Blazor.</value>
+    <value />
   </data>
   <data name="Lightweight and modular!" xml:space="preserve">
-    <value>Ligero y modular</value>
+    <value />
   </data>
   <data name="One of the main objectives is performance." xml:space="preserve">
-    <value>Uno de los principales objetivos es el rendimiento.</value>
+    <value />
   </data>
   <data name="Nj Blazor opts for a modular design, bundles and includes precompiled code generation mechanisms... Changes that positively affect performance will always be included in the roadmap." xml:space="preserve">
-    <value>Nj Blazor opta por un diseño modular, agrupa e incluye mecanismos de generación de código precompilado... Los cambios que afecten positivamente al rendimiento siempre se incluirán en la hoja de ruta.</value>
+    <value />
   </data>
   <data name="Feature-Rich!" xml:space="preserve">
-    <value>Multitud de características</value>
+    <value />
   </data>
   <data name="It includes all you need. It's thought for developers." xml:space="preserve">
-    <value>Incluye todo lo necesario. Está pensado para desarrolladores.</value>
+    <value />
   </data>
   <data name="Colors, Icons, Themes..." xml:space="preserve">
-    <value>Colores, Iconos, Temas</value>
+    <value />
   </data>
   <data name="Integrated localization and Markdown render" xml:space="preserve">
-    <value>Integrada Localizacion, Renderizado de Markdown...</value>
+    <value />
   </data>
   <data name="Variety of customizable components, grid, tables... also form controls that works with native blazor features." xml:space="preserve">
-    <value>Variedad de componentes personalizables, cuadrícula, tablas... también controles de formulario que funcionan con características nativas de blazor.</value>
+    <value />
   </data>
   <data name="Responsive management" xml:space="preserve">
-    <value>Gestion de responsividad</value>
+    <value />
   </data>
   <data name="Work in progress!" xml:space="preserve">
-    <value>Trabajo en progreso</value>
+    <value />
   </data>
   <data name="Nj Blazor will be evolving to be the robust framework you expect." xml:space="preserve">
-    <value>Nj Blazor evolucionará para convertirse en el marco robusto que usted espera.</value>
+    <value />
   </data>
   <data name="Opensource!" xml:space="preserve">
-    <value>¡Código abierto!</value>
+    <value />
   </data>
   <data name="It is distributed over GPL-3 license. So it can be used for every opensource project. If you desire to make private use of Nj Blazor " xml:space="preserve">
-    <value>Se distribuye bajo licencia GPL-3, por lo que puede utilizarse en cualquier proyecto de código abierto. Si deseas hacer uso privado de Nj Blazor</value>
+    <value />
   </data>
   <data name="contact." xml:space="preserve">
-    <value>contacta.</value>
+    <value />
   </data>
 </root>

@@ -194,8 +194,4 @@
 		<ProjectReference Include="..\..\..\src\CdCSharp.NjBlazor\CdCSharp.NjBlazor.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Resources\" />
-	</ItemGroup>
-
 </Project>
