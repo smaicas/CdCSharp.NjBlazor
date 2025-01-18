@@ -2,7 +2,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/CdCSharp.NjBlazor.svg)](https://www.nuget.org/packages/CdCSharp.NjBlazor)
 [![License](https://img.shields.io/github/license/smaicas/CdCSharp.NjBlazor)](LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/smaicas/CdCSharp.NjBlazor/build.yml?branch=master)](https://github.com/smaicas/CdCSharp.NjBlazor/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/smaicas/CdCSharp.NjBlazor/build.yml?branch=master)](https://github.com/smaicas/CdCSharp.NjBlazor/actions/workflows/dotnet.yml)
 
 🚀 A modern Blazor component library for .NET that simplifies UI development.
 
