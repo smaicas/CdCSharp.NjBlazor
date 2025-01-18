@@ -4,8 +4,23 @@
 @using CdCSharp.NjBlazor.Core
 @using CdCSharp.NjBlazor.Features.Layout.Components.Stack
 @using CdCSharp.NjBlazor.Features.Media.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
 
-<NjStack Direction="FlexDirectionMode.Row">
+<div class="nj-p-5">
+
+    @if (Fragment == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @Fragment
+    }
+
+</div>
+
+<NjStack class="nj-p-5" Direction="FlexDirectionMode.Row">
     @foreach (var iconString in Icons)
     {
         @iconString.Key
@@ -15,6 +30,22 @@
 </NjStack>
 
 @code {
+    RenderFragment? Fragment;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Icon-List.md");
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
     private Dictionary<string, string> Icons = new Dictionary<string, string>();
     protected override void OnAfterRender(bool firstRender)
     {

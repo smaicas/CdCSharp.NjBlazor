@@ -12,26 +12,41 @@
 @using CdCSharp.NjBlazor.Features.Forms.Radio
 @using CdCSharp.NjBlazor.Features.Forms.Range
 @using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+
+<div class="nj-p-5">
+
+    @if (FragmentText == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentText
+    }
+
+</div>
 
 <div class="nj-p-5 nj-w-100">
-    <h2>NJ TEXT</h2>
+    <h2>NjText</h2>
     <NjInputText FormControl="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
     <NjInputText FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
     <NjInputText FormControl="true" Placeholder="Test Place Holder" Title="Test Input Title" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
 
     <NjInputText FormControl="true" @bind-Value="NjTextOutlineValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
     <hr>
-    <h4>Password</h4>
+    <h3>Password</h3>
     <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
     <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
     <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextOutlineValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
     <hr />
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
     <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
     <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
     <hr />
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
     <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
     <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
@@ -61,16 +76,28 @@
                  Label="Filled"
                  Variant="NjInputTextVariant.Filled"
                  PreAdornment="LaBibliaEnVerso" />
-</div>
-<div class="nj-p-5 nj-w-100">
-    <h2>NJ TEXT AREA</h2>
+
+    <h3>TextArea</h3>
     <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
     <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
     <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFilledValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
 </div>
 
+
+<div class="nj-p-5">
+
+    @if (FragmentDropdown == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentDropdown
+    }
+
+</div>
 <div class="nj-p-5 nj-w-100">
-    <h2>NJ DROPDOWN</h2>
+    <h2>NjInputDropdown</h2>
     <span> Value: @NjDropdownValue </span>
     <hr />
 
@@ -122,7 +149,7 @@
         <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
     </NjInputDropdown>
 
-    <h4>POSITIONING</h4>
+    <h3>POSITIONING</h3>
     <h3>Center:</h3>
     <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Center"
                      FormControl="true" Variant="NjInputDropdownVariant.Flat"
@@ -184,7 +211,7 @@
         <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
     </NjInputDropdown>
 
-    <h4>READONLY</h4>
+    <h3>READONLY</h3>
     <NjInputDropdown ReadOnly="true" FormControl="true" Variant="NjInputDropdownVariant.Flat"
                      @bind-Value="NjDropdownValueSet"
                      Label="Selection">
@@ -193,7 +220,7 @@
         <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
     </NjInputDropdown>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputDropdown Disabled="true" FormControl="true" Variant="NjInputDropdownVariant.Flat"
                      @bind-Value="NjDropdownValueSet"
                      Label="Selection">
@@ -204,35 +231,61 @@
 
 </div>
 
+
 <div class="nj-p-5">
-    <h2>NJ CHECKBOX</h2>
+
+    @if (FragmentCheckbox == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentCheckbox
+    }
+
+</div>
+<div class="nj-p-5">
+    <h2>NjCheckbox</h2>
     <NjInputCheckbox @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Small"></NjInputCheckbox>
     <NjInputCheckbox @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Medium"></NjInputCheckbox>
     <NjInputCheckbox @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Large"></NjInputCheckbox>
     <NjInputCheckbox TriState="true" @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Large">TriState</NjInputCheckbox>
 
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputCheckbox ReadOnly="true" TriState="true" @bind-Value="NjCheckboxValueSet" Size="NjInputCheckboxSize.Large">TriState</NjInputCheckbox>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputCheckbox Disabled="true" TriState="true" @bind-Value="NjCheckboxValueSet" Size="NjInputCheckboxSize.Large">TriState</NjInputCheckbox>
 
 </div>
 
+
 <div class="nj-p-5">
-    <h2>NJ RADIO BUTTON</h2>
+
+    @if (FragmentRadio == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentRadio
+    }
+
+</div>
+<div class="nj-p-5">
+    <h2>NjInputRadio</h2>
     <NjInputRadio @bind-Value="NjRadioButtonValue" Variant="NjInputRadioVariant.Classic">
         <NjInputRadioOption Value="Yes">Yes</NjInputRadioOption>
         <NjInputRadioOption Value="No"><div style="color:red">No</div></NjInputRadioOption>
     </NjInputRadio>
 
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputRadio ReadOnly="true" @bind-Value="NjRadioButtonValueSet" Variant="NjInputRadioVariant.Classic">
         <NjInputRadioOption Value="Yes">Yes</NjInputRadioOption>
         <NjInputRadioOption Value="No"><div style="color:red">No</div></NjInputRadioOption>
     </NjInputRadio>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputRadio Disabled="true" @bind-Value="NjRadioButtonValueSet" Variant="NjInputRadioVariant.Classic">
         <NjInputRadioOption Value="Yes">Yes</NjInputRadioOption>
         <NjInputRadioOption Value="No"><div style="color:red">No</div></NjInputRadioOption>
@@ -240,19 +293,32 @@
 
 </div>
 
+
 <div class="nj-p-5">
-    <h2>NJ DATETIME</h2>
+
+    @if (FragmentDate == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentDate
+    }
+
+</div>
+<div class="nj-p-5">
+    <h2>NjDateTime</h2>
     @(NjDateTimeValue.ToString())
     <NjInputDate FormControl="true" Type="InputDateType.Date" @bind-Value="NjDateTimeValue"></NjInputDate>
     <NjInputDate FormControl="true" Type="InputDateType.Date" Variant="NjInputDateVariant.Filled" @bind-Value="NjDateTimeValue"></NjInputDate>
     <NjInputDate FormControl="true" Type="InputDateType.Date" Variant="NjInputDateVariant.Outline" @bind-Value="NjDateTimeValue"></NjInputDate>
-    <h4>Datetime format: MMMM</h4>
+    <h3>Datetime format: MMMM</h3>
     <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="MMMM" @bind-Value="NjDateTimeValue"></NjInputDate>
-    <h4>Datetime format: yyyy-MM-dd</h4>
+    <h3>Datetime format: yyyy-MM-dd</h3>
     <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="yyyy-MM-dd" @bind-Value="NjDateTimeValue"></NjInputDate>
-    <h4>Datetime format: hh:mm:ss</h4>
+    <h3>Datetime format: hh:mm:ss</h3>
     <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="hh:mm:ss" @bind-Value="NjDateTimeValue"></NjInputDate>
-    <h4>Datetime format: ddd, MMM dd yyyy HH:mm:ss GMT</h4>
+    <h3>Datetime format: ddd, MMM dd yyyy HH:mm:ss GMT</h3>
     <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="ddd, MMM dd yyyy HH:mm:ss GMT" @bind-Value="NjDateTimeValue"></NjInputDate>
     <h2>NJ DATETIMELOCAL</h2>
     <NjInputDate FormControl="true" Type="InputDateType.DateTimeLocal" @bind-Value="NjDateTimeLocalValue"></NjInputDate>
@@ -261,61 +327,113 @@
     <h2>NJ TIME</h2>
     <NjInputDate FormControl="true" Type="InputDateType.Time" @bind-Value="NjTimeValue"></NjInputDate>
 
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputDate FormControl="true" ReadOnly="true" Type="InputDateType.Date" @bind-Value="NjDateTimeValueSet"></NjInputDate>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputDate FormControl="true" Disabled="true" Type="InputDateType.Date" @bind-Value="NjDateTimeValueSet"></NjInputDate>
 </div>
 
+
 <div class="nj-p-5">
-    <h2>NJ COLORPICKER</h2>
+
+    @if (FragmentColor == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentColor
+    }
+
+</div>
+<div class="nj-p-5">
+    <h2>NjInputColor</h2>
     <NjInputColor @bind-Value="NjColorValue"></NjInputColor>
 
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputColor ReadOnly="true" @bind-Value="NjColorValueSet"></NjInputColor>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputColor Disabled="true" @bind-Value="NjColorValueSet"></NjInputColor>
 
 </div>
 
+
 <div class="nj-p-5">
-    <h2>NJ NUMBER</h2>
+
+    @if (FragmentNumber == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentNumber
+    }
+
+</div>
+<div class="nj-p-5">
+    <h2>NjInputNumber</h2>
     @NjNumberValue
 
     <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Flat"></NjInputNumber>
     <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Filled"></NjInputNumber>
     <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Outline"></NjInputNumber>
 
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputNumber ReadOnly="true" @bind-Value="NjNumberValueSet" Label="TestNumber"></NjInputNumber>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputNumber Disabled="true" @bind-Value="NjNumberValueSet" Label="TestNumber"></NjInputNumber>
 
 </div>
 
+
 <div class="nj-p-5">
-    <h2>NJ RANGE</h2>
+
+    @if (FragmentRange == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentRange
+    }
+
+</div>
+<div class="nj-p-5">
+    <h2>NjInputRange</h2>
     <NjInputRange @bind-Value="NjRangeValue" Label="TestRange"></NjInputRange>
 
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputRange ReadOnly="true" @bind-Value="NjRangeValueSet" Label="TestRange"></NjInputRange>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputRange Disabled="true" @bind-Value="NjRangeValueSet" Label="TestRange"></NjInputRange>
 
 </div>
 
+
 <div class="nj-p-5">
-    <h2>NJ FILE -> Con previu po favo</h2>
+
+    @if (FragmentFile == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @FragmentFile
+    }
+
+</div>
+<div class="nj-p-5">
+    <h2>NjInputFile</h2>
 
     <NjInputFile FormControl="true" Variant="NjInputFileVariant.Flat" Text="File here" @bind-Value="NjFileValue" OnChange="FileChanged"></NjInputFile>
 
     <NjInputFile FormControl="true" Variant="NjInputFileVariant.Raised" Text="File here" @bind-Value="NjFileValue" OnChange="FileChanged"></NjInputFile>
 
-    <h4>Multiple</h4>
+    <h3>Multiple</h3>
     <NjInputFile Text="File Multiple here" Multiple="true" @bind-Value="NjFileValue"></NjInputFile>
     @if (null != NjFileValue)
     {
@@ -323,7 +441,7 @@
     }
     <span>@FileContent</span>
 
-    <h4>Image input</h4>
+    <h3>Image input</h3>
     <NjInputFile Text="Image here" @bind-Value="NjFileValue"
                  Extensions="@(new string[]{".jpg", ".webp", ".png"})"
                  ShowImagePreviews="true"
@@ -336,22 +454,61 @@
                  Variant="NjInputFileVariant.Raised">
     </NjInputFile>
 
-    <h4>Readonly</h4>
+    <h3>Readonly</h3>
     <NjInputFile ReadOnly="true" Text="Image here" @bind-Value="NjFileValue"
                  Extensions="@(new string[]{".jpg", ".webp", ".png"})"
                  ShowImagePreviews="true">
     </NjInputFile>
 
-    <h4>Disabled</h4>
+    <h3>Disabled</h3>
     <NjInputFile Disabled="true" Text="Image here" @bind-Value="NjFileValue"
                  Extensions="@(new string[]{".jpg", ".webp", ".png"})"
                  ShowImagePreviews="true">
     </NjInputFile>
 
-
 </div>
 
 @code {
+
+    RenderFragment? FragmentText;
+    RenderFragment? FragmentDropdown;
+    RenderFragment? FragmentCheckbox;
+    RenderFragment? FragmentRadio;
+    RenderFragment? FragmentDate;
+    RenderFragment? FragmentColor;
+    RenderFragment? FragmentNumber;
+    RenderFragment? FragmentRange;
+    RenderFragment? FragmentFile;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string textMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputText.md");
+            string dropdownMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-Dropdown.md");
+            string checkMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-Checkbox.md");
+            string radioMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-RadioButton.md");
+            string dateMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-DateTime.md");
+            string colorMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputColor.md");
+            string numberMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputNumber.md");
+            string rangeMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputRange.md");
+            string fileMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputFile.md");
+
+            FragmentText = MarkdownToRenderFragmentParser.ParseText(textMd);
+            FragmentDropdown = MarkdownToRenderFragmentParser.ParseText(dropdownMd);
+            FragmentCheckbox = MarkdownToRenderFragmentParser.ParseText(checkMd);
+            FragmentRadio = MarkdownToRenderFragmentParser.ParseText(radioMd);
+            FragmentDate = MarkdownToRenderFragmentParser.ParseText(dateMd);
+            FragmentColor = MarkdownToRenderFragmentParser.ParseText(colorMd);
+            FragmentNumber = MarkdownToRenderFragmentParser.ParseText(numberMd);
+            FragmentRange = MarkdownToRenderFragmentParser.ParseText(rangeMd);
+            FragmentFile = MarkdownToRenderFragmentParser.ParseText(fileMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
 
     public static string[] NjDropdownItems = ["Item1", "Item2", "Item3"];
 

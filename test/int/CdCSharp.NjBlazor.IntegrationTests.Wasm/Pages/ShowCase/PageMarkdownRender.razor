@@ -1,10 +1,41 @@
 ﻿@page "/markdownrender"
 @using CdCSharp.NjBlazor.Features.Markdown
 @using CdCSharp.NjBlazor.Features.ResourceAccess.Components.FileRenderer
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+
+<div class="nj-p-5">
+
+    @if (Fragment == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @Fragment
+    }
+
+</div>
 
 <NjFileRenderer FileAssets="@FileAssets" RenderFragmentFunction="(s)=> MarkdownToRenderFragmentParser.ParseText(s)"></NjFileRenderer>
 
 @code {
+    RenderFragment? Fragment;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Markdown-Renderer.md");
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
     List<NjFileRendererResource> FileAssets = new()
     {
         new()
@@ -18,7 +49,4 @@
             ResourcePath = "EmbeddedRes/Codeblock.md"
         }
     };
-}
-@code {
-
 }

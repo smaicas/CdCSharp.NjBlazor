@@ -1,9 +1,26 @@
 ﻿@page "/tree"
 @using CdCSharp.NjBlazor.Core
 @using CdCSharp.NjBlazor.Features.Layout.Components.Tree
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
 
-<h1>Accordion Column</h1>
-<NjTree>
+<div class="nj-p-5">
+
+    @if (Fragment == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @Fragment
+    }
+
+</div>
+
+<h2>NjTree</h2>
+
+<h3>FlexDirectionMode.Column</h3>
+<NjTree Direction="FlexDirectionMode.Column">
     <NjTreeNode>
         <Title><h2>Title 1</h2></Title>
         <ChildContent>
@@ -34,8 +51,8 @@
         </ChildContent>
     </NjTreeNode>
 </NjTree>
-<hr />
-<h1>Accordion Row</h1>
+
+<h3>FlexDirectionMode.Row</h3>
 <NjTree Direction="FlexDirectionMode.Row">
     <NjTreeNode>
         <Title><h2>Title 1</h2></Title>
@@ -70,5 +87,19 @@
 
 
 @code {
+    RenderFragment? Fragment;
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Tree.md");
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
 }

@@ -6,7 +6,7 @@
 
 @if (FormControl)
 {
-    <div class="@(AsClass("nj-input-control", DisabledClass, FormControlClass, Class))">
+    <div @attributes="FilteredAdditionalAttributes" class="@(AsClass("nj-input-control nj-input-control-formcontrol", DisabledClass, FormControlClass, Class))">
         <div class="nj-input-control-input-container">
             @ChildContent
         </div>
@@ -14,7 +14,11 @@
 }
 else
 {
-    @ChildContent
+    <div @attributes="FilteredAdditionalAttributes" class="@(AsClass("nj-input-control", DisabledClass, FormControlClass, Class))">
+        <div class="nj-input-control-input-container">
+            @ChildContent
+        </div>
+    </div>
 }
 
 

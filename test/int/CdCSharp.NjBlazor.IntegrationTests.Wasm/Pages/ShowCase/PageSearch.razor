@@ -1,0 +1,114 @@
+﻿@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+
+<div class="nj-p-5">
+
+    @if (Fragment == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @Fragment
+    }
+
+</div>
+
+<div class="nj-p-5">
+    <h2>NjSearch</h2>
+    <NjSearch SearchFunction="(p, search)=>p.Name.Contains(search)"
+              SourceData="@Source"
+              DynamicSearch="false"
+              TSearchObject="ProductSample"
+              DisplayFunction="@((p)=>$"{p.Name} - {p.Price}")"
+              Placeholder="Busca"
+              PreAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_search"
+              PostAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_search"
+              PreAdornmentColor="@NjColors.Blue.Darken1"
+              PostAdornmentColor="@NjColors.DarkSeaGreen.Darken2">
+    </NjSearch>
+
+    <h3>NjSearch Only Contains</h3>
+    <NjSearch SearchFunction="(p, search)=>p.Name.Contains(search)"
+              SourceData="@Source"
+              DynamicSearch="true"
+              TSearchObject="ProductSample"
+              DisplayFunction="@((p)=>$"{p.Name} - {p.Price}")"
+              Placeholder="Busca">
+    </NjSearch>
+
+
+    <h3>NjSearch Contains + LevenshteinDistance</h3>
+    <NjSearch SearchFunction="(p, search)=>
+        p.Name.Contains(search)
+        || SearchFilterAlgorithms.LevenshteinDistance(p.Name, search) <= MaxAllowedDistance(search)"
+              SourceData="@Source"
+              DynamicSearch="true"
+              TSearchObject="ProductSample"
+              DisplayFunction="@((p)=>$"{p.Name} - {p.Price}")"
+              Placeholder="Busca">
+    </NjSearch>
+
+    <h3>NjSearch Contains + Fuzzy</h3>
+    <NjSearch SearchFunction="(p, search)=>
+                            p.Name.Contains(search)
+                            || SearchFilterAlgorithms.IsFuzzyMatch(p.Name, search)"
+              SourceData="@Source"
+              DynamicSearch="true"
+              TSearchObject="ProductSample"
+              DisplayFunction="@((p)=>$"{p.Name} - {p.Price}")"
+              Placeholder="Busca">
+    </NjSearch>
+
+    <h3>NjSearch Contains + LevenshteinDistance + Fuzzy</h3>
+    <NjSearch SearchFunction="(p, search)=>
+        p.Name.Contains(search)
+        || SearchFilterAlgorithms.IsFuzzyMatch(p.Name, search)
+        || SearchFilterAlgorithms.LevenshteinDistance(p.Name, search) <= MaxAllowedDistance(search)"
+              SourceData="@Source"
+              DynamicSearch="true"
+              TSearchObject="ProductSample"
+              DisplayFunction="@((p)=>$"{p.Name} - {p.Price}")"
+              Placeholder="Busca">
+    </NjSearch>
+</div>
+
+@code {
+    RenderFragment? Fragment;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Search.md");
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private int MaxAllowedDistance(string search)
+    {
+        int[] distanceLookup = { 1, 2, 3 };
+        return Math.Min(distanceLookup.Length - 1, (search.Length - 1) / 10);
+    }
+    private List<ProductSample> Source = new List<ProductSample>()
+    {
+        new(){Name="Product 1", Price=15.2f},
+        new(){Name="Product 2", Price=15.2f},
+        new(){Name="Product 3", Price=15.2f},
+        new(){Name="Product 4", Price=15.2f},
+        new(){Name="Product 5", Price=15.2f}
+    };
+
+    public class ProductSample
+    {
+        public string Name { get; set; }
+        public float Price { get; set; }
+    }
+}

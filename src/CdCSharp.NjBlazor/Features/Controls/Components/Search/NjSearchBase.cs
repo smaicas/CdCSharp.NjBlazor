@@ -168,7 +168,7 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
     /// </value>
     [Parameter]
     [EditorRequired]
-    public Func<TSearchObject, string, bool> SearchFuntion { get; set; } = default!;
+    public Func<TSearchObject, string, bool> SearchFunction { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the sorting function used to sort the search object.
@@ -333,7 +333,7 @@ public abstract class NjSearchBase<TSearchObject> : NjControlComponentBase
         if (SearchString.Length < MinCharacters)
             return;
 
-        IEnumerable<TSearchObject> filter = SourceData.Where(p => SearchFuntion(p, SearchString));
+        IEnumerable<TSearchObject> filter = SourceData.Where(p => SearchFunction(p, SearchString));
         if (SortingFuntion != null)
             filter = filter.OrderBy(SortingFuntion);
         FilteredSource = filter.ToList();

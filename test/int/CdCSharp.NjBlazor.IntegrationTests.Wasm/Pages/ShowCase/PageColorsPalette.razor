@@ -4,6 +4,21 @@
 @using CdCSharp.NjBlazor.Core
 @using CdCSharp.NjBlazor.Core.Css
 @using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+
+<div class="nj-p-5">
+
+    @if (Fragment == null)
+    {
+        <NjSpinner Variant="NjSpinnerVariant.Default" />
+    }
+    else
+    {
+        @Fragment
+    }
+
+</div>
 
 <style>
     .color-block{
@@ -43,5 +58,19 @@
 </NjStack>
 
 @code {
+    RenderFragment? Fragment;
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Colors-Palette.md");
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
 }

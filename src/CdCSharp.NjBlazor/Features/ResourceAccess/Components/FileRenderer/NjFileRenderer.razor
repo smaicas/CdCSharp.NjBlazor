@@ -28,7 +28,7 @@
                           MinCharacters="3"
                           SortingFuntion="f=> f.DisplayName"
                           SourceData="@files"
-                          SearchFuntion="(f, search)=>
+                          SearchFunction="(f, search)=>
                             f.DisplayName != null && (f.DisplayName.Contains(search)
                             || SearchFilterAlgorithms.IsFuzzyMatch(f.DisplayName, search,3))"
                           OptionsPosition="NjSearchOptionsPosition.Bottom"
