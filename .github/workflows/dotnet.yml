@@ -13,17 +13,31 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
     - name: Authenticate to Azure Artifacts
       run: |
-          echo "Adding Azure Artifacts source"
-          dotnet nuget add source "https://pkgs.dev.azure.com/smaicas/_packaging/smaicas-nupkg/nuget/v3/index.json" --name "AzureDevOps"  --username "cdcsharp.dev@gmail.com" --password "${{ secrets.AZURE_DEVOPS_PAT }}" --store-password-in-clear-text
+        echo "Adding Azure Artifacts source"
+        dotnet nuget add source "https://pkgs.dev.azure.com/smaicas/_packaging/smaicas-nupkg/nuget/v3/index.json" \
+          --name "AzureDevOps" \
+          --username "cdcsharp.dev@gmail.com" \
+          --password "${{ secrets.AZURE_DEVOPS_PAT }}" \
+          --store-password-in-clear-text
+
     - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+    - name: Test UnitTests projects
+      run: |
+        echo "Running tests for UnitTests projects"
+        find . -type f -name "*UnitTests*.csproj" | while read project; do
+          echo "Testing project: $project"
+          dotnet test "$project" --no-build --verbosity normal
+        done
