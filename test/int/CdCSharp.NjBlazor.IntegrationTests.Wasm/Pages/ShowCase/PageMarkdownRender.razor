@@ -2,8 +2,6 @@
 @using CdCSharp.NjBlazor.Features.Markdown
 @using CdCSharp.NjBlazor.Features.ResourceAccess.Components.FileRenderer
 
-<NavLink href="/">Return Index</NavLink>
-
 <NjFileRenderer FileAssets="@FileAssets" RenderFragmentFunction="(s)=> MarkdownToRenderFragmentParser.ParseText(s)"></NjFileRenderer>
 
 @code {

@@ -5,27 +5,39 @@
 @using CdCSharp.NjBlazor.Core.Css
 @using CdCSharp.NjBlazor.Features.Layout.Components.Stack
 
-<NavLink href="/">Return Index</NavLink>
+<style>
+    .color-block{
+        min-height:10em;
+    }
+
+    .shadowed-text {
+        color: white;
+        text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+    }
+</style>
+
+
 
 <NjStack Direction="FlexDirectionMode.Row">
     @foreach (Type colorType in typeof(NjColors).GetNestedTypes())
     {
         PropertyInfo[] colorProperties = colorType.GetProperties(BindingFlags.Public | BindingFlags.Static);
 
-        <div>
-            <NjStack Spacing="0">
-                <h3>@colorType.Name</h3>
+        <div class="nj-p-2">
 
+            <h3>@colorType.Name</h3>
+            <NjStack Spacing="0">
                 @foreach (PropertyInfo colorProperty in colorProperties)
                 {
                     CssColor? color = (CssColor)colorProperty.GetValue(null);
                     string rgbaColor = color.ToString();
                     string propertyName = colorProperty.Name;
-                    <div class="color-block" style="background-color: @rgbaColor;">
+                    <div class="color-block shadowed-text" style="background-color: @rgbaColor;">
                         @propertyName
                     </div>
                 }
             </NjStack>
+
         </div>
     }
 </NjStack>
