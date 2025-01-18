@@ -21,7 +21,7 @@
 dotnet add package CdCSharp.NjBlazor
 ```
 
-## 🚀 Quick Startd 
+## 🚀 Quick Start
 
 1. Configure the services in `Program.cs`:
 
