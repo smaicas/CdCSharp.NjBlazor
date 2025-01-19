@@ -24,7 +24,7 @@
 
 <NjGrid TemplateColumnsSpecific="25% 75%" AlignItems="AlignItemsMode.Start" JustifyItems="JustifyItemsMode.FlexStart">
     <NjGridCell>
-        <NjSidebar>
+        <NjSidebar class="nj-position-fixed">
             <NjStack Direction="FlexDirectionMode.Column" Spacing="1">
                 <NjFitContent>
                     <NjTree Direction="FlexDirectionMode.Column">
@@ -96,35 +96,64 @@
                             </ChildContent>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title>
-                                <NjTextButton Text="@Loc["Forms"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageForms))" />
-                            </Title>
+                            <Title>@Loc["Forms"]</Title>
+                            <ChildContent>
+                                <NjTreeNode>
+                                    <Title>
+                                        <NjTextButton Text="@Loc["Forms"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageForms))" />
+                                    </Title>
+                                </NjTreeNode>
+                            </ChildContent>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title>
-                                <NjTextButton Text="@Loc["Buttons"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageButtons))" />
-                            </Title>
+                            <Title>@Loc["Buttons"]</Title>
+                            <ChildContent>
+                                <NjTreeNode>
+                                    <Title>
+                                        <NjTextButton Text="@Loc["Buttons"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageButtons))" />
+                                    </Title>
+                                </NjTreeNode>
+                            </ChildContent>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title>
-                                <NjTextButton Text="@Loc["Search"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageSearch))" />
-                            </Title>
+                            <Title>@Loc["Search"]</Title>
+                            <ChildContent>
+                                <NjTreeNode>
+                                    <Title>
+                                        <NjTextButton Text="@Loc["Search"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageSearch))" />
+                                    </Title>
+                                </NjTreeNode>
+                            </ChildContent>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title>
-                                <NjTextButton Text="@Loc["Search"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMeter))" />
-                            </Title>
+                            <Title>@Loc["Meter"]</Title>
+                            <ChildContent>
+                                <NjTreeNode>
+                                    <Title>
+                                        <NjTextButton Text="@Loc["Meter"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMeter))" />
+                                    </Title>
+                                </NjTreeNode>
+                            </ChildContent>
                         </NjTreeNode>
-
                         <NjTreeNode>
-                            <Title>
-                                <NjTextButton Text="@Loc["Media"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMedia))" />
-                            </Title>
+                            <Title>@Loc["Media"]</Title>
+                            <ChildContent>
+                                <NjTreeNode>
+                                    <Title>
+                                        <NjTextButton Text="@Loc["Media"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMedia))" />
+                                    </Title>
+                                </NjTreeNode>
+                            </ChildContent>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title>
-                                <NjTextButton Text="@Loc["Audio"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageAudio))" />
-                            </Title>
+                            <Title>@Loc["Audio"]</Title>
+                            <ChildContent>
+                                <NjTreeNode>
+                                    <Title>
+                                        <NjTextButton Text="@Loc["Audio"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageAudio))" />
+                                    </Title>
+                                </NjTreeNode>
+                            </ChildContent>
                         </NjTreeNode>
 
                         <NjSpacer Vertical="3"></NjSpacer>

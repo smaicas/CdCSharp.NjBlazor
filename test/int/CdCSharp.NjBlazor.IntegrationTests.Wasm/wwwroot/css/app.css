@@ -55,8 +55,12 @@
 .get-started {
     background-color: var(--palette-primary);
     font-weight:bold;
-    color:#eee;
+    color:#aaa;
 }
+    .get-started:hover, .get-started:active {
+        background-color: var(--palette-secondary);
+        color: #aaa;
+    }
 
 div.documentation {
     color: var(--palette-secondary);

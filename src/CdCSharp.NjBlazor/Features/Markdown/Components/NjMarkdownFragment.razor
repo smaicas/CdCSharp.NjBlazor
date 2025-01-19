@@ -1,0 +1,24 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using System.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using Microsoft.AspNetCore.Components.Rendering
+
+@namespace CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inherits NjComponentBase
+
+<div class="nj-p-5">
+
+    @if (FinalContent == null)
+    {
+        <NjSpinner Variant="@SpinnerVariant" />
+    }
+    else
+    {
+        @FinalContent
+    }
+
+</div>
+@code {
+
+}
