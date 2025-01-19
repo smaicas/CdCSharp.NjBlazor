@@ -1,16 +1,16 @@
-﻿.nj-text-button.nj-text-button-variant-outline {
+﻿.nj-text-button-variant-outline {
     border: 1px solid var(--palette-inputbordercolor)
 }
 
-    .nj-text-button.nj-text-button-variant-outline:hover,
-    .nj-text-button.raised:focus {
+    .nj-text-button-variant-outline:hover,
+    .nj-text-button-variant-outline.raised:focus {
         background-color: rgba(0, 0, 0, 0.2);
     }
 
-    .nj-text-button.nj-text-button-variant-outline:active,
-    .nj-text-button.nj-text-button-variant-outline.active {
+    .nj-text-button-variant-outline:active,
+    .nj-text-button-variant-outline.active {
         background-color: rgba(0, 0, 0, 0.1);
     }
 
-    .nj-text-button.nj-text-button-variant-outline:disabled {
+    .nj-text-button-variant-outline:disabled {
     }

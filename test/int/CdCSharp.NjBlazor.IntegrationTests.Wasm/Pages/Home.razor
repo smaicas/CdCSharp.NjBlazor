@@ -19,7 +19,7 @@
 
     <NjGridCell Row="1" class="shape1" Position="PositionMode.Relative">
 
-        <NjStack class="nj-h-100vh nj-p-3" Direction="FlexDirectionMode.Column" Spacing="0" AlignItems="AlignItemsMode.Center" JustifyContent="JustifyContentMode.FlexStart">
+        <NjStack Expand="true" class="nj-p-3" Direction="FlexDirectionMode.Column" Spacing="0" AlignItems="AlignItemsMode.Center" JustifyContent="JustifyContentMode.FlexStart">
             <NjFitContent>
                 <NjStack Direction="FlexDirectionMode.Column" Spacing="0" AlignItems="AlignItemsMode.Start" JustifyContent="JustifyContentMode.FlexStart">
 
@@ -37,7 +37,7 @@
                         @Loc["enjoy!"]
                     </h2>
 
-                    <NjStack class="nj-w-100" Direction="FlexDirectionMode.Row" Spacing="2" AlignItems="AlignItemsMode.End" JustifyContent="JustifyContentMode.FlexEnd">
+                    <NjStack Expand="true" Direction="FlexDirectionMode.Row" Spacing="2" AlignItems="AlignItemsMode.End" JustifyContent="JustifyContentMode.FlexEnd">
 
                         <NjLinkButton FormControl="false"
                                       Padding="1"
@@ -46,7 +46,6 @@
                                       Href="https://github.com/smaicas/CdCSharp.NjBlazor" />
 
                         <NjLinkButton autofocus
-                                      style="color:black;"
                                       aria-controls="true"
                                       FormControl="false" class="get-started"
                                       Padding="1"

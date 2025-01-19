@@ -85,6 +85,9 @@ public partial class NjStack : NjComponentBase
 
     private string CssClass => CalculateCssClass();
 
+    [Parameter]
+    public bool Expand { get; set; }
+
     private string CalculateCssClass()
     {
         List<string> cssClasses = [];
@@ -96,6 +99,19 @@ public partial class NjStack : NjComponentBase
         cssClasses.Add(CssTools.CalculateCssJustifyContentClass(JustifyContent));
         cssClasses.Add(CssTools.CalculateCssAlignItemsClass(AlignItems));
         cssClasses.Add(CssTools.CalculateCssGapClass(Spacing));
+
+        if (Expand)
+        {
+            if (Direction is FlexDirectionMode.Row or FlexDirectionMode.RowReverse)
+            {
+                cssClasses.Add("nj-w-100");
+
+            }
+            else if (Direction is FlexDirectionMode.Column or FlexDirectionMode.ColumnReverse)
+            {
+                cssClasses.Add("nj-h-100vh");
+            }
+        }
 
         if (!string.IsNullOrEmpty(Class))
         {

@@ -9,8 +9,8 @@ html.dark {
 --palette-inputbackground: var(--dark-inputbackground);
 --palette-inputbordercolor: var(--dark-inputbordercolor);
 --palette-inputcolor: var(--dark-inputcolor);
---palette-inputoptionscolor: var(--dark-inputoptionscolor);
 --palette-inputoptionsbackground: var(--dark-inputoptionsbackground);
+--palette-inputoptionscolor: var(--dark-inputoptionscolor);
 --palette-primary: var(--dark-primary);
 --palette-primarycontrast: var(--dark-primarycontrast);
 --palette-secondary: var(--dark-secondary);
@@ -40,8 +40,8 @@ html.light {
 --palette-inputbackground: var(--light-inputbackground);
 --palette-inputbordercolor: var(--light-inputbordercolor);
 --palette-inputcolor: var(--light-inputcolor);
---palette-inputoptionscolor: var(--light-inputoptionscolor);
 --palette-inputoptionsbackground: var(--light-inputoptionsbackground);
+--palette-inputoptionscolor: var(--light-inputoptionscolor);
 --palette-primary: var(--light-primary);
 --palette-primarycontrast: var(--light-primarycontrast);
 --palette-secondary: var(--light-secondary);

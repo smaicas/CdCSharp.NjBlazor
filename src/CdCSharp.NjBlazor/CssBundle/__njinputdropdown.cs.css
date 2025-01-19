@@ -23,7 +23,7 @@
         background-color: rgba(0, 0, 0, 0.2);
     }
 
-.nj-input.nj-input-dropdown:before,
-.nj-input.nj-input-dropdown:after {
+.nj-input-dropdown:before,
+.nj-input-dropdown:after {
     box-sizing: border-box;
 }

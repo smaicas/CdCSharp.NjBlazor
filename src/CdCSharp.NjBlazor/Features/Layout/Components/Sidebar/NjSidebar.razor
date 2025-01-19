@@ -1,5 +1,7 @@
 ﻿@using CdCSharp.NjBlazor.Core
 @using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
 @using CdCSharp.NjBlazor.Features.Layout.Components.Stack
 @using CdCSharp.NjBlazor.Features.Media.Components
 
@@ -7,23 +9,20 @@
 
 @inherits NjComponentBase
 
-<div class="@(AsClass("nj-sidebar", OpenClass))">
-    <NjStack Direction="FlexDirectionMode.Row">
-        <div class="nj-sidebar-toggle">
-            @if (IsOpen)
-            {
-                <NjSvgIcon OnClick="ToggleOpen" Icon="@Media.Icons.NjIcons.Materials.MaterialIcons.i_menu_open"></NjSvgIcon>
-            }
-            else
-            {
-                <NjSvgIcon OnClick="ToggleOpen" Icon="@Media.Icons.NjIcons.Materials.MaterialIcons.i_menu"></NjSvgIcon>
-            }
-        </div>
-
-        <div class="@(AsClass("nj-sidebar-content"))">
-            @ChildContent
-        </div>
-    </NjStack>
+<div @attributes="FilteredAdditionalAttributes" class="@(AsClass("nj-sidebar", OpenClass, Class))">
+    <div class="nj-sidebar-toggle">
+        @if (IsOpen)
+        {
+            <NjLinkButton OnClick="ToggleOpen" PreAdornment="@Media.Icons.NjIcons.Materials.MaterialIcons.i_menu_open"></NjLinkButton>
+        }
+        else
+        {
+            <NjLinkButton OnClick="ToggleOpen" PreAdornment="@Media.Icons.NjIcons.Materials.MaterialIcons.i_menu" Href="#"></NjLinkButton>
+        }
+    </div>
+    <div class="@(AsClass("nj-sidebar-content"))">
+        @ChildContent
+    </div>
 </div>
 @code {
 

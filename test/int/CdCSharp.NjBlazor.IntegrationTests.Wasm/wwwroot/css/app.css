@@ -52,14 +52,14 @@
     font-size:1.5rem;
 }
 
-.get-started {
-    background-color: var(--palette-primary);
-    font-weight:bold;
-    color:#aaa;
+.nj-text-button.get-started {
+    background-color: var(--palette-primary) !important;
+    font-weight: bold !important;
+    color: var(--palette-backgroundcontrast) !important;
 }
-    .get-started:hover, .get-started:active {
-        background-color: var(--palette-secondary);
-        color: #aaa;
+    .nj-text-button.get-started:hover, .nj-text-button.get-started:active {
+        background-color: var(--palette-secondary) !important;
+        color: var(--palette-backgroundcontrast) !important;
     }
 
 div.documentation {
@@ -150,3 +150,26 @@ div.documentation {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.nj-menu-toggle {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 1em;
+    height: 4em;
+    background-color: var(--palette-appbarbackground);
+    color: var(--palette-appbarcontrast);
+    z-index: 500;
+    position:fixed;
+    cursor: pointer;
+}
+
+.nj-menu-content {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 4em;
+    z-index: 500;
+    background-color: var(--palette-appbarbackground);
+    color: var(--palette-appbarcontrast);
+}

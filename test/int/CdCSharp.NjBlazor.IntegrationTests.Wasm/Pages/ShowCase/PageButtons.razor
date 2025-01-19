@@ -1,6 +1,7 @@
 ﻿@page "/buttons"
 
 @using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
 @using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
 @using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
 @using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
@@ -25,18 +26,37 @@
 
 <div class="nj-p-5 nj-w-100">
     <h2>NjTextButton</h2>
-    <NjTextButton FormControl="true" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat"></NjTextButton>
-    <NjTextButton FormControl="true" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat" PreAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_airplanemode_inactive" PostAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_fluorescent"
-                  PostAdornmentColor="@NjColors.Indigo.Default"></NjTextButton>
 
-    <NjTextButton FormControl="true" Text="Test Button Raised" Variant="NjTextButtonVariant.Raised"></NjTextButton>
-    <NjTextButton FormControl="true" Text="Test Button Outline" Variant="NjTextButtonVariant.Outline"></NjTextButton>
-    <NjTextButton FormControl="true" Text="Test Button Flat Bg" Variant="NjTextButtonVariant.Flat" BackgroundColor="@NjColors.Maroon.Default"></NjTextButton>
-    <NjTextButton FormControl="true" Text="Test Button Raised Bg" Variant="NjTextButtonVariant.Raised" BackgroundColor="@NjColors.Moccasin.Default"></NjTextButton>
+    <h3>NjTextButtonVariant.Flat</h3>
 
-    <h3>Disabled</h3>
-    <NjTextButton FormControl="true" Disabled="true" OnClick="DisabledClick" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat"></NjTextButton>
-    <NjTextButton FormControl="true" Disabled="true" OnClick="DisabledClick" Text="Test Button Raised" Variant="NjTextButtonVariant.Raised"></NjTextButton>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat"></NjTextButton>
+    </NjFitContent>
+
+    <h3>NjTextButtonVariant.Flat</h3>
+    <p>Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_airplanemode_inactive</p>
+    <p>Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_fluorescent</p>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat" PreAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_airplanemode_inactive" PostAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_fluorescent"
+                      PostAdornmentColor="@NjColors.Indigo.Default"></NjTextButton>
+    </NjFitContent>
+    <h3>NjTextButtonVariant.Raised</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Raised" Variant="NjTextButtonVariant.Raised"></NjTextButton>
+    </NjFitContent>
+    <h3>NjTextButtonVariant.Outline</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Outline" Variant="NjTextButtonVariant.Outline"></NjTextButton>
+    </NjFitContent>
+
+    <h3>NjTextButtonVariant.Flat Disabled</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Disabled="true" OnClick="DisabledClick" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat"></NjTextButton>
+    </NjFitContent>
+    <h3>NjTextButtonVariant.Raised Disabled</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Disabled="true" OnClick="DisabledClick" Text="Test Button Raised" Variant="NjTextButtonVariant.Raised"></NjTextButton>
+    </NjFitContent>
 </div>
 
 <div class="nj-p-5">

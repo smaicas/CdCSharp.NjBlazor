@@ -1,25 +1,22 @@
-﻿@using CdCSharp.NjBlazor.Core
-@using CdCSharp.NjBlazor.Core.Css
+﻿@using CdCSharp.NjBlazor.Core.Css
 @using CdCSharp.NjBlazor.Features.Containers.Components
 @using CdCSharp.NjBlazor.Features.Media.Components
-@using Microsoft.AspNetCore.Components.Routing
 
-@namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton.Variants
+@namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.Variants
 
-@inherits NjLinkButtonBase
+@inherits NjTextButtonBase
 
 @* <CssInclude SettingsName="@nameof(Nj.Blazor.Controls)" Refs="@(new string[]{
+"_content/Nj.Blazor.Controls/css/main.css",
 "_content/Nj.Blazor.Controls/Nj.Blazor.Controls.bundle.scp.css"
 })" /> *@
 
 <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
 
     <div @attributes="FilteredAdditionalAttributes"
-         @onclick="OnClick"
          class="@(AsClass(
         "nj-input",
         "nj-text-button",
-        "nj-text-button-variant-flat",
         FocusClass,
         CssTools.CalculateCssPaddingClass(Padding),
         Class))">
@@ -30,9 +27,10 @@
             </div>
         }
 
-        <NavLink class="nj-input-root" href="@Href" target="@LinkTarget" ActiveClass="@CssClassReferences.Active">
-            @Text
-        </NavLink>
+        <input type="button"
+               class="nj-input-root"
+               value="@Text"
+               @onclick="OnClick" />
 
         @if (PostAdornment != null)
         {

@@ -17,7 +17,7 @@
     outline-offset: 0;
 }
 
-.nj-input-control.nj-input-control-formcontrol {
+.nj-input-control-formcontrol {
     border: 0;
     padding: 0;
     display: flex;
@@ -28,7 +28,7 @@
     vertical-align: top;
 }
 
-    .nj-input-control.nj-input-control-formcontrol > .nj-input-control-input-container {
+    .nj-input-control-formcontrol > .nj-input-control-input-container {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -42,10 +42,12 @@
     font-weight: 400;
     line-height: var(--input-line-height);
     letter-spacing: .00938em;
-    color: var(--palette-inputColor);
     background-color: var(--palette-inputbackground);
     border-radius: var(--input-radius);
 }
+    .nj-input, .nj-input > * {
+        color: var(--palette-inputcolor);
+    }
 
     .nj-input .nj-input-root {
         font: inherit;

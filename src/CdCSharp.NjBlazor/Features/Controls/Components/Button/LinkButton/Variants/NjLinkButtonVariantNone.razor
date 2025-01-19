@@ -15,6 +15,7 @@
 <NjInputControl FormControl="@FormControl" Disabled="@Disabled">
 
     <div @attributes="FilteredAdditionalAttributes"
+         @onclick="OnClick"
          class="@(AsClass(
         "nj-input",
         "nj-text-button",
