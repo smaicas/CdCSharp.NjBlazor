@@ -1,17 +1,15 @@
-﻿.nj-text-button.nj-text-button-variant-raised {
+﻿.nj-text-button-variant-flat {
+    background-color: var(--palette-primary);
+    font-weight: bold;
+    color: var(--palette-primarycontrast);
     box-shadow: 0 2px 5px 0 var(--palette-backgroundcontrast);
 }
 
-    .nj-text-button.nj-text-button-variant-raised:hover,
-    .nj-text-button.raised:focus {
+    .nj-text-button-variant-flat:hover,
+    .nj-text-button-variant-flat:focus,
+    .nj-text-button-variant-flat:active,
+    .nj-text-button-variant-flat.active {
+        background-color: var(--palette-secondary);
+        color: var(--palette-secondarycontrast);
         box-shadow: 0 4px 8px 0 var(--palette-backgroundcontrast);
-    }
-
-    .nj-text-button.nj-text-button-variant-raised:active,
-    .nj-text-button.nj-text-button-variant-raised.active {
-        box-shadow: 0 2px 6px 0 var(--palette-backgroundcontrast);
-    }
-
-    .nj-text-button.nj-text-button-variant-raised:disabled {
-        box-shadow: none;
     }

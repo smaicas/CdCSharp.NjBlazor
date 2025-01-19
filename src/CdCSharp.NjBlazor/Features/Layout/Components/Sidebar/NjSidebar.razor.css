@@ -1,33 +1,26 @@
 ﻿.nj-sidebar {
-    background-color: var(--palette-appbarbackground);
-    color: var(--palette-appbarcontrast);
     z-index: 500;
-    display: inline-flex;
-    width: fit-content;
+    scroll-behavior: smooth;
+    width: 100%;
+    position: fixed;
 }
+    .nj-sidebar:not(.open) {
+        overflow: hidden;
+    }
+    .nj-sidebar.open {
+        overflow-y: hidden;
+    }
 
 .nj-sidebar-content {
     display: none;
+    padding-top: 4em;
+    z-index: 500;
+    background-color: var(--palette-appbarbackground);
+    color: var(--palette-appbarcontrast);
 }
 
 .nj-sidebar.open .nj-sidebar-content {
-    display: block;
+    display: flex;
 }
 
-.nj-sidebar-toggle {
-    display: block;
-}
-/* Media query for desktop */
-@media only screen and (min-width: 1024px) {
-    .nj-sidebar {
-        position: relative;
-    }
 
-        .nj-sidebar .nj-sidebar-content {
-            display: block;
-        }
-
-    .nj-sidebar-toggle {
-        display: none;
-    }
-}

@@ -41,6 +41,15 @@ public abstract class NjLinkButtonBase : NjControlComponentBase
     public string Href { get; set; } = "#";
 
     /// <summary>
+    /// Gets or sets the event callback for mouse click events.
+    /// </summary>
+    /// <value>
+    /// The event callback for mouse click events.
+    /// </value>
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    /// <summary>
     /// Gets or sets the padding value.
     /// </summary>
     /// <value>

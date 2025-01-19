@@ -23,12 +23,13 @@ public partial class NjMarkdownFragment : NjComponentBase
     {
         await base.OnAfterRenderAsync(firstRender);
 
-        if (Content != null && FinalContent != null)
+        if (Content != null && firstRender)
         {
             string? content = await Content();
             if (content != null)
             {
                 FinalContent = MarkdownToRenderFragmentParser.ParseText(content);
+                await InvokeAsync(StateHasChanged);
             }
         }
     }

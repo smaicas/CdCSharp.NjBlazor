@@ -20,3 +20,8 @@
     color: inherit;
     transform: translateZ(0);
 }
+
+    .nj-text-button:disabled,
+    .nj-text-button.disabled {
+        box-shadow: none;
+    }

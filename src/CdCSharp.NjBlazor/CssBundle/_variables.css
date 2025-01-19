@@ -9,8 +9,8 @@
 --palette-inputbackground: rgba(255,255,255,0);
 --palette-inputbordercolor: rgba(230,230,230,0.8);
 --palette-inputcolor: rgba(230,230,230,1);
---palette-inputoptionscolor: rgba(26,26,26,1);
 --palette-inputoptionsbackground: rgba(230,230,230,1);
+--palette-inputoptionscolor: rgba(26,26,26,1);
 --palette-primary: rgba(196,18,54,1);
 --palette-primarycontrast: rgba(243,243,243,1);
 --palette-secondary: rgba(0,178,178,1);
@@ -38,8 +38,8 @@
 --dark-inputbackground: rgba(255,255,255,0);
 --dark-inputbordercolor: rgba(230,230,230,0.8);
 --dark-inputcolor: rgba(230,230,230,1);
---dark-inputoptionscolor: rgba(26,26,26,1);
 --dark-inputoptionsbackground: rgba(230,230,230,1);
+--dark-inputoptionscolor: rgba(26,26,26,1);
 --dark-primary: rgba(196,18,54,1);
 --dark-primarycontrast: rgba(243,243,243,1);
 --dark-secondary: rgba(0,178,178,1);
@@ -67,8 +67,8 @@
 --light-inputbackground: rgba(255,255,255,0);
 --light-inputbordercolor: rgba(26,26,26,0.8);
 --light-inputcolor: rgba(0,0,0,1);
---light-inputoptionscolor: rgba(217,217,217,1);
 --light-inputoptionsbackground: rgba(26,26,26,1);
+--light-inputoptionscolor: rgba(217,217,217,1);
 --light-primary: rgba(196,18,54,1);
 --light-primarycontrast: rgba(243,243,243,1);
 --light-secondary: rgba(0,178,178,1);

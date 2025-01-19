@@ -10,7 +10,7 @@
     position: absolute;
 }
 
-.nj-checkbox label.nj-input-label {
+.nj-checkbox .nj-input-label {
     position: relative;
     cursor: pointer;
     display: inline-flex;

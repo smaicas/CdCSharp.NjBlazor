@@ -6,12 +6,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-self: center;
+    align-self:center;
     background-color: transparent;
 }
 
 /* X-ROTATING BOXES */
 
 .configure-border-1 {
+    border-radius: 15px 15px 15px 15px;
     width: 115px;
     height: 115px;
     padding: 3px;
@@ -19,11 +22,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fb5b53;
+    background: var(--palette-primary);
     animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
 }
 
 .configure-border-2 {
+    border-radius: 15px 15px 15px 15px;
     width: 115px;
     height: 115px;
     padding: 3px;
@@ -31,7 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(63,249,220);
+    background: var(--palette-secondary);
     transform: rotate(45deg);
     animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
 }
