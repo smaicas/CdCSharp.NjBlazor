@@ -56,6 +56,7 @@ Check our [roadmap](ROADMAP.md)
 ## 🤝 Contributing
 
 Contributions are welcome. Please read our [contribution guide](CONTRIBUTE.md) before submitting a PR.
+Join the [discord](https://discord.gg/MpUfe7zD)
 
 ## 📄 License
 

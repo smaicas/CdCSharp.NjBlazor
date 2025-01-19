@@ -1,26 +1,24 @@
 ﻿@page "/markdownrender"
 @using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
 @using CdCSharp.NjBlazor.Features.ResourceAccess.Components.FileRenderer
-@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
-@using CdCSharp.NjBlazor.Features.Markdown
 
 <div class="nj-p-5">
 
-    @if (Fragment == null)
-    {
-        <NjSpinner Variant="NjSpinnerVariant.Default" />
-    }
-    else
-    {
-        @Fragment
-    }
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Markdown-Renderer.md"))"></NjMarkdownFragment>
 
 </div>
 
+<h2>NjFileRenderer</h2>
 <NjFileRenderer FileAssets="@FileAssets" RenderFragmentFunction="(s)=> MarkdownToRenderFragmentParser.ParseText(s)"></NjFileRenderer>
+
+<h2>NjMarkdownFragment</h2>
+<NjMarkdownFragment Content="async () => FragmentString"></NjMarkdownFragment>
+
 
 @code {
     RenderFragment? Fragment;
+    string? FragmentString;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -28,10 +26,9 @@
 
         if (firstRender)
         {
-            HttpClient client = new HttpClient();
-            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Markdown-Renderer.md");
+            FragmentString = "## This is markdown content";
 
-            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            Fragment = MarkdownToRenderFragmentParser.ParseText(FragmentString);
             await InvokeAsync(StateHasChanged);
         }
     }
