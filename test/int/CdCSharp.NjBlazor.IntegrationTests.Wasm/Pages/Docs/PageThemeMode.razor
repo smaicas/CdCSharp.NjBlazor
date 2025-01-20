@@ -1,0 +1,27 @@
+﻿@page "/docs/thememode"
+
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+@using CdCSharp.NjBlazor.Features.ThemeMode.Components.ModeSelector
+
+<h2>NjThemeModeSelector</h2>
+
+<h3>NjThemeModeSelectorVariant.SunMoon</h3>
+
+<NjThemeModeSelector Variant="NjThemeModeSelectorVariant.SunMoon" />
+
+<br />
+<h3>NjThemeModeSelectorVariant.Flat</h3>
+
+<NjThemeModeSelector Variant="NjThemeModeSelectorVariant.Flat" />
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Theme-Mode.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+   
+}

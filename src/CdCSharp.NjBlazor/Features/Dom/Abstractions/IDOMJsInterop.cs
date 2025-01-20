@@ -30,7 +30,7 @@ public interface IDOMJsInterop
 
     ValueTask ScrollToClosestAsync(string querySelector, ElementReference? element);
 
-    ValueTask ScrollTopAsync(ElementReference? element, int? position = 0);
+    ValueTask ScrollTopAsync(ElementReference? element = null, int? position = 0);
 
     ValueTask SelectText(ElementReference element);
 

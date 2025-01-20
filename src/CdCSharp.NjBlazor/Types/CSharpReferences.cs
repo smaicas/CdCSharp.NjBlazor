@@ -4,6 +4,8 @@ internal static class CSharpReferences
 {
     public static class Functions
     {
+        public const string InitializeFocusChangeListener = "DOMJs.InitializeFocusChangeListener";
+        public const string GetCurrentScrollableElement = "DOMJs.GetCurrentScrollableElement";
         public const string AddResizeCallback = "DeviceManagerJs.AddResizeCallback";
         public const string AddShowPickerEventHandler = "DOMJs.AddShowPickerEventHandler";
         public const string DisableMouseMove = "DraggableJs.DisableMouseMove";

@@ -1,4 +1,5 @@
-﻿using CdCSharp.NjBlazor.Features.ThemeMode.Abstractions;
+﻿using CdCSharp.NjBlazor.Features.Dom.Abstractions;
+using CdCSharp.NjBlazor.Features.ThemeMode.Abstractions;
 using Microsoft.AspNetCore.Components;
 
 namespace CdCSharp.NjBlazor.Features.Layout.Components.Layout;
@@ -16,6 +17,14 @@ public partial class EmptyLayout : LayoutComponentBase
     /// </value>
     [Inject]
     private IThemeJsInterop ThemeJs { get; set; } = default!;
+    /// <summary>
+    /// Gets or sets the JavaScript interop service for theming.
+    /// </summary>
+    /// <value>
+    /// The JavaScript interop service for theming.
+    /// </value>
+    [Inject]
+    private IDOMJsInterop DomJs { get; set; } = default!;
 
     /// <summary>
     /// Method called after rendering the component asynchronously.

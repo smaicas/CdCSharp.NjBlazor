@@ -1,0 +1,25 @@
+﻿@page "/docs/containers-fitcontent"
+
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageContainers> Loc
+
+<h2>NjFitContent</h2>
+
+<NjFitContent>@Loc["Content"]</NjFitContent>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-FitContent.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+  
+}

@@ -1,0 +1,26 @@
+﻿@page "/docs/containers-inputcontrol"
+
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageContainers> Loc
+
+<h2>NjInputControl</h2>
+
+<NjInputControl style="border: 1px solid deeppink;text-decoration: underline;" FormControl="false">@Loc["Here Input Control - FormControl = false"]</NjInputControl>
+<NjInputControl style="border: 1px solid deeppink;text-decoration: underline;" FormControl="true">@Loc["Here Input Control - FormControl = true"]</NjInputControl>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-InputControl.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+  
+}

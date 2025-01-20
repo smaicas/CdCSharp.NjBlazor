@@ -1,0 +1,122 @@
+﻿@page "/docs/containers"
+
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageContainers> Loc
+
+<h2>NjFitContent</h2>
+
+<NjFitContent>@Loc["Content"]</NjFitContent>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-FitContent.md"))"></NjMarkdownFragment>
+
+</div>
+
+<h2>NjInputControl</h2>
+
+<NjInputControl style="border: 1px solid deeppink;text-decoration: underline;" FormControl="false">@Loc["Here Input Control - FormControl = false"]</NjInputControl>
+<NjInputControl style="border: 1px solid deeppink;text-decoration: underline;" FormControl="true">@Loc["Here Input Control - FormControl = true"]</NjInputControl>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-InputControl.md"))"></NjMarkdownFragment>
+
+</div>
+
+<h2>NjShadowBox</h2>
+
+<NjShadowBox>@Loc["Content"]</NjShadowBox>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-ShadowBox.md"))"></NjMarkdownFragment>
+
+</div>
+
+<h2>NjBorderBox</h2>
+
+<NjBorderBox class="nj-color-palette">@Loc["Content"]</NjBorderBox>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-BorderBox.md"))"></NjMarkdownFragment>
+
+</div>
+
+<h2>Stack</h2>
+
+<h3>Stack row</h3>
+
+<NjStack Grow="1" Spacing="5" AlignItems="Core.AlignItemsMode.Center" Direction="Core.FlexDirectionMode.Row" Wrap="Core.FlexWrapMode.Wrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</NjStack>
+
+<h3>Stack column</h3>
+
+<NjStack Grow="1" Spacing="5" AlignItems="Core.AlignItemsMode.Center" Direction="Core.FlexDirectionMode.Column" Wrap="Core.FlexWrapMode.Wrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</NjStack>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-Stack.md"))"></NjMarkdownFragment>
+
+</div>
+
+<h2>Grid</h2>
+
+<h3>TemplateColumnsMode.Fill</h3>
+<NjGrid TemplateColumns="TemplateColumnsMode.Fill">
+    <NjGridCell Row="1">
+        1
+    </NjGridCell>
+    <NjGridCell Row="2">
+        2
+    </NjGridCell>
+    <NjGridCell Row="3">
+        3
+    </NjGridCell>
+</NjGrid>
+
+<h3>TemplateColumnsMode.Fit</h3>
+<NjGrid TemplateColumns="TemplateColumnsMode.Fit">
+    <NjGridCell Row="1">
+        1
+    </NjGridCell>
+    <NjGridCell Row="2">
+        2
+    </NjGridCell>
+    <NjGridCell Row="3">
+        3
+    </NjGridCell>
+</NjGrid>
+
+<h3>TemplateColumnsSpecific</h3>
+<NjGrid TemplateColumnsSpecific="20% 30% 50%">
+    <NjGridCell>
+        <span style="background: #555;">20%</span>
+    </NjGridCell>
+    <NjGridCell>
+        <span style="background: #555;">30%</span>
+    </NjGridCell>
+    <NjGridCell>
+        <span style="background: #555;">50%</span>
+    </NjGridCell>
+</NjGrid>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-Grid.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+  
+}

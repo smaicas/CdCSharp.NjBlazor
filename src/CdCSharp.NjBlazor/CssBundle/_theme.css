@@ -120,6 +120,12 @@ color: var(--palette-secondary);
 .nj-color-tertiary {
 color: var(--palette-tertiary);
 }
+.nj-color-black {
+color: var(--palette-black);
+}
+.nj-color-white {
+color: var(--palette-white);
+}
 .nj-bg-palette {
 background-color: var(--palette-background);
 }
@@ -131,6 +137,12 @@ background-color: var(--palette-secondary);
 }
 .nj-bg-tertiary {
 background-color: var(--palette-tertiary);
+}
+.nj-bg-black {
+background-color: var(--palette-black);
+}
+.nj-bg-white {
+background-color: var(--palette-white);
 }
 .nj-flex {
 display: -webkit-box;

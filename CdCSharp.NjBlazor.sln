@@ -21,6 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "int", "int", "{2AC509E7-40F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.NjBlazor.IntegrationTests.Wasm", "test\int\CdCSharp.NjBlazor.IntegrationTests.Wasm\CdCSharp.NjBlazor.IntegrationTests.Wasm.csproj", "{6D42D199-E38D-41E4-9C54-3804AB897FAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.NjBlazor.Markdown.SourceGenerators", "src\CdCSharp.NjBlazor.Markdown.SourceGenerators\CdCSharp.NjBlazor.Markdown.SourceGenerators.csproj", "{576E6E52-8FCE-4009-BB00-2B74EC3F73E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.NjBlazor.Markdown.SourceGenerators.Abstractions", "src\CdCSharp.NjBlazor.Markdown.SourceGenerators.Abstractions\CdCSharp.NjBlazor.Markdown.SourceGenerators.Abstractions.csproj", "{96371634-3C81-4CE6-A1F3-71714B13AC44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CdCSharp.NjBlazor.Markdown.SourceGenerators.SnapshotTests", "test\CdCSharp.NjBlazor.Markdown.SourceGenerators.SnapshotTests\CdCSharp.NjBlazor.Markdown.SourceGenerators.SnapshotTests.csproj", "{EE98345D-B6C1-48F7-937B-7419849A0B4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +61,18 @@ Global
 		{6D42D199-E38D-41E4-9C54-3804AB897FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D42D199-E38D-41E4-9C54-3804AB897FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D42D199-E38D-41E4-9C54-3804AB897FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{576E6E52-8FCE-4009-BB00-2B74EC3F73E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{576E6E52-8FCE-4009-BB00-2B74EC3F73E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{576E6E52-8FCE-4009-BB00-2B74EC3F73E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{576E6E52-8FCE-4009-BB00-2B74EC3F73E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96371634-3C81-4CE6-A1F3-71714B13AC44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96371634-3C81-4CE6-A1F3-71714B13AC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96371634-3C81-4CE6-A1F3-71714B13AC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96371634-3C81-4CE6-A1F3-71714B13AC44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE98345D-B6C1-48F7-937B-7419849A0B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE98345D-B6C1-48F7-937B-7419849A0B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE98345D-B6C1-48F7-937B-7419849A0B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE98345D-B6C1-48F7-937B-7419849A0B4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +81,6 @@ Global
 		{E6905C97-C80A-4FA7-8F00-4B076E00FFB3} = {4071D419-6420-4F3D-A616-EB9D80789060}
 		{2AC509E7-40F2-4264-B0E6-1833F02D4646} = {4071D419-6420-4F3D-A616-EB9D80789060}
 		{6D42D199-E38D-41E4-9C54-3804AB897FAD} = {2AC509E7-40F2-4264-B0E6-1833F02D4646}
+		{EE98345D-B6C1-48F7-937B-7419849A0B4B} = {4071D419-6420-4F3D-A616-EB9D80789060}
 	EndGlobalSection
 EndGlobal

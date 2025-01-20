@@ -1,0 +1,37 @@
+﻿@page "/docs/devicemanager"
+
+@using CdCSharp.NjBlazor.Features.DeviceManager.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<h2>Device Manager</h2>
+
+<NjDeviceManager @ref="_deviceManager" DeviceWidthChanged="StateHasChanged" />
+
+<div>Value changed depending on device display: @(_deviceManager?.GetByWidth("ValueMobile", "ValueTablet", "ValueDesktop", "ValueLargeDesktop") ?? "DefaultValue")</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Device-Manager.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+    NjDeviceManager? _deviceManager;
+
+    RenderFragment? Fragment;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Device-Manager.md");
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

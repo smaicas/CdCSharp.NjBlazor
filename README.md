@@ -51,16 +51,16 @@ For detailed documentation, visit our [site](https://cdcsharp.github.io/).
 
 ## 🛣️ Roadmap
 
-Check our [roadmap](ROADMAP.md)
+Check our [roadmap](https://github.com/smaicas/CdCSharp.NjBlazor/blob/master/ROADMAP.md)
 
 ## 🤝 Contributing
 
-Contributions are welcome. Please read our [contribution guide](CONTRIBUTE.md) before submitting a PR.
+Contributions are welcome. Please read our [contribution guide](https://github.com/smaicas/CdCSharp.NjBlazor/blob/master/CONTRIBUTE.md) before submitting a PR.
 Join the [discord](https://discord.gg/MpUfe7zD)
 
 ## 📄 License
 
-This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL v3 License - see the [LICENSE](https://github.com/smaicas/CdCSharp.NjBlazor/blob/master/LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 

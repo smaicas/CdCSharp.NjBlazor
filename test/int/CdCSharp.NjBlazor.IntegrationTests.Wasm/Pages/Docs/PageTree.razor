@@ -1,0 +1,84 @@
+﻿@page "/docs/tree"
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Layout.Components.Tree
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<h2>NjTree</h2>
+
+<h3>FlexDirectionMode.Column</h3>
+<NjTree Direction="FlexDirectionMode.Column">
+    <NjTreeNode>
+        <Title><h2>Title 1</h2></Title>
+        <ChildContent>
+            <NjTreeNode>
+                <Title><h3>Title 1.1</h3></Title>
+                <ChildContent>
+                    <NjTreeNode><Title><h3>Title 1.1.1</h3></Title></NjTreeNode>
+                </ChildContent>
+            </NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 2</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 2.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 3</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 3.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+</NjTree>
+
+<h3>FlexDirectionMode.Row</h3>
+<NjTree Direction="FlexDirectionMode.Row">
+    <NjTreeNode>
+        <Title><h2>Title 1</h2></Title>
+        <ChildContent>
+            <NjTreeNode>
+                <Title><h3>Title 1.1</h3></Title>
+                <ChildContent>
+                    <NjTreeNode><Title><h3>Title 1.1.1</h3></Title></NjTreeNode>
+                </ChildContent>
+            </NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 1.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 2</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 2.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 2.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+    <NjTreeNode>
+        <Title><h2>Title 3</h2></Title>
+        <ChildContent>
+            <NjTreeNode><Title><h3>Title 3.1</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.2</h3></Title></NjTreeNode>
+            <NjTreeNode><Title><h3>Title 3.3</h3></Title></NjTreeNode>
+        </ChildContent>
+    </NjTreeNode>
+</NjTree>
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Tree.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+   
+}

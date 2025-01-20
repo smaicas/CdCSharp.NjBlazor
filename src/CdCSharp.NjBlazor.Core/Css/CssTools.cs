@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using CdCSharp.NjBlazor.Core.Abstractions.Css;
+using System.Globalization;
 
 namespace CdCSharp.NjBlazor.Core.Css;
 
@@ -16,6 +17,12 @@ public static class CssTools
             _ => throw new ArgumentOutOfRangeException(nameof(AlignItemsMode)),
         };
     }
+
+    public static string CalculateCssBorderValue(BorderStyleMode borderStyle, int borderWidth, int borderRadius, CssColor? color)
+        => $"border-width:{borderWidth}px; " +
+            $"border-radius:{borderRadius.ToString()}px; " +
+            $"border-color: {(color != null ? color.ToString(ColorOutputFormats.Rgba) : "")}; " +
+            $"border-style: {borderStyle.ToString().ToLower()}";
 
     public static string CalculateCssFlexClass(bool inline)
     {
@@ -87,6 +94,8 @@ public static class CssTools
         return $"{CssClassReferences.Prefix.Padding}{padding}";
     }
 
+    public static string CalculateCssShadowValue(bool inset, int offsetX, int offsetY, int blurRadius, int spreadRadius, CssColor? color)
+        => $"box-shadow: {(inset ? "inset " : string.Empty)}{offsetX}px {offsetY}px {blurRadius}px {spreadRadius}px {(color != null ? color.ToString(ColorOutputFormats.Rgba) : "")};";
     public static string ToCssNumber(double value) =>
         Math.Round(value, 1).ToString(CultureInfo.InvariantCulture).Replace(",", ".");
 }

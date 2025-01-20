@@ -34,7 +34,7 @@ public partial class NjShadowBox : NjComponentBase
     /// The CSS color value.
     /// </value>
     [Parameter]
-    public CssColor Color { get; set; } = NjColors.Black.Default.SetAlpha(0.2);
+    public CssColor? Color { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the inset is applied.
@@ -71,10 +71,4 @@ public partial class NjShadowBox : NjComponentBase
     /// </value>
     [Parameter]
     public int SpreadRadius { get; set; } = 5;
-
-    private string GetBoxShadow()
-    {
-        string insetText = Inset ? "inset " : string.Empty;
-        return $"{insetText}{OffsetX}px {OffsetY}px {BlurRadius}px {SpreadRadius}px {Color.ToString(ColorOutputFormats.Rgba)}";
-    }
 }

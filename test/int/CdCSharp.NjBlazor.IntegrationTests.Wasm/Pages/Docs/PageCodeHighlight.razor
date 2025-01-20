@@ -1,0 +1,97 @@
+﻿@page "/docs/codehighlight"
+
+@using CdCSharp.NjBlazor.Core.SyntaxHighlight
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+@using CdCSharp.SyntaxHighlight
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+
+<h2>NjCodeHighlight</h2>
+
+<NjCodeHighlight Code="@Code" Language="SyntaxHighlightLanguage.CSharp">
+</NjCodeHighlight>
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Code-Highlight.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+ 
+    private const string Code = @"using System.Text;
+using System.Text.RegularExpressions;
+
+namespace Nj.Blazor.Components.Features.CodeHighlight
+{
+    public enum SyntaxHighlightLanguage
+    {
+        None,
+        CSharp,
+    }
+
+    public enum SyntaxHighlightLanguageToken
+    {
+        Keyword,
+        Comment,
+        String,
+    }
+
+    public class LanguageDefinitions
+    {
+        public static Dictionary<SyntaxHighlightLanguage, List<(string Pattern, SyntaxHighlightLanguageToken Token, string CssClass)>> TokenDefinitions =
+        new()
+        {
+            {
+                SyntaxHighlightLanguage.CSharp, new List<(string Pattern, SyntaxHighlightLanguageToken Token, string CssClass)>
+                {
+                    // Keywords
+                    (@""\b(using|namespace|class|struct|enum|interface|void|int|double|float|decimal|bool|byte|char|string|object|var|new|return|throw|if|else|switch|case|default|try|catch|finally|while|for|foreach|in|do|break|continue|goto|yield|async|await|lock|using|checked|unchecked|fixed|sizeof|typeof|is|as|ref|out|params|this|base|static|public|private|protected|internal|sealed|abstract|readonly|volatile|virtual|override|extern|unsafe|event|delegate|const|true|false|null)\b"", SyntaxHighlightLanguageToken.Keyword, HighlightCssClasses.CSharp.Keyword),
+                    // Single-line comments (//)
+                    (@""/.*"", SyntaxHighlightLanguageToken.Comment, HighlightCssClasses.CSharp.Comment),
+                    // Multi-line comments (/* */)
+                    (""(/\\*.*?\\*/)|(\\/\\*.*)|(\\*/)"", SyntaxHighlightLanguageToken.Comment, HighlightCssClasses.CSharp.Comment),
+                    // String literals
+                    (""\"".*?\"""", SyntaxHighlightLanguageToken.String, HighlightCssClasses.CSharp.String)
+                }
+            }
+        };
+    }
+
+    public class SyntaxHighlighter
+    {
+        public string Highlight(string code, SyntaxHighlightLanguage language)
+        {
+            if (string.IsNullOrEmpty(code) || !LanguageDefinitions.TokenDefinitions.ContainsKey(language))
+                return code;
+
+            StringBuilder highlightedCode = new();
+
+            foreach (string line in code.Split(""\n""))
+            {
+                string lineCode = line;
+
+                foreach ((string Pattern, SyntaxHighlightLanguageToken Token, string CssClass) tokenDefinition in LanguageDefinitions.TokenDefinitions[language])
+                {
+                    Regex regex = new(tokenDefinition.Pattern);
+                    lineCode = regex.Replace(lineCode, match => $""<span class=\""{tokenDefinition.CssClass}\"">{match.Value}</span>"");
+                }
+
+                highlightedCode.AppendLine(lineCode);
+            }
+
+            return highlightedCode.ToString();
+        }
+    }
+
+    internal class HighlightCssClasses
+    {
+        internal class CSharp
+        {
+            public const string Keyword = ""nj-hl-csharp-kw"";
+            public const string Comment = ""nj-hl-csharp-cm"";
+            public const string String = ""nj-hl-csharp-st"";
+        }
+    }
+}";
+}

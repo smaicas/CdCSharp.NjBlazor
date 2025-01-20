@@ -1,0 +1,62 @@
+﻿@page "/docs/containers-grid"
+
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageContainers> Loc
+
+<h2>Grid</h2>
+
+<h3>TemplateColumnsMode.Fill</h3>
+<NjGrid TemplateColumns="TemplateColumnsMode.Fill">
+    <NjGridCell Row="1">
+        1
+    </NjGridCell>
+    <NjGridCell Row="2">
+        2
+    </NjGridCell>
+    <NjGridCell Row="3">
+        3
+    </NjGridCell>
+</NjGrid>
+
+<h3>TemplateColumnsMode.Fit</h3>
+<NjGrid TemplateColumns="TemplateColumnsMode.Fit">
+    <NjGridCell Row="1">
+        1
+    </NjGridCell>
+    <NjGridCell Row="2">
+        2
+    </NjGridCell>
+    <NjGridCell Row="3">
+        3
+    </NjGridCell>
+</NjGrid>
+
+<h3>TemplateColumnsSpecific</h3>
+<NjGrid TemplateColumnsSpecific="20% 30% 50%">
+    <NjGridCell>
+        <span style="background: #555;">20%</span>
+    </NjGridCell>
+    <NjGridCell>
+        <span style="background: #555;">30%</span>
+    </NjGridCell>
+    <NjGridCell>
+        <span style="background: #555;">50%</span>
+    </NjGridCell>
+</NjGrid>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-Grid.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+  
+}

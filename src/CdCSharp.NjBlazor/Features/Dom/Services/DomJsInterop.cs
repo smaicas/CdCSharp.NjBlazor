@@ -111,7 +111,7 @@ public class DomJsInterop(IJSRuntime jsRuntime)
         await JsRuntime.InvokeVoidAsync(CSharpReferences.Functions.ScrollToClosest, querySelector, element);
     }
 
-    public async ValueTask ScrollTopAsync(ElementReference? element, int? position = 0)
+    public async ValueTask ScrollTopAsync(ElementReference? element = null, int? position = 0)
     {
         await IsModuleTaskLoaded.Task;
         await ModuleTask.Value;

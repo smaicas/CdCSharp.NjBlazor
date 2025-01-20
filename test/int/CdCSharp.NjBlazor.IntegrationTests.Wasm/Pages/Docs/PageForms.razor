@@ -1,0 +1,477 @@
+﻿@page "/docs/forms"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Checkbox
+@using CdCSharp.NjBlazor.Features.Forms.Color
+@using CdCSharp.NjBlazor.Features.Forms.Date
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+@using CdCSharp.NjBlazor.Features.Forms.File
+@using CdCSharp.NjBlazor.Features.Forms.Number
+@using CdCSharp.NjBlazor.Features.Forms.Radio
+@using CdCSharp.NjBlazor.Features.Forms.Range
+@using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageForms> Loc
+
+<div class="nj-p-5 nj-w-100">
+    <h2>NjText</h2>
+    <hr>
+    <h3>NjInputTextVariant.Flat</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <hr>
+    <h3>NjInputTextVariant.Filled</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <hr>
+    <h3>NjInputTextVariant.Outline</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Outline" />
+    <hr>
+    <h3>Placeholder & Title</h3>
+    <NjInputText FormControl="true" Placeholder="Test Place Holder" Title="Test Input Title" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <hr>
+    <h3>Password</h3>
+    <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextOutlineValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+    <hr />
+    <h3>PreAdornment && PreAdornmentColor</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFlatValue"
+                 Label="Classic"
+                 Variant="NjInputTextVariant.Filled"
+                 PreAdornment="@CdCSharp.NjBlazor.Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_castle"
+                 PreAdornmentColor="@NjColors.Crimson.Default" />
+    <hr />
+    <h3>Icons</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFlatValue"
+                 Label="Classic"
+                 Variant="NjInputTextVariant.Filled"
+                 PostAdornment="@CdCSharp.NjBlazor.Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_castle"
+                 PreAdornmentColor="@NjColors.Crimson.Default" />
+    <hr />
+    <h3>PostAdornment Text</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue"
+                 Label="Filled"
+                 Variant="NjInputTextVariant.Filled"
+                 PostAdornment="Kg" />
+    <hr />
+    <h3>PreAdornment Text</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue"
+                 Label="Filled"
+                 Variant="NjInputTextVariant.Filled"
+                 PreAdornment="PreAdornment" />
+
+    <hr />
+    <h3>TextArea</h3>
+    <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFilledValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputText.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5 nj-w-100">
+    <h2>NjInputDropdown</h2>
+    <hr />
+    <span> Value: @NjDropdownValue </span>
+    <hr />
+    <h3>NjInputDropdownVariant.Flat</h3>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+    <hr />
+    <h3>NjInputDropdownVariant.Filled</h3>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Filled"
+                     @bind-Value="NjDropdownValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+    <hr />
+    <h3>NjInputDropdownVariant.Outline</h3>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Outline"
+                     @bind-Value="NjDropdownValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>@Loc["Multiselection"]</h3>
+    <span> @Loc["Value"]: @(string.Join(",", NjDropdownCollectionValue ?? new string[0]))</span>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Center </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Center"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Top </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Top"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Right </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Right"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Bottom </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Bottom"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>NjIconDropdown</h3>
+    <NjFitContent>
+        <NjIconDropdown FormControl="true"
+                        Icon="@CdCSharp.NjBlazor.Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_diversity_1"
+                        @bind-Value="NjDropdownCollectionValue"
+                        Label="Selection">
+            <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+            <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+            <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+        </NjIconDropdown>
+    </NjFitContent>
+
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputDropdown ReadOnly="true" FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownValueSet"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputDropdown Disabled="true" FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownValueSet"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-Dropdown.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5">
+    <h2>NjCheckbox</h2>
+    <hr />
+    <h3>NjInputCheckboxSize.Small</h3>
+    <NjInputCheckbox @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Small"></NjInputCheckbox>
+    <hr />
+    <h3>NjInputCheckboxSize.Medium</h3>
+    <NjInputCheckbox @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Medium"></NjInputCheckbox>
+    <hr />
+    <h3>NjInputCheckboxSize.Large</h3>
+    <NjInputCheckbox @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Large"></NjInputCheckbox>
+    <hr />
+    <h3>TriState</h3>
+    <NjInputCheckbox TriState="true" @bind-Value="NjCheckboxValue" Size="NjInputCheckboxSize.Large">TriState</NjInputCheckbox>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputCheckbox ReadOnly="true" TriState="true" @bind-Value="NjCheckboxValueSet" Size="NjInputCheckboxSize.Large">TriState</NjInputCheckbox>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputCheckbox Disabled="true" TriState="true" @bind-Value="NjCheckboxValueSet" Size="NjInputCheckboxSize.Large">TriState</NjInputCheckbox>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-Checkbox.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5">
+    <h2>NjInputRadio</h2>
+    <hr />
+    <NjInputRadio @bind-Value="NjRadioButtonValue" Variant="NjInputRadioVariant.Classic">
+        <NjInputRadioOption Value="Yes">Yes</NjInputRadioOption>
+        <NjInputRadioOption Value="No"><div style="color:red">No</div></NjInputRadioOption>
+    </NjInputRadio>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputRadio ReadOnly="true" @bind-Value="NjRadioButtonValueSet" Variant="NjInputRadioVariant.Classic">
+        <NjInputRadioOption Value="Yes">Yes</NjInputRadioOption>
+        <NjInputRadioOption Value="No"><div style="color:red">No</div></NjInputRadioOption>
+    </NjInputRadio>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputRadio Disabled="true" @bind-Value="NjRadioButtonValueSet" Variant="NjInputRadioVariant.Classic">
+        <NjInputRadioOption Value="Yes">Yes</NjInputRadioOption>
+        <NjInputRadioOption Value="No"><div style="color:red">No</div></NjInputRadioOption>
+    </NjInputRadio>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-RadioButton.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5">
+    <h2>NjInputDate - InputDateType.Date</h2>
+    <hr />
+    @(NjDateTimeValue.ToString())
+    <h3>NjInputDateVariant.Filled</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" Variant="NjInputDateVariant.Filled" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>NjInputDateVariant.Outline</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" Variant="NjInputDateVariant.Outline" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: MMMM</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="MMMM" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: yyyy-MM-dd</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="yyyy-MM-dd" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: hh:mm:ss</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="hh:mm:ss" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: ddd, MMM dd yyyy HH:mm:ss GMT</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="ddd, MMM dd yyyy HH:mm:ss GMT" @bind-Value="NjDateTimeValue"></NjInputDate>
+
+    <hr />
+    <h2>NjInputDate - InputDateType.DateTimeLocal</h2>
+    <NjInputDate FormControl="true" Type="InputDateType.DateTimeLocal" @bind-Value="NjDateTimeLocalValue"></NjInputDate>
+    <hr />
+    <h2>NjInputDate - InputDateType.Month</h2>
+    <NjInputDate FormControl="true" Type="InputDateType.Month" @bind-Value="NjMonthValue"></NjInputDate>
+    <hr />
+    <h2>NjInputDate - InputDateType.Time</h2>
+    <NjInputDate FormControl="true" Type="InputDateType.Time" @bind-Value="NjTimeValue"></NjInputDate>
+
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputDate FormControl="true" ReadOnly="true" Type="InputDateType.Date" @bind-Value="NjDateTimeValueSet"></NjInputDate>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputDate FormControl="true" Disabled="true" Type="InputDateType.Date" @bind-Value="NjDateTimeValueSet"></NjInputDate>
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-DateTime.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5">
+    <h2>NjInputColor</h2>
+    <hr />
+    <NjInputColor @bind-Value="NjColorValue"></NjInputColor>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputColor ReadOnly="true" @bind-Value="NjColorValueSet"></NjInputColor>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputColor Disabled="true" @bind-Value="NjColorValueSet"></NjInputColor>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputColor.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5">
+
+    <h2>NjInputNumber</h2>
+    <hr />
+    @NjNumberValue
+    <hr />
+    <h3>NjInputNumberVariant.Flat</h3>
+    <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Flat"></NjInputNumber>
+    <hr />
+    <h3>NjInputNumberVariant.Filled</h3>
+    <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Filled"></NjInputNumber>
+    <hr />
+    <h3>NjInputNumberVariant.Outline</h3>
+    <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Outline"></NjInputNumber>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputNumber ReadOnly="true" @bind-Value="NjNumberValueSet" Label="TestNumber"></NjInputNumber>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputNumber Disabled="true" @bind-Value="NjNumberValueSet" Label="TestNumber"></NjInputNumber>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputNumber.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5">
+    <h2>NjInputRange</h2>
+    <hr />
+    <NjInputRange @bind-Value="NjRangeValue" Label="TestRange"></NjInputRange>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputRange ReadOnly="true" @bind-Value="NjRangeValueSet" Label="TestRange"></NjInputRange>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputRange Disabled="true" @bind-Value="NjRangeValueSet" Label="TestRange"></NjInputRange>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputRange.md"))"></NjMarkdownFragment>
+
+</div>
+
+<div class="nj-p-5">
+    <h2>NjInputFile</h2>
+    <hr />
+    <h3>NjInputFileVariant.Flat</h3>
+    <NjInputFile FormControl="true" Variant="NjInputFileVariant.Flat" Text="File here" @bind-Value="NjFileValue" OnChange="FileChanged"></NjInputFile>
+    <hr />
+    <h3>NjInputFileVariant.Raised</h3>
+    <NjInputFile FormControl="true" Variant="NjInputFileVariant.Raised" Text="File here" @bind-Value="NjFileValue" OnChange="FileChanged"></NjInputFile>
+    <hr />
+    <h3>Multiple</h3>
+    <NjInputFile Text="File Multiple here" Multiple="true" @bind-Value="NjFileValue"></NjInputFile>
+    @if (null != NjFileValue)
+    {
+        <span>@NjFileValue[0]</span>
+    }
+    <span>@FileContent</span>
+    <hr />
+    <h3>ShowImagePreviews="true"</h3>
+    <NjInputFile Text="Image here" @bind-Value="NjFileValue"
+                 Extensions="@(new string[]{".jpg", ".webp", ".png"})"
+                 ShowImagePreviews="true"
+                 Variant="NjInputFileVariant.Flat">
+    </NjInputFile>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputFile ReadOnly="true" Text="Image here" @bind-Value="NjFileValue"
+                 Extensions="@(new string[]{".jpg", ".webp", ".png"})"
+                 ShowImagePreviews="true">
+    </NjInputFile>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputFile Disabled="true" Text="Image here" @bind-Value="NjFileValue"
+                 Extensions="@(new string[]{".jpg", ".webp", ".png"})"
+                 ShowImagePreviews="true">
+    </NjInputFile>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputFile.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    public static string[] NjDropdownItems = ["Item1", "Item2", "Item3"];
+
+    public string? NjDropdownValue { get; set; }
+    public string? NjDropdownValueSet { get; set; } = NjDropdownItems[1];
+    public string[]? NjDropdownCollectionValue { get; set; }
+
+    public string? NjTextFlatValue { get; set; }
+    public string? NjTextFilledValue { get; set; }
+    public string? NjTextOutlineValue { get; set; }
+    public string TextValue { get; set; } = "Hola buenas tardes";
+
+    public string? NjRadioButtonValue { get; set; }
+    public string? NjRadioButtonValueSet { get; set; } = "No";
+
+    public DateTime? NjDateTimeValue { get; set; }
+    public DateTime? NjDateTimeValueSet { get; set; } = DateTime.Now;
+    public DateTimeOffset? NjDateTimeLocalValue { get; set; }
+    public DateOnly? NjMonthValue { get; set; }
+    public TimeOnly? NjTimeValue { get; set; }
+
+    public System.Drawing.Color NjColorValue { get; set; }
+    public System.Drawing.Color NjColorValueSet { get; set; } = System.Drawing.Color.Azure;
+
+    public bool? NjCheckboxValue { get; set; }
+    public bool? NjCheckboxValueSet { get; set; } = true;
+    public double? NjNumberValue { get; set; }
+    public double? NjNumberValueSet { get; set; } = 25;
+    public double NjRangeValue { get; set; }
+    public double NjRangeValueSet { get; set; } = 25;
+    public IBrowserFile[] NjFileValue { get; set; }
+    public string FileContent = string.Empty;
+    private async Task FileChanged(InputFileChangeEventArgs args)
+    {
+        long maxFileSize = 1024 * 15;
+
+        var tempFilePath = Path.GetTempFileName();
+        var file = args.GetMultipleFiles()[0];
+
+        using (FileStream fs = new FileStream(tempFilePath, FileMode.Create))
+        {
+            await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+        }
+
+        using (var sr = new StreamReader(tempFilePath))
+        {
+            FileContent = await sr.ReadToEndAsync();
+        }
+
+        File.Delete(tempFilePath);
+    }
+
+
+}

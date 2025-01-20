@@ -7,3 +7,5 @@ param(
 .\_ThemeGen_Icons.ps1
 .\_CssBuild.ps1 -RunNpmInstall -Configuration $Configuration
 .\_JsBuild.ps1 -RunNpmInstall -Configuration $Configuration
+
+Write-Output "AfterBuild script executed for configuration: $RunNpmInstall $Configuration"

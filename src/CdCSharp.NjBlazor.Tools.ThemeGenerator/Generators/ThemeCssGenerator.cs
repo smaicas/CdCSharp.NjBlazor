@@ -285,6 +285,14 @@ public static partial class ThemeCssGenerator
             new CssAttribute("color", "var(--palette-tertiary)")
         ));
 
+        styles.Add(new CssStyle($".{CssClassReferences.Prefix.Color}black",
+            new CssAttribute("color", "var(--palette-black)")
+        ));
+
+        styles.Add(new CssStyle($".{CssClassReferences.Prefix.Color}white",
+            new CssAttribute("color", "var(--palette-white)")
+        ));
+
         styles.Add(new CssStyle($".{CssClassReferences.Prefix.Background}palette",
             new CssAttribute("background-color", "var(--palette-background)")
         ));
@@ -299,6 +307,14 @@ public static partial class ThemeCssGenerator
 
         styles.Add(new CssStyle($".{CssClassReferences.Prefix.Background}tertiary",
             new CssAttribute("background-color", "var(--palette-tertiary)")
+        ));
+
+        styles.Add(new CssStyle($".{CssClassReferences.Prefix.Background}black",
+            new CssAttribute("background-color", "var(--palette-black)")
+        ));
+
+        styles.Add(new CssStyle($".{CssClassReferences.Prefix.Background}white",
+            new CssAttribute("background-color", "var(--palette-white)")
         ));
     }
 

@@ -1,0 +1,39 @@
+﻿@page "/docs/containers-stack"
+
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Grid
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageContainers> Loc
+
+<h2>Stack</h2>
+
+<h3>Stack row</h3>
+
+<NjStack Grow="1" Spacing="5" AlignItems="Core.AlignItemsMode.Center" Direction="Core.FlexDirectionMode.Row" Wrap="Core.FlexWrapMode.Wrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</NjStack>
+
+<h3>Stack column</h3>
+
+<NjStack Grow="1" Spacing="5" AlignItems="Core.AlignItemsMode.Center" Direction="Core.FlexDirectionMode.Column" Wrap="Core.FlexWrapMode.Wrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</NjStack>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Containers-Stack.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+  
+}

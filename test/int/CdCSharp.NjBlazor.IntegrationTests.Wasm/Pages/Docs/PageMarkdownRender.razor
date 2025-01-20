@@ -1,0 +1,50 @@
+﻿@page "/docs/markdownrender"
+
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+@using CdCSharp.NjBlazor.Features.ResourceAccess.Components.FileRenderer
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Markdown-Renderer.md"))"></NjMarkdownFragment>
+
+</div>
+
+<h2>NjFileRenderer</h2>
+<NjFileRenderer FileAssets="@FileAssets" RenderFragmentFunction="(s)=> MarkdownToRenderFragmentParser.ParseText(s)"></NjFileRenderer>
+
+<h2>NjMarkdownFragment</h2>
+<NjMarkdownFragment Content="async () => FragmentString"></NjMarkdownFragment>
+
+
+@code {
+    RenderFragment? Fragment;
+    string? FragmentString;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            FragmentString = "## This is markdown content";
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(FragmentString);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    List<NjFileRendererResource> FileAssets = new()
+    {
+        new()
+        {
+            DisplayName="Test 1",
+            ResourcePath = "EmbeddedRes/Test1.md"
+        },
+        new()
+        {
+            DisplayName="Codeblock",
+            ResourcePath = "EmbeddedRes/Codeblock.md"
+        }
+    };
+}

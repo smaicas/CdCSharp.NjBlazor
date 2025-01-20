@@ -10,7 +10,7 @@
       "rollForward": false
     },
     "cdcsharp.njblazor.tools.themegenerator": {
-      "version": "1.0.0-pre.20250118053636",
+      "version": "1.0.0-pre.20250120020820",
       "commands": [
         "nj-theme-gen"
       ],

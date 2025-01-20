@@ -345,6 +345,7 @@ export module DOMModule {
             element.disabled = value;
         }
 
+        // Scroll to the closest element based on query selector
         public async ScrollToClosest(querySelector: string, element?: HTMLElement | null): Promise<void> {
             let closest: HTMLElement | null = null;
 
@@ -355,16 +356,23 @@ export module DOMModule {
             }
 
             if (closest) {
-                closest.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const rect = closest.getBoundingClientRect();
+                const offsetTop = rect.top + window.scrollY;
+
+                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
             }
         }
 
-        public async ScrollTop(parentElement?: HTMLElement | null, position?: number) {
+        // Scroll to the top of the specified element or document
+        public async ScrollTop(parentElement?: HTMLElement | null, position?: number): Promise<void> {
             position ??= 0;
+
             if (parentElement) {
-                parentElement.scrollTop = position;
+                const rect = parentElement.getBoundingClientRect();
+                const offsetTop = rect.top + window.scrollY;
+                window.scrollTo({ top: offsetTop + position, behavior: 'smooth' });
             } else {
-                document.querySelector("body").scrollTop = position;
+                window.scrollTo({ top: position, behavior: 'smooth' });
             }
         }
 

@@ -1,0 +1,44 @@
+﻿@page "/docs/colorspalette"
+
+@using System.Reflection
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<NjStack Direction="FlexDirectionMode.Row">
+    @foreach (Type colorType in typeof(NjColors).GetNestedTypes())
+    {
+        PropertyInfo[] colorProperties = colorType.GetProperties(BindingFlags.Public | BindingFlags.Static);
+
+        <div class="nj-p-2">
+
+            <h3>@colorType.Name</h3>
+            <NjStack Spacing="0">
+                @foreach (PropertyInfo colorProperty in colorProperties)
+                {
+                    CssColor? color = (CssColor)colorProperty.GetValue(null);
+                    string rgbaColor = color.ToString();
+                    string propertyName = colorProperty.Name;
+                    <div class="color-block shadowed-text" style="text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black; color: white;min-height:10em;background-color: @rgbaColor;">
+                        @propertyName
+                    </div>
+                }
+            </NjStack>
+
+        </div>
+    }
+</NjStack>
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Colors-Palette.md"))"></NjMarkdownFragment>
+
+</div>
+
+
+@code {
+ 
+}

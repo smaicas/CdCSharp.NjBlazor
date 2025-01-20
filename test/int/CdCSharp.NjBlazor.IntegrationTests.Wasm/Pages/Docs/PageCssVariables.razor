@@ -1,0 +1,16 @@
+﻿@page "/docs/cssvariables"
+
+@using CdCSharp.NjBlazor.Features.Audio.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/CSS-Variables.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+  
+}

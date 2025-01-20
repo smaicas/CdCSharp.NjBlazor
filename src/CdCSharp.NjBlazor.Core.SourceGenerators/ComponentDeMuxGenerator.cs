@@ -128,7 +128,8 @@ public class ComponentDeMuxGenerator : IIncrementalGenerator
             ClassDeclarationSyntax originalClassDeclaration,
             ClassDeclarationSyntax partialClassDeclaration,
             IdentifierNameSyntax enumTypeIdentifier,
-            IEnumerable<string> enumNames)
+            IEnumerable<string> enumNames,
+            string namespaceName)
     {
         List<SwitchSectionSyntax> switchSections = [];
 
@@ -136,7 +137,7 @@ public class ComponentDeMuxGenerator : IIncrementalGenerator
         foreach (string name in enumNames)
         {
             CaseSwitchLabelSyntax caseSwitchLabel = SyntaxFactory.CaseSwitchLabel(
-                SyntaxFactory.ParseExpression($"{enumTypeIdentifier.Identifier.Text}.{name}")
+                SyntaxFactory.ParseExpression($"{namespaceName}.{enumTypeIdentifier.Identifier.Text}.{name}")
             );
 
             TypeParameterListSyntax? typeParameterList = originalClassDeclaration.TypeParameterList;
@@ -311,44 +312,83 @@ public class ComponentDeMuxGenerator : IIncrementalGenerator
         {
             throw new ArgumentException("Enum declaration not found.");
         }
-
         IEnumerable<string> enumNames = enumDeclaration.Members.Select(m => m.Identifier.Text);
 
-        partialClassDeclaration = AddVariantParameter(partialClassDeclaration, enumTypeIdentifier, enumNames);
+        string namespaceName = enumSymbol.Symbol.ContainingNamespace.ToString();
+        partialClassDeclaration = AddVariantParameter(partialClassDeclaration, enumTypeIdentifier, enumNames, namespaceName);
 
-        partialClassDeclaration = AddBuildRenderTreeMethod(semanticModel, originalClassDeclaration, partialClassDeclaration, enumTypeIdentifier, enumNames);
+        partialClassDeclaration = AddBuildRenderTreeMethod(semanticModel, originalClassDeclaration, partialClassDeclaration, enumTypeIdentifier, enumNames, namespaceName);
 
         return partialClassDeclaration;
     }
 
     private ClassDeclarationSyntax AddVariantParameter(
-            ClassDeclarationSyntax partialClassDeclaration,
-            IdentifierNameSyntax enumTypeIdentifier,
-            IEnumerable<string> enumNames)
+    ClassDeclarationSyntax partialClassDeclaration,
+    IdentifierNameSyntax enumTypeIdentifier,
+    IEnumerable<string> enumNames,
+    string namespaceName)
     {
-        PropertyDeclarationSyntax variantProperty = SyntaxFactory.PropertyDeclaration(
-                    SyntaxFactory.ParseTypeName(enumTypeIdentifier.Identifier.Text), "Variant")
-                    .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
-                    .WithAttributeLists(SyntaxFactory.SingletonList(
-                        SyntaxFactory.AttributeList(
-                            SyntaxFactory.SingletonSeparatedList(
-                                SyntaxFactory.Attribute(SyntaxFactory.ParseName("Parameter"))))))
-                    .WithAccessorList(SyntaxFactory.AccessorList(
-                        SyntaxFactory.List(new[]
-                        {
-                            SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
-                                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
-                            SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
-                                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
-                        })))
-                    .WithInitializer(
-                        SyntaxFactory.EqualsValueClause(
-                            SyntaxFactory.ParseExpression($"{enumTypeIdentifier.Identifier.Text}.{enumNames.First()}")))
-                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+        // Construir el tipo calificado con namespace
+        QualifiedNameSyntax qualifiedTypeName = SyntaxFactory.QualifiedName(
+            SyntaxFactory.IdentifierName(namespaceName),
+            SyntaxFactory.IdentifierName(enumTypeIdentifier.Identifier.Text)
+        );
 
+        // Declaración de la propiedad Variant
+        PropertyDeclarationSyntax variantProperty = SyntaxFactory.PropertyDeclaration(
+                    qualifiedTypeName, "Variant") // Tipo ahora incluye el namespace
+                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                .WithAttributeLists(SyntaxFactory.SingletonList(
+                    SyntaxFactory.AttributeList(
+                        SyntaxFactory.SingletonSeparatedList(
+                            SyntaxFactory.Attribute(SyntaxFactory.ParseName("Parameter"))))))
+                .WithAccessorList(SyntaxFactory.AccessorList(
+                    SyntaxFactory.List(new[]
+                    {
+                    SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                        .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
+                    SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
+                        .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
+                    })))
+                .WithInitializer(
+                    SyntaxFactory.EqualsValueClause(
+                        SyntaxFactory.ParseExpression($"{namespaceName}.{enumTypeIdentifier.Identifier.Text}.{enumNames.First()}")))
+                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+
+        // Agregar la propiedad al partial class
         partialClassDeclaration = partialClassDeclaration.AddMembers(variantProperty);
         return partialClassDeclaration;
     }
+
+    //private ClassDeclarationSyntax AddVariantParameter(
+    //        ClassDeclarationSyntax partialClassDeclaration,
+    //        IdentifierNameSyntax enumTypeIdentifier,
+    //        IEnumerable<string> enumNames,
+    //        string namespaceName)
+    //{
+    //    PropertyDeclarationSyntax variantProperty = SyntaxFactory.PropertyDeclaration(
+    //                SyntaxFactory.ParseTypeName(enumTypeIdentifier.Identifier.Text), "Variant")
+    //                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+    //                .WithAttributeLists(SyntaxFactory.SingletonList(
+    //                    SyntaxFactory.AttributeList(
+    //                        SyntaxFactory.SingletonSeparatedList(
+    //                            SyntaxFactory.Attribute(SyntaxFactory.ParseName("Parameter"))))))
+    //                .WithAccessorList(SyntaxFactory.AccessorList(
+    //                    SyntaxFactory.List(new[]
+    //                    {
+    //                        SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+    //                            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
+    //                        SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
+    //                            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
+    //                    })))
+    //                .WithInitializer(
+    //                    SyntaxFactory.EqualsValueClause(
+    //                        SyntaxFactory.ParseExpression($"{enumTypeIdentifier.Identifier.Text}.{enumNames.First()}")))
+    //                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+
+    //    partialClassDeclaration = partialClassDeclaration.AddMembers(variantProperty);
+    //    return partialClassDeclaration;
+    //}
 
     private StatementSyntax CreateAddAttributeStatement(string attributeName, string attributeValue, ref int attributeOrder)
     {

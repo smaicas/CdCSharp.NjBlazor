@@ -5,6 +5,7 @@
 @using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
 @using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
 @using CdCSharp.NjBlazor.Features.DeviceManager.Components
+@using CdCSharp.NjBlazor.Features.Dom.Abstractions
 @using CdCSharp.NjBlazor.Features.Forms.Text
 @using CdCSharp.NjBlazor.Features.Layout.Components.Grid
 @using CdCSharp.NjBlazor.Features.Layout.Components.Sidebar
@@ -16,15 +17,12 @@
 @using Microsoft.Extensions.Localization
 @using System.Reflection
 
-
 @inject IStringLocalizer<Docs> Loc
-@inject NavigationManager Navigation
+@inject IDOMJsInterop DomJs
 
 <PageTitle>@Loc["CdCSharp NjBlazor - Documentation"]</PageTitle>
 
 <NjDeviceManager @ref="_deviceManager" DeviceWidthChanged="StateHasChanged" />
-
-<div id="init"></div>
 
 <div class="nj-menu-toggle">
     @if (IsOpen)
@@ -39,7 +37,6 @@
 @if (IsOpen)
 {
     <div class="nj-menu-content nj-px-4">
-        <NjStack Direction="FlexDirectionMode.Column" Spacing="1">
             <NjTree Direction="FlexDirectionMode.Column">
 
                 <NjTreeNode>
@@ -47,22 +44,22 @@
                     <ChildContent>
 
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["CSS Variables"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageCssVariables))" /></Title>
+                            <Title><NjTextButton Text="@Loc["CSS Variables"]" OnClick="async ()=> await ShowComponent(typeof(PageCssVariables))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Theme Mode"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageThemeMode))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Theme Mode"]" OnClick="async ()=> await ShowComponent(typeof(PageThemeMode))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Localization"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageLocalization))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Localization"]" OnClick="async ()=> await ShowComponent(typeof(PageLocalization))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Icon List"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageIconsList))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Icon List"]" OnClick="async ()=> await ShowComponent(typeof(PageIconsList))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Colors Palette"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageColorsPalette))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Colors Palette"]" OnClick="async ()=> await ShowComponent(typeof(PageColorsPalette))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Device Manager"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageDeviceManager))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Device Manager"]" OnClick="async ()=> await ShowComponent(typeof(PageDeviceManager))" /></Title>
                         </NjTreeNode>
 
 
@@ -73,19 +70,39 @@
                     <ChildContent>
 
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Containers"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageContainers))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Containers"]" OnClick="async ()=> await ShowComponent(typeof(PageContainers))" /></Title>
+                            <ChildContent>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Border Box"]" OnClick="async ()=> await ShowComponent(typeof(PageContainersBorderBox))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Fit Content"]" OnClick="async ()=> await ShowComponent(typeof(PageContainersFitContent))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Grid"]" OnClick="async ()=> await ShowComponent(typeof(PageContainersGrid))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Input Control"]" OnClick="async ()=> await ShowComponent(typeof(PageContainersInputControl))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Shadow Box"]" OnClick="async ()=> await ShowComponent(typeof(PageContainersShadowBox))" /></Title>
+                                </NjTreeNode>
+                                <NjTreeNode>
+                                    <Title><NjTextButton Text="@Loc["Stack"]" OnClick="async ()=> await ShowComponent(typeof(PageContainersStack))" /></Title>
+                                </NjTreeNode>
+                            </ChildContent>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Spinner"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageSpinner))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Spinner"]" OnClick="async ()=> await ShowComponent(typeof(PageSpinner))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Tabs"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageTabs))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Tabs"]" OnClick="async ()=> await ShowComponent(typeof(PageTabs))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Tree"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageTree))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Tree"]" OnClick="async ()=> await ShowComponent(typeof(PageTree))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Table"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageTable))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Table"]" OnClick="async ()=> await ShowComponent(typeof(PageTable))" /></Title>
                         </NjTreeNode>
                     </ChildContent>
                 </NjTreeNode>
@@ -94,16 +111,16 @@
                     <ChildContent>
 
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Code Highlight"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageCodeHighlight))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Code Highlight"]" OnClick="async ()=> await ShowComponent(typeof(PageCodeHighlight))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Draggable"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageDraggable))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Draggable"]" OnClick="async ()=> await ShowComponent(typeof(PageDraggable))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["Markdown Renderer"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMarkdownRender))" /></Title>
+                            <Title><NjTextButton Text="@Loc["Markdown Renderer"]" OnClick="async ()=> await ShowComponent(typeof(PageMarkdownRender))" /></Title>
                         </NjTreeNode>
                         <NjTreeNode>
-                            <Title><NjTextButton Text="@Loc["ColorPicker"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageColorPicker))" /></Title>
+                            <Title><NjTextButton Text="@Loc["ColorPicker"]" OnClick="async ()=> await ShowComponent(typeof(PageColorPicker))" /></Title>
                         </NjTreeNode>
 
                     </ChildContent>
@@ -113,7 +130,7 @@
                     <ChildContent>
                         <NjTreeNode>
                             <Title>
-                                <NjTextButton Text="@Loc["Forms"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageForms))" />
+                                <NjTextButton Text="@Loc["Forms"]" OnClick="async ()=> await ShowComponent(typeof(PageForms))" />
                             </Title>
                         </NjTreeNode>
                     </ChildContent>
@@ -123,7 +140,7 @@
                     <ChildContent>
                         <NjTreeNode>
                             <Title>
-                                <NjTextButton Text="@Loc["Buttons"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageButtons))" />
+                                <NjTextButton Text="@Loc["Buttons"]" OnClick="async ()=> await ShowComponent(typeof(PageButtons))" />
                             </Title>
                         </NjTreeNode>
                     </ChildContent>
@@ -133,7 +150,7 @@
                     <ChildContent>
                         <NjTreeNode>
                             <Title>
-                                <NjTextButton Text="@Loc["Search"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageSearch))" />
+                                <NjTextButton Text="@Loc["Search"]" OnClick="async ()=> await ShowComponent(typeof(PageSearch))" />
                             </Title>
                         </NjTreeNode>
                     </ChildContent>
@@ -143,7 +160,7 @@
                     <ChildContent>
                         <NjTreeNode>
                             <Title>
-                                <NjTextButton Text="@Loc["Meter"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMeter))" />
+                                <NjTextButton Text="@Loc["Meter"]" OnClick="async ()=> await ShowComponent(typeof(PageMeter))" />
                             </Title>
                         </NjTreeNode>
                     </ChildContent>
@@ -153,7 +170,7 @@
                     <ChildContent>
                         <NjTreeNode>
                             <Title>
-                                <NjTextButton Text="@Loc["Media"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageMedia))" />
+                                <NjTextButton Text="@Loc["Media"]" OnClick="async ()=> await ShowComponent(typeof(PageMedia))" />
                             </Title>
                         </NjTreeNode>
                     </ChildContent>
@@ -163,13 +180,11 @@
                     <ChildContent>
                         <NjTreeNode>
                             <Title>
-                                <NjTextButton Text="@Loc["Audio"]" OnClick="()=> ShowComponent(typeof(ShowCase.PageAudio))" />
+                                <NjTextButton Text="@Loc["Audio"]" OnClick="async ()=> await ShowComponent(typeof(PageAudio))" />
                             </Title>
                         </NjTreeNode>
                     </ChildContent>
                 </NjTreeNode>
-
-                <NjSpacer Vertical="3"></NjSpacer>
 
                 <NjTreeNode>
                     <Title>
@@ -190,11 +205,11 @@
 
                             @foreach (var docItem in docItemKv.Value)
                             {
-                                <NjTreeNode>
+                                <NjTreeNode OpenFunction="(n)=> _searchValue.Length > 2 && docItem.Name.Contains(_searchValue)">
 
                                     <Title>
                                         <NjTextButton FormControl="false"
-                                        OnClick="()=> ShowComponent((Type)docItem.ComponentType)"
+                                        OnClick="async ()=> await ShowComponent((Type)docItem.ComponentType)"
                                         Text="@docItem.Name">
                                         </NjTextButton>
                                     </Title>
@@ -207,9 +222,10 @@
                 }
 
             </NjTree>
-        </NjStack>
     </div>
 }
+
+<NjSpacer VerticalRelativeToQuery=".nj-menu-toggle"></NjSpacer>
 
 <NjGrid TemplateColumnsSpecific="100%" AlignItems="AlignItemsMode.Start" JustifyItems="JustifyItemsMode.FlexStart">
     <NjGridCell>
@@ -235,21 +251,22 @@
 
     private string OpenClass => IsOpen ? CssClassReferences.Open : string.Empty;
 
-    private void ToggleOpen()
+    private async Task ToggleOpen()
     {
 
         IsOpen = !IsOpen;
         if (IsOpen)
         {
-            GoToTop();
+            await GoToTop();
         }
     }
 
-    private void ShowComponent(Type type)
+    private async Task ShowComponent(Type type)
     {
         _dynamicComponent = type;
-        if (IsOpen){
-            ToggleOpen();
+        if (IsOpen)
+        {
+            await ToggleOpen();
         }
         StateHasChanged();
     }
@@ -274,8 +291,8 @@
             .ToDictionary(g => g.Key, g => g.ToList());
     }
 
-    private void GoToTop()
+    private async Task GoToTop()
     {
-        Navigation.NavigateTo(Navigation.Uri, forceLoad: false);
+        await DomJs.ScrollTopAsync();
     }
 }

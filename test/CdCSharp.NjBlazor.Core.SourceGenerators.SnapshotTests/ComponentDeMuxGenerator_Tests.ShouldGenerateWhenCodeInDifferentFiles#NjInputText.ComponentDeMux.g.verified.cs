@@ -9,7 +9,7 @@ namespace Nj.Blazor;
 public partial class NjInputText
 {
     [Parameter]
-    public NjInputTextVariant Variant { get; set; } = NjInputTextVariant.Flat;
+    public Nj.Blazor.NjInputTextVariant Variant { get; set; } = NjInputTextVariant.Flat;
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {

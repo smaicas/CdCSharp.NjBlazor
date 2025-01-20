@@ -1,0 +1,33 @@
+﻿@page "/docs/colorpicker"
+
+@using System.Drawing
+@using CdCSharp.NjBlazor.Features.ColorPicker.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<h2>NjColorPicker</h2>
+
+<NjColorPicker @bind-PickedColor="CurrentValue" OnSave="AcceptPicker" OnCancel="CancelPicker"></NjColorPicker>
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Color-Picker.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    private Color CurrentValue;
+
+    protected Task AcceptPicker()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected Task CancelPicker()
+    {
+        return Task.CompletedTask;
+    }
+
+}

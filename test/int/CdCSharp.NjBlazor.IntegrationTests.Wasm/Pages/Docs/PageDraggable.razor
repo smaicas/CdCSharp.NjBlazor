@@ -1,0 +1,41 @@
+﻿@page "/docs/draggable"
+
+@using CdCSharp.NjBlazor.Features.Draggable.Components
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<NjDraggable OnDragStart="DragStart" OnDrag="Drag" OnDragEnds="DragEnds" OnMouseLeave="MouseLeave">
+    <div style="width:500px; height:500px; background-color:#666666"></div>
+
+</NjDraggable>
+
+@TestText
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Draggable.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    private string TestText { get; set; } = string.Empty;
+
+    private void DragStart(MouseEventArgs args)
+    {
+        TestText = "DragStart";
+    }
+    private void Drag(MouseEventArgs args)
+    {
+        TestText = "Drag";
+    }
+    private void DragEnds(MouseEventArgs args)
+    {
+        TestText = "DragEnds";
+    }
+    private void MouseLeave(MouseEventArgs args)
+    {
+        TestText = "MouseLeave";
+    }
+}

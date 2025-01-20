@@ -1,10 +1,11 @@
 ﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Core.Css
 
 @namespace CdCSharp.NjBlazor.Features.Containers.Components
 
 @inherits NjComponentBase
 
-<div style="box-shadow: @GetBoxShadow();">
+<div class="nj-shadow-box" style="@CssTools.CalculateCssShadowValue(Inset, OffsetX, OffsetY, BlurRadius, SpreadRadius, Color);">
     @ChildContent
 </div>
 

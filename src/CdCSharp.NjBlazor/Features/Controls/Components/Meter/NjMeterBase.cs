@@ -1,7 +1,6 @@
 ﻿using CdCSharp.NjBlazor.Core.Abstractions.Components;
 using CdCSharp.NjBlazor.Core.Css;
 using Microsoft.AspNetCore.Components;
-using System.Diagnostics.CodeAnalysis;
 
 namespace CdCSharp.NjBlazor.Features.Controls.Components.Meter;
 
@@ -10,20 +9,6 @@ namespace CdCSharp.NjBlazor.Features.Controls.Components.Meter;
 /// </summary>
 public abstract class NjMeterBase : NjControlComponentBase
 {
-    /// <summary>
-    /// Represents a reference to the main element.
-    /// </summary>
-    /// <remarks>
-    /// This reference may not be null.
-    /// </remarks>
-    [DisallowNull]
-    protected ElementReference MainElementReference;
-
-    /// <summary>
-    /// Gets or sets the reference ID of the main element.
-    /// </summary>
-    protected string? MainElementReferenceId;
-
     /// <summary>
     /// Gets or sets the high value.
     /// </summary>
@@ -132,26 +117,6 @@ public abstract class NjMeterBase : NjControlComponentBase
     /// The percentage width as an integer.
     /// </value>
     protected int FillWidthPercent => (int)Value * 100 / MaxWidthPx;
-
-    /// <summary>
-    /// Method called after rendering the component.
-    /// </summary>
-    /// <param name="firstRender">
-    /// A boolean value indicating if it is the first render of the component.
-    /// </param>
-    /// <remarks>
-    /// This method sets the MainElementReferenceId to the Id of the MainElementReference if it is
-    /// the first render, and then triggers a state change to re-render the component.
-    /// </remarks>
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-        if (firstRender)
-        {
-            MainElementReferenceId = MainElementReference.Id;
-            StateHasChanged();
-        }
-    }
 
     /// <summary>
     /// Validates and sets the parameters for the component.

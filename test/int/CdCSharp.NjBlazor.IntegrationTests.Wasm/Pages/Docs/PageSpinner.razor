@@ -1,0 +1,20 @@
+﻿@page "/docs/spinner"
+
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<h2>Spinner</h2>
+
+<h3>NjSpinnerVariant.Default</h3>
+
+<NjSpinner Variant="NjSpinnerVariant.Default"/>
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Spinner.md"))"></NjMarkdownFragment>
+
+</div>
+@code {
+   
+}

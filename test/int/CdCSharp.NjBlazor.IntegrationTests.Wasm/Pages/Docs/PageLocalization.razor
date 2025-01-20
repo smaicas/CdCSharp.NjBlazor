@@ -1,0 +1,43 @@
+﻿@page "/docs/localization"
+
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Localization.Components
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+@using Microsoft.Extensions.Localization
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+
+@inject IStringLocalizer<PageLocalization> Loc
+
+<h2>NjLocalizationSelect</h2>
+
+<h3>NjDropdownOptionsPosition.TopRight OnlyIcon</h3>
+<NjFitContent>
+    <NjLocalizationSelect 
+        OptionsPosition="NjDropdownOptionsPosition.TopRight"                          
+        OnlyIcon="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_language" />
+</NjFitContent>
+
+<div>@Loc["Localized string"]</div>
+
+<br />
+
+<h3>NjDropdownOptionsPosition.Center</h3>
+
+<NjFitContent>
+    <NjLocalizationSelect 
+        OptionsPosition="NjDropdownOptionsPosition.Center" />
+</NjFitContent>
+
+<div>@Loc["Localized string"]</div>
+
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Localization.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+}

@@ -1,4 +1,4 @@
-﻿using CdCSharp.NjBlazor.Core.SourceGenerators.Abstractions;
+﻿using CdCSharp.NjBlazor.Markdown.SourceGenerators.Abstractions;
 
 namespace CdCSharp.NjBlazor.IntegrationTests.Wasm.Components.DocComponents;
 

@@ -1,0 +1,100 @@
+﻿@page "/docs/tabs"
+@using CdCSharp.NjBlazor.Core
+@using CdCSharp.NjBlazor.Features.Layout.Components.Stack
+@using CdCSharp.NjBlazor.Features.Layout.Components.Tabs
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<NjStack Direction="FlexDirectionMode.Column" Spacing="5">
+    <div class="nj-p-5">
+        <h2>NjTabs</h2>
+
+        <h3>NjTabsHeaderPosition.Top</h3>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Top">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+
+        <h3>NjTabsHeaderPosition.Right</h3>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Right">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+
+        <h3>NjTabsHeaderPosition.Bottom</h3>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Bottom">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+
+        <h3>NjTabsHeaderPosition.Left</h3>
+        <NjTabs ContentPadding="6" HeaderPosition="@NjTabsHeaderPosition.Left">
+            <NjTabSection Header="Tab 1">
+                <div class="nj-p-3">Tab 1 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 2">
+                <div class="nj-p-3">Tab 2 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 3">
+                <div class="nj-p-3">Tab 3 content</div>
+            </NjTabSection>
+            <NjTabSection Header="Tab 4">
+                <div class="nj-p-3">Tab 4 content</div>
+            </NjTabSection>
+        </NjTabs>
+    </div>
+</NjStack>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Tabs.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+    RenderFragment? Fragment;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            HttpClient client = new HttpClient();
+            string contentMd = await client.GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Tabs.md");
+
+            Fragment = MarkdownToRenderFragmentParser.ParseText(contentMd);
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

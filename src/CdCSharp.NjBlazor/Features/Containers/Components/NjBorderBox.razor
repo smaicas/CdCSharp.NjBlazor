@@ -1,0 +1,14 @@
+﻿@using CdCSharp.NjBlazor.Core.Abstractions.Components
+@using CdCSharp.NjBlazor.Core.Css
+
+@namespace CdCSharp.NjBlazor.Features.Containers.Components
+
+@inherits NjComponentBase
+
+<div class="nj-border-box" style="@CssTools.CalculateCssBorderValue(BorderStyle, BorderWidth, BorderRadius, Color)">
+    @ChildContent
+</div>
+
+@code {
+
+}

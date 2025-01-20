@@ -45,7 +45,7 @@
     background-color: var(--palette-inputbackground);
     border-radius: var(--input-radius);
 }
-    .nj-input, .nj-input > * {
+    .nj-input {
         color: var(--palette-inputcolor);
     }
 
