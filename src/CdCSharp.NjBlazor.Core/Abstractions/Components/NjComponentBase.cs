@@ -9,6 +9,8 @@ namespace CdCSharp.NjBlazor.Core.Abstractions.Components;
 /// </summary>
 public abstract class NjComponentBase : ComponentBase
 {
+    private readonly Dictionary<string, string> InlineStyles = [];
+
     private readonly string[] IgnoredAdditionalAttributes = ["class"];
     /// <summary>
     /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -17,6 +19,19 @@ public abstract class NjComponentBase : ComponentBase
     public Dictionary<string, object> AdditionalAttributes { get; set; } = [];
 
     public IReadOnlyDictionary<string, object>? FilteredAdditionalAttributes => AdditionalAttributes?.Where(aa => !IgnoredAdditionalAttributes.Contains(aa.Key.ToLowerInvariant())).ToDictionary();
+
+    public string UniqueId
+    {
+        get
+        {
+
+            if (AdditionalAttributes == null) return string.Empty;
+            AdditionalAttributes.TryGetValue("id", out object? id);
+            if (id == null) return PersistentId ?? string.Empty;
+            return (string)id;
+        }
+    }
+    protected virtual string? PersistentId { get; }
 
     /// <summary>
     /// Represents a reference to the main element.
@@ -38,7 +53,7 @@ public abstract class NjComponentBase : ComponentBase
 
         if (firstRender)
         {
-            Dictionary<string, object> additionals = GetAdditionalAttributes();
+            Dictionary<string, object> additionals = ComputeAdditionalAttributes();
             bool hasChanged = false;
             if (additionals.Count > 0)
             {
@@ -57,22 +72,19 @@ public abstract class NjComponentBase : ComponentBase
             if (hasChanged) { StateHasChanged(); }
 
         }
-
     }
 
-    private Dictionary<string, object> GetAdditionalAttributes()
+    private Dictionary<string, object> ComputeAdditionalAttributes()
     {
         AdditionalAttributes ??= [];
 
-        Dictionary<string, string> styles = GetInlineStyles();
-
-        if (styles.Count > 0)
+        if (InlineStyles.Count > 0)
         {
             if (AdditionalAttributes.ContainsKey("style"))
             {
                 string stylesValue = (string)AdditionalAttributes["style"];
 
-                foreach (KeyValuePair<string, string> style in styles)
+                foreach (KeyValuePair<string, string> style in InlineStyles)
                 {
                     if (stylesValue.Contains($"{style.Key}:")) { continue; }
                     stylesValue.Concat($"{style.Key}:{style.Value}");
@@ -81,13 +93,13 @@ public abstract class NjComponentBase : ComponentBase
             }
             else
             {
-                AdditionalAttributes.Add("style", styles.Select(s => $"{s.Key}:{s.Value}"));
+                AdditionalAttributes.Add("style", InlineStyles.Select(s => $"{s.Key}:{s.Value}"));
             }
         }
         return [];
     }
 
-    public virtual Dictionary<string, string> GetInlineStyles() => [];
+    public virtual Dictionary<string, string> GetInlineStyles() => InlineStyles;
 
     /// <summary>
     /// Gets the css class from the additional attributes.

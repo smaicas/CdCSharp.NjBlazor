@@ -1,0 +1,22 @@
+﻿@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<NjMarkdownFragment Content="@(async () => template)"></NjMarkdownFragment>
+
+@code {
+    string template =
+            @"
+Nj Blazor can **be used as a component library** through the [nuget](https://www.nuget.org/packages/CdCSharp.NjBlazor/) package, which offers everything you need to start developing.
+
+But other teams can also **implement their own fork** of the repository and have an environment that facilitates extension for component development through inheritance, variants, integration with typescript, code bundling. As well as adopting patterns that are of recommended interest in Blazor.
+
+> The documentation is integrated into the code since this site itself has an integration of the library itself, and the code is available.
+
+In this documentation you will find usage examples for the components as well as a glossary of all the classes that make up the library.
+
+Some recommendations can also be found by visiting the [wiki](https://github.com/smaicas/CdCSharp.NjBlazor/wiki)
+
+Visit the [discord](https://discord.gg/MpUfe7zD) channel for suggestions, questions or to find out the status of the project.
+
+Enjoy.
+";
+}

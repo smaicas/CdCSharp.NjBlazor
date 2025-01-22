@@ -8,8 +8,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace CdCSharp.NjBlazor.Core.SourceGenerators;
-
 /// <summary>
 /// Generates colors palette from System.Drawing.Color for the specific by <see
 /// cref="AutogenerateCssColorsAttribute" /> class.

@@ -1,0 +1,47 @@
+﻿@page "/docs/spacer"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Meter
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spacer
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<div class="nj-p-5 nj-w-100">
+    <h2>NjSpacer</h2>
+
+    <hr />
+    <h3>Horizontal</h3>
+    <div>A</div><NjSpacer Horizontal="2"/><div>B</div>
+
+    <hr />
+    <h3>Vertical</h3>
+    <div>A</div><NjSpacer Vertical="2" /><div>B</div>
+
+    <div class=".reference1"></div>
+    <hr />
+    <h3>HorizontalRelativeToQuery</h3>
+    <div>A</div><NjSpacer HorizontalRelativeToQuery=".reference1" Horizontal="2"/><div>B</div>
+
+    <div class=".reference2"></div>
+    <hr />
+    <h3>VerticalRelativeToQuery</h3>
+    <div>A</div><NjSpacer VerticalRelativeToQuery=".reference2" Vertical="2" /><div>B</div>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Spacer.md"))"></NjMarkdownFragment>
+
+</div>
+
+
+@code {
+
+}

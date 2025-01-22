@@ -20,7 +20,24 @@
 		<IsPackable>true</IsPackable>
 		<Configurations>Debug;Release;Integration</Configurations>
 
+		<!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>-->
+
+
+		<!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>-->
+		<!--<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)</CompilerGeneratedFilesOutputPath>-->
+
+		<!--<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>-->
+		<!--<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)</CompilerGeneratedFilesOutputPath>-->
+
 	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Generated\**" />
+		<Content Remove="Generated\**" />
+		<EmbeddedResource Remove="Generated\**" />
+		<None Remove="Generated\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
@@ -38,11 +55,15 @@
 
 
 	<ItemGroup>
-		<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" PrivateAssets="all" SetTargetFramework="TargetFramework=netstandard2.0" />
+
+		<!--<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" />-->
 	</ItemGroup>
 
 
 	<ItemGroup>
+		<Folder Include="Features\Tree\Services\" />
+		<Folder Include="Types\LocalStorage\" />
 		<Folder Include="wwwroot\css\" />
 		<Folder Include="wwwroot\js\" />
 	</ItemGroup>

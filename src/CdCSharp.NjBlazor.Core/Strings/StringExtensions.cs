@@ -144,4 +144,16 @@ public static partial class StringExtensions
             return camelCaseText;
         }
     }
+
+    public class AbbreviateCamelCaseTransformer : IStringTransformer
+    {
+        public string Transform(string source) => Abbreviate(source);
+
+        private string Abbreviate(string source)
+        {
+            if (string.IsNullOrEmpty(source)) return source;
+
+            return string.Join("", Regex.Split(source, @"(?<!^)(?=[A-Z])").Select(v => v.Take(2)));
+        }
+    }
 }

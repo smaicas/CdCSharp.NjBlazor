@@ -1,5 +1,4 @@
-﻿using CdCSharp.NjBlazor.Core;
-using CdCSharp.NjBlazor.Core.Abstractions.Components;
+﻿using CdCSharp.NjBlazor.Core.Abstractions.Components;
 using CdCSharp.NjBlazor.Core.Css;
 using CdCSharp.NjBlazor.Features.Dom.Abstractions;
 using Microsoft.AspNetCore.Components;
@@ -16,7 +15,7 @@ namespace CdCSharp.NjBlazor.Features.Forms.Dropdown;
 /// <typeparam name="TValue">
 /// The type of value that can be selected.
 /// </typeparam>
-public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
+public abstract partial class NjInputDropdownBase<TValue> : NjInputBase<TValue>
 {
     /// <summary>
     /// Indicates whether multiple selection is allowed.
@@ -54,7 +53,7 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// Initializes a new instance of the NjInputDropdownBase class. Sets the IsMultipleSelection
     /// property based on whether the type TValue is an array.
     /// </summary>
-    public NjInputDropdownBase() => IsMultipleSelection = typeof(TValue).IsArray;
+    public NjInputDropdownBase() => IsMultipleSelection = typeof(TValue).IsArray;//_active = Options.Where(op => op.Value != null).ToDictionary(o => o.Value!,o =>CurrentValueMultiple.Contains(o.Value!));
 
     /// <summary>
     /// Gets or sets the content to be rendered as a child component.
@@ -138,23 +137,6 @@ public abstract class NjInputDropdownBase<TValue> : NjInputBase<TValue>
     /// </value>
     [Parameter]
     public CssColor? PreAdornmentColor { get; set; }
-
-    /// <summary>
-    /// Generates a dictionary of active classes based on the options and current values.
-    /// </summary>
-    /// <returns>
-    /// A dictionary where the key is an object and the value is a string representing the active class.
-    /// </returns>
-    protected Dictionary<object, string> ActiveClass =>
-        Options
-            .Where(op => op.Value != null)
-            .ToDictionary(
-                o => o.Value!,
-                o =>
-                    CurrentValueMultiple.Contains(o.Value!)
-                        ? CssClassReferences.Active
-                        : string.Empty
-            );
 
     /// <summary>
     /// Gets or sets the DOM JavaScript interop service.

@@ -1,0 +1,54 @@
+﻿@page "/docs/forms-inputnumber"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Checkbox
+@using CdCSharp.NjBlazor.Features.Forms.Color
+@using CdCSharp.NjBlazor.Features.Forms.Date
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+@using CdCSharp.NjBlazor.Features.Forms.File
+@using CdCSharp.NjBlazor.Features.Forms.Number
+@using CdCSharp.NjBlazor.Features.Forms.Radio
+@using CdCSharp.NjBlazor.Features.Forms.Range
+@using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageForms> Loc
+
+<div class="nj-p-5">
+
+    <h2>NjInputNumber</h2>
+    <hr />
+    @NjNumberValue
+    <hr />
+    <h3>NjInputNumberVariant.Flat</h3>
+    <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Flat"></NjInputNumber>
+    <hr />
+    <h3>NjInputNumberVariant.Filled</h3>
+    <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Filled"></NjInputNumber>
+    <hr />
+    <h3>NjInputNumberVariant.Outline</h3>
+    <NjInputNumber FormControl="true" @bind-Value="NjNumberValue" Label="TestNumber" Variant="NjInputNumberVariant.Outline"></NjInputNumber>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputNumber ReadOnly="true" @bind-Value="NjNumberValueSet" Label="TestNumber"></NjInputNumber>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputNumber Disabled="true" @bind-Value="NjNumberValueSet" Label="TestNumber"></NjInputNumber>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputNumber.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    public double? NjNumberValue { get; set; }
+    public double? NjNumberValueSet { get; set; } = 25;
+
+}

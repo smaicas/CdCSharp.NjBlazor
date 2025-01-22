@@ -1,0 +1,68 @@
+﻿@page "/docs/buttons-textbutton"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Meter
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<div class="nj-p-5 nj-w-100">
+    <h2>NjTextButton</h2>
+
+    <hr />
+    <h3>NjTextButtonVariant.Flat</h3>
+
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat"></NjTextButton>
+    </NjFitContent>
+
+    <hr />
+    <h3>NjTextButtonVariant.Flat</h3>
+    <p>Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_airplanemode_inactive</p>
+    <p>Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_fluorescent</p>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat" PreAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_airplanemode_inactive" PostAdornment="@Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_fluorescent"
+                      PostAdornmentColor="@NjColors.Indigo.Default"></NjTextButton>
+    </NjFitContent>
+    <hr />
+    <h3>NjTextButtonVariant.Raised</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Raised" Variant="NjTextButtonVariant.Raised"></NjTextButton>
+    </NjFitContent>
+    <hr />
+    <h3>NjTextButtonVariant.Outline</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Text="Test Button Outline" Variant="NjTextButtonVariant.Outline"></NjTextButton>
+    </NjFitContent>
+
+    <hr />
+    <h3>NjTextButtonVariant.Flat Disabled</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Disabled="true" OnClick="DisabledClick" Text="Test Button Flat" Variant="NjTextButtonVariant.Flat"></NjTextButton>
+    </NjFitContent>
+
+    <hr />
+    <h3>NjTextButtonVariant.Raised Disabled</h3>
+    <NjFitContent>
+        <NjTextButton FormControl="true" Disabled="true" OnClick="DisabledClick" Text="Test Button Raised" Variant="NjTextButtonVariant.Raised"></NjTextButton>
+    </NjFitContent>
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Buttons-TextButton.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    private async Task DisabledClick(MouseEventArgs args)
+    {
+        var a = args;
+    }
+}

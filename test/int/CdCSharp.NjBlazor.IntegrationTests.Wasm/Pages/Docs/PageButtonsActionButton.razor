@@ -1,0 +1,59 @@
+﻿@page "/docs/buttons-actionbutton"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Meter
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<div class="nj-p-5 nj-w-100">
+    <h2>NjActionButton</h2>
+
+    <hr />
+    <h3>NjActivableTextButtonVariant.Flat</h3>
+    <NjActionButton FormControl="true" Icon="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_save"
+                    Color="@NjColors.Indigo.Default"
+                    Variant="NjActionButtonVariant.Flat"></NjActionButton>
+
+    <hr />
+    <h3>NjActivableTextButtonVariant.Raised</h3>
+    <NjActionButton FormControl="true" Icon="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_save"
+                    Color="@NjColors.Indigo.Default"
+                    Variant="NjActionButtonVariant.Raised"></NjActionButton>
+
+    <hr />
+    <h3>NjActivableTextButtonVariant.Outline</h3>
+    <NjActionButton FormControl="true" Icon="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_save"
+                    Color="@NjColors.Indigo.Default"
+                    Variant="NjActionButtonVariant.Outline"></NjActionButton>
+
+    <hr />
+    <h3>BackgroundColor = NjColors.Green.Lighten3</h3>
+    <NjActionButton FormControl="true" Icon="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_save"
+                    Color="@NjColors.Indigo.Default"
+                    BackgroundColor="NjColors.Green.Lighten3"
+                    Variant="NjActionButtonVariant.Raised"></NjActionButton>
+
+    <hr />
+    <h3>Disabled</h3>
+    <NjActionButton Disabled="true" FormControl="true" Icon="@Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_save"
+                    Color="@NjColors.Indigo.Default"
+                    Variant="NjActionButtonVariant.Raised"></NjActionButton>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Buttons-ActionButton.md"))"></NjMarkdownFragment>
+
+</div>
+
+
+@code {
+
+}

@@ -1,0 +1,157 @@
+﻿@page "/docs/forms-inputdropdown"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Checkbox
+@using CdCSharp.NjBlazor.Features.Forms.Color
+@using CdCSharp.NjBlazor.Features.Forms.Date
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+@using CdCSharp.NjBlazor.Features.Forms.File
+@using CdCSharp.NjBlazor.Features.Forms.Number
+@using CdCSharp.NjBlazor.Features.Forms.Radio
+@using CdCSharp.NjBlazor.Features.Forms.Range
+@using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageForms> Loc
+
+
+<div class="nj-p-5 nj-w-100">
+    <h2>NjInputDropdown</h2>
+    <hr />
+    <span> Value: @NjDropdownValue </span>
+    <hr />
+    <h3>NjInputDropdownVariant.Flat</h3>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+    <hr />
+    <h3>NjInputDropdownVariant.Filled</h3>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Filled"
+                     @bind-Value="NjDropdownValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+    <hr />
+    <h3>NjInputDropdownVariant.Outline</h3>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Outline"
+                     @bind-Value="NjDropdownValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>@Loc["Multiselection"]</h3>
+    <span> @Loc["Value"]: @(string.Join(",", NjDropdownCollectionValue ?? new string[0]))</span>
+    <NjInputDropdown FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Center </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Center"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Top </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Top"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Right </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Right"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>OptionsPosition: NjDropdownOptionsPosition.Bottom </h3>
+    <NjInputDropdown OptionsPosition="NjDropdownOptionsPosition.Bottom"
+                     FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownCollectionValue"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>NjIconDropdown</h3>
+    <NjFitContent>
+        <NjIconDropdown FormControl="true"
+                        Icon="@CdCSharp.NjBlazor.Features.Media.Icons.NjIcons.Materials.MaterialIconsRound.i_diversity_1"
+                        @bind-Value="NjDropdownCollectionValue"
+                        Label="Selection">
+            <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+            <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+            <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+        </NjIconDropdown>
+    </NjFitContent>
+
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputDropdown ReadOnly="true" FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownValueSet"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputDropdown Disabled="true" FormControl="true" Variant="NjInputDropdownVariant.Flat"
+                     @bind-Value="NjDropdownValueSet"
+                     Label="Selection">
+        <NjInputDropdownOption Value="@NjDropdownItems[0]">@NjDropdownItems[0]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[1]">@NjDropdownItems[1]</NjInputDropdownOption>
+        <NjInputDropdownOption Value="@NjDropdownItems[2]">@NjDropdownItems[2]</NjInputDropdownOption>
+    </NjInputDropdown>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-Dropdown.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    public static string[] NjDropdownItems = ["Item1", "Item2", "Item3"];
+
+    public string? NjDropdownValue { get; set; }
+    public string? NjDropdownValueSet { get; set; } = NjDropdownItems[1];
+    public string[]? NjDropdownCollectionValue { get; set; }
+
+}

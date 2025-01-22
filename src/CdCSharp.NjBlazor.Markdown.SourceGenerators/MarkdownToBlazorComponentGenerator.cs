@@ -301,7 +301,7 @@ public class MarkdownToBlazorComponentGenerator : IIncrementalGenerator
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Threading.Tasks")),
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Microsoft.AspNetCore.Components")),
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Microsoft.AspNetCore.Components.Rendering")),
-                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Nj.Blazor.Markdown"))
+                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("CdCSharp.NjBlazor.Features.Markdown"))
             )
             .AddMembers(SyntaxFactory.FileScopedNamespaceDeclaration(SyntaxFactory.ParseName(namespaceName))
                 .AddMembers(partialClassDeclaration));

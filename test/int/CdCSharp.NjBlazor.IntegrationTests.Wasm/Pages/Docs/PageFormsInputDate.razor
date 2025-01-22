@@ -1,0 +1,74 @@
+﻿@page "/docs/forms-inputdate"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Checkbox
+@using CdCSharp.NjBlazor.Features.Forms.Color
+@using CdCSharp.NjBlazor.Features.Forms.Date
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+@using CdCSharp.NjBlazor.Features.Forms.File
+@using CdCSharp.NjBlazor.Features.Forms.Number
+@using CdCSharp.NjBlazor.Features.Forms.Radio
+@using CdCSharp.NjBlazor.Features.Forms.Range
+@using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageForms> Loc
+
+<div class="nj-p-5">
+    <h2>NjInputDate - InputDateType.Date</h2>
+    <hr />
+    @(NjDateTimeValue.ToString())
+    <h3>NjInputDateVariant.Filled</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" Variant="NjInputDateVariant.Filled" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>NjInputDateVariant.Outline</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" Variant="NjInputDateVariant.Outline" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: MMMM</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="MMMM" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: yyyy-MM-dd</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="yyyy-MM-dd" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: hh:mm:ss</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="hh:mm:ss" @bind-Value="NjDateTimeValue"></NjInputDate>
+    <hr />
+    <h3>Datetime format: ddd, MMM dd yyyy HH:mm:ss GMT</h3>
+    <NjInputDate FormControl="true" Type="InputDateType.Date" DisplayFormat="ddd, MMM dd yyyy HH:mm:ss GMT" @bind-Value="NjDateTimeValue"></NjInputDate>
+
+    <hr />
+    <h2>NjInputDate - InputDateType.DateTimeLocal</h2>
+    <NjInputDate FormControl="true" Type="InputDateType.DateTimeLocal" @bind-Value="NjDateTimeLocalValue"></NjInputDate>
+    <hr />
+    <h2>NjInputDate - InputDateType.Month</h2>
+    <NjInputDate FormControl="true" Type="InputDateType.Month" @bind-Value="NjMonthValue"></NjInputDate>
+    <hr />
+    <h2>NjInputDate - InputDateType.Time</h2>
+    <NjInputDate FormControl="true" Type="InputDateType.Time" @bind-Value="NjTimeValue"></NjInputDate>
+
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputDate FormControl="true" ReadOnly="true" Type="InputDateType.Date" @bind-Value="NjDateTimeValueSet"></NjInputDate>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputDate FormControl="true" Disabled="true" Type="InputDateType.Date" @bind-Value="NjDateTimeValueSet"></NjInputDate>
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-DateTime.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    public DateTime? NjDateTimeValue { get; set; }
+    public DateTime? NjDateTimeValueSet { get; set; } = DateTime.Now;
+    public DateTimeOffset? NjDateTimeLocalValue { get; set; }
+    public DateOnly? NjMonthValue { get; set; }
+    public TimeOnly? NjTimeValue { get; set; }
+
+}

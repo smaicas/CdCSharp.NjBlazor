@@ -4,11 +4,14 @@
 
 @inherits NjComponentBase
 
-<div class="@CssClass" style="@($"flex-grow:{Grow};")">
-    @ChildContent
-</div>
+@if (ChildContent != null)
+{
+    <div class="@CssClass" style="@($"flex-grow:{Grow};")">
+        @ChildContent
+    </div>
+}
 
 @code {
-    
+
 
 }

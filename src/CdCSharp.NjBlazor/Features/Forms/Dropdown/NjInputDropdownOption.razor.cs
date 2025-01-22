@@ -1,4 +1,5 @@
 ﻿using CdCSharp.NjBlazor.Core.Abstractions.Components;
+using CdCSharp.NjBlazor.Core.Abstractions.Components.Features;
 using Microsoft.AspNetCore.Components;
 using System.Diagnostics.CodeAnalysis;
 
@@ -7,8 +8,12 @@ namespace CdCSharp.NjBlazor.Features.Forms.Dropdown;
 /// <summary>
 /// Represents an input dropdown option component.
 /// </summary>
+//[ComponentFeatures<NjComponentBase>(typeof(ActivableComponentFeature))]
 public partial class NjInputDropdownOption : NjComponentBase
 {
+    [Inject]
+    public IComponentFeature<ActivableComponentFeature> ActivableFeature { get; set; } = default!;
+
     /// <summary>
     /// Gets or sets the content to be rendered as a child component.
     /// </summary>

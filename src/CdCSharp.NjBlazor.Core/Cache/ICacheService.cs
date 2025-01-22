@@ -20,7 +20,7 @@ public interface ICacheService<TRoot, TValue>
     /// <param name="value">
     /// The value to set.
     /// </param>
-    void Set(string key, TValue value);
+    Task SetAsync(string key, TValue value);
 
     /// <summary>
     /// Tries to retrieve a value associated with the specified key.
@@ -28,15 +28,10 @@ public interface ICacheService<TRoot, TValue>
     /// <param name="key">
     /// The key to look up.
     /// </param>
-    /// <param name="value">
-    /// When this method returns, contains the value associated with the specified key, if the key
-    /// is found; otherwise, the default value for the type of the value parameter. This parameter
-    /// is passed uninitialized.
-    /// </param>
     /// <returns>
-    /// True if the key was found and the associated value was successfully retrieved; otherwise, false.
+    /// A task that returns a tuple containing a boolean indicating success and the value associated with the specified key if found.
     /// </returns>
-    bool TryGet(string key, out TValue? value);
+    Task<(bool Success, TValue? Value)> TryGetAsync(string key);
 }
 
 /// <summary>

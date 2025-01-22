@@ -1,5 +1,5 @@
 ﻿using CdCSharp.NjBlazor.Features.ColorPicker.Abstractions;
-using Nj.Blazor.ColorPicker.Services;
+using CdCSharp.NjBlazor.Features.ColorPicker.Services;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

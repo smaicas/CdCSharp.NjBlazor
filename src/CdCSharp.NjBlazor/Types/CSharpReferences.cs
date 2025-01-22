@@ -4,6 +4,16 @@ internal static class CSharpReferences
 {
     public static class Functions
     {
+        public static class LocalStorage
+        {
+            public const string GetItemAsync = "LocalStorageJs.GetItemAsync";
+            public const string RemoveItemAsync = "LocalStorageJs.RemoveItemAsync";
+            public const string ClearAsync = "LocalStorageJs.ClearAsync";
+            public const string ClearByPrefixAsync = "LocalStorageJs.ClearByPrefixAsync";
+            public const string SetItemAsync = "LocalStorageJs.SetItemAsync";
+            public const string GetKeysByPrefixAsync = "LocalStorageJs.GetKeysByPrefixAsync";
+        }
+
         public const string InitializeFocusChangeListener = "DOMJs.InitializeFocusChangeListener";
         public const string GetCurrentScrollableElement = "DOMJs.GetCurrentScrollableElement";
         public const string AddResizeCallback = "DeviceManagerJs.AddResizeCallback";
@@ -18,7 +28,6 @@ internal static class CSharpReferences
         public const string GetCssVariable = "DOMJs.GetCssVariable";
         public const string GetElementBounds = "DOMJs.GetElementBounds";
         public const string GetFocusedElementClass = "DomJs.GetFocusedElementClass";
-        public const string GetLocalStorage = "DOMJs.GetLocalStorage";
         public const string GetNonce = "AntiforgeryJs.GetNonce";
         public const string GetWindowWidth = "DeviceManagerJs.GetWindowWidth";
         public const string InputFileInitializeCallbacks = "DOMJs.InputFileInitializeCallbacks";
@@ -53,6 +62,7 @@ internal static class CSharpReferences
         public const string ColorPickerJs = "./_content/CdCSharp.NjBlazor/js/ColorPicker.min.js";
         public const string DeviceManagerJs = "./_content/CdCSharp.NjBlazor/js/DeviceManager.min.js";
         public const string DomJs = "./_content/CdCSharp.NjBlazor/js/DOM.min.js";
+        public const string LocalStorage = "./_content/CdCSharp.NjBlazor/js/LocalStorage.min.js";
         public const string DraggableJs = "./_content/CdCSharp.NjBlazor/js/Draggable.min.js";
         public const string LocalizationJs = "./_content/CdCSharp.NjBlazor/js/Localization.min.js";
 

@@ -1,0 +1,44 @@
+﻿@page "/docs/buttons-activabletextbutton"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Meter
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+
+<div class="nj-p-5 nj-w-100">
+
+    <h2>NjActivableTextButton</h2>
+
+    <hr />
+    <h3>NjActivableTextButtonVariant.UnderLine</h3>
+    <NjActivableTextButton FormControl="true" Text="Test Button UnderLine" Variant="NjActivableTextButtonVariant.UnderLine"></NjActivableTextButton>
+
+    <hr />
+    <h3>NjActivableTextButtonVariant.LeftLine</h3>
+    <NjActivableTextButton FormControl="true" Text="Test Button LeftLine" Variant="NjActivableTextButtonVariant.LeftLine"></NjActivableTextButton>
+
+    <hr />
+    <h3>NjActivableTextButtonVariant.RightLine</h3>
+    <NjActivableTextButton FormControl="true" Text="Test Button RightLine" Variant="NjActivableTextButtonVariant.RightLine"></NjActivableTextButton>
+
+    <hr />
+    <h3>NjActivableTextButtonVariant.TopLine</h3>
+    <NjActivableTextButton FormControl="true" Text="Test Button TopLine" Variant="NjActivableTextButtonVariant.TopLine"></NjActivableTextButton>
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Buttons-ActivableTextButton.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+}

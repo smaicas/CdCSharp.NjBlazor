@@ -76,7 +76,7 @@ public partial class NjLocalizationSelect : NjComponentBase
     /// This attribute is used to inject an instance of the LocalizationSettings options into the
     /// property named LocalizationSettings.
     /// </remarks>
-    [Inject] private IOptions<LocalizationSettings> LocalizationSettings { get; set; }
+    [Inject] private IOptions<NjLocalizationSettings> LocalizationSettings { get; set; }
 
     /// <summary>
     /// Gets or sets the NavigationManager for navigating between pages.

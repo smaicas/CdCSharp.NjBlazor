@@ -41,7 +41,7 @@ public abstract class NjInputTextBase {
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
         // Ejecutar el generador
-        ComponentDeMuxGenerator generator = new();
+        ComponentGenerator generator = new();
         CSharpGeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
         driver = (CSharpGeneratorDriver)driver.RunGenerators(compilation);
 
@@ -91,7 +91,7 @@ public abstract class NjInputTextBase {
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
         // Ejecutar el generador
-        ComponentDeMuxGenerator generator = new();
+        ComponentGenerator generator = new();
         CSharpGeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
         driver = (CSharpGeneratorDriver)driver.RunGenerators(compilation);
 

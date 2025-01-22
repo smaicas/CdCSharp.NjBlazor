@@ -4,7 +4,7 @@ using CdCSharp.NjBlazor.Types;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Nj.Blazor.ColorPicker.Services;
+namespace CdCSharp.NjBlazor.Features.ColorPicker.Services;
 
 /// <summary>
 /// Represents a JavaScript interop class for interacting with a color picker module.

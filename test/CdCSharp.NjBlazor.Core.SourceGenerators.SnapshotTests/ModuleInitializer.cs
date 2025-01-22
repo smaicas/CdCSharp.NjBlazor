@@ -10,6 +10,7 @@ public static class ModuleInitializer
     {
         // Force Assembly initialization (!! important !!)
         Type a = typeof(AutogenerateCssColorsAttribute);
+        Type b = typeof(ComponentFeaturesAttribute);
         VerifySourceGenerators.Initialize();
     }
 }

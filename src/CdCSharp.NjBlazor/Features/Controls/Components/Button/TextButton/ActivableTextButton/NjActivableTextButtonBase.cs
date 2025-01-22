@@ -1,4 +1,4 @@
-﻿using CdCSharp.NjBlazor.Core;
+﻿using CdCSharp.NjBlazor.Core.Abstractions.Components.Features;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,55 +7,14 @@ namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.Activ
 /// <summary>
 /// Base class for an activable text button.
 /// </summary>
-public abstract class NjActivableTextButtonBase : NjTextButtonBase
+//[ComponentFeatures<NjComponentBase>(typeof(ActivableComponentFeature))]
+public partial class NjActivableTextButtonBase : NjTextButtonBase
 {
-    private bool _active;
-
-    /// <summary>
-    /// Gets or sets the activity status.
-    /// </summary>
-    /// <value>
-    /// True if active, false if not.
-    /// </value>
-    /// <remarks>
-    /// Setting the value triggers the ActiveChanged event.
-    /// </remarks>
-    [Parameter]
-    public bool Active
-    {
-        get => _active;
-        set
-        {
-            if (_active == value)
-                return;
-
-            _active = value;
-            ActiveChanged.InvokeAsync(_active);
-        }
-    }
-
-    /// <summary>
-    /// Gets or sets the event callback for when the active state changes.
-    /// </summary>
-    /// <value>
-    /// The event callback for when the active state changes.
-    /// </value>
-    [Parameter]
-    public EventCallback<bool> ActiveChanged { get; set; }
-
-    /// <summary>
-    /// Gets the CSS class for the active state.
-    /// </summary>
-    /// <value>
-    /// The CSS class for the active state if active; otherwise, an empty string.
-    /// </value>
-    protected string ActiveClass => Active ? CssClassReferences.Active : string.Empty;
-
+    [Inject]
+    public IComponentFeature<ActivableComponentFeature> ActivableFeature { get; set; } = default!;
     protected virtual async Task ProcessClickAsync(MouseEventArgs? mouseEventArgs)
     {
         await OnClick.InvokeAsync(mouseEventArgs);
-        ToggleActive();
+        ActivableFeature.Feature.ToggleActive();
     }
-
-    private void ToggleActive() => Active = !Active;
 }

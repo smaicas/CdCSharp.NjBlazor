@@ -1,5 +1,5 @@
 ﻿using CdCSharp.NjBlazor.Features.Audio.Abstractions;
-using Nj.Blazor.Audio.Services;
+using CdCSharp.NjBlazor.Features.Audio.Services;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

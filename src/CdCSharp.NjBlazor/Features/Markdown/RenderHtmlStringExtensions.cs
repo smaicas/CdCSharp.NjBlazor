@@ -4,7 +4,7 @@ using CdCSharp.NjBlazor.Features.Markdown.Components;
 using Microsoft.AspNetCore.Components;
 using System.Text.RegularExpressions;
 
-namespace Nj.Blazor.Markdown;
+namespace CdCSharp.NjBlazor.Features.Markdown;
 
 /// <summary>
 /// Contains extension methods for rendering HTML strings.

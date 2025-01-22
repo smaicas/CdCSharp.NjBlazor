@@ -1,0 +1,96 @@
+﻿@page "/docs/forms-inputtext"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Checkbox
+@using CdCSharp.NjBlazor.Features.Forms.Color
+@using CdCSharp.NjBlazor.Features.Forms.Date
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+@using CdCSharp.NjBlazor.Features.Forms.File
+@using CdCSharp.NjBlazor.Features.Forms.Number
+@using CdCSharp.NjBlazor.Features.Forms.Radio
+@using CdCSharp.NjBlazor.Features.Forms.Range
+@using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageForms> Loc
+
+<div class="nj-p-5 nj-w-100">
+    <h2>NjInputText</h2>
+    <hr>
+    <h3>NjInputTextVariant.Flat</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <hr>
+    <h3>NjInputTextVariant.Filled</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <hr>
+    <h3>NjInputTextVariant.Outline</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Outline" />
+    <hr>
+    <h3>Placeholder & Title</h3>
+    <NjInputText FormControl="true" Placeholder="Test Place Holder" Title="Test Input Title" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <hr>
+    <h3>Password</h3>
+    <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText FormControl="true" IsPassword="true" @bind-Value="NjTextOutlineValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText FormControl="true" ReadOnly="true" @bind-Value="TextValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText FormControl="true" Disabled="true" @bind-Value="TextValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+    <hr />
+    <h3>PreAdornment && PreAdornmentColor</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFlatValue"
+                 Label="Classic"
+                 Variant="NjInputTextVariant.Filled"
+                 PreAdornment="@CdCSharp.NjBlazor.Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_castle"
+                 PreAdornmentColor="@NjColors.Crimson.Default" />
+    <hr />
+    <h3>Icons</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFlatValue"
+                 Label="Classic"
+                 Variant="NjInputTextVariant.Filled"
+                 PostAdornment="@CdCSharp.NjBlazor.Features.Media.Icons.NjIcons.Materials.MaterialIcons.i_castle"
+                 PreAdornmentColor="@NjColors.Crimson.Default" />
+    <hr />
+    <h3>PostAdornment Text</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue"
+                 Label="Filled"
+                 Variant="NjInputTextVariant.Filled"
+                 PostAdornment="Kg" />
+    <hr />
+    <h3>PreAdornment Text</h3>
+    <NjInputText FormControl="true" @bind-Value="NjTextFilledValue"
+                 Label="Filled"
+                 Variant="NjInputTextVariant.Filled"
+                 PreAdornment="PreAdornment" />
+
+    <hr />
+    <h3>TextArea</h3>
+    <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFlatValue" Label="Classic" Variant="NjInputTextVariant.Flat" />
+    <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFilledValue" Label="Filled" Variant="NjInputTextVariant.Filled" />
+    <NjInputText IsTextArea="true" FormControl="true" @bind-Value="NjTextFilledValue" Label="Outline" Variant="NjInputTextVariant.Outline" />
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputText.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    public string? NjTextFlatValue { get; set; }
+    public string? NjTextFilledValue { get; set; }
+    public string? NjTextOutlineValue { get; set; }
+    public string TextValue { get; set; } = "Hola buenas tardes";
+
+}

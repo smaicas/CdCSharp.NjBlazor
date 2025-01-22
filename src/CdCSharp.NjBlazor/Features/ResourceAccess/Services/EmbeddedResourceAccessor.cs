@@ -51,11 +51,12 @@ public class EmbeddedResourceAccessor : IEmbeddedResourceAccessor
     /// <exception cref="ArgumentException">
     /// Thrown when the specified resource file is not found.
     /// </exception>
-    public Task<string> GetResourceContentAsync(string filePath, Encoding? encoding = null)
+    public async Task<string> GetResourceContentAsync(string filePath, Encoding? encoding = null)
     {
         encoding ??= Encoding.UTF8;
-        if (_cacheService.TryGet(filePath, out string? cachedContent) && cachedContent != null)
-            return Task.FromResult(cachedContent);
+        (bool Success, string? Value) = await _cacheService.TryGetAsync(filePath);
+        if (Success && Value != null)
+            return Value;
 
         string resourcePart = string.Join(".", filePath.Split("/").Where(f => !string.IsNullOrWhiteSpace(f)));
         Assembly assembly = Assembly.GetEntryAssembly() ?? throw new ApplicationException("ReadFileStreamAsync requires an entry assembly");
@@ -65,7 +66,7 @@ public class EmbeddedResourceAccessor : IEmbeddedResourceAccessor
         using StreamReader reader = new(resourceStream);
         string content = reader.ReadToEnd();
         resourceStream.Dispose();
-        _cacheService.Set(filePath, content);
-        return Task.FromResult(content);
+        await _cacheService.SetAsync(filePath, content);
+        return content;
     }
 }

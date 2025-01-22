@@ -25,6 +25,8 @@
 		<IsPackable>true</IsPackable>
 		<Configurations>Debug;Release;Integration</Configurations>
 
+		<IsRoslynAnalyzer>true</IsRoslynAnalyzer>
+
 	</PropertyGroup>
 
 	<ItemGroup>

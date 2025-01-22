@@ -87,6 +87,8 @@ public static class CssTools
         };
     }
 
+    public static string CalculateCssTreePaddingValue(int level) => $"{level * 4}px";
+
     public static string CalculateCssPaddingClass(int padding)
     {
         padding = Math.Clamp(padding, 0, CssClassReferences.MaxPaddingValue);

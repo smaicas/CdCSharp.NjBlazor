@@ -83,12 +83,12 @@
                         </div>
                     }
 
-                    @foreach (object item in Options.Select(o => o.Value))
+                    @foreach (NjInputDropdownOption item in Options)
                     {
                         if (item != null)
                         {
-                            <div class="@($"nj-input-dropdown-option {ActiveClass[item!]}")"
-                                 @onmousedown="() => SelectOptionAsync(item)">
+                            <div class="@($"nj-input-dropdown-option {item?.ActivableFeature.Feature.ActiveClass ?? string.Empty}")"
+                                 @onmousedown="() => SelectOptionAsync(item?.Value)">
                                 @(ItemDisplay == null ? item?.ToString() : ShowItemDisplayAsync(item))
                             </div>
                         }

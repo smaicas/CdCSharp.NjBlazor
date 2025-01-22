@@ -1,0 +1,89 @@
+﻿@page "/docs/forms-inputfile"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Forms.Checkbox
+@using CdCSharp.NjBlazor.Features.Forms.Color
+@using CdCSharp.NjBlazor.Features.Forms.Date
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown
+@using CdCSharp.NjBlazor.Features.Forms.Dropdown.IconDropdown
+@using CdCSharp.NjBlazor.Features.Forms.File
+@using CdCSharp.NjBlazor.Features.Forms.Number
+@using CdCSharp.NjBlazor.Features.Forms.Radio
+@using CdCSharp.NjBlazor.Features.Forms.Range
+@using CdCSharp.NjBlazor.Features.Forms.Text
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+@inject IStringLocalizer<PageForms> Loc
+
+<div class="nj-p-5">
+    <h2>NjInputFile</h2>
+    <hr />
+    <h3>NjInputFileVariant.Flat</h3>
+    <NjInputFile FormControl="true" Variant="NjInputFileVariant.Flat" Text="File here" @bind-Value="NjFileValue" OnChange="FileChanged"></NjInputFile>
+    <hr />
+    <h3>NjInputFileVariant.Raised</h3>
+    <NjInputFile FormControl="true" Variant="NjInputFileVariant.Raised" Text="File here" @bind-Value="NjFileValue" OnChange="FileChanged"></NjInputFile>
+    <hr />
+    <h3>Multiple</h3>
+    <NjInputFile Text="File Multiple here" Multiple="true" @bind-Value="NjFileValue"></NjInputFile>
+    @if (null != NjFileValue)
+    {
+        <span>@NjFileValue[0]</span>
+    }
+    <span>@FileContent</span>
+    <hr />
+    <h3>ShowImagePreviews="true"</h3>
+    <NjInputFile Text="Image here" @bind-Value="NjFileValue"
+                 Extensions="@(new string[]{".jpg", ".webp", ".png"})"
+                 ShowImagePreviews="true"
+                 Variant="NjInputFileVariant.Flat">
+    </NjInputFile>
+    <hr />
+    <h3>Readonly</h3>
+    <NjInputFile ReadOnly="true" Text="Image here" @bind-Value="NjFileValue"
+                 Extensions="@(new string[]{".jpg", ".webp", ".png"})"
+                 ShowImagePreviews="true">
+    </NjInputFile>
+    <hr />
+    <h3>Disabled</h3>
+    <NjInputFile Disabled="true" Text="Image here" @bind-Value="NjFileValue"
+                 Extensions="@(new string[]{".jpg", ".webp", ".png"})"
+                 ShowImagePreviews="true">
+    </NjInputFile>
+
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Forms-InputFile.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+    public IBrowserFile[] NjFileValue { get; set; }
+    public string FileContent = string.Empty;
+    private async Task FileChanged(InputFileChangeEventArgs args)
+    {
+        long maxFileSize = 1024 * 15;
+
+        var tempFilePath = Path.GetTempFileName();
+        var file = args.GetMultipleFiles()[0];
+
+        using (FileStream fs = new FileStream(tempFilePath, FileMode.Create))
+        {
+            await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+        }
+
+        using (var sr = new StreamReader(tempFilePath))
+        {
+            FileContent = await sr.ReadToEndAsync();
+        }
+
+        File.Delete(tempFilePath);
+    }
+
+
+}

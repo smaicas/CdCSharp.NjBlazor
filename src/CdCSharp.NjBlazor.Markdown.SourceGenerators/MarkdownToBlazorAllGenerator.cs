@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CdCSharp.NjBlazor.Markdown.SourceGenerators;
 
@@ -89,6 +90,7 @@ public class MarkdownToBlazorAllGenerator : IIncrementalGenerator
                 Location.None));
         }
     }
+    private static string GetShortName(string name) => string.Join("", Regex.Split(name, @"(?<!^)(?=[A-Z])").Select(v => string.Concat(v.Take(2))));
 
     private static string GetResultClassName(string resourceName)
     {

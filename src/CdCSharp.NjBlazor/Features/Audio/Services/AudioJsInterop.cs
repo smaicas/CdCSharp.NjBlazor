@@ -4,7 +4,7 @@ using CdCSharp.NjBlazor.Types;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Nj.Blazor.Audio.Services;
+namespace CdCSharp.NjBlazor.Features.Audio.Services;
 
 public class AudioJsInterop(IJSRuntime jsRuntime) : ModuleJsInterop(jsRuntime, CSharpReferences.Modules.AudioJs), IAudioJsInterop
 {

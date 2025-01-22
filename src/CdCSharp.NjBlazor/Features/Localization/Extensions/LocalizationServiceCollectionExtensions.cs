@@ -20,18 +20,19 @@ public static partial class LocalizationServiceCollectionExtensions
     /// <param name="lifetime">
     /// The lifetime of the service. Default is <see cref="ServiceLifetime.Transient" />.
     /// </param>
-    public static void AddNjBlazorLocalization(this IServiceCollection services, LocalizationSettings localizationSettings, ServiceLifetime lifetime = ServiceLifetime.Transient)
+    public static void AddNjBlazorLocalization(this IServiceCollection services, NjLocalizationSettings? settings = null, ServiceLifetime lifetime = ServiceLifetime.Transient)
     {
-        services.AddLocalizationServices(localizationSettings);
+        settings ??= new NjLocalizationSettings();
+        services.AddLocalizationServices(settings);
         services.AddLocalizationJsInterop(lifetime);
     }
 
     private static void AddLocalizationJsInterop(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Transient) =>
         services.Add(new ServiceDescriptor(typeof(ILocalizationJsInterop), typeof(LocalizationJsInterop), lifetime));
 
-    private static void AddLocalizationServices(this IServiceCollection services, LocalizationSettings localizationSettings)
+    private static void AddLocalizationServices(this IServiceCollection services, NjLocalizationSettings localizationSettings)
     {
-        services.Configure<LocalizationSettings>(options => options.SupportedCultures = localizationSettings.SupportedCultures);
+        services.Configure<NjLocalizationSettings>(options => options.SupportedCultures = localizationSettings.SupportedCultures);
         services.AddLocalization(options => options.ResourcesPath = "Resources");
     }
 }

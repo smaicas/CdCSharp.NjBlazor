@@ -1,4 +1,5 @@
-﻿using CdCSharp.NjBlazor.Features.Audio.Abstractions;
+﻿using CdCSharp.NjBlazor.Core.Abstractions.Components.Features;
+using CdCSharp.NjBlazor.Features.Audio.Abstractions;
 using CdCSharp.NjBlazor.Features.ColorPicker.Abstractions;
 using CdCSharp.NjBlazor.Features.Controls.Abstractions;
 using CdCSharp.NjBlazor.Features.Forms.Checkbox.Abstractions;
@@ -16,6 +17,7 @@ using CdCSharp.NjBlazor.Features.Markdown.Abstractions;
 using CdCSharp.NjBlazor.Features.Media.Abstractions;
 using CdCSharp.NjBlazor.Features.ResourceAccess.Abstractions;
 using CdCSharp.NjBlazor.Features.ThemeMode.Abstractions;
+using CdCSharp.NjBlazor.Features.Tree.Extensions;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -42,32 +44,35 @@ public static partial class NjBlazorServiceCollectionExtensions
 
         options?.Invoke(njSettings);
 
+        services.AddTransient<IComponentFeature<ActivableComponentFeature>, ActivableComponentFeature>();
+
         //services.AddNjBlazorCssInclude(njSettings.CssIncludeSettings);
 
-        services.AddNjBlazorAudio(njSettings.AudioSettings);
-        services.AddNjBlazorColorPicker(njSettings.ColorPickerSettings);
-        services.AddNjBlazorLayout(njSettings.LayoutSettings);
-        services.AddNjBlazorControls(njSettings.ControlsSettings);
+        services.AddNjBlazorAudio();
+        services.AddNjBlazorColorPicker();
+        services.AddNjBlazorLayout();
+        services.AddNjBlazorControls();
         services.AddNjBlazorDeviceManager();
         services.AddNjBlazorDom();
+        services.AddNjBlazorLocalStorage();
         services.AddNjBlazorDraggable();
         services.AddNjBlazorFocusHolder();
-        services.AddNjBlazorLocalization(njSettings.LocalizationSettings);
-        services.AddNjBlazorResourceAccess(njSettings.ResourceAccessSettings);
-        services.AddNjBlazorMarkdown(njSettings.MarkdownSettings);
-        services.AddNjBlazorMedia(njSettings.MediaSettings);
+        services.AddNjBlazorLocalization();
+        services.AddNjBlazorResourceAccess();
+        services.AddNjBlazorMarkdown();
+        services.AddNjBlazorMedia();
         services.AddNjBlazorTextPattern();
-        services.AddNjBlazorThemeMode(njSettings.ThemeModeSettings);
-
-        services.AddNjBlazorFormsCheckbox(njSettings.FormsCheckboxSettings);
-        services.AddNjBlazorFormsColor(njSettings.FormsColorSettings);
-        services.AddNjBlazorFormsDate(njSettings.FormsDateSettings);
-        services.AddNjBlazorFormsDropdown(njSettings.FormsDropdownSettings);
-        services.AddNjBlazorFormsFile(njSettings.FormsFileSettings);
-        services.AddNjBlazorFormsNumber(njSettings.FormsNumberSettings);
-        services.AddNjBlazorFormsRadio(njSettings.FormsRadioSettings);
-        services.AddNjBlazorFormsRange(njSettings.FormsRangeSettings);
-        services.AddNjBlazorFormsText(njSettings.FormsTextSettings);
+        services.AddNjBlazorThemeMode();
+        services.AddNjBlazorFormsCheckbox();
+        services.AddNjBlazorFormsColor();
+        services.AddNjBlazorFormsDate();
+        services.AddNjBlazorFormsDropdown();
+        services.AddNjBlazorFormsFile();
+        services.AddNjBlazorFormsNumber();
+        services.AddNjBlazorFormsRadio();
+        services.AddNjBlazorFormsRange();
+        services.AddNjBlazorFormsText();
+        services.AddNjBlazorTree();
     }
 
     /// <summary>
@@ -78,7 +83,7 @@ public static partial class NjBlazorServiceCollectionExtensions
         /// <summary>
         /// Gets or sets the localization settings for the application.
         /// </summary>
-        public LocalizationSettings LocalizationSettings { get; set; } = new();
+        public NjLocalizationSettings LocalizationSettings { get; set; } = new();
 
         ///// <summary>Gets or sets the CSS include settings for the application.</summary>
         //public CssIncludeSettings CssIncludeSettings { get; set; } = new();

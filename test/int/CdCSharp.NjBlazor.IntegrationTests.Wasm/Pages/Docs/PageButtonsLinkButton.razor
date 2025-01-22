@@ -1,0 +1,37 @@
+﻿@page "/docs/buttons-linkbutton"
+
+@using CdCSharp.NjBlazor.Core.Css
+@using CdCSharp.NjBlazor.Features.Containers.Components
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.ActionButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.LinkButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.ActivableTextButton
+@using CdCSharp.NjBlazor.Features.Controls.Components.Meter
+@using CdCSharp.NjBlazor.Features.Controls.Components.Search
+@using CdCSharp.NjBlazor.Features.Layout.Components.Spinner
+@using CdCSharp.NjBlazor.Features.Markdown
+@using CdCSharp.NjBlazor.Features.Markdown.Components
+
+<div class="nj-p-5 nj-w-100">
+
+    <h2>NjLinkButton</h2>
+
+    <hr />
+    <h3>NjTextButtonVariant.Flat </h3>
+    <NjLinkButton FormControl="true" Text="Test Button Flat" Variant="NjLinkButtonVariant.Flat"></NjLinkButton>
+    <hr />
+    <h3>NjTextButtonVariant.Raised</h3>
+    <NjLinkButton FormControl="true" Text="Test Button Raised" Variant="NjLinkButtonVariant.Raised"></NjLinkButton>
+    <hr />
+    <h3>NjTextButtonVariant.Outline</h3>
+    <NjLinkButton FormControl="true" Text="Test Button Outline" Variant="NjLinkButtonVariant.Outline"></NjLinkButton>
+</div>
+<div class="nj-p-5">
+
+    <NjMarkdownFragment Content="@(async () => await new HttpClient().GetStringAsync("https://raw.githubusercontent.com/wiki/smaicas/CdCSharp.NjBlazor/Buttons-LinkButton.md"))"></NjMarkdownFragment>
+
+</div>
+
+@code {
+
+}

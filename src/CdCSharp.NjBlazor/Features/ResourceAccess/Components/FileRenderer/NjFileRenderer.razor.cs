@@ -87,15 +87,16 @@ public partial class NjFileRenderer : NjComponentBase
     private async Task ShowFileAsync(NjFileRendererResource file)
     {
         selectedFile = file;
-        if (RenderFragmentCache.TryGet(file.ResourcePath, out RenderFragment? cachedFragment) && cachedFragment != null)
+        (bool Success, RenderFragment? Value) = await RenderFragmentCache.TryGetAsync(file.ResourcePath);
+        if (Success && Value != null)
         {
-            CurrentFragment = cachedFragment;
+            CurrentFragment = Value;
         }
         else
         {
             string content = await EmbeddedResourceAccessor.GetResourceContentAsync(selectedFile.ResourcePath);
             CurrentFragment = await RenderFileStringAsync(content);
-            RenderFragmentCache.Set(selectedFile.ResourcePath, CurrentFragment);
+            await RenderFragmentCache.SetAsync(selectedFile.ResourcePath, CurrentFragment);
         }
     }
 }
