@@ -46,7 +46,7 @@
                     {
                         if (item != null)
                         {
-                            <div class="@($"nj-input-dropdown-option {item?.ActiveClass ?? string.Empty}")"
+                            <div class="@($"nj-input-dropdown-option {item?.ActivableFeature.Feature.ActiveClass ?? string.Empty}")"
                                  @onmousedown="() => SelectOptionAsync(item?.Value)">
                                 @(ItemDisplay == null ? item?.ToString() : ShowItemDisplayAsync(item))
                             </div>

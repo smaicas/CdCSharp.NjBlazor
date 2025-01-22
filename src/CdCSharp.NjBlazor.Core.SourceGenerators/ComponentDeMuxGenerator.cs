@@ -475,24 +475,42 @@ public class ComponentDeMuxGenerator : IComponentCodeGenerator
         return statements;
     }
 
+    //private IEnumerable<StatementSyntax> GetParameterAttributeStatementsFromClass(
+    //    INamedTypeSymbol classSymbol,
+    //    ref int attributeOrder)
+    //{
+    //    List<StatementSyntax> statements = [];
+
+    //    // Obtener todos los miembros de todas las declaraciones partial
+    //    IEnumerable<ISymbol> allMembers = classSymbol.DeclaringSyntaxReferences
+    //    .SelectMany(reference => classSymbol.GetMembers())
+    //    .Distinct();
+
+    //    foreach (ISymbol member in allMembers)
+    //    {
+    //        if (member is IPropertySymbol propertySymbol && HasParameterAttribute(propertySymbol))
+    //        {
+    //            statements.Add(CreateAddAttributeStatement(propertySymbol.Name, propertySymbol.Name, ref attributeOrder));
+    //        }
+    //    }
+    //    return statements;
+    //}
+
     private IEnumerable<StatementSyntax> GetParameterAttributeStatementsFromClass(
-        INamedTypeSymbol classSymbol,
-        ref int attributeOrder)
+    INamedTypeSymbol classSymbol,
+    ref int attributeOrder)
     {
         List<StatementSyntax> statements = [];
 
-        // Obtener todos los miembros de todas las declaraciones partial
-        IEnumerable<ISymbol> allMembers = classSymbol.DeclaringSyntaxReferences
-        .SelectMany(reference => classSymbol.GetMembers())
-        .Distinct();
-
-        foreach (ISymbol member in allMembers)
+        // Get properties with [Parameter] attribute
+        foreach (ISymbol member in classSymbol.GetMembers())
         {
             if (member is IPropertySymbol propertySymbol && HasParameterAttribute(propertySymbol))
             {
                 statements.Add(CreateAddAttributeStatement(propertySymbol.Name, propertySymbol.Name, ref attributeOrder));
             }
         }
+
         return statements;
     }
 
