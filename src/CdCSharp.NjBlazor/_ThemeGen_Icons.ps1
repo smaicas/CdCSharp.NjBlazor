@@ -1,6 +1,6 @@
 try
 {
-    dotnet tool run nj-theme-gen -- --icons
+    dotnet tool run nj-theme-gen -- icons
 }
 catch
 {

@@ -3,40 +3,37 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using Nj.Blazor.Variants;
+using CdCSharp.NjBlazor.Features.Forms.Text.Variants;
 
-namespace Nj.Blazor;
+namespace CdCSharp.NjBlazor.Features.Forms.Text;
 public partial class NjInputText : NjInputTextBase
 {
     [Parameter]
-    public Nj.Blazor.NjInputTextVariant Variant { get; set; } = Nj.Blazor.NjInputTextVariant.Flat;
+    public CdCSharp.NjBlazor.Features.Forms.Text.NjInputTextVariant Variant { get; set; } = CdCSharp.NjBlazor.Features.Forms.Text.NjInputTextVariant.Flat;
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         switch (Variant)
         {
-            case Nj.Blazor.NjInputTextVariant.Flat:
+            case CdCSharp.NjBlazor.Features.Forms.Text.NjInputTextVariant.Flat:
             {
                 builder.OpenComponent<NjInputTextVariantFlat>(0);
                 break;
             }
 
-            case Nj.Blazor.NjInputTextVariant.Filled:
+            case CdCSharp.NjBlazor.Features.Forms.Text.NjInputTextVariant.Filled:
             {
                 builder.OpenComponent<NjInputTextVariantFilled>(0);
                 break;
             }
 
-            case Nj.Blazor.NjInputTextVariant.Outline:
+            case CdCSharp.NjBlazor.Features.Forms.Text.NjInputTextVariant.Outline:
             {
                 builder.OpenComponent<NjInputTextVariantOutline>(0);
                 break;
             }
         }
 
-        builder.AddAttribute(0, "IsTextArea", IsTextArea);
-        builder.AddAttribute(1, "Label", Label);
-        builder.AddAttribute(2, "ChildContent", ChildContent);
         builder.CloseComponent();
     }
 

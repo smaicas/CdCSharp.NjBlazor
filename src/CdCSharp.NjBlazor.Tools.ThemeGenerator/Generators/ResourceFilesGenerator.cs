@@ -13,24 +13,6 @@ public static class ResourceFilesGenerator
 
     private static readonly Dictionary<string, HashSet<string>> _resourceStrings = [];
 
-    /// <summary>
-    /// Sanitizes a string to be used as an XML name by replacing invalid characters
-    /// </summary>
-    private static string SanitizeXmlName(string input)
-    {
-        if (string.IsNullOrEmpty(input))
-            return input;
-
-        // Reemplazar caracteres no válidos con un guión bajo
-        string sanitized = Regex.Replace(input, @"[^\w\-.]", "_");
-
-        // Si empieza con un número, añadir prefijo
-        if (char.IsDigit(sanitized[0]))
-            sanitized = "_" + sanitized;
-
-        return sanitized;
-    }
-
     public static async Task GenerateResourceFiles(string projectPath)
     {
         try

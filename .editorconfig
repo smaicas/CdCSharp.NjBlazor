@@ -232,3 +232,5 @@ dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 # Custom warnings
 dotnet_diagnostic.BL0007.severity = none
+
+resharper_remove_redundant_braces_highlighting = none

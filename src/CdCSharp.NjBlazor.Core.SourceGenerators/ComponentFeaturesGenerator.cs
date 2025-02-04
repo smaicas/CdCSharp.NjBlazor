@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using CdCSharp.SequentialGenerator;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -7,9 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-public class ComponentFeaturesGenerator : IComponentCodeGenerator
+public class ComponentFeaturesGenerator : ISequentialGenerator
 {
     private static readonly string[] AttributeName = { "ComponentFeatures", "ComponentFeaturesAttribute" };
+
+    public string Name => nameof(ComponentFeaturesGenerator);
 
     public IncrementalValuesProvider<INamedTypeSymbol> ConfigureProvider(IncrementalGeneratorInitializationContext context)
     {
@@ -56,7 +59,7 @@ public class ComponentFeaturesGenerator : IComponentCodeGenerator
         return classSymbol;
     }
 
-    public void Execute(GeneratorExecutionContext context)
+    public void Execute(SequentialGeneratorExecutionContext context)
     {
         foreach (INamedTypeSymbol classSymbol in context.Classes
                      .Where(t => t.TypeKind == TypeKind.Class))
@@ -65,7 +68,7 @@ public class ComponentFeaturesGenerator : IComponentCodeGenerator
         }
     }
 
-    private void GenerateClass(GeneratorExecutionContext context, INamedTypeSymbol classSymbol)
+    private void GenerateClass(SequentialGeneratorExecutionContext context, INamedTypeSymbol classSymbol)
     {
         IEnumerable<AttributeData> attributes = classSymbol.GetAttributes().Where(attr => attr.AttributeClass?.Name == "ComponentFeaturesAttribute");
 

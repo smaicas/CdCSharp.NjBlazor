@@ -7,6 +7,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<PackageId>CdCSharp.NjBlazor</PackageId>
+		<Title>CdCSharp Generic</Title>
 		<Description>A Blazor Components library that extends native components.</Description>
 		<VersionPrefix>1.0.0</VersionPrefix>
 		<Authors>Samuel Maícas (CdCSharp)</Authors>
@@ -14,6 +15,10 @@
 		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
 		<PackageProjectUrl>https://cdcsharp.github.io/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/smaicas/CdCSharp.NjBlazor</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryType>Git</RepositoryType>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageIcon>logo.png</PackageIcon>
 
 		<LangVersion>Latest</LangVersion>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -21,32 +26,17 @@
 		<Configurations>Debug;Release;Integration</Configurations>
 
 		<!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>-->
-
-
-		<!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>-->
-		<!--<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)</CompilerGeneratedFilesOutputPath>-->
-
-		<!--<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>-->
-		<!--<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)</CompilerGeneratedFilesOutputPath>-->
-
+		<CompilerGeneratedFilesOutputPath>$(ProjectDir)Generated</CompilerGeneratedFilesOutputPath>-->
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Remove="Generated\**" />
-		<Content Remove="Generated\**" />
-		<EmbeddedResource Remove="Generated\**" />
-		<None Remove="Generated\**" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -55,18 +45,23 @@
 
 
 	<ItemGroup>
-		<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" PrivateAssets="all" SetTargetFramework="TargetFramework=netstandard2.0" />
-
-		<!--<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" />-->
+		<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" 
+						  OutputItemType="Analyzer" 
+						  ReferenceOutputAssembly="false" 
+						  PrivateAssets="all"/>
+		<!--<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />-->
 	</ItemGroup>
 
-
 	<ItemGroup>
-		<Folder Include="Features\Tree\Services\" />
-		<Folder Include="Types\LocalStorage\" />
+		<Folder Include="Resources\" />
 		<Folder Include="wwwroot\css\" />
 		<Folder Include="wwwroot\js\" />
 	</ItemGroup>
+
+	<!--<ItemGroup>
+		<Compile Include="Features\**\*.cs" />
+		<Compile Include="Types\**\*.cs" />
+	</ItemGroup>-->
 
 	<Target Name="ExecutePowerShellScript" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="pwsh -ExecutionPolicy Bypass -File $(ProjectDir)AfterBuild.ps1 $(Configuration)" />

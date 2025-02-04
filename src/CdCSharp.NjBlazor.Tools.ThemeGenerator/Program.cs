@@ -1,74 +1,77 @@
-﻿using CdCSharp.NjBlazor.Tools.ThemeGenerator;
-using CdCSharp.NjBlazor.Tools.ThemeGenerator.Cli;
+﻿using CdCSharp.FluentCli;
+using CdCSharp.FluentCli.Abstractions;
+using CdCSharp.NjBlazor.Tools.ThemeGenerator.Generators;
 
-try
+public class ThemeArgs
 {
-    if (args.Length == 0) throw new ArgumentException("Required arguments");
+    [Arg("path", "Root folder", "p")]
+    public string Path { get; set; } = ".";
 
-    CommandLinePipe commandPipe = new(args);
+    [Arg("output", "Output folder", "o")]
+    public string Output { get; set; } = "wwwroot";
 
-    Dictionary<string, Func<CommandLinePipe, Task>> parameterProcess = new()
-    {
-        { "--t", ThemeCommand},
-        { "--theme", ThemeCommand},
-        { "--v", VariablesCommand},
-        { "--variables", VariablesCommand},
-        { "--i", IconsCommand},
-        { "--icons", IconsCommand},
-        { "--r", ResourcesCommand},
-        { "--resources", ResourcesCommand},
-        { "-h", Help.ShowHelp},
-        { "--help", Help.ShowHelp},
-    };
-
-    await commandPipe.ExecuteFirstAsync(parameterProcess, "Required command arguments. Use theme-generator --help to see help.");
-}
-catch (ArgumentException ex)
-{
-    Console.WriteLine(ex.Message);
+    [Arg("file", "Output filename", "f")]
+    public string File { get; set; } = "theme.css";
 }
 
-async Task ThemeCommand(CommandLinePipe commandPipe)
+public class VariablesArgs
 {
-    Dictionary<string, Func<CommandLinePipe, Task>> commandParameters = new()
-    {
-        {"", Commands.GenerateTheme },
-        { "-h", Help.ShowThemeHelp},
-        { "--help", Help.ShowThemeHelp},
-    };
+    [Arg("path", "Root folder", "p")]
+    public string Path { get; set; } = ".";
 
-    await commandPipe.ExecuteFirstAsync(commandParameters);
+    [Arg("output", "Output folder", "o")]
+    public string Output { get; set; } = "wwwroot";
+
+    [Arg("file", "Output filename", "f")]
+    public string File { get; set; } = "variables.css";
 }
 
-async Task VariablesCommand(CommandLinePipe commandPipe)
+public class ResourcesArgs
 {
-    Dictionary<string, Func<CommandLinePipe, Task>> commandParameters = new()
-    {
-        {"", Commands.GenerateVariables },
-        { "-h", Help.ShowVariablesHelp},
-        { "--help", Help.ShowVariablesHelp},
-    };
-
-    await commandPipe.ExecuteFirstAsync(commandParameters);
+    [Arg("path", "Root folder", "p")]
+    public string Path { get; set; } = ".";
 }
 
-async Task IconsCommand(CommandLinePipe commandPipe)
+public class Program
 {
-    Dictionary<string, Func<CommandLinePipe, Task>> commandParameters = new()
+    public static async Task Main(string[] args)
     {
-        {"", Commands.GenerateIcons },
-        { "-h", Help.ShowIconsHelp},
-        { "--help", Help.ShowIconsHelp},
-    };
+        try
+        {
+            FCli cli = new FCli()
+               .WithDescription("Theme Generator CLI Tool")
+               .WithErrorHandler(ex => Console.WriteLine(ex.Message))
+               .Command<ThemeArgs>("theme")
+                   .WithAlias("t")
+                   .WithDescription("Generate Theme CSS")
+                   .OnExecute(async args =>
+                       await ThemeCssGenerator.BuildThemeCssFile(
+                           rootPath: args.Path,
+                           outputFolder: args.Output,
+                           outputFile: args.File))
+               .Command<VariablesArgs>("variables")
+                   .WithAlias("v")
+                   .WithDescription("Generate Variables CSS")
+                   .OnExecute(async args =>
+                       await ThemeCssGenerator.BuildVariablesCssFile(
+                           rootPath: args.Path,
+                           outputFolder: args.Output,
+                           outputFile: args.File))
+               .Command("icons")
+                   .WithAlias("i")
+                   .WithDescription("Icons class generation")
+                   .OnExecute(async _ =>
+                       await IconsClassGenerator.BuildIconsFile())
+               .Command<ResourcesArgs>("resources")
+                   .WithAlias("r")
+                   .WithDescription("Generate resource files")
+                   .OnExecute(async (args) => await ResourceFilesGenerator.GenerateResourceFiles(args.Path));
 
-    await commandPipe.ExecuteFirstAsync(commandParameters);
-}
-async Task ResourcesCommand(CommandLinePipe commandPipe)
-{
-    Dictionary<string, Func<CommandLinePipe, Task>> commandParameters = new()
-    {
-        {"", Commands.GenerateResourceFiles },
-    };
-
-    await commandPipe.ExecuteFirstAsync(commandParameters);
+            await cli.ExecuteAsync(args);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using CdCSharp.NjBlazor.Core.Abstractions.Components.Features;
+using CdCSharp.NjBlazor.Core.SourceGenerators.Abstractions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,7 +8,7 @@ namespace CdCSharp.NjBlazor.Features.Controls.Components.Button.TextButton.Activ
 /// <summary>
 /// Base class for an activable text button.
 /// </summary>
-//[ComponentFeatures<NjComponentBase>(typeof(ActivableComponentFeature))]
+[ComponentFeatures(typeof(ActivableComponentFeature2))]
 public partial class NjActivableTextButtonBase : NjTextButtonBase
 {
     [Inject]

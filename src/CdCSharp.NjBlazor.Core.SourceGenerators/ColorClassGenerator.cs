@@ -8,10 +8,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-/// <summary>
-/// Generates colors palette from System.Drawing.Color for the specific by <see
-/// cref="AutogenerateCssColorsAttribute" /> class.
-/// </summary>
 [Generator]
 public class ColorClassGenerator : IIncrementalGenerator
 {

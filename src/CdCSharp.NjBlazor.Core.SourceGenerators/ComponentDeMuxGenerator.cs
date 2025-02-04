@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using CdCSharp.SequentialGenerator;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -8,9 +9,11 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 
-public class ComponentDeMuxGenerator : IComponentCodeGenerator
+public class ComponentDeMuxGenerator : ISequentialGenerator
 {
     private static readonly string[] AttributeName = { "ComponentDeMux", "ComponentDeMuxAttribute" };
+
+    public string Name => nameof(ComponentDeMuxGenerator);
 
     public IncrementalValuesProvider<INamedTypeSymbol> ConfigureProvider(IncrementalGeneratorInitializationContext context)
     {
@@ -68,7 +71,7 @@ public class ComponentDeMuxGenerator : IComponentCodeGenerator
         return null;
     }
 
-    public void Execute(GeneratorExecutionContext context)
+    public void Execute(SequentialGeneratorExecutionContext context)
     {
         if (context.Classes.IsDefaultOrEmpty)
             return;
@@ -97,7 +100,7 @@ public class ComponentDeMuxGenerator : IComponentCodeGenerator
     }
 
     private void ProcessClassGroup(
-        GeneratorExecutionContext context,
+        SequentialGeneratorExecutionContext context,
         string className,
         List<INamedTypeSymbol> classGroup)
     {
@@ -144,7 +147,7 @@ public class ComponentDeMuxGenerator : IComponentCodeGenerator
     }
 
     private string GeneratePartialClassCode(
-        GeneratorExecutionContext context,
+        SequentialGeneratorExecutionContext context,
         ClassDeclarationSyntax primaryClassDeclaration,
         string namespaceName,
         INamedTypeSymbol classSymbol,
@@ -474,27 +477,6 @@ public class ComponentDeMuxGenerator : IComponentCodeGenerator
 
         return statements;
     }
-
-    //private IEnumerable<StatementSyntax> GetParameterAttributeStatementsFromClass(
-    //    INamedTypeSymbol classSymbol,
-    //    ref int attributeOrder)
-    //{
-    //    List<StatementSyntax> statements = [];
-
-    //    // Obtener todos los miembros de todas las declaraciones partial
-    //    IEnumerable<ISymbol> allMembers = classSymbol.DeclaringSyntaxReferences
-    //    .SelectMany(reference => classSymbol.GetMembers())
-    //    .Distinct();
-
-    //    foreach (ISymbol member in allMembers)
-    //    {
-    //        if (member is IPropertySymbol propertySymbol && HasParameterAttribute(propertySymbol))
-    //        {
-    //            statements.Add(CreateAddAttributeStatement(propertySymbol.Name, propertySymbol.Name, ref attributeOrder));
-    //        }
-    //    }
-    //    return statements;
-    //}
 
     private IEnumerable<StatementSyntax> GetParameterAttributeStatementsFromClass(
     INamedTypeSymbol classSymbol,

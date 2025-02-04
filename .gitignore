@@ -371,6 +371,3 @@ obj/
 *.db-shm
 *.db-wal
 *.db
-/Features/OpenIddictServer/Nj.OpenIddictServer/openiddict-nj-server.sqlite3
-/Features/OpenIddictServer/Nj.OpenIddictServer/openiddict-nj-server.sqlite3-shm
-/Features/OpenIddictServer/Nj.OpenIddictServer/openiddict-nj-server.sqlite3-wal

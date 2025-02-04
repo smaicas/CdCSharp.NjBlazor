@@ -3,16 +3,23 @@
   "isRoot": true,
   "tools": {
     "cdcsharp.tools.xmldoctomarkdown": {
-      "version": "1.0.2",
+      "version": "1.0.4",
       "commands": [
         "xmltomd"
       ],
       "rollForward": false
     },
     "cdcsharp.njblazor.tools.themegenerator": {
-      "version": "1.0.0-pre.20250120020820",
+      "version": "1.0.0-pre.20250124084321",
       "commands": [
         "nj-theme-gen"
+      ],
+      "rollForward": false
+    },
+    "cdcsharp.tools.generatorsrunner": {
+      "version": "1.0.1",
+      "commands": [
+        "gen-runner"
       ],
       "rollForward": false
     }

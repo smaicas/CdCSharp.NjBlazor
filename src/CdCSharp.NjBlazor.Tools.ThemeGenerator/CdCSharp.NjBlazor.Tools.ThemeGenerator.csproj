@@ -22,11 +22,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CdCSharp.Generic" Version="1.0.3" />
 	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\LIBS\FluentCli\src\CdCSharp.FluentCli\CdCSharp.FluentCli.csproj" />
 	  <ProjectReference Include="..\CdCSharp.NjBlazor.Core\CdCSharp.NjBlazor.Core.csproj" />
 	</ItemGroup>
 	

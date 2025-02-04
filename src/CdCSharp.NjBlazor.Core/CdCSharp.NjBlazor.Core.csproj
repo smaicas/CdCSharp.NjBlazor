@@ -19,12 +19,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
-		<PackageReference Include="Microsoft.JSInterop" Version="9.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
+		<PackageReference Include="Microsoft.JSInterop" Version="9.0.1" />
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Integration'">
+		<PackageReference Include="CdCSharp.SequentialGenerator.Abstractions" Version="1.0.3" />
+	</ItemGroup>
+	
+
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\LIBS\SequentialGenerator\src\CdCSharp.SequentialGenerator\CdCSharp.SequentialGenerator.csproj" />
 		<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators.Abstractions\CdCSharp.NjBlazor.Core.SourceGenerators.Abstractions.csproj" />
 		<ProjectReference Include="..\CdCSharp.NjBlazor.Core.SourceGenerators\CdCSharp.NjBlazor.Core.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
