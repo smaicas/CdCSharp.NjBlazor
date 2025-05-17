@@ -9,25 +9,25 @@ namespace Nj.Blazor;
 public partial class NjInputText
 {
     [Parameter]
-    public Nj.Blazor.NjInputTextVariant Variant { get; set; } = NjInputTextVariant.Flat;
+    public Nj.Blazor.NjInputTextVariant Variant { get; set; } = Nj.Blazor.NjInputTextVariant.Flat;
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         switch (Variant)
         {
-            case NjInputTextVariant.Flat:
+            case Nj.Blazor.NjInputTextVariant.Flat:
             {
                 builder.OpenComponent<NjInputTextVariantFlat>(0);
                 break;
             }
 
-            case NjInputTextVariant.Filled:
+            case Nj.Blazor.NjInputTextVariant.Filled:
             {
                 builder.OpenComponent<NjInputTextVariantFilled>(0);
                 break;
             }
 
-            case NjInputTextVariant.Outline:
+            case Nj.Blazor.NjInputTextVariant.Outline:
             {
                 builder.OpenComponent<NjInputTextVariantOutline>(0);
                 break;
